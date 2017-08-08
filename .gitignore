@@ -1,0 +1,23 @@
+!.gitignore
+.opt-in
+target/
+*.*~
+*.swp
+*.old
+*.org
+
+#Ignore merge conflict files
+*.orig
+
+# Exclude all dot files by default
+*/**/.*
+
+#Ignore thumbnails created by windows
+Thumbs.db
+
+#IntelliJ
+*.iml
+.sass-cache/
+.idea/*
+!.idea/runConfigurations
+*/**/.idea/
