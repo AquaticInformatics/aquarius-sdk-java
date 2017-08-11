@@ -7,14 +7,23 @@ import com.google.gson.JsonParseException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.lang.reflect.Type;
+import java.util.Locale;
 
 public class InstantDeserializer implements JsonDeserializer<Instant> {
+
+    public static final String ZoneFieldPattern = "ZZZZZ";
+    public static final String Pattern = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSSSSSS" + ZoneFieldPattern;
+
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern(Pattern)
+            .withLocale(Locale.US);
+
     @Override
-    public Instant deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
-        return parse(json.getAsString());
+    public Instant deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
+        return parse(jsonElement.getAsString());
     }
 
     public static Instant parse(String text) {
-        return DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse(text, Instant::from);
+        return FORMATTER.parse(text, Instant::from);
     }
 }

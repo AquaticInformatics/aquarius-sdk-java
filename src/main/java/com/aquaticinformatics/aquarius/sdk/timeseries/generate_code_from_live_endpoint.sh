@@ -35,13 +35,94 @@ ApiVersion=`echo "$ApiVersionJson" | sed -e "s/{\"ApiVersion\":\"//" -e "s/\"}//
 
 echo "Generating $OutputFile ..."
 OutputFile=$OutputPath/$EndPointName.java
-curl -s -o t.t "http://$ServerName/AQUARIUS/$EndPoint/types/java?Package=com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels&GlobalNamespace=$EndPointName&AddServiceStackTypes=false&TreatTypesAsStrings=Guid&DefaultImports=java.time.*,java.util.*,net.servicestack.client.*,com.aquaticinformatics.aquarius.sdk.AquariusServerVersion" || exit_abort "Can't read endpoint"
-cat t.t | sed -e "s/\bIList</List</g" \
-    -e "s/\bIReadOnlyList</List</g" \
-    -e "s/\bNullable<Double>/Double/g" \
-    -e "s/\bOffset\b/ZoneOffset/g" \
-    -e "s/\bDate\b/Instant/g" \
-    -e "s/^}/\\n    public static class Current\\n    {\\n        public static final AquariusServerVersion Version = AquariusServerVersion.Create(\"$ApiVersion\");\\n    }\\n\\n}/" >> "$OutputFile"
-rm t.t
+TempFile=t.t
+
+rm -f "$TempFile" "$TempFile".*
+
+# Ask the ServiceStack endpoint to generate the annotated Java DTOs
+curl -s -o "$TempFile" "http://$ServerName/AQUARIUS/$EndPoint/types/java?Package=com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels&GlobalNamespace=$EndPointName&AddServiceStackTypes=false&TreatTypesAsStrings=Guid&DefaultImports=java.time.*,java.util.*,net.servicestack.client.*,com.aquaticinformatics.aquarius.sdk.AquariusServerVersion" || exit_abort "Can't read endpoint"
+
+# Now we need to work around some of the limitations of the ServiceStack code generators.
+# All of this 3-phase regex madness could be eliminated if the ServiceStack code generator supported an "Aliases" dictionary
+
+# Phase 1 - Map a few .NET types to appropriate Java types
+unset typeMap
+declare -A typeMap
+typeMap["IList<"]="List<"             # All the .NET list variants map to a simple Java list
+typeMap["IReadOnlyList<"]="List<"
+typeMap["Nullable<Double>"]="Double"  # Doubles are already nullable in Java
+typeMap["Date\\b"]="Instant"             # Use java.time.Instant for accurate timestamps
+
+for sourceType in ${!typeMap[@]}; do
+  destType=${typeMap[${sourceType}]}
+
+  # Use a simple sed substitution to map these types
+  sed -i.bak -e "s/\\b${sourceType}/${destType}/g" "$TempFile"
+done
+
+# Also append a built-in Current version property into the service model namespace
+sed -i.bak -e "s/^}/    public static class Current\\n    {\\n        public static final AquariusServerVersion Version = AquariusServerVersion.Create(\"$ApiVersion\");\\n    }\\n}/" "$TempFile"
+
+# Pase 2 - Map some NodaTime .NET struct datatypes (exported as Java strings) to more appropriate Java types.
+# We need to match regeular expressions across multiline statements, so switch to perl, using -0777 for "slurp the entire file as one record".
+# Relevant XKCD: https://xkcd.com/1171/
+
+unset typeMap
+declare -A typeMap
+typeMap["Interval"]="Interval"  # NodaTime.Interval maps to java.time.Interval
+typeMap["Duration"]="Duration"  # NodaTime.Duration maps to java.time.Duration
+typeMap["Instant"]="Instant"    # NodaTime.Instant  maps to java.time.Instant
+typeMap["Offset"]="Duration"    # NodaTime.Offset   maps to java.time.Duration
+
+cp "$TempFile" "$TempFile".map
+
+for sourceType in ${!typeMap[@]}; do
+  destType=${typeMap[${sourceType}]}
+
+  # Compose the multiline regex to find fields needing to be remapped
+  # \1 matches the @ApiMember line
+  # \2 matches the subsequent "public" field prefix
+  # \3 matches the field name
+  apiMemberRegex="\n([ \t]*\@ApiMember\(DataType=\"${sourceType}\".*)\n( *public )String (.*) = null;"
+
+  # Build some # <FieldName> = <DestType> lines, which we will extract later in Phase 3
+  perl -0777 -p -i.bak -e "s/$apiMemberRegex/\n# \3 = $destType/g" "$TempFile".map
+
+  # Modify the @ApiMember declaration to use the correct Java type
+  perl -0777 -p -i.bak -e "s/$apiMemberRegex/\n\1\n\2$destType \3 = null;/g" "$TempFile"
+
+done
+
+# Phase 3 - Extract the # <FieldName> = <DestType> lines and repair the generated getters/setters
+fieldName=
+destType=
+index=0
+for item in `grep "^#" "$TempFile".map | cut -d' ' -f2,4 | sort | uniq`; do
+  if ((index == 0)); then
+    fieldName=$item
+    index=1
+    continue
+  else
+    destType=$item
+    index=0
+  fi
+
+  # Now we have a $fieldName and $destType to tweak
+
+  # Compose a regex that matches the String getter/setter pattern
+  # \1 matches the getter prefix
+  # \2 matches the getter suffix
+  # \3 matches the setter prefix
+  # \4 matches the setter suffix
+  regex="\n([ \t]*public) String get$fieldName\(\)(.*)\n([ \t]*public \w+) set$fieldName\(String value\)(.*)\n"
+
+  # Modify the getter/setter to map the field's type
+  perl -0777 -p -i.bak -e "s/$regex/\n\1 $destType get$fieldName()\2\n\3 set$fieldName($destType value)\4\n/g" "$TempFile"
+
+done
+
+mv "$TempFile" "$OutputFile"
 unix2dos "$OutputFile"
+rm -f "$TempFile".bak "$TempFile".map "$TempFile".map.bak
+
 echo "Complete."

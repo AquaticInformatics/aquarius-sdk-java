@@ -2,17 +2,14 @@ package com.aquaticinformatics.aquarius.sdk.timeseries;
 
 import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 import com.aquaticinformatics.aquarius.sdk.helpers.SdkServiceClient;
-import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.InstantDeserializer;
-import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.InstantSerializer;
-import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.StatisticalDateTimeOffsetDeserializer;
-import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.ZoneOffsetDeserializer;
+import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.*;
 import net.servicestack.client.IReturn;
 import net.servicestack.client.Route;
 
 import java.lang.reflect.Type;
 import java.net.SocketTimeoutException;
+import java.time.Duration;
 import java.time.Instant;
-import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,10 +31,11 @@ public class AquariusClient implements AutoCloseable {
 
     private AquariusClient(String hostname){
         _typeAdapters = new HashMap<Type, Object>();
-        _typeAdapters.put(ZoneOffset.class, new ZoneOffsetDeserializer());
         _typeAdapters.put(com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels.Publish.StatisticalDateTimeOffset.class, new StatisticalDateTimeOffsetDeserializer());
         _typeAdapters.put(Instant.class, new InstantDeserializer());
         _typeAdapters.put(Instant.class, new InstantSerializer());
+        _typeAdapters.put(Duration.class, new DurationDeserializer());
+        _typeAdapters.put(Duration.class, new DurationSerializer());
 
         Provisioning = SdkServiceClient.Create(hostname, EndPoints.PROVISIONING, _typeAdapters);
         Publish = SdkServiceClient.Create(hostname, EndPoints.PUBLISHV2, _typeAdapters);

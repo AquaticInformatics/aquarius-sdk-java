@@ -1,5 +1,5 @@
 /* Options:
-Instant: 2017-08-08 14:17:49
+Instant: 2017-08-10 16:33:32
 Version: 4.512
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: http://doug-vm2012r2/AQUARIUS/Acquisition/v2
@@ -27,69 +27,6 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
-
-    @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
-    public static class PostReportAttachment implements IReturn<PostReportResponse>
-    {
-        /**
-        * Title of the report
-        */
-        @ApiMember(Description="Title of the report", IsRequired=true)
-        public String Title = null;
-
-        /**
-        * Description of the report
-        */
-        @ApiMember(Description="Description of the report")
-        public String Description = null;
-
-        /**
-        * Comments about the report
-        */
-        @ApiMember(Description="Comments about the report")
-        public String Comments = null;
-
-        /**
-        * Unique ID of the location to add the report to
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-
-        /**
-        * Unique IDs of source time-series displayed in report
-        */
-        @ApiMember(DataType="Array<string>", Description="Unique IDs of source time-series displayed in report")
-        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
-
-        /**
-        * Time range of source data displayed in report
-        */
-        @ApiMember(DataType="Interval", Description="Time range of source data displayed in report")
-        public String SourceTimeRange = null;
-
-        /**
-        * Time report was created
-        */
-        @ApiMember(DataType="Instant", Description="Time report was created")
-        public Instant CreatedTime = null;
-        
-        public String getTitle() { return Title; }
-        public PostReportAttachment setTitle(String value) { this.Title = value; return this; }
-        public String getDescription() { return Description; }
-        public PostReportAttachment setDescription(String value) { this.Description = value; return this; }
-        public String getComments() { return Comments; }
-        public PostReportAttachment setComments(String value) { this.Comments = value; return this; }
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostReportAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
-        public PostReportAttachment setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
-        public String getSourceTimeRange() { return SourceTimeRange; }
-        public PostReportAttachment setSourceTimeRange(String value) { this.SourceTimeRange = value; return this; }
-        public Instant getCreatedTime() { return CreatedTime; }
-        public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
-        private static Object responseType = PostReportResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
 
     @Route(Path="/timeseries/appendstatus/{AppendRequestIdentifier}", Verbs="GET")
     public static class GetTimeSeriesAppendStatus implements IReturn<TimeSeriesAppendStatus>
@@ -148,14 +85,14 @@ public class Acquisition
         * Time range to delete before appending points
         */
         @ApiMember(DataType="Interval", Description="Time range to delete before appending points")
-        public String TimeRange = null;
+        public Interval TimeRange = null;
         
         public String getUniqueId() { return UniqueId; }
         public PostTimeSeriesOverwriteAppend setUniqueId(String value) { this.UniqueId = value; return this; }
         public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
         public PostTimeSeriesOverwriteAppend setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
-        public String getTimeRange() { return TimeRange; }
-        public PostTimeSeriesOverwriteAppend setTimeRange(String value) { this.TimeRange = value; return this; }
+        public Interval getTimeRange() { return TimeRange; }
+        public PostTimeSeriesOverwriteAppend setTimeRange(Interval value) { this.TimeRange = value; return this; }
         private static Object responseType = AppendResponse.class;
         public Object getResponseType() { return responseType; }
     }
@@ -179,15 +116,78 @@ public class Acquisition
         * Time range to update. Any existing points in the time range will be overwritten
         */
         @ApiMember(DataType="Interval", Description="Time range to update. Any existing points in the time range will be overwritten", IsRequired=true)
-        public String TimeRange = null;
+        public Interval TimeRange = null;
         
         public String getUniqueId() { return UniqueId; }
         public PostReflectedTimeSeries setUniqueId(String value) { this.UniqueId = value; return this; }
         public ArrayList<ReflectedTimeSeriesPoint> getPoints() { return Points; }
         public PostReflectedTimeSeries setPoints(ArrayList<ReflectedTimeSeriesPoint> value) { this.Points = value; return this; }
-        public String getTimeRange() { return TimeRange; }
-        public PostReflectedTimeSeries setTimeRange(String value) { this.TimeRange = value; return this; }
+        public Interval getTimeRange() { return TimeRange; }
+        public PostReflectedTimeSeries setTimeRange(Interval value) { this.TimeRange = value; return this; }
         private static Object responseType = AppendResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
+    public static class PostReportAttachment implements IReturn<PostReportResponse>
+    {
+        /**
+        * Title of the report
+        */
+        @ApiMember(Description="Title of the report", IsRequired=true)
+        public String Title = null;
+
+        /**
+        * Description of the report
+        */
+        @ApiMember(Description="Description of the report")
+        public String Description = null;
+
+        /**
+        * Comments about the report
+        */
+        @ApiMember(Description="Comments about the report")
+        public String Comments = null;
+
+        /**
+        * Unique ID of the location to add the report to
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        /**
+        * Unique IDs of source time-series displayed in report
+        */
+        @ApiMember(DataType="Array<string>", Description="Unique IDs of source time-series displayed in report")
+        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
+
+        /**
+        * Time range of source data displayed in report
+        */
+        @ApiMember(DataType="Interval", Description="Time range of source data displayed in report")
+        public Interval SourceTimeRange = null;
+
+        /**
+        * Time report was created
+        */
+        @ApiMember(DataType="Instant", Description="Time report was created")
+        public Instant CreatedTime = null;
+        
+        public String getTitle() { return Title; }
+        public PostReportAttachment setTitle(String value) { this.Title = value; return this; }
+        public String getDescription() { return Description; }
+        public PostReportAttachment setDescription(String value) { this.Description = value; return this; }
+        public String getComments() { return Comments; }
+        public PostReportAttachment setComments(String value) { this.Comments = value; return this; }
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostReportAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
+        public PostReportAttachment setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
+        public Interval getSourceTimeRange() { return SourceTimeRange; }
+        public PostReportAttachment setSourceTimeRange(Interval value) { this.SourceTimeRange = value; return this; }
+        public Instant getCreatedTime() { return CreatedTime; }
+        public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
+        private static Object responseType = PostReportResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -242,18 +242,6 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    public static class PostReportResponse
-    {
-        /**
-        * Unique ID of the created report
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the created report")
-        public String ReportUniqueId = null;
-        
-        public String getReportUniqueId() { return ReportUniqueId; }
-        public PostReportResponse setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
-    }
-
     public static class TimeSeriesAppendStatus
     {
         /**
@@ -303,6 +291,18 @@ public class Acquisition
         
         public String getAppendRequestIdentifier() { return AppendRequestIdentifier; }
         public AppendResponse setAppendRequestIdentifier(String value) { this.AppendRequestIdentifier = value; return this; }
+    }
+
+    public static class PostReportResponse
+    {
+        /**
+        * Unique ID of the created report
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the created report")
+        public String ReportUniqueId = null;
+        
+        public String getReportUniqueId() { return ReportUniqueId; }
+        public PostReportResponse setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
     }
 
     public static class PublicKey
@@ -372,10 +372,8 @@ public class Acquisition
         public ReflectedTimeSeriesPoint setQualifiers(ArrayList<String> value) { this.Qualifiers = value; return this; }
     }
 
-
     public static class Current
     {
         public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.3.52.0");
     }
-
 }
