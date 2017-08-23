@@ -1,0 +1,19 @@
+# http://www.appveyor.com/docs/appveyor-yml
+# This file lifted from https://github.com/kevinoid/appveyor-swagger-java
+# https://www.appveyor.com/docs/build-environment/#java
+# Use the standard "Visual Studio 2015" image, since that has all the required Maven tools
+environment:
+  matrix:
+    #- JAVA_HOME: C:\Program Files\Java\jdk1.7.0
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+install:
+  # Log versions for debugging
+  - java -version
+  - mvn --version
+build_script:
+  - mvn --batch-mode -DskipTests package
+test_script:
+  - mvn --batch-mode test verify
+cache:
+  - C:\maven\
+  - C:\Users\appveyor\.m2
