@@ -1,6 +1,6 @@
 # AQUARIUS SDK for Java
 
-[![aquarius-sdk-java MyGet Build Status](https://www.myget.org/BuildSource/Badge/aquarius-sdk-java?identifier=5e7ad6e4-fa42-468c-abb3-7f26d7380aed)](https://www.myget.org/)
+[![Build status](https://ci.appveyor.com/api/projects/status/ggamtunnps7umnmg/branch/develop?svg=true)](https://ci.appveyor.com/project/SystemsAdministrator/aquarius-sdk-java/branch/develop)
 
 The **AQUARIUS SDK for Java** enables JAVA developers to easily work with the [AQUARIUS Platform](http://aquaticinformatics.com/products/) of environmental monitoring products.
 
