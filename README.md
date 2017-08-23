@@ -14,17 +14,52 @@ View the [Release Notes](ReleaseNotes.md) here.
 
 ## Consuming the SDK
 
-- Requires Java 8 and Maven 3
+- Requires Java 8
 
-Just add the `com.aquaticinformatics.aquarius.sdk` package as a dependency in your `pom.xml` file.
+### Maven
+
+To use this project as a dependency with [Maven](https://maven.apache.org),
+add the following dependency to your project's `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>com.aquaticinformatics.aquarius.sdk</groupId>
-    <artifactId>client</artifactId>
-    <version>RELEASE</version>
+  <groupId>com.aquaticinformatics</groupId>
+  <artifactId>aquarius.sdk</artifactId>
+  <version>0.1.0</version>
 </dependency>
 ```
+
+### sbt
+
+To use this project as a dependency with [sbt](http://www.scala-sbt.org)
+add the following dependency to your project's `build.sbt`:
+
+```scala
+libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "0.1.0"
+```
+
+### Gradle
+
+To use this project as a dependency with [Gradle](https://gradle.org/),
+add the following dependency to your project's `build.gradle`:
+
+```groovy
+compile "com.aquaticinformatics:aquarius.sdk:0.1.0"
+```
+
+### Others
+
+To use this project as a dependency of another build system, a
+[JAR](https://docs.oracle.com/javase/8/docs/technotes/guides/jar/index.html)
+can be created by running the following commands:
+
+```sh
+git clone --branch v0.1.0 https://github.com/AquaticInformatics/aquarius-sdk-java.git
+cd aquarius-sdk-java
+mvn package
+```
+
+The generated JAR file will be at `target/aquarius-sdk-0.1.0.jar`.
 
 ## Getting Help
 
