@@ -1,12 +1,8 @@
 # http://www.appveyor.com/docs/appveyor-yml
-#
 # This is the standard AppVeyor project for the SDK
 # It builds pulls requests and merges to master to ensure that no tests have broken
 #
 # This follows the 3-project AppVeyor/Maven pattern established in https://github.com/dblock/log4jna/blob/master/AppVeyorMavenRelease.md
-
-# This file lifted from https://github.com/kevinoid/appveyor-swagger-java
-# Another useful Appveyor/Maven project to inspect for ideas is
 
 # https://www.appveyor.com/docs/build-environment/#java
 # Use the standard "Visual Studio 2015" image, since that has all the required Maven tools
@@ -34,7 +30,7 @@ skip_commits:
     - 'appveyor-deploy.yml'
 
 build_script:
-  - mvn clean install -B
+  - mvn -B clean install
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
