@@ -4,7 +4,7 @@
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>${revision}</version>
 
   <name>aquarius-sdk-java</name>
   <description>The Java SDK for the AQUARIUS Platform</description>
@@ -57,6 +57,7 @@
   <properties>
     <java.version>1.8</java.version>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <revision>1.0.0-SNAPSHOT</revision>
   </properties>
 	
   <dependencies>

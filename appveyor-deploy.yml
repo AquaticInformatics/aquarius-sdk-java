@@ -91,7 +91,7 @@ skip_commits:
     - 'appveyor-deploy.yml'
 
 build_script:
-  - mvn -B clean site site:stage deploy -P deploy
+  - mvn -B clean site site:stage deploy -P deploy -Drevision=%APPVEYOR_BUILD_VERSION%-SNAPSHOT
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
