@@ -1,0 +1,99 @@
+# This AppVeyor project is run manually, to push a new release to the Maven Central Repository.
+#
+# This follows the 3-project AppVeyor/Maven pattern established in https://github.com/dblock/log4jna/blob/master/AppVeyorMavenRelease.md
+
+# https://www.appveyor.com/docs/build-environment/#java
+# Use the standard "Visual Studio 2015" image, since that has all the required Maven tools
+environment:
+  JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+  M2: $(USERPROFILE)\.m2
+  SETTINGS_ENC: $(APPVEYOR_BUILD_FOLDER)\build\Maven\settings.xml.enc
+  SETTINGS_SEC_ENC: $(APPVEYOR_BUILD_FOLDER)\build\Maven\settings-security.xml.enc
+  M2_SETTINGS: $(USERPROFILE)\.m2\settings.xml
+  M2_SETTINGS_SEC: $(USERPROFILE)\.m2\settings-security.xml
+  M2_SETTINGS_ENC: $(USERPROFILE)\.m2\settings.xml.enc
+  M2_SETTINGS_SEC_ENC: $(USERPROFILE)\.m2\settings-security.xml.enc
+  GNUPG_HOME: $(USERPROFILE)\.gnupg
+  PUB_KEY_FILE_ENC: $(APPVEYOR_BUILD_FOLDER)\build\Maven\OpenSourceAquatics.public.gpg.asc.enc
+  SEC_KEY_FILE_ENC: $(APPVEYOR_BUILD_FOLDER)\build\Maven\OpenSourceAquatics.secret.gpg.asc.enc
+  PUB_KEY_FILE_ENC_DEST: $(USERPROFILE)\OpenSourceAquatics.public.gpg.asc.enc
+  SEC_KEY_FILE_ENC_DEST: $(USERPROFILE)\OpenSourceAquatics.secret.gpg.asc.enc
+  PUB_KEY_FILE_GPG: $(USERPROFILE)\OpenSourceAquatics.public.gpg.asc
+  SEC_KEY_FILE_GPG: $(USERPROFILE)\OpenSourceAquatics.secret.gpg.asc
+  SECURE_FILE_DIR: C:\secure-file
+  SECURE_FILE_CMD: C:\secure-file\tools\secure-file.exe
+  SECURE_FILE_DEC: '-decrypt'
+  SECURE_FILE_SEC: '-secret'
+
+  secret:
+    secure: WYu06hjvbgjSQERvZN+jZNj8RBPsxpaaAmvWUHtNzSA=
+
+install:
+  # Log versions for debugging
+  - java -version
+  - mvn --version
+
+  # Install secure-file if not present
+  - ps: |
+      if (!(Test-Path -Path $env:SECURE_FILE_DIR )) {
+        nuget install secure-file -ExcludeVersion -o C:\
+      }
+
+  # Create or update the Maven settings
+  - ps: |
+      $CMD = "C:\secure-file\tools\secure-file.exe"
+      $decrip = '-decrypt'
+      $secret = '-secret'
+      if(!(Test-Path -Path $env:M2)) {
+          New-Item $env:M2 -type directory -Verbose
+          # Install maven settings
+          Copy-Item $env:SETTINGS_ENC $env:M2_SETTINGS_ENC -Verbose
+          Copy-Item $env:SETTINGS_SEC_ENC $env:M2_SETTINGS_SEC_ENC -Verbose
+          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_ENC $env:SECURE_FILE_SEC $env:secret
+          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_SEC_ENC $env:SECURE_FILE_SEC $env:secret
+      } else {
+      # The directory exists test Meven settings
+        if (!(Test-Path $env:M2_SETTINGS_ENC) -or ((Get-FileHash $env:M2_SETTINGS_ENC).hash -ne (Get-FileHash $env:SETTINGS_ENC).hash)) {
+          Copy-Item $env:SETTINGS_ENC $env:M2_SETTINGS_ENC -Verbose
+          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_ENC $env:SECURE_FILE_SEC $env:secret
+        } else {
+          Write-Host "$env:M2_SETTINGS_ENC up to date"
+        }
+        if (!(Test-Path $env:M2_SETTINGS_SEC_ENC) -or ((Get-FileHash $env:M2_SETTINGS_SEC_ENC).hash -ne (Get-FileHash $env:SETTINGS_SEC_ENC).hash)) {
+          Copy-Item $env:SETTINGS_SEC_ENC $env:M2_SETTINGS_SEC_ENC -Verbose
+          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_SEC_ENC $env:SECURE_FILE_SEC $env:secret
+        } else {
+          Write-Host "$env:M2_SETTINGS_SEC up to date"
+        }
+      }
+
+  # Decrypt and install gpg keys
+  - C:\secure-file\tools\secure-file -decrypt %PUB_KEY_FILE_ENC% -secret %secret% -out %PUB_KEY_FILE_GPG%
+  - C:\secure-file\tools\secure-file -decrypt %SEC_KEY_FILE_ENC% -secret %secret% -out %SEC_KEY_FILE_GPG%
+  - gpg --import %PUB_KEY_FILE_GPG%
+  - gpg --import %SEC_KEY_FILE_GPG%
+
+# Ignore changes that do not affect the build
+skip_commits:
+  files:
+    - '**/*.md'
+    - '**/*.txt'
+    - '**/.gitignore'
+    - '**/.project'
+    - '**/.classpath'
+    - 'appveyor-mvn-release.yml'
+    - 'appveyor-deploy.yml'
+
+# This script is launched manually
+build: off
+
+build_script:
+  - mvn -B site site:stage deploy -P release -Drevision=%APPVEYOR_BUILD_VERSION%
+
+# Maven runs the tests as part of the build, so we don't need to run them again
+test: off
+
+cache:
+  # Cache Maven and m.2
+  - '%MAVEN_HOME%'
+  - '%M2%'
