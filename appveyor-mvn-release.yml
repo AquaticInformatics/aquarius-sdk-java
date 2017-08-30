@@ -88,7 +88,7 @@ skip_commits:
 build: off
 
 build_script:
-  - mvn -B clean install -P release -Drevision=%APPVEYOR_BUILD_VERSION%
+  - mvn -B site site:stage deploy -P release -Drevision=%APPVEYOR_BUILD_VERSION%
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
