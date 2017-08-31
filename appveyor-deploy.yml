@@ -79,17 +79,6 @@ install:
   - gpg --import %PUB_KEY_FILE_GPG%
   - gpg --import %SEC_KEY_FILE_GPG%
 
-# Ignore changes that do not affect the build
-skip_commits:
-  files:
-    - '**/*.md'
-    - '**/*.txt'
-    - '**/.gitignore'
-    - '**/.project'
-    - '**/.classpath'
-    - 'appveyor-mvn-release.yml'
-    - 'appveyor-deploy.yml'
-
 build_script:
   - mvn -B clean site site:stage deploy -P deploy -Drevision=%APPVEYOR_BUILD_VERSION%-SNAPSHOT
 

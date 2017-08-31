@@ -18,17 +18,6 @@ install:
   - java -version
   - mvn --version
 
-# Ignore changes that do not affect the build
-skip_commits:
-  files:
-    - '**/*.md'
-    - '**/*.txt'
-    - '**/.gitignore'
-    - '**/.project'
-    - '**/.classpath'
-    - 'appveyor-mvn-release.yml'
-    - 'appveyor-deploy.yml'
-
 build_script:
   - mvn -B clean install
 
