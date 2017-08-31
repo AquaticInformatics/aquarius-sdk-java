@@ -28,6 +28,9 @@ environment:
   secret:
     secure: WYu06hjvbgjSQERvZN+jZNj8RBPsxpaaAmvWUHtNzSA=
 
+  access_token:
+    secure: DeTORL7H+5KS+KHQDt52OCT0LsvkYIIPZdA0VfvWpQo7za9ZwLoHMmz76jkYOxpO
+
 install:
   # Log versions for debugging
   - java -version
@@ -92,6 +95,15 @@ build_script:
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
+
+# Create a tag for successful builds and push it to the repo
+on_success:
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email "opensource@aquaticinformatics.com"
+  - git config --global user.name "Open Source Aquatics"
+  - git tag v%APPVEYOR_BUILD_VERSION%
+  - git push origin v%APPVEYOR_BUILD_VERSION%
 
 cache:
   # Cache Maven and m.2
