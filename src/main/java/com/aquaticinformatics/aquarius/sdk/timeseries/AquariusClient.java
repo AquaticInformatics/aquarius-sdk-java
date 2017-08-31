@@ -75,7 +75,7 @@ public class AquariusClient implements AutoCloseable {
         }
     }
 
-    @Route(Path="/version2", Verbs="GET")
+    @Route(Path="/version", Verbs="GET")
     private class GetVersion implements IReturn<VersionResponse> {
 
         public Object getResponseType() { return VersionResponse.class; }
