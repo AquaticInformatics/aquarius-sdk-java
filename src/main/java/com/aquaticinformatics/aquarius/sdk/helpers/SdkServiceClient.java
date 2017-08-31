@@ -5,7 +5,13 @@ import com.google.gson.GsonBuilder;
 import net.servicestack.client.*;
 import net.servicestack.func.Func;
 import net.servicestack.func.Predicate;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -37,8 +43,45 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     }
 
     private static void SetUserAgent() {
-        // TODO: Build a useful agent string from: application, SDK version, ServiceStack version (and " Java/JVM version" by default)
-        System.setProperty("http.agent", "org.dryerfox:1.2.3/com.aquarius.sdk:2017.3.456/net.servicestack:1.033/");
+        BuildUserAgentOnce();
+        System.setProperty("http.agent", userAgent);
+    }
+
+    private static String userAgent = null;
+
+    private static void BuildUserAgentOnce() {
+
+        if (userAgent != null)
+            return;
+
+        // Build a useful agent string from: SDK version, ServiceStack version (and " Java/JVM version" by default)
+        StringBuilder builder = new StringBuilder();
+
+        MavenXpp3Reader reader = new MavenXpp3Reader();
+
+        try {
+            Model model = reader.read(new FileReader("pom.xml"));
+
+            // TODO: Finding the outermost class name is too slow/unreliable in Java
+            builder.append(model.getArtifactId());
+            builder.append(':');
+            builder.append(model.getVersion());
+
+            for (Dependency dep: model.getDependencies() ) {
+                if (dep.getGroupId().contains("servicestack")){
+                    builder.append('/');
+                    builder.append(dep.getGroupId());
+                    builder.append('.');
+                    builder.append(dep.getArtifactId());
+                    builder.append(':');
+                    builder.append(dep.getVersion());
+                    break;
+                }
+            }
+        } catch (IOException | XmlPullParserException ignored) {
+        }
+
+        userAgent = builder.toString();
     }
 
     public String Authenticate(String username, String password)
