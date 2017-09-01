@@ -27,15 +27,15 @@ public class AquariusClient implements AutoCloseable {
         return client;
     }
 
-    private final Map<Type,Object> _typeAdapters;
+    private final Map<Object,Type> _typeAdapters;
 
     private AquariusClient(String hostname){
-        _typeAdapters = new HashMap<Type, Object>();
-        _typeAdapters.put(com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels.Publish.StatisticalDateTimeOffset.class, new StatisticalDateTimeOffsetDeserializer());
-        _typeAdapters.put(Instant.class, new InstantDeserializer());
-        _typeAdapters.put(Instant.class, new InstantSerializer());
-        _typeAdapters.put(Duration.class, new DurationDeserializer());
-        _typeAdapters.put(Duration.class, new DurationSerializer());
+        _typeAdapters = new HashMap<Object,Type>();
+        _typeAdapters.put(new StatisticalDateTimeOffsetDeserializer(), com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels.Publish.StatisticalDateTimeOffset.class);
+        _typeAdapters.put(new InstantDeserializer(), Instant.class);
+        _typeAdapters.put(new InstantSerializer(), Instant.class);
+        _typeAdapters.put(new DurationDeserializer(), Duration.class);
+        _typeAdapters.put(new DurationSerializer(), Duration.class);
 
         Provisioning = SdkServiceClient.Create(hostname, EndPoints.PROVISIONING, _typeAdapters);
         Publish = SdkServiceClient.Create(hostname, EndPoints.PUBLISHV2, _typeAdapters);
@@ -45,7 +45,7 @@ public class AquariusClient implements AutoCloseable {
     }
 
     private AquariusServerVersion GetServerVersion(String hostname) {
-        SdkServiceClient versionClient = SdkServiceClient.Create(hostname, EndPoints.ROOT + "/apps/v1", new HashMap<Type,Object>());
+        SdkServiceClient versionClient = SdkServiceClient.Create(hostname, EndPoints.ROOT + "/apps/v1", new HashMap<Object,Type>());
 
         versionClient.RequestFilter = request -> {
             request.setConnectTimeout(10000);

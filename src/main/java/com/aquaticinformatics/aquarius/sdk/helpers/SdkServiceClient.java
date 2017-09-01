@@ -26,14 +26,14 @@ import java.util.stream.Stream;
 public class SdkServiceClient extends net.servicestack.client.JsonServiceClient {
     private String endpointUrl;
 
-    private final Map<Type,Object> _typeAdapters;
+    private final Map<Object,Type> _typeAdapters;
 
-    private SdkServiceClient(String baseUrl, Map<Type,Object> typeAdapters) {
+    private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters) {
         super(baseUrl);
         _typeAdapters = typeAdapters;
     }
 
-    public static SdkServiceClient Create(String server, String baseUrl, Map<Type,Object> typeAdapters)
+    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters)
     {
         SetUserAgent();
 
@@ -107,9 +107,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     public GsonBuilder getGsonBuilder() {
         GsonBuilder gsonBuilder = super.getGsonBuilder();
 
-        for (Map.Entry<Type, Object> entry : _typeAdapters.entrySet()) {
-            gsonBuilder.registerTypeAdapter(entry.getKey(), entry.getValue());
-        }
+        _typeAdapters.forEach((object, type) -> gsonBuilder.registerTypeAdapter(type, object));
 
         return gsonBuilder;
     }
