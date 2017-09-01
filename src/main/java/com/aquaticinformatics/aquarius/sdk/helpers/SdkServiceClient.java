@@ -17,9 +17,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class SdkServiceClient extends net.servicestack.client.JsonServiceClient {
     private String endpointUrl;
@@ -112,9 +114,32 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return gsonBuilder;
     }
 
-    // TODO: Add a method to post a file with a request DTO
-    // public TResponse PostFileWithRequest<TResponse>(string relativeOrAbsoluteUrl, Stream fileToUpload, string fileName, object request, string fieldName = "upload");
-    // via multipart file upload. https://stackoverflow.com/questions/11766878/sending-files-using-post-with-httpurlconnection
+    public <TResponse> TResponse PostFileWithRequest(Stream fileToUpload, String fileName, IReturn<TResponse> requestDto)
+    {
+        return PostFileWithRequest(fileToUpload, fileName, requestDto, "upload");
+    }
+
+    public <TResponse> TResponse PostFileWithRequest(Stream fileToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName)
+    {
+        Route route = getRoute(requestDto);
+
+        if (route == null)
+            throw new RuntimeException("No REST route found for " + requestDto.getClass().getName());
+
+        StringBuffer urlBuffer = new StringBuffer(this.endpointUrl);
+
+        Map<String,String> propertyMap = ResolveTemplateParameters(route, urlBuffer, requestDto);
+
+        String requestUrl = urlBuffer.toString();
+
+        MultipartBuilder builder = new MultipartBuilder();
+        builder.addFileContent(fieldName, fileName, fileToUpload);
+
+        propertyMap.forEach((name,value) -> builder.addField(name, value));
+        builder.finish();
+
+        return send(requestUrl, HttpMethods.Post, builder.toByteArray(), builder.getContentType());
+    }
 
     // The remaining overrides are required so that all requests are sent to routes that match the .NET SDK behaviour.
     // When a DTO has one-and-only-one @Route attribute (which is true for all AQTS public APIs, but not for all
@@ -133,32 +158,12 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         templateParameterPattern = Pattern.compile("\\{(\\w+)\\}");
     }
 
-    @Override
-    public String createUrl(Object requestDto, Map<String,String> query){
-        return createUrl(requestDto, query, HttpMethods.Get);
-    }
-
-    public String createUrl(Object requestDto, String httpMethod){
-        return createUrl(requestDto, null, httpMethod);
-    }
-
-    public String createUrl(Object requestDto, Map<String,String> query, String httpMethod){
-
-        Class<?> requestDtoClass = requestDto.getClass();
-        Route[] routes = requestDtoClass.getDeclaredAnnotationsByType(Route.class);
-
-        if (routes.length != 1)
-            return super.createUrl(requestDto, query);
-
-        Route route = routes[0];
-
-        StringBuffer urlBuffer = new StringBuffer(this.endpointUrl);
-        StringBuilder queryBuilder = new StringBuilder();
+    private Map<String,String> ResolveTemplateParameters(Route route, StringBuffer urlBuffer, Object requestDto) {
+        ArrayList<Field> fields = Func.toList(Utils.getSerializableFields(requestDto.getClass()));
 
         try {
-            ArrayList<Field> fields = Func.toList(Utils.getSerializableFields(requestDto.getClass()));
-
             Matcher m = templateParameterPattern.matcher(route.Path());
+
             while (m.find()) {
                 String parameterName = m.group(1);
 
@@ -181,42 +186,98 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
                 fields.remove(f);
             }
+
             m.appendTail(urlBuffer);
 
-            if (httpMethod == HttpMethods.Get) {
-                for (Field f : fields) {
-                    Object val = f.get(requestDto);
-
-                    if (val == null)
-                        continue;
-
-                    queryBuilder.append(queryBuilder.length() == 0 ? "?" : "&");
-                    queryBuilder.append(URLEncoder.encode(f.getName(), "UTF-8"));
-                    queryBuilder.append("=");
-                    queryBuilder.append(URLEncoder.encode(Utils.stripQuotes(getGson().toJson(val)), "UTF-8"));
-                }
-
-                if (query != null) {
-                    for (Map.Entry<String, String> entry : query.entrySet()) {
-                        String key = entry.getKey();
-                        String val = entry.getValue();
-
-                        queryBuilder.append(queryBuilder.length() == 0 ? "?" : "&");
-                        queryBuilder.append(URLEncoder.encode(key, "UTF-8"));
-                        queryBuilder.append("=");
-                        if (val != null) {
-                            queryBuilder.append(URLEncoder.encode(val, "UTF-8"));
-                        }
-                    }
-                }
-            }
         } catch (IllegalAccessException | UnsupportedEncodingException e) {
             throw new RuntimeException(e);
+        }
+
+        return createJsvPropertyMap(requestDto, fields);
+    }
+
+    private Map<String,String> createJsvPropertyMap(Object requestDto, ArrayList<Field> fields) {
+
+        Map<String,String> propertyMap = new HashMap<String,String>();
+
+        try {
+            for (Field f : fields) {
+                Object val = f.get(requestDto);
+
+                if (val == null)
+                    continue;
+
+                String name = f.getName();
+                String value = Utils.stripQuotes(getGson().toJson(val));
+
+                propertyMap.put(name, value);
+            }
+
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        return propertyMap;
+    }
+
+    @Override
+    public String createUrl(Object requestDto, Map<String,String> query){
+        return createUrl(requestDto, query, HttpMethods.Get);
+    }
+
+    public String createUrl(Object requestDto, String httpMethod){
+        return createUrl(requestDto, null, httpMethod);
+    }
+
+    public String createUrl(Object requestDto, Map<String,String> query, String httpMethod){
+
+        Route route = getRoute(requestDto);
+
+        if (route == null)
+            return super.createUrl(requestDto, query);
+
+        StringBuffer urlBuffer = new StringBuffer(this.endpointUrl);
+        StringBuilder queryBuilder = new StringBuilder();
+
+        Map<String,String> propertyMap = ResolveTemplateParameters(route, urlBuffer, requestDto);
+
+        if (httpMethod == HttpMethods.Get) {
+
+            propertyMap.forEach((name,value) -> appendQueryParameter(queryBuilder, name, value));
+
+            if (query != null) {
+                query.forEach((key, val) -> appendQueryParameter(queryBuilder, key, val));
+            }
         }
 
         urlBuffer.append(queryBuilder.toString());
 
         return urlBuffer.toString();
+    }
+
+    private Route getRoute(Object requestDto) {
+        Class<?> requestDtoClass = requestDto.getClass();
+        Route[] routes = requestDtoClass.getDeclaredAnnotationsByType(Route.class);
+
+        if (routes.length != 1)
+            return null;
+
+        return routes[0];
+    }
+
+    private void appendQueryParameter(StringBuilder queryBuilder, String name, String value) {
+        try {
+            queryBuilder.append(queryBuilder.length() == 0 ? "?" : "&");
+
+            queryBuilder.append(URLEncoder.encode(name, "UTF-8"));
+            queryBuilder.append("=");
+
+            if (value != null) {
+                queryBuilder.append(URLEncoder.encode(value, "UTF-8"));
+            }
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Utils.combinePath(replyUrl, typeName(request)) => 6 usages
