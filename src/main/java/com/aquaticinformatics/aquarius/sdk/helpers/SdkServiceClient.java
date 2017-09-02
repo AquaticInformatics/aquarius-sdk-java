@@ -10,9 +10,7 @@ import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
@@ -21,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class SdkServiceClient extends net.servicestack.client.JsonServiceClient {
     private String endpointUrl;
@@ -35,7 +32,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
     public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters)
     {
-        SetUserAgent();
+        setUserAgent();
 
         if (!server.startsWith("http")) {
             server = "http://" + server;
@@ -44,14 +41,14 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return new SdkServiceClient(server + baseUrl, typeAdapters);
     }
 
-    private static void SetUserAgent() {
-        BuildUserAgentOnce();
+    private static void setUserAgent() {
+        buildUserAgentOnce();
         System.setProperty("http.agent", userAgent);
     }
 
     private static String userAgent = null;
 
-    private static void BuildUserAgentOnce() {
+    private static void buildUserAgentOnce() {
 
         if (userAgent != null)
             return;
@@ -86,19 +83,19 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         userAgent = builder.toString();
     }
 
-    public String Authenticate(String username, String password)
+    public String authenticate(String username, String password)
     {
         return post( new Provisioning.PostSession()
                 .setUsername(username)
                 .setEncryptedPassword(password));
     }
 
-    public void Logoff()
+    public void logoff()
     {
         delete(new Provisioning.DeleteSession());
     }
 
-    public void SetAuthenticationToken(String authenticationToken)
+    public void setAuthenticationToken(String authenticationToken)
     {
         RequestFilter = request -> request.setRequestProperty("X-Authentication-Token", authenticationToken);
     }
@@ -112,12 +109,23 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return gsonBuilder;
     }
 
-    public <TResponse> TResponse PostFileWithRequest(Stream fileToUpload, String fileName, IReturn<TResponse> requestDto)
+    public <TResponse> TResponse postFileWithRequest(File fileToUpload, IReturn<TResponse> requestDto)
     {
-        return PostFileWithRequest(fileToUpload, fileName, requestDto, "upload");
+        try (FileInputStream contentToUpload = new FileInputStream(fileToUpload.getPath())) {
+            return postFileWithRequest(contentToUpload, fileToUpload.getName(), requestDto);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public <TResponse> TResponse PostFileWithRequest(Stream fileToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName)
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto)
+    {
+        return postFileWithRequest(contentToUpload, fileName, requestDto, "upload");
+    }
+
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName)
     {
         Route route = getRoute(requestDto);
 
@@ -131,7 +139,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         String requestUrl = urlBuffer.toString();
 
         MultipartBuilder builder = new MultipartBuilder();
-        builder.addFileContent(fieldName, fileName, fileToUpload);
+        builder.addFileContent(fieldName, fileName, contentToUpload);
 
         propertyMap.forEach((name,value) -> builder.addField(name, value));
         builder.finish();
