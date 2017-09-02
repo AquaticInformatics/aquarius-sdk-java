@@ -18,11 +18,11 @@ public class AquariusClient implements AutoCloseable {
     public final SdkServiceClient Publish, Provisioning, Acquisition;
     public final AquariusServerVersion ServerVersion;
 
-    public static AquariusClient CreateConnectedClient(String hostname, String username, String password) {
+    public static AquariusClient createConnectedClient(String hostname, String username, String password) {
 
         AquariusClient client = new AquariusClient(hostname);
 
-        client.Connect(username, password);
+        client.connect(username, password);
 
         return client;
     }
@@ -41,10 +41,10 @@ public class AquariusClient implements AutoCloseable {
         Publish = SdkServiceClient.Create(hostname, EndPoints.PUBLISHV2, _typeAdapters);
         Acquisition = SdkServiceClient.Create(hostname, EndPoints.ACQUISITIONV2, _typeAdapters);
 
-        ServerVersion = GetServerVersion(hostname);
+        ServerVersion = getServerVersion(hostname);
     }
 
-    private AquariusServerVersion GetServerVersion(String hostname) {
+    private AquariusServerVersion getServerVersion(String hostname) {
         SdkServiceClient versionClient = SdkServiceClient.Create(hostname, EndPoints.ROOT + "/apps/v1", new HashMap<Object,Type>());
 
         versionClient.RequestFilter = request -> {
@@ -85,24 +85,24 @@ public class AquariusClient implements AutoCloseable {
         public String ApiVersion;
     }
 
-    private void Connect(String username, String password) {
-        String sessionToken = Provisioning.Authenticate(username, password);
+    private void connect(String username, String password) {
+        String sessionToken = Provisioning.authenticate(username, password);
 
-        Provisioning.SetAuthenticationToken(sessionToken);
-        Publish.SetAuthenticationToken(sessionToken);
-        Acquisition.SetAuthenticationToken(sessionToken);
+        Provisioning.setAuthenticationToken(sessionToken);
+        Publish.setAuthenticationToken(sessionToken);
+        Acquisition.setAuthenticationToken(sessionToken);
     }
 
-    private void Disconnect(){
-        DeleteSession();
+    private void disconnect(){
+        deleteSession();
     }
 
-    private void DeleteSession(){
-        Provisioning.Logoff();
+    private void deleteSession(){
+        Provisioning.logoff();
     }
 
     @Override
     public void close() throws Exception {
-        Disconnect();
+        disconnect();
     }
 }
