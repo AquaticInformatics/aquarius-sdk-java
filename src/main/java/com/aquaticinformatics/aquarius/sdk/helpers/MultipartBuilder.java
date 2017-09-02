@@ -2,6 +2,7 @@ package com.aquaticinformatics.aquarius.sdk.helpers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -28,11 +29,17 @@ public class MultipartBuilder {
         writeLine(value);
     }
 
-    public void addFileContent(String fieldName, String fileName, Stream content) {
+    public void addFileContent(String fieldName, String fileName, InputStream content) {
         writeFieldBoundary();
         writeLine("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName + "\"");
         writeLine("Content-Type: text/plain; charset=UTF-8");
         writeLine("");
+
+        try {
+            outputStream.write(net.servicestack.client.Utils.readBytesToEnd(content));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void writeFieldBoundary() {
