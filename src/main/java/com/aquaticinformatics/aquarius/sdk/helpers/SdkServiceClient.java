@@ -144,7 +144,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         propertyMap.forEach((name,value) -> builder.addField(name, value));
         builder.finish();
 
-        return send(requestUrl, HttpMethods.Post, builder.toByteArray(), builder.getContentType());
+        return send(requestUrl, HttpMethods.Post, builder.toByteArray(), builder.getContentType(), requestDto.getResponseType());
     }
 
     // The remaining overrides are required so that all requests are sent to routes that match the .NET SDK behaviour.
