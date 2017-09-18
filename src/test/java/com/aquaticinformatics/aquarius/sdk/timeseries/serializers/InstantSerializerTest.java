@@ -46,6 +46,12 @@ public class InstantSerializerTest {
                 new Object[]{"Xmas 2016 UTC and 9 fractional digits truncates to 7 fractional seconds", Instant.parse("2016-12-25T00:00:00.123456789Z"), "2016-12-25T00:00:00.1234567Z"},
                 new Object[]{"Xmas 2017 PST", ZonedDateTime.parse("2017-12-25T00:00:00-07:00").toInstant(), "2017-12-25T07:00:00.0000000Z"},
                 new Object[]{"Xmas 2017 PST and 7 fractional seconds", ZonedDateTime.parse("2017-12-25T00:00:00.1234567-07:00").toInstant(), "2017-12-25T07:00:00.1234567Z"},
+                new Object[]{"MaxConcreteValue", InstantDeserializer.MaxConcreteValue, InstantDeserializer.JsonMaxConcreteValue},
+                new Object[]{"MinConcreteValue", InstantDeserializer.MinConcreteValue, InstantDeserializer.JsonMinConcreteValue},
+                new Object[]{"MaxConcreteValue plus one tick", InstantDeserializer.MaxConcreteValue.plusNanos(1), InstantDeserializer.JsonMaxValue},
+                new Object[]{"MinConcreteValue minus one tick", InstantDeserializer.MinConcreteValue.minusNanos(1), InstantDeserializer.JsonMinValue},
+                new Object[]{"MaxValue", InstantDeserializer.MaxValue, InstantDeserializer.JsonMaxValue},
+                new Object[]{"MinValue", InstantDeserializer.MinValue, InstantDeserializer.JsonMinValue},
         };
     }
 

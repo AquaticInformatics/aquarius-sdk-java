@@ -18,12 +18,28 @@ public class InstantDeserializer implements JsonDeserializer<Instant> {
             .ofPattern(Pattern)
             .withLocale(Locale.US);
 
+    public static final String JsonMaxValue = "MaxInstant";
+    public static final String JsonMinValue = "MinInstant";
+    public static final Instant MaxValue = Instant.MAX;
+    public static final Instant MinValue = Instant.MIN;
+
+    public static final String JsonMaxConcreteValue = "9999-12-31T23:59:59.9999999Z";
+    public static final String JsonMinConcreteValue = "0001-01-01T00:00:00.0000000Z";
+    public static final Instant MaxConcreteValue = FORMATTER.parse(JsonMaxConcreteValue, Instant::from);
+    public static final Instant MinConcreteValue = FORMATTER.parse(JsonMinConcreteValue, Instant::from);
+
     @Override
     public Instant deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
         return parse(jsonElement.getAsString());
     }
 
     public static Instant parse(String text) {
+        if (text.equalsIgnoreCase(JsonMaxValue))
+            return MaxValue;
+
+        if (text.equalsIgnoreCase(JsonMinValue))
+            return MinValue;
+
         return FORMATTER.parse(text, Instant::from);
     }
 }
