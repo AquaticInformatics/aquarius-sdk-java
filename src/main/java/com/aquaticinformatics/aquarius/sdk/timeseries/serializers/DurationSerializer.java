@@ -15,6 +15,12 @@ public class DurationSerializer implements JsonSerializer<Duration> {
     }
 
     public static String format(Duration duration) {
+        if (duration.getSeconds() > DurationDeserializer.MaxConcreteValue.getSeconds())
+            return DurationDeserializer.JsonMaxValue;
+
+        if (duration.getSeconds() < DurationDeserializer.MinConcreteValue.getSeconds())
+            return DurationDeserializer.JsonMinValue;
+
         if (duration.isNegative()) {
             // AQTS needs a leading minus sign
             return "-"+duration.negated().toString();

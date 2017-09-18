@@ -18,6 +18,12 @@ public class InstantSerializer implements JsonSerializer<Instant> {
     }
 
     public static String format(Instant instant) {
+        if (instant.isAfter(InstantDeserializer.MaxConcreteValue))
+            return InstantDeserializer.JsonMaxValue;
+
+        if (instant.isBefore(InstantDeserializer.MinConcreteValue))
+            return InstantDeserializer.JsonMinValue;
+
         return FORMATTER.format(instant);
     }
 }
