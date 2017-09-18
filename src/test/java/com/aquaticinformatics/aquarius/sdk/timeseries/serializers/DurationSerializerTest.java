@@ -38,6 +38,12 @@ import static org.junit.Assert.assertEquals;
         return new Object[]{
                 new Object[]{"One hour, 30 minutes from now", Duration.ofHours(1).plusMinutes(30), "PT1H30M"},
                 new Object[]{"45 minutes ago", Duration.ofMinutes(-45), "-PT45M"},
+                new Object[]{"MaxConcreteValue", DurationDeserializer.MaxConcreteValue, DurationSerializer.format(DurationDeserializer.MaxConcreteValue)},
+                new Object[]{"MinConcreteValue", DurationDeserializer.MinConcreteValue, DurationSerializer.format(DurationDeserializer.MinConcreteValue)},
+                new Object[]{"MaxConcreteValue plus one second", DurationDeserializer.MaxConcreteValue.plusSeconds(1), DurationDeserializer.JsonMaxValue},
+                new Object[]{"MinConcreteValue minus one second", DurationDeserializer.MinConcreteValue.minusSeconds(1), DurationDeserializer.JsonMinValue},
+                new Object[]{"MaxValue", DurationDeserializer.MaxValue, DurationDeserializer.JsonMaxValue},
+                new Object[]{"MinValue", DurationDeserializer.MinValue, DurationDeserializer.JsonMinValue},
         };
     }
 

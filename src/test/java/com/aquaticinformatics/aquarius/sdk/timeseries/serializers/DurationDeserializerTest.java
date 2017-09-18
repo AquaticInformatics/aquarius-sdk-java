@@ -40,6 +40,8 @@ public class DurationDeserializerTest {
         return new Object[]{
                 new Object[]{"One hour, 30 minutes from now", "PT1H30M", Duration.ofHours(1).plusMinutes(30)},
                 new Object[]{"45 minutes ago", "-PT45M", Duration.ofMinutes(-45)},
+                new Object[]{"MaxValue", DurationDeserializer.JsonMaxValue, DurationDeserializer.MaxValue},
+                new Object[]{"MinValue", DurationDeserializer.JsonMinValue, DurationDeserializer.MinValue},
         };
     }
 
