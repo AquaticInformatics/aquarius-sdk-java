@@ -1,8 +1,8 @@
 /* Options:
-Instant: 2017-08-10 16:33:32
+Instant: 2017-09-19 10:43:16
 Version: 4.512
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://doug-vm2012r2/AQUARIUS/Acquisition/v2
+BaseUrl: http://autoserver17/AQUARIUS/Acquisition/v2
 
 Package: com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels
 GlobalNamespace: Acquisition
@@ -27,6 +27,148 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
+
+    @Route(Path="/session/keepalive", Verbs="GET")
+    public static class GetKeepAlive implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session", Verbs="POST")
+    public static class PostSession implements IReturn<String>
+    {
+        /**
+        * Username
+        */
+        @ApiMember(Description="Username")
+        public String Username = null;
+
+        /**
+        * Encrypted password
+        */
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Optional locale. Defaults to English
+        */
+        @ApiMember(Description="Optional locale. Defaults to English")
+        public String Locale = null;
+        
+        public String getUsername() { return Username; }
+        public PostSession setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public PostSession setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session", Verbs="DELETE")
+    public static class DeleteSession implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session/publickey", Verbs="GET")
+    public static class GetPublicKey implements IReturn<PublicKey>
+    {
+        
+        private static Object responseType = PublicKey.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
+    public static class PostReportAttachment implements IReturn<PostReportResponse>
+    {
+        /**
+        * Title of the report
+        */
+        @ApiMember(Description="Title of the report", IsRequired=true)
+        public String Title = null;
+
+        /**
+        * Description of the report
+        */
+        @ApiMember(Description="Description of the report")
+        public String Description = null;
+
+        /**
+        * Comments about the report
+        */
+        @ApiMember(Description="Comments about the report")
+        public String Comments = null;
+
+        /**
+        * Unique ID of the location to add the report to
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        /**
+        * Unique IDs of source time-series displayed in report
+        */
+        @ApiMember(DataType="Array<string>", Description="Unique IDs of source time-series displayed in report")
+        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
+
+        /**
+        * Time range of source data displayed in report
+        */
+        @ApiMember(DataType="Interval", Description="Time range of source data displayed in report")
+        public Interval SourceTimeRange = null;
+
+        /**
+        * Time report was created
+        */
+        @ApiMember(DataType="Instant", Description="Time report was created")
+        public Instant CreatedTime = null;
+
+        public String getTitle() { return Title; }
+        public PostReportAttachment setTitle(String value) { this.Title = value; return this; }
+        public String getDescription() { return Description; }
+        public PostReportAttachment setDescription(String value) { this.Description = value; return this; }
+        public String getComments() { return Comments; }
+        public PostReportAttachment setComments(String value) { this.Comments = value; return this; }
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostReportAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
+        public PostReportAttachment setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
+        public Interval getSourceTimeRange() { return SourceTimeRange; }
+        public PostReportAttachment setSourceTimeRange(Interval value) { this.SourceTimeRange = value; return this; }
+        public Instant getCreatedTime() { return CreatedTime; }
+        public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
+        private static Object responseType = PostReportResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/attachments/reports/{ReportUniqueId}", Verbs="DELETE")
+    public static class DeleteReportAttachment implements IReturnVoid
+    {
+        /**
+        * Unique ID of report
+        */
+        @ApiMember(DataType="string", Description="Unique ID of report", IsRequired=true, ParameterType="path")
+        public String ReportUniqueId = null;
+        
+        public String getReportUniqueId() { return ReportUniqueId; }
+        public DeleteReportAttachment setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFile implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Unique ID of the location of visits in the file
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostVisitFile setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
 
     @Route(Path="/timeseries/appendstatus/{AppendRequestIdentifier}", Verbs="GET")
     public static class GetTimeSeriesAppendStatus implements IReturn<TimeSeriesAppendStatus>
@@ -128,118 +270,56 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
-    public static class PostReportAttachment implements IReturn<PostReportResponse>
+    public static class PublicKey
     {
         /**
-        * Title of the report
+        * RSA key size in bits
         */
-        @ApiMember(Description="Title of the report", IsRequired=true)
-        public String Title = null;
+        @ApiMember(DataType="integer", Description="RSA key size in bits")
+        public Integer KeySize = null;
 
         /**
-        * Description of the report
+        * XML blob containing the RSA public key components
         */
-        @ApiMember(Description="Description of the report")
-        public String Description = null;
-
-        /**
-        * Comments about the report
-        */
-        @ApiMember(Description="Comments about the report")
-        public String Comments = null;
-
-        /**
-        * Unique ID of the location to add the report to
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-
-        /**
-        * Unique IDs of source time-series displayed in report
-        */
-        @ApiMember(DataType="Array<string>", Description="Unique IDs of source time-series displayed in report")
-        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
-
-        /**
-        * Time range of source data displayed in report
-        */
-        @ApiMember(DataType="Interval", Description="Time range of source data displayed in report")
-        public Interval SourceTimeRange = null;
-
-        /**
-        * Time report was created
-        */
-        @ApiMember(DataType="Instant", Description="Time report was created")
-        public Instant CreatedTime = null;
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
         
-        public String getTitle() { return Title; }
-        public PostReportAttachment setTitle(String value) { this.Title = value; return this; }
-        public String getDescription() { return Description; }
-        public PostReportAttachment setDescription(String value) { this.Description = value; return this; }
-        public String getComments() { return Comments; }
-        public PostReportAttachment setComments(String value) { this.Comments = value; return this; }
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostReportAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
-        public PostReportAttachment setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
-        public Interval getSourceTimeRange() { return SourceTimeRange; }
-        public PostReportAttachment setSourceTimeRange(Interval value) { this.SourceTimeRange = value; return this; }
-        public Instant getCreatedTime() { return CreatedTime; }
-        public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
-        private static Object responseType = PostReportResponse.class;
-        public Object getResponseType() { return responseType; }
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
     }
 
-    @Route(Path="/session/keepalive", Verbs="GET")
-    public static class GetKeepAlive implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session", Verbs="POST")
-    public static class PostSession implements IReturn<String>
+    public static class PostReportResponse
     {
         /**
-        * Username
+        * Unique ID of the created report
         */
-        @ApiMember(Description="Username")
-        public String Username = null;
-
-        /**
-        * Encrypted password
-        */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Optional locale. Defaults to English
-        */
-        @ApiMember(Description="Optional locale. Defaults to English")
-        public String Locale = null;
+        @ApiMember(DataType="string", Description="Unique ID of the created report")
+        public String ReportUniqueId = null;
         
-        public String getUsername() { return Username; }
-        public PostSession setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public PostSession setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
+        public String getReportUniqueId() { return ReportUniqueId; }
+        public PostReportResponse setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
     }
 
-    @Route(Path="/session", Verbs="DELETE")
-    public static class DeleteSession implements IReturnVoid
+    public static class PostVisitFileResponse
     {
-        
-    }
+        /**
+        * Relative URIs of created visits
+        */
+        @ApiMember(DataType="Array<string>", Description="Relative URIs of created visits")
+        public ArrayList<String> VisitUris = null;
 
-    @Route(Path="/session/publickey", Verbs="GET")
-    public static class GetPublicKey implements IReturn<PublicKey>
-    {
+        /**
+        * Registered field data plug-in that processed the file
+        */
+        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
+        public FieldDataPlugin HandledByPlugin = null;
         
-        private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
+        public ArrayList<String> getVisitUris() { return VisitUris; }
+        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
+        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
+        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
     }
 
     public static class TimeSeriesAppendStatus
@@ -293,36 +373,24 @@ public class Acquisition
         public AppendResponse setAppendRequestIdentifier(String value) { this.AppendRequestIdentifier = value; return this; }
     }
 
-    public static class PostReportResponse
+    public static class FieldDataPlugin
     {
         /**
-        * Unique ID of the created report
+        * Name
         */
-        @ApiMember(DataType="string", Description="Unique ID of the created report")
-        public String ReportUniqueId = null;
-        
-        public String getReportUniqueId() { return ReportUniqueId; }
-        public PostReportResponse setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
-    }
-
-    public static class PublicKey
-    {
-        /**
-        * RSA key size in bits
-        */
-        @ApiMember(DataType="integer", Description="RSA key size in bits")
-        public Integer KeySize = null;
+        @ApiMember(Description="Name")
+        public String Name = null;
 
         /**
-        * XML blob containing the RSA public key components
+        * Unique id
         */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
+        @ApiMember(DataType="string", Description="Unique id")
+        public String UniqueId = null;
         
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
+        public String getName() { return Name; }
+        public FieldDataPlugin setName(String value) { this.Name = value; return this; }
+        public String getUniqueId() { return UniqueId; }
+        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
     public static enum AppendStatusCode
@@ -374,6 +442,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.3.52.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.3.90.0");
     }
 }
