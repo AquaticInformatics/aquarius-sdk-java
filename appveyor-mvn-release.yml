@@ -24,6 +24,8 @@ environment:
   SECURE_FILE_CMD: C:\secure-file\tools\secure-file.exe
   SECURE_FILE_DEC: '-decrypt'
   SECURE_FILE_SEC: '-secret'
+  VERSION_INFO_PATH: src\main\java\com\aquaticinformatics\aquarius\sdk\helpers\SdkServiceClient.java
+  VERSION_INFO_TARGET: <<VERSION_PLACEHOLDER>>
 
   secret:
     secure: WYu06hjvbgjSQERvZN+jZNj8RBPsxpaaAmvWUHtNzSA=
@@ -80,6 +82,7 @@ install:
 build: off
 
 build_script:
+  - ps: (Get-Content "$env:VERSION_INFO_PATH").replace("$env:VERSION_INFO_TARGET", "$env:APPVEYOR_BUILD_VERSION") | Set-Content "$env:VERSION_INFO_PATH"
   - mvn -B site site:stage deploy -P release -Drevision=%APPVEYOR_BUILD_VERSION%
 
 # Maven runs the tests as part of the build, so we don't need to run them again

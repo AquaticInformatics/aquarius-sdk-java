@@ -5,10 +5,6 @@ import com.google.gson.GsonBuilder;
 import net.servicestack.client.*;
 import net.servicestack.func.Func;
 import net.servicestack.func.Predicate;
-import org.apache.maven.model.Dependency;
-import org.apache.maven.model.Model;
-import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -53,34 +49,8 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         if (userAgent != null)
             return;
 
-        // Build a useful agent string from: SDK version, ServiceStack version (and " Java/JVM version" by default)
-        StringBuilder builder = new StringBuilder();
-
-        MavenXpp3Reader reader = new MavenXpp3Reader();
-
-        try {
-            Model model = reader.read(new FileReader("pom.xml"));
-
-            // TODO: Finding the outermost class name is too slow/unreliable in Java
-            builder.append(model.getArtifactId());
-            builder.append(':');
-            builder.append(model.getVersion());
-
-            for (Dependency dep: model.getDependencies() ) {
-                if (dep.getGroupId().contains("servicestack")){
-                    builder.append('/');
-                    builder.append(dep.getGroupId());
-                    builder.append('.');
-                    builder.append(dep.getArtifactId());
-                    builder.append(':');
-                    builder.append(dep.getVersion());
-                    break;
-                }
-            }
-        } catch (IOException | XmlPullParserException ignored) {
-        }
-
-        userAgent = builder.toString();
+        // TODO: Compose the agent dynamically from its dependencies. Until we figure that out, hack it in at build time via a Powershell script during the AppVeyor build.
+        userAgent = "com.aquaticinformatics.aquarius.sdk:<<VERSION_PLACEHOLDER>>/net.servicestack.client:1.033";
     }
 
     public String authenticate(String username, String password)
