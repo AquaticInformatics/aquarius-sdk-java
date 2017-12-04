@@ -1,8 +1,8 @@
 /* Options:
-Instant: 2017-09-19 10:43:16
+Instant: 2017-12-04 13:32:13
 Version: 4.512
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://autoserver17/AQUARIUS/Acquisition/v2
+BaseUrl: http://autoserver12/AQUARIUS/Acquisition/v2
 
 Package: com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels
 GlobalNamespace: Acquisition
@@ -27,57 +27,6 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
-
-    @Route(Path="/session/keepalive", Verbs="GET")
-    public static class GetKeepAlive implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session", Verbs="POST")
-    public static class PostSession implements IReturn<String>
-    {
-        /**
-        * Username
-        */
-        @ApiMember(Description="Username")
-        public String Username = null;
-
-        /**
-        * Encrypted password
-        */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Optional locale. Defaults to English
-        */
-        @ApiMember(Description="Optional locale. Defaults to English")
-        public String Locale = null;
-        
-        public String getUsername() { return Username; }
-        public PostSession setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public PostSession setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/session", Verbs="DELETE")
-    public static class DeleteSession implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session/publickey", Verbs="GET")
-    public static class GetPublicKey implements IReturn<PublicKey>
-    {
-        
-        private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
-    }
 
     @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
     public static class PostReportAttachment implements IReturn<PostReportResponse>
@@ -270,24 +219,55 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    public static class PublicKey
+    @Route(Path="/session/keepalive", Verbs="GET")
+    public static class GetKeepAlive implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session", Verbs="POST")
+    public static class PostSession implements IReturn<String>
     {
         /**
-        * RSA key size in bits
+        * Username
         */
-        @ApiMember(DataType="integer", Description="RSA key size in bits")
-        public Integer KeySize = null;
+        @ApiMember(Description="Username")
+        public String Username = null;
 
         /**
-        * XML blob containing the RSA public key components
+        * Encrypted password
         */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Optional locale. Defaults to English
+        */
+        @ApiMember(Description="Optional locale. Defaults to English")
+        public String Locale = null;
         
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
+        public String getUsername() { return Username; }
+        public PostSession setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public PostSession setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session", Verbs="DELETE")
+    public static class DeleteSession implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session/publickey", Verbs="GET")
+    public static class GetPublicKey implements IReturn<PublicKey>
+    {
+        
+        private static Object responseType = PublicKey.class;
+        public Object getResponseType() { return responseType; }
     }
 
     public static class PostReportResponse
@@ -373,6 +353,26 @@ public class Acquisition
         public AppendResponse setAppendRequestIdentifier(String value) { this.AppendRequestIdentifier = value; return this; }
     }
 
+    public static class PublicKey
+    {
+        /**
+        * RSA key size in bits
+        */
+        @ApiMember(DataType="integer", Description="RSA key size in bits")
+        public Integer KeySize = null;
+
+        /**
+        * XML blob containing the RSA public key components
+        */
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
+        
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
+    }
+
     public static class FieldDataPlugin
     {
         /**
@@ -442,6 +442,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.3.90.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.4.73.0");
     }
 }
