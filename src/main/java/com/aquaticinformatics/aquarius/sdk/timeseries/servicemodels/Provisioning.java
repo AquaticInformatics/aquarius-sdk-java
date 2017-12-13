@@ -1,5 +1,5 @@
 /* Options:
-Instant: 2017-12-04 13:31:56
+Instant: 2017-12-12 17:17:08
 Version: 4.512
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: http://autoserver12/AQUARIUS/Provisioning/v1
@@ -28,47 +28,107 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 public class Provisioning
 {
 
-    @Route(Path="/users/openidconnect", Verbs="POST")
-    public static class PostOpenIdConnectUser extends UserBase implements IReturn<User>
+    @Route(Path="/fielddataplugins", Verbs="GET")
+    public static class GetFieldDataPlugins implements IReturn<FieldDataPluginsResponse>
+    {
+        
+        private static Object responseType = FieldDataPluginsResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/fielddataplugins", Verbs="POST")
+    public static class PostFieldDataPlugin implements IReturn<FieldDataPlugin>
     {
         /**
-        * Unique identifier within the issuer for the end-user
+        * Plug-in folder name
         */
-        @ApiMember(Description="Unique identifier within the issuer for the end-user", IsRequired=true)
-        public String SubjectIdentifier = null;
+        @ApiMember(Description="Plug-in folder name", IsRequired=true)
+        public String PluginFolderName = null;
+
+        /**
+        * Assembly qualified type name
+        */
+        @ApiMember(Description="Assembly qualified type name", IsRequired=true)
+        public String AssemblyQualifiedTypeName = null;
+
+        /**
+        * Plug-in priority; 1 has highest priority
+        */
+        @ApiMember(DataType="integer", Description="Plug-in priority; 1 has highest priority", IsRequired=true)
+        public Integer PluginPriority = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
         
-        public String getSubjectIdentifier() { return SubjectIdentifier; }
-        public PostOpenIdConnectUser setSubjectIdentifier(String value) { this.SubjectIdentifier = value; return this; }
+        public String getPluginFolderName() { return PluginFolderName; }
+        public PostFieldDataPlugin setPluginFolderName(String value) { this.PluginFolderName = value; return this; }
+        public String getAssemblyQualifiedTypeName() { return AssemblyQualifiedTypeName; }
+        public PostFieldDataPlugin setAssemblyQualifiedTypeName(String value) { this.AssemblyQualifiedTypeName = value; return this; }
+        public Integer getPluginPriority() { return PluginPriority; }
+        public PostFieldDataPlugin setPluginPriority(Integer value) { this.PluginPriority = value; return this; }
+        public String getDescription() { return Description; }
+        public PostFieldDataPlugin setDescription(String value) { this.Description = value; return this; }
+        private static Object responseType = FieldDataPlugin.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/fielddataplugins/{UniqueId}", Verbs="DELETE")
+    public static class DeleteFieldDataPlugin implements IReturnVoid
+    {
+        /**
+        * Unique ID of the field data plug-in
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the field data plug-in", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public DeleteFieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
+    }
+
+    @Route(Path="/users/credentials", Verbs="POST")
+    public static class PostCredentialsUser extends UserBase implements IReturn<User>
+    {
+        /**
+        * Password
+        */
+        @ApiMember(Description="Password", IsRequired=true)
+        public String Password = null;
+        
+        public String getPassword() { return Password; }
+        public PostCredentialsUser setPassword(String value) { this.Password = value; return this; }
         private static Object responseType = User.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/users/openidconnect/{UniqueId}", Verbs="PUT")
-    public static class PutOpenIdConnectUser extends PutUserBase implements IReturn<User>
+    @Route(Path="/users/credentials/{UniqueId}", Verbs="PUT")
+    public static class PutCredentialsUser extends PutUserBase implements IReturn<User>
     {
         /**
-        * Unique identifier within the issuer for the end-user
+        * Password
         */
-        @ApiMember(Description="Unique identifier within the issuer for the end-user", IsRequired=true)
-        public String SubjectIdentifier = null;
+        @ApiMember(Description="Password", IsRequired=true)
+        public String Password = null;
         
-        public String getSubjectIdentifier() { return SubjectIdentifier; }
-        public PutOpenIdConnectUser setSubjectIdentifier(String value) { this.SubjectIdentifier = value; return this; }
+        public String getPassword() { return Password; }
+        public PutCredentialsUser setPassword(String value) { this.Password = value; return this; }
         private static Object responseType = User.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/users/{UniqueId}/openidconnect", Verbs="PUT")
-    public static class PutOpenIdConnectAuth extends PutUserAuthBase implements IReturn<User>
+    @Route(Path="/users/{UniqueId}/credentials", Verbs="PUT")
+    public static class PutCredentialsAuth extends PutUserAuthBase implements IReturn<User>
     {
         /**
-        * Unique identifier within the issuer for the end-user
+        * Password
         */
-        @ApiMember(Description="Unique identifier within the issuer for the end-user", IsRequired=true)
-        public String SubjectIdentifier = null;
+        @ApiMember(Description="Password", IsRequired=true)
+        public String Password = null;
         
-        public String getSubjectIdentifier() { return SubjectIdentifier; }
-        public PutOpenIdConnectAuth setSubjectIdentifier(String value) { this.SubjectIdentifier = value; return this; }
+        public String getPassword() { return Password; }
+        public PutCredentialsAuth setPassword(String value) { this.Password = value; return this; }
         private static Object responseType = User.class;
         public Object getResponseType() { return responseType; }
     }
@@ -316,6 +376,538 @@ public class Provisioning
         public Object getResponseType() { return responseType; }
     }
 
+    @Route(Path="/users", Verbs="GET")
+    public static class GetUsers implements IReturn<UsersResponse>
+    {
+        
+        private static Object responseType = UsersResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/users/{UniqueId}", Verbs="GET")
+    public static class GetUser implements IReturn<User>
+    {
+        /**
+        * Unique ID of the user
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the user", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public GetUser setUniqueId(String value) { this.UniqueId = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/users/{UniqueId}", Verbs="DELETE")
+    public static class DeleteUser implements IReturnVoid
+    {
+        /**
+        * Unique ID of the user
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the user", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public DeleteUser setUniqueId(String value) { this.UniqueId = value; return this; }
+    }
+
+    @Route(Path="/session/keepalive", Verbs="GET")
+    public static class GetKeepAlive implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session", Verbs="POST")
+    public static class PostSession implements IReturn<String>
+    {
+        /**
+        * Username
+        */
+        @ApiMember(Description="Username")
+        public String Username = null;
+
+        /**
+        * Encrypted password
+        */
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Optional locale. Defaults to English
+        */
+        @ApiMember(Description="Optional locale. Defaults to English")
+        public String Locale = null;
+        
+        public String getUsername() { return Username; }
+        public PostSession setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public PostSession setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session", Verbs="DELETE")
+    public static class DeleteSession implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session/publickey", Verbs="GET")
+    public static class GetPublicKey implements IReturn<PublicKey>
+    {
+        
+        private static Object responseType = PublicKey.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/monitoringmethods", Verbs="POST")
+    public static class PostMonitoringMethod extends MonitoringMethodWriteBase implements IReturn<MonitoringMethod>
+    {
+        
+        private static Object responseType = MonitoringMethod.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/monitoringmethods/{MethodCode}", Verbs="GET")
+    public static class GetMonitoringMethod implements IReturn<MonitoringMethod>
+    {
+        /**
+        * Method code
+        */
+        @ApiMember(Description="Method code", IsRequired=true, ParameterType="path")
+        public String MethodCode = null;
+        
+        public String getMethodCode() { return MethodCode; }
+        public GetMonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
+        private static Object responseType = MonitoringMethod.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/monitoringmethods", Verbs="GET")
+    public static class GetMonitoringMethods implements IReturn<MonitoringMethodsResponse>
+    {
+        
+        private static Object responseType = MonitoringMethodsResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/monitoringmethods/{MethodCode}", Verbs="PUT")
+    public static class PutMonitoringMethod extends MonitoringMethodWriteBase implements IReturn<MonitoringMethod>
+    {
+        
+        private static Object responseType = MonitoringMethod.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/monitoringmethods/{MethodCode}", Verbs="DELETE")
+    public static class DeleteMonitoringMethod implements IReturnVoid
+    {
+        /**
+        * Method code
+        */
+        @ApiMember(Description="Method code", IsRequired=true, ParameterType="path")
+        public String MethodCode = null;
+        
+        public String getMethodCode() { return MethodCode; }
+        public DeleteMonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}", Verbs="GET")
+    public static class GetLocation implements IReturn<Location>
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public GetLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = Location.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations", Verbs="POST")
+    public static class PostLocation extends LocationBase implements IReturn<Location>
+    {
+        /**
+        * ISO 8601 duration format
+        */
+        @ApiMember(DataType="Offset", Description="ISO 8601 duration format")
+        public Duration UtcOffset = null;
+        
+        public Duration getUtcOffset() { return UtcOffset; }
+        public PostLocation setUtcOffset(Duration value) { this.UtcOffset = value; return this; }
+        private static Object responseType = Location.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}", Verbs="PUT")
+    public static class PutLocation extends LocationBase implements IReturn<Location>
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PutLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = Location.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums", Verbs="GET")
+    public static class GetStandardReferenceDatums implements IReturn<StandardReferenceDatumsResponse>
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public GetStandardReferenceDatums setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = StandardReferenceDatumsResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/basereference", Verbs="POST")
+    public static class PostBaseStandardReferenceDatum extends StandardReferenceDatumRequestBase implements IReturn<StandardReferenceDatum>
+    {
+        
+        private static Object responseType = StandardReferenceDatum.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/basereferenceoffset", Verbs="POST")
+    public static class PostBaseStandardReferenceDatumOffset extends StandardReferenceDatumRequestBase implements IReturn<StandardReferenceDatum>
+    {
+        /**
+        * Offset in relation to the base reference.
+        */
+        @ApiMember(DataType="double", Description="Offset in relation to the base reference.", IsRequired=true)
+        public Double OffsetToBaseReference = null;
+        
+        public Double getOffsetToBaseReference() { return OffsetToBaseReference; }
+        public PostBaseStandardReferenceDatumOffset setOffsetToBaseReference(Double value) { this.OffsetToBaseReference = value; return this; }
+        private static Object responseType = StandardReferenceDatum.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/basereferenceoffset/{StandardIdentifier}", Verbs="PUT")
+    public static class PutBaseStandardReferenceDatumOffset implements IReturn<StandardReferenceDatum>
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        /**
+        * Standard identifier
+        */
+        @ApiMember(Description="Standard identifier", IsRequired=true, ParameterType="path")
+        public String StandardIdentifier = null;
+
+        /**
+        * Offset in relation to the base reference.
+        */
+        @ApiMember(DataType="double", Description="Offset in relation to the base reference.", IsRequired=true)
+        public Double OffsetToBaseReference = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PutBaseStandardReferenceDatumOffset setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public String getStandardIdentifier() { return StandardIdentifier; }
+        public PutBaseStandardReferenceDatumOffset setStandardIdentifier(String value) { this.StandardIdentifier = value; return this; }
+        public Double getOffsetToBaseReference() { return OffsetToBaseReference; }
+        public PutBaseStandardReferenceDatumOffset setOffsetToBaseReference(Double value) { this.OffsetToBaseReference = value; return this; }
+        private static Object responseType = StandardReferenceDatum.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/{StandardIdentifier}", Verbs="DELETE")
+    public static class DeleteStandardReferenceDatum extends StandardReferenceDatumRequestBase implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/referencepoints/", Verbs="GET")
+    public static class GetLocationReferencePoints implements IReturn<ReferencePointResponse>
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public GetLocationReferencePoints setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = ReferencePointResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/referencepoints", Verbs="POST")
+    public static class PostReferencePoint extends ReferencePointBase implements IReturn<ReferencePoint>
+    {
+        /**
+        * Periods of applicablity for this reference point. Must have at least one period
+        */
+        @ApiMember(DataType="Array<PostReferencePointPeriod>", Description="Periods of applicablity for this reference point. Must have at least one period", IsRequired=true)
+        public ArrayList<PostReferencePointPeriod> ReferencePointPeriods = null;
+        
+        public ArrayList<PostReferencePointPeriod> getReferencePointPeriods() { return ReferencePointPeriods; }
+        public PostReferencePoint setReferencePointPeriods(ArrayList<PostReferencePointPeriod> value) { this.ReferencePointPeriods = value; return this; }
+        private static Object responseType = ReferencePoint.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/referencepoints/{ReferencePointUniqueId}", Verbs="DELETE")
+    public static class DeleteReferencePoint implements IReturnVoid
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        /**
+        * Unique ID of the reference point
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the reference point", IsRequired=true, ParameterType="path")
+        public String ReferencePointUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public DeleteReferencePoint setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public String getReferencePointUniqueId() { return ReferencePointUniqueId; }
+        public DeleteReferencePoint setReferencePointUniqueId(String value) { this.ReferencePointUniqueId = value; return this; }
+    }
+
+    @Route(Path="/users/activedirectory", Verbs="POST")
+    public static class PostActiveDirectoryUser extends UserBase implements IReturn<User>
+    {
+        /**
+        * The user's domain credentials specified in User Principal Name format
+        */
+        @ApiMember(Description="The user's domain credentials specified in User Principal Name format", IsRequired=true)
+        public String UserPrincipalName = null;
+        
+        public String getUserPrincipalName() { return UserPrincipalName; }
+        public PostActiveDirectoryUser setUserPrincipalName(String value) { this.UserPrincipalName = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/users/activedirectory/{UniqueId}", Verbs="PUT")
+    public static class PutActiveDirectoryUser extends PutUserBase implements IReturn<User>
+    {
+        /**
+        * The user's domain credentials specified in User Principal Name format
+        */
+        @ApiMember(Description="The user's domain credentials specified in User Principal Name format", IsRequired=true)
+        public String UserPrincipalName = null;
+        
+        public String getUserPrincipalName() { return UserPrincipalName; }
+        public PutActiveDirectoryUser setUserPrincipalName(String value) { this.UserPrincipalName = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/users/{UniqueId}/activedirectory", Verbs="PUT")
+    public static class PutActiveDirectoryAuth extends PutUserAuthBase implements IReturn<User>
+    {
+        /**
+        * The user's domain credentials specified in User Principal Name format
+        */
+        @ApiMember(Description="The user's domain credentials specified in User Principal Name format", IsRequired=true)
+        public String UserPrincipalName = null;
+        
+        public String getUserPrincipalName() { return UserPrincipalName; }
+        public PutActiveDirectoryAuth setUserPrincipalName(String value) { this.UserPrincipalName = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/standarddatums", Verbs="GET")
+    public static class GetStandardDatums implements IReturn<StandardDatumsResponse>
+    {
+        
+        private static Object responseType = StandardDatumsResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/standarddatums", Verbs="POST")
+    public static class PostStandardDatum extends StandardDatumBase implements IReturn<StandardDatum>
+    {
+        
+        private static Object responseType = StandardDatum.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/standarddatums/{Identifier}", Verbs="DELETE")
+    public static class DeleteStandardDatum implements IReturnVoid
+    {
+        /**
+        * Identifier of the standard daturm
+        */
+        @ApiMember(Description="Identifier of the standard daturm", IsRequired=true, ParameterType="path")
+        public String Identifier = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public DeleteStandardDatum setIdentifier(String value) { this.Identifier = value; return this; }
+    }
+
+    @Route(Path="/locationfolders/{LocationFolderUniqueId}", Verbs="GET")
+    public static class GetLocationFolder implements IReturn<LocationFolder>
+    {
+        /**
+        * Unique ID of the location folder
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location folder", IsRequired=true, ParameterType="path")
+        public String LocationFolderUniqueId = null;
+        
+        public String getLocationFolderUniqueId() { return LocationFolderUniqueId; }
+        public GetLocationFolder setLocationFolderUniqueId(String value) { this.LocationFolderUniqueId = value; return this; }
+        private static Object responseType = LocationFolder.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locationfolders", Verbs="GET")
+    public static class GetLocationFolders implements IReturn<LocationFoldersResponse>
+    {
+        
+        private static Object responseType = LocationFoldersResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locationfolders", Verbs="POST")
+    public static class PostLocationFolder extends LocationFolderWriteBase implements IReturn<LocationFolder>
+    {
+        /**
+        * Parent location folder path
+        */
+        @ApiMember(Description="Parent location folder path", IsRequired=true)
+        public String ParentLocationFolderPath = null;
+        
+        public String getParentLocationFolderPath() { return ParentLocationFolderPath; }
+        public PostLocationFolder setParentLocationFolderPath(String value) { this.ParentLocationFolderPath = value; return this; }
+        private static Object responseType = LocationFolder.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locationfolders/{LocationFolderUniqueId}", Verbs="PUT")
+    public static class PutLocationFolder extends LocationFolderWriteBase implements IReturn<LocationFolder>
+    {
+        /**
+        * Unique ID of the location folder
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location folder", IsRequired=true, ParameterType="path")
+        public String LocationFolderUniqueId = null;
+        
+        public String getLocationFolderUniqueId() { return LocationFolderUniqueId; }
+        public PutLocationFolder setLocationFolderUniqueId(String value) { this.LocationFolderUniqueId = value; return this; }
+        private static Object responseType = LocationFolder.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locationfolders/{LocationFolderUniqueId}", Verbs="DELETE")
+    public static class DeleteLocationFolder implements IReturnVoid
+    {
+        /**
+        * Unique ID of the location folder
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location folder", IsRequired=true, ParameterType="path")
+        public String LocationFolderUniqueId = null;
+        
+        public String getLocationFolderUniqueId() { return LocationFolderUniqueId; }
+        public DeleteLocationFolder setLocationFolderUniqueId(String value) { this.LocationFolderUniqueId = value; return this; }
+    }
+
+    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="POST")
+    public static class PostOpenIdConnectRelyingPartyConfiguration extends OpenIdConnectRelyingPartyConfigurationBase implements IReturn<OpenIdConnectRelyingPartyConfiguration>
+    {
+        /**
+        * An https URI specifying the fully qualified host name of the issuer
+        */
+        @ApiMember(Description="An https URI specifying the fully qualified host name of the issuer", IsRequired=true)
+        public String IssuerIdentifier = null;
+        
+        public String getIssuerIdentifier() { return IssuerIdentifier; }
+        public PostOpenIdConnectRelyingPartyConfiguration setIssuerIdentifier(String value) { this.IssuerIdentifier = value; return this; }
+        private static Object responseType = OpenIdConnectRelyingPartyConfiguration.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="GET")
+    public static class GetOpenIdConnectRelyingPartyConfiguration implements IReturn<OpenIdConnectRelyingPartyConfiguration>
+    {
+        
+        private static Object responseType = OpenIdConnectRelyingPartyConfiguration.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="PUT")
+    public static class PutOpenIdConnectRelyingPartyConfiguration extends OpenIdConnectRelyingPartyConfigurationBase implements IReturn<OpenIdConnectRelyingPartyConfiguration>
+    {
+        
+        private static Object responseType = OpenIdConnectRelyingPartyConfiguration.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="DELETE")
+    public static class DeleteOpenIdConnectRelyingPartyConfiguration implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/users/openidconnect", Verbs="POST")
+    public static class PostOpenIdConnectUser extends UserBase implements IReturn<User>
+    {
+        /**
+        * Unique identifier within the issuer for the end-user
+        */
+        @ApiMember(Description="Unique identifier within the issuer for the end-user", IsRequired=true)
+        public String SubjectIdentifier = null;
+        
+        public String getSubjectIdentifier() { return SubjectIdentifier; }
+        public PostOpenIdConnectUser setSubjectIdentifier(String value) { this.SubjectIdentifier = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/users/openidconnect/{UniqueId}", Verbs="PUT")
+    public static class PutOpenIdConnectUser extends PutUserBase implements IReturn<User>
+    {
+        /**
+        * Unique identifier within the issuer for the end-user
+        */
+        @ApiMember(Description="Unique identifier within the issuer for the end-user", IsRequired=true)
+        public String SubjectIdentifier = null;
+        
+        public String getSubjectIdentifier() { return SubjectIdentifier; }
+        public PutOpenIdConnectUser setSubjectIdentifier(String value) { this.SubjectIdentifier = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/users/{UniqueId}/openidconnect", Verbs="PUT")
+    public static class PutOpenIdConnectAuth extends PutUserAuthBase implements IReturn<User>
+    {
+        /**
+        * Unique identifier within the issuer for the end-user
+        */
+        @ApiMember(Description="Unique identifier within the issuer for the end-user", IsRequired=true)
+        public String SubjectIdentifier = null;
+        
+        public String getSubjectIdentifier() { return SubjectIdentifier; }
+        public PutOpenIdConnectAuth setSubjectIdentifier(String value) { this.SubjectIdentifier = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() { return responseType; }
+    }
+
     @Route(Path="/locationtypes", Verbs="POST")
     public static class PostLocationType extends LocationTypeBase implements IReturn<LocationType>
     {
@@ -375,49 +967,63 @@ public class Provisioning
         public DeleteLocationType setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
-    @Route(Path="/users/activedirectory", Verbs="POST")
-    public static class PostActiveDirectoryUser extends UserBase implements IReturn<User>
+    @Route(Path="/parameters", Verbs="POST")
+    public static class PostParameter extends ParameterBase implements IReturn<Parameter>
     {
-        /**
-        * The user's domain credentials specified in User Principal Name format
-        */
-        @ApiMember(Description="The user's domain credentials specified in User Principal Name format", IsRequired=true)
-        public String UserPrincipalName = null;
         
-        public String getUserPrincipalName() { return UserPrincipalName; }
-        public PostActiveDirectoryUser setUserPrincipalName(String value) { this.UserPrincipalName = value; return this; }
-        private static Object responseType = User.class;
+        private static Object responseType = Parameter.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/users/activedirectory/{UniqueId}", Verbs="PUT")
-    public static class PutActiveDirectoryUser extends PutUserBase implements IReturn<User>
+    @Route(Path="/parameters", Verbs="GET")
+    public static class GetParameters implements IReturn<ParametersResponse>
     {
-        /**
-        * The user's domain credentials specified in User Principal Name format
-        */
-        @ApiMember(Description="The user's domain credentials specified in User Principal Name format", IsRequired=true)
-        public String UserPrincipalName = null;
         
-        public String getUserPrincipalName() { return UserPrincipalName; }
-        public PutActiveDirectoryUser setUserPrincipalName(String value) { this.UserPrincipalName = value; return this; }
-        private static Object responseType = User.class;
+        private static Object responseType = ParametersResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/users/{UniqueId}/activedirectory", Verbs="PUT")
-    public static class PutActiveDirectoryAuth extends PutUserAuthBase implements IReturn<User>
+    @Route(Path="/parameters/{UniqueId}", Verbs="GET")
+    public static class GetParameter implements IReturn<Parameter>
     {
         /**
-        * The user's domain credentials specified in User Principal Name format
+        * Unique ID of the parameter
         */
-        @ApiMember(Description="The user's domain credentials specified in User Principal Name format", IsRequired=true)
-        public String UserPrincipalName = null;
+        @ApiMember(DataType="string", Description="Unique ID of the parameter", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
         
-        public String getUserPrincipalName() { return UserPrincipalName; }
-        public PutActiveDirectoryAuth setUserPrincipalName(String value) { this.UserPrincipalName = value; return this; }
-        private static Object responseType = User.class;
+        public String getUniqueId() { return UniqueId; }
+        public GetParameter setUniqueId(String value) { this.UniqueId = value; return this; }
+        private static Object responseType = Parameter.class;
         public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/parameters/{UniqueId}", Verbs="PUT")
+    public static class PutParameter extends ParameterBase implements IReturn<Parameter>
+    {
+        /**
+        * Unique ID of the parameter
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the parameter", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public PutParameter setUniqueId(String value) { this.UniqueId = value; return this; }
+        private static Object responseType = Parameter.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/parameters/{UniqueId}", Verbs="DELETE")
+    public static class DeleteParameter implements IReturnVoid
+    {
+        /**
+        * Unique ID of the parameter
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the parameter", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public DeleteParameter setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
     @Route(Path="/unitgroups", Verbs="POST")
@@ -636,191 +1242,6 @@ public class Provisioning
         public DeleteUnits setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
-    @Route(Path="/fielddataplugins", Verbs="GET")
-    public static class GetFieldDataPlugins implements IReturn<FieldDataPluginsResponse>
-    {
-        
-        private static Object responseType = FieldDataPluginsResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/fielddataplugins", Verbs="POST")
-    public static class PostFieldDataPlugin implements IReturn<FieldDataPlugin>
-    {
-        /**
-        * Plug-in folder name
-        */
-        @ApiMember(Description="Plug-in folder name", IsRequired=true)
-        public String PluginFolderName = null;
-
-        /**
-        * Assembly qualified type name
-        */
-        @ApiMember(Description="Assembly qualified type name", IsRequired=true)
-        public String AssemblyQualifiedTypeName = null;
-
-        /**
-        * Plug-in priority; 1 has highest priority
-        */
-        @ApiMember(DataType="integer", Description="Plug-in priority; 1 has highest priority", IsRequired=true)
-        public Integer PluginPriority = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-        
-        public String getPluginFolderName() { return PluginFolderName; }
-        public PostFieldDataPlugin setPluginFolderName(String value) { this.PluginFolderName = value; return this; }
-        public String getAssemblyQualifiedTypeName() { return AssemblyQualifiedTypeName; }
-        public PostFieldDataPlugin setAssemblyQualifiedTypeName(String value) { this.AssemblyQualifiedTypeName = value; return this; }
-        public Integer getPluginPriority() { return PluginPriority; }
-        public PostFieldDataPlugin setPluginPriority(Integer value) { this.PluginPriority = value; return this; }
-        public String getDescription() { return Description; }
-        public PostFieldDataPlugin setDescription(String value) { this.Description = value; return this; }
-        private static Object responseType = FieldDataPlugin.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/fielddataplugins/{UniqueId}", Verbs="DELETE")
-    public static class DeleteFieldDataPlugin implements IReturnVoid
-    {
-        /**
-        * Unique ID of the field data plug-in
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the field data plug-in", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public DeleteFieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
-    }
-
-    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="POST")
-    public static class PostOpenIdConnectRelyingPartyConfiguration extends OpenIdConnectRelyingPartyConfigurationBase implements IReturn<OpenIdConnectRelyingPartyConfiguration>
-    {
-        /**
-        * An https URI specifying the fully qualified host name of the issuer
-        */
-        @ApiMember(Description="An https URI specifying the fully qualified host name of the issuer", IsRequired=true)
-        public String IssuerIdentifier = null;
-        
-        public String getIssuerIdentifier() { return IssuerIdentifier; }
-        public PostOpenIdConnectRelyingPartyConfiguration setIssuerIdentifier(String value) { this.IssuerIdentifier = value; return this; }
-        private static Object responseType = OpenIdConnectRelyingPartyConfiguration.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="GET")
-    public static class GetOpenIdConnectRelyingPartyConfiguration implements IReturn<OpenIdConnectRelyingPartyConfiguration>
-    {
-        
-        private static Object responseType = OpenIdConnectRelyingPartyConfiguration.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="PUT")
-    public static class PutOpenIdConnectRelyingPartyConfiguration extends OpenIdConnectRelyingPartyConfigurationBase implements IReturn<OpenIdConnectRelyingPartyConfiguration>
-    {
-        
-        private static Object responseType = OpenIdConnectRelyingPartyConfiguration.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/openidconnect/relyingpartyconfiguration", Verbs="DELETE")
-    public static class DeleteOpenIdConnectRelyingPartyConfiguration implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/standarddatums", Verbs="GET")
-    public static class GetStandardDatums implements IReturn<StandardDatumsResponse>
-    {
-        
-        private static Object responseType = StandardDatumsResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/standarddatums", Verbs="POST")
-    public static class PostStandardDatum extends StandardDatumBase implements IReturn<StandardDatum>
-    {
-        
-        private static Object responseType = StandardDatum.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/standarddatums/{Identifier}", Verbs="DELETE")
-    public static class DeleteStandardDatum implements IReturnVoid
-    {
-        /**
-        * Identifier of the standard daturm
-        */
-        @ApiMember(Description="Identifier of the standard daturm", IsRequired=true, ParameterType="path")
-        public String Identifier = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public DeleteStandardDatum setIdentifier(String value) { this.Identifier = value; return this; }
-    }
-
-    @Route(Path="/parameters", Verbs="POST")
-    public static class PostParameter extends ParameterBase implements IReturn<Parameter>
-    {
-        
-        private static Object responseType = Parameter.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/parameters", Verbs="GET")
-    public static class GetParameters implements IReturn<ParametersResponse>
-    {
-        
-        private static Object responseType = ParametersResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/parameters/{UniqueId}", Verbs="GET")
-    public static class GetParameter implements IReturn<Parameter>
-    {
-        /**
-        * Unique ID of the parameter
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the parameter", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public GetParameter setUniqueId(String value) { this.UniqueId = value; return this; }
-        private static Object responseType = Parameter.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/parameters/{UniqueId}", Verbs="PUT")
-    public static class PutParameter extends ParameterBase implements IReturn<Parameter>
-    {
-        /**
-        * Unique ID of the parameter
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the parameter", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public PutParameter setUniqueId(String value) { this.UniqueId = value; return this; }
-        private static Object responseType = Parameter.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/parameters/{UniqueId}", Verbs="DELETE")
-    public static class DeleteParameter implements IReturnVoid
-    {
-        /**
-        * Unique ID of the parameter
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the parameter", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public DeleteParameter setUniqueId(String value) { this.UniqueId = value; return this; }
-    }
-
     @Route(Path="/locations/{LocationUniqueId}/datumperiods", Verbs="GET")
     public static class GetLocationDatum implements IReturn<LocationDatumResponse>
     {
@@ -870,177 +1291,6 @@ public class Provisioning
         
         public String getLocationUniqueId() { return LocationUniqueId; }
         public DeleteLocationDatum setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}", Verbs="GET")
-    public static class GetLocation implements IReturn<Location>
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public GetLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = Location.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations", Verbs="POST")
-    public static class PostLocation extends LocationBase implements IReturn<Location>
-    {
-        /**
-        * ISO 8601 duration format
-        */
-        @ApiMember(DataType="Offset", Description="ISO 8601 duration format")
-        public Duration UtcOffset = null;
-        
-        public Duration getUtcOffset() { return UtcOffset; }
-        public PostLocation setUtcOffset(Duration value) { this.UtcOffset = value; return this; }
-        private static Object responseType = Location.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}", Verbs="PUT")
-    public static class PutLocation extends LocationBase implements IReturn<Location>
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PutLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = Location.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums", Verbs="GET")
-    public static class GetStandardReferenceDatums implements IReturn<StandardReferenceDatumsResponse>
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public GetStandardReferenceDatums setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = StandardReferenceDatumsResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/basereference", Verbs="POST")
-    public static class PostBaseStandardReferenceDatum extends StandardReferenceDatumRequestBase implements IReturn<StandardReferenceDatum>
-    {
-        
-        private static Object responseType = StandardReferenceDatum.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/basereferenceoffset", Verbs="POST")
-    public static class PostBaseStandardReferenceDatumOffset extends StandardReferenceDatumRequestBase implements IReturn<StandardReferenceDatum>
-    {
-        /**
-        * Offset in relation to the base reference.
-        */
-        @ApiMember(DataType="double", Description="Offset in relation to the base reference.", IsRequired=true)
-        public Double OffsetToBaseReference = null;
-        
-        public Double getOffsetToBaseReference() { return OffsetToBaseReference; }
-        public PostBaseStandardReferenceDatumOffset setOffsetToBaseReference(Double value) { this.OffsetToBaseReference = value; return this; }
-        private static Object responseType = StandardReferenceDatum.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/basereferenceoffset/{StandardIdentifier}", Verbs="PUT")
-    public static class PutBaseStandardReferenceDatumOffset implements IReturn<StandardReferenceDatum>
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-
-        /**
-        * Standard identifier
-        */
-        @ApiMember(Description="Standard identifier", IsRequired=true, ParameterType="path")
-        public String StandardIdentifier = null;
-
-        /**
-        * Offset in relation to the base reference.
-        */
-        @ApiMember(DataType="double", Description="Offset in relation to the base reference.", IsRequired=true)
-        public Double OffsetToBaseReference = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PutBaseStandardReferenceDatumOffset setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public String getStandardIdentifier() { return StandardIdentifier; }
-        public PutBaseStandardReferenceDatumOffset setStandardIdentifier(String value) { this.StandardIdentifier = value; return this; }
-        public Double getOffsetToBaseReference() { return OffsetToBaseReference; }
-        public PutBaseStandardReferenceDatumOffset setOffsetToBaseReference(Double value) { this.OffsetToBaseReference = value; return this; }
-        private static Object responseType = StandardReferenceDatum.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/standardreferencedatums/{StandardIdentifier}", Verbs="DELETE")
-    public static class DeleteStandardReferenceDatum extends StandardReferenceDatumRequestBase implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/referencepoints/", Verbs="GET")
-    public static class GetLocationReferencePoints implements IReturn<ReferencePointResponse>
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public GetLocationReferencePoints setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = ReferencePointResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/referencepoints", Verbs="POST")
-    public static class PostReferencePoint extends ReferencePointBase implements IReturn<ReferencePoint>
-    {
-        /**
-        * Periods of applicablity for this reference point. Must have at least one period
-        */
-        @ApiMember(DataType="Array<PostReferencePointPeriod>", Description="Periods of applicablity for this reference point. Must have at least one period", IsRequired=true)
-        public ArrayList<PostReferencePointPeriod> ReferencePointPeriods = null;
-        
-        public ArrayList<PostReferencePointPeriod> getReferencePointPeriods() { return ReferencePointPeriods; }
-        public PostReferencePoint setReferencePointPeriods(ArrayList<PostReferencePointPeriod> value) { this.ReferencePointPeriods = value; return this; }
-        private static Object responseType = ReferencePoint.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/referencepoints/{ReferencePointUniqueId}", Verbs="DELETE")
-    public static class DeleteReferencePoint implements IReturnVoid
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-
-        /**
-        * Unique ID of the reference point
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the reference point", IsRequired=true, ParameterType="path")
-        public String ReferencePointUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public DeleteReferencePoint setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public String getReferencePointUniqueId() { return ReferencePointUniqueId; }
-        public DeleteReferencePoint setReferencePointUniqueId(String value) { this.ReferencePointUniqueId = value; return this; }
     }
 
     @Route(Path="/grades", Verbs="POST")
@@ -1102,254 +1352,60 @@ public class Provisioning
         public DeleteQualityCode setGradeCode(Integer value) { this.GradeCode = value; return this; }
     }
 
-    @Route(Path="/monitoringmethods", Verbs="POST")
-    public static class PostMonitoringMethod extends MonitoringMethodWriteBase implements IReturn<MonitoringMethod>
-    {
-        
-        private static Object responseType = MonitoringMethod.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/monitoringmethods/{MethodCode}", Verbs="GET")
-    public static class GetMonitoringMethod implements IReturn<MonitoringMethod>
+    public static class FieldDataPluginsResponse
     {
         /**
-        * Method code
+        * The list of registered field data plug-ins
         */
-        @ApiMember(Description="Method code", IsRequired=true, ParameterType="path")
-        public String MethodCode = null;
+        @ApiMember(DataType="Array<FieldDataPlugin>", Description="The list of registered field data plug-ins")
+        public ArrayList<FieldDataPlugin> Results = null;
         
-        public String getMethodCode() { return MethodCode; }
-        public GetMonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
-        private static Object responseType = MonitoringMethod.class;
-        public Object getResponseType() { return responseType; }
+        public ArrayList<FieldDataPlugin> getResults() { return Results; }
+        public FieldDataPluginsResponse setResults(ArrayList<FieldDataPlugin> value) { this.Results = value; return this; }
     }
 
-    @Route(Path="/monitoringmethods", Verbs="GET")
-    public static class GetMonitoringMethods implements IReturn<MonitoringMethodsResponse>
-    {
-        
-        private static Object responseType = MonitoringMethodsResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/monitoringmethods/{MethodCode}", Verbs="PUT")
-    public static class PutMonitoringMethod extends MonitoringMethodWriteBase implements IReturn<MonitoringMethod>
-    {
-        
-        private static Object responseType = MonitoringMethod.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/monitoringmethods/{MethodCode}", Verbs="DELETE")
-    public static class DeleteMonitoringMethod implements IReturnVoid
+    public static class FieldDataPlugin
     {
         /**
-        * Method code
+        * Unique ID of the field data plug-in
         */
-        @ApiMember(Description="Method code", IsRequired=true, ParameterType="path")
-        public String MethodCode = null;
-        
-        public String getMethodCode() { return MethodCode; }
-        public DeleteMonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
-    }
-
-    @Route(Path="/users/credentials", Verbs="POST")
-    public static class PostCredentialsUser extends UserBase implements IReturn<User>
-    {
-        /**
-        * Password
-        */
-        @ApiMember(Description="Password", IsRequired=true)
-        public String Password = null;
-        
-        public String getPassword() { return Password; }
-        public PostCredentialsUser setPassword(String value) { this.Password = value; return this; }
-        private static Object responseType = User.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/users/credentials/{UniqueId}", Verbs="PUT")
-    public static class PutCredentialsUser extends PutUserBase implements IReturn<User>
-    {
-        /**
-        * Password
-        */
-        @ApiMember(Description="Password", IsRequired=true)
-        public String Password = null;
-        
-        public String getPassword() { return Password; }
-        public PutCredentialsUser setPassword(String value) { this.Password = value; return this; }
-        private static Object responseType = User.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/users/{UniqueId}/credentials", Verbs="PUT")
-    public static class PutCredentialsAuth extends PutUserAuthBase implements IReturn<User>
-    {
-        /**
-        * Password
-        */
-        @ApiMember(Description="Password", IsRequired=true)
-        public String Password = null;
-        
-        public String getPassword() { return Password; }
-        public PutCredentialsAuth setPassword(String value) { this.Password = value; return this; }
-        private static Object responseType = User.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locationfolders/{LocationFolderUniqueId}", Verbs="GET")
-    public static class GetLocationFolder implements IReturn<LocationFolder>
-    {
-        /**
-        * Unique ID of the location folder
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location folder", IsRequired=true, ParameterType="path")
-        public String LocationFolderUniqueId = null;
-        
-        public String getLocationFolderUniqueId() { return LocationFolderUniqueId; }
-        public GetLocationFolder setLocationFolderUniqueId(String value) { this.LocationFolderUniqueId = value; return this; }
-        private static Object responseType = LocationFolder.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locationfolders", Verbs="GET")
-    public static class GetLocationFolders implements IReturn<LocationFoldersResponse>
-    {
-        
-        private static Object responseType = LocationFoldersResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locationfolders", Verbs="POST")
-    public static class PostLocationFolder extends LocationFolderWriteBase implements IReturn<LocationFolder>
-    {
-        /**
-        * Parent location folder path
-        */
-        @ApiMember(Description="Parent location folder path", IsRequired=true)
-        public String ParentLocationFolderPath = null;
-        
-        public String getParentLocationFolderPath() { return ParentLocationFolderPath; }
-        public PostLocationFolder setParentLocationFolderPath(String value) { this.ParentLocationFolderPath = value; return this; }
-        private static Object responseType = LocationFolder.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locationfolders/{LocationFolderUniqueId}", Verbs="PUT")
-    public static class PutLocationFolder extends LocationFolderWriteBase implements IReturn<LocationFolder>
-    {
-        /**
-        * Unique ID of the location folder
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location folder", IsRequired=true, ParameterType="path")
-        public String LocationFolderUniqueId = null;
-        
-        public String getLocationFolderUniqueId() { return LocationFolderUniqueId; }
-        public PutLocationFolder setLocationFolderUniqueId(String value) { this.LocationFolderUniqueId = value; return this; }
-        private static Object responseType = LocationFolder.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locationfolders/{LocationFolderUniqueId}", Verbs="DELETE")
-    public static class DeleteLocationFolder implements IReturnVoid
-    {
-        /**
-        * Unique ID of the location folder
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location folder", IsRequired=true, ParameterType="path")
-        public String LocationFolderUniqueId = null;
-        
-        public String getLocationFolderUniqueId() { return LocationFolderUniqueId; }
-        public DeleteLocationFolder setLocationFolderUniqueId(String value) { this.LocationFolderUniqueId = value; return this; }
-    }
-
-    @Route(Path="/session/keepalive", Verbs="GET")
-    public static class GetKeepAlive implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session", Verbs="POST")
-    public static class PostSession implements IReturn<String>
-    {
-        /**
-        * Username
-        */
-        @ApiMember(Description="Username")
-        public String Username = null;
-
-        /**
-        * Encrypted password
-        */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Optional locale. Defaults to English
-        */
-        @ApiMember(Description="Optional locale. Defaults to English")
-        public String Locale = null;
-        
-        public String getUsername() { return Username; }
-        public PostSession setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public PostSession setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/session", Verbs="DELETE")
-    public static class DeleteSession implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session/publickey", Verbs="GET")
-    public static class GetPublicKey implements IReturn<PublicKey>
-    {
-        
-        private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/users", Verbs="GET")
-    public static class GetUsers implements IReturn<UsersResponse>
-    {
-        
-        private static Object responseType = UsersResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/users/{UniqueId}", Verbs="GET")
-    public static class GetUser implements IReturn<User>
-    {
-        /**
-        * Unique ID of the user
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the user", IsRequired=true, ParameterType="path")
+        @ApiMember(DataType="string", Description="Unique ID of the field data plug-in")
         public String UniqueId = null;
+
+        /**
+        * Plug-in folder name
+        */
+        @ApiMember(Description="Plug-in folder name")
+        public String PluginFolderName = null;
+
+        /**
+        * Assembly qualified type name
+        */
+        @ApiMember(Description="Assembly qualified type name")
+        public String AssemblyQualifiedTypeName = null;
+
+        /**
+        * Plug-in priority; 1 has highest priority
+        */
+        @ApiMember(DataType="integer", Description="Plug-in priority; 1 has highest priority")
+        public Integer PluginPriority = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
         
         public String getUniqueId() { return UniqueId; }
-        public GetUser setUniqueId(String value) { this.UniqueId = value; return this; }
-        private static Object responseType = User.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/users/{UniqueId}", Verbs="DELETE")
-    public static class DeleteUser implements IReturnVoid
-    {
-        /**
-        * Unique ID of the user
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the user", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public DeleteUser setUniqueId(String value) { this.UniqueId = value; return this; }
+        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getPluginFolderName() { return PluginFolderName; }
+        public FieldDataPlugin setPluginFolderName(String value) { this.PluginFolderName = value; return this; }
+        public String getAssemblyQualifiedTypeName() { return AssemblyQualifiedTypeName; }
+        public FieldDataPlugin setAssemblyQualifiedTypeName(String value) { this.AssemblyQualifiedTypeName = value; return this; }
+        public Integer getPluginPriority() { return PluginPriority; }
+        public FieldDataPlugin setPluginPriority(Integer value) { this.PluginPriority = value; return this; }
+        public String getDescription() { return Description; }
+        public FieldDataPlugin setDescription(String value) { this.Description = value; return this; }
     }
 
     public static class User
@@ -1620,6 +1676,446 @@ public class Provisioning
         public ExtendedAttributeFieldsResponse setResults(List<ExtendedAttributeField> value) { this.Results = value; return this; }
     }
 
+    public static class UsersResponse
+    {
+        /**
+        * The list of users
+        */
+        @ApiMember(DataType="Array<User>", Description="The list of users")
+        public ArrayList<User> Results = null;
+        
+        public ArrayList<User> getResults() { return Results; }
+        public UsersResponse setResults(ArrayList<User> value) { this.Results = value; return this; }
+    }
+
+    public static class PublicKey
+    {
+        /**
+        * RSA key size in bits
+        */
+        @ApiMember(DataType="integer", Description="RSA key size in bits")
+        public Integer KeySize = null;
+
+        /**
+        * XML blob containing the RSA public key components
+        */
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
+        
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
+    }
+
+    public static class MonitoringMethod
+    {
+        /**
+        * Method code
+        */
+        @ApiMember(Description="Method code")
+        public String MethodCode = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Parameter id
+        */
+        @ApiMember(Description="Parameter id")
+        public String ParameterId = null;
+
+        /**
+        * Unique ID of the parameter
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the parameter")
+        public String ParameterUniqueId = null;
+
+        /**
+        * Parameter identifier
+        */
+        @ApiMember(Description="Parameter identifier")
+        public String ParameterIdentifier = null;
+
+        /**
+        * Rounding spec
+        */
+        @ApiMember(Description="Rounding spec")
+        public String RoundingSpec = null;
+
+        /**
+        * True if the monitoring method is required by system
+        */
+        @ApiMember(DataType="boolean", Description="True if the monitoring method is required by system")
+        public Boolean System = null;
+        
+        public String getMethodCode() { return MethodCode; }
+        public MonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public MonitoringMethod setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getDescription() { return Description; }
+        public MonitoringMethod setDescription(String value) { this.Description = value; return this; }
+        public String getParameterId() { return ParameterId; }
+        public MonitoringMethod setParameterId(String value) { this.ParameterId = value; return this; }
+        public String getParameterUniqueId() { return ParameterUniqueId; }
+        public MonitoringMethod setParameterUniqueId(String value) { this.ParameterUniqueId = value; return this; }
+        public String getParameterIdentifier() { return ParameterIdentifier; }
+        public MonitoringMethod setParameterIdentifier(String value) { this.ParameterIdentifier = value; return this; }
+        public String getRoundingSpec() { return RoundingSpec; }
+        public MonitoringMethod setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
+        public Boolean isSystem() { return System; }
+        public MonitoringMethod setSystem(Boolean value) { this.System = value; return this; }
+    }
+
+    public static class MonitoringMethodsResponse
+    {
+        /**
+        * The list of monitoring methods
+        */
+        @ApiMember(DataType="Array<MonitoringMethod>", Description="The list of monitoring methods")
+        public ArrayList<MonitoringMethod> Results = null;
+        
+        public ArrayList<MonitoringMethod> getResults() { return Results; }
+        public MonitoringMethodsResponse setResults(ArrayList<MonitoringMethod> value) { this.Results = value; return this; }
+    }
+
+    public static class Location
+    {
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location")
+        public String UniqueId = null;
+
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Location name
+        */
+        @ApiMember(Description="Location name")
+        public String LocationName = null;
+
+        /**
+        * Location path
+        */
+        @ApiMember(Description="Location path")
+        public String LocationPath = null;
+
+        /**
+        * Location type
+        */
+        @ApiMember(Description="Location type")
+        public String LocationType = null;
+
+        /**
+        * External locations are created by data connectors.  Only extended attributes can be modified on an external location.
+        */
+        @ApiMember(DataType="boolean", Description="External locations are created by data connectors.  Only extended attributes can be modified on an external location.")
+        public Boolean IsExternalLocation = null;
+
+        /**
+        * Longitude (WGS 84)
+        */
+        @ApiMember(DataType="double", Description="Longitude (WGS 84)")
+        public Double Longitude = null;
+
+        /**
+        * Latitude (WGS 84)
+        */
+        @ApiMember(DataType="double", Description="Latitude (WGS 84)")
+        public Double Latitude = null;
+
+        /**
+        * UTC offset
+        */
+        @ApiMember(DataType="Offset", Description="UTC offset")
+        public Duration UtcOffset = null;
+
+        /**
+        * Last modified
+        */
+        @ApiMember(DataType="Instant", Description="Last modified")
+        public Instant LastModified = null;
+
+        /**
+        * Elevation units
+        */
+        @ApiMember(Description="Elevation units")
+        public String ElevationUnits = null;
+
+        /**
+        * Elevation
+        */
+        @ApiMember(DataType="double", Description="Elevation")
+        public Double Elevation = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Extended attribute values
+        */
+        @ApiMember(DataType="Array<ExtendedAttributeValue>", Description="Extended attribute values")
+        public List<ExtendedAttributeValue> ExtendedAttributeValues = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public Location setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getIdentifier() { return Identifier; }
+        public Location setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getLocationName() { return LocationName; }
+        public Location setLocationName(String value) { this.LocationName = value; return this; }
+        public String getLocationPath() { return LocationPath; }
+        public Location setLocationPath(String value) { this.LocationPath = value; return this; }
+        public String getLocationType() { return LocationType; }
+        public Location setLocationType(String value) { this.LocationType = value; return this; }
+        public Boolean getIsExternalLocation() { return IsExternalLocation; }
+        public Location setIsExternalLocation(Boolean value) { this.IsExternalLocation = value; return this; }
+        public Double getLongitude() { return Longitude; }
+        public Location setLongitude(Double value) { this.Longitude = value; return this; }
+        public Double getLatitude() { return Latitude; }
+        public Location setLatitude(Double value) { this.Latitude = value; return this; }
+        public Duration getUtcOffset() { return UtcOffset; }
+        public Location setUtcOffset(Duration value) { this.UtcOffset = value; return this; }
+        public Instant getLastModified() { return LastModified; }
+        public Location setLastModified(Instant value) { this.LastModified = value; return this; }
+        public String getElevationUnits() { return ElevationUnits; }
+        public Location setElevationUnits(String value) { this.ElevationUnits = value; return this; }
+        public Double getElevation() { return Elevation; }
+        public Location setElevation(Double value) { this.Elevation = value; return this; }
+        public String getDescription() { return Description; }
+        public Location setDescription(String value) { this.Description = value; return this; }
+        public List<ExtendedAttributeValue> getExtendedAttributeValues() { return ExtendedAttributeValues; }
+        public Location setExtendedAttributeValues(List<ExtendedAttributeValue> value) { this.ExtendedAttributeValues = value; return this; }
+    }
+
+    public static class StandardReferenceDatumsResponse
+    {
+        /**
+        * The list of Standard Reference Datums
+        */
+        @ApiMember(DataType="Array<StandardReferenceDatum>", Description="The list of Standard Reference Datums")
+        public ArrayList<StandardReferenceDatum> Results = null;
+        
+        public ArrayList<StandardReferenceDatum> getResults() { return Results; }
+        public StandardReferenceDatumsResponse setResults(ArrayList<StandardReferenceDatum> value) { this.Results = value; return this; }
+    }
+
+    public static class StandardReferenceDatum
+    {
+        /**
+        * Unique ID of the Location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the Location")
+        public String LocationUniqueId = null;
+
+        /**
+        * StandardIdentifier
+        */
+        @ApiMember(Description="StandardIdentifier")
+        public String StandardIdentifier = null;
+
+        /**
+        * True if the Standard Reference Datum is the Base Reference
+        */
+        @ApiMember(DataType="boolean", Description="True if the Standard Reference Datum is the Base Reference")
+        public Boolean IsBaseReference = null;
+
+        /**
+        * Offset in relation to the Base Reference. Not used if IsBaseReference is set to true
+        */
+        @ApiMember(DataType="double", Description="Offset in relation to the Base Reference. Not used if IsBaseReference is set to true")
+        public Double OffsetToBaseReference = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public StandardReferenceDatum setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public String getStandardIdentifier() { return StandardIdentifier; }
+        public StandardReferenceDatum setStandardIdentifier(String value) { this.StandardIdentifier = value; return this; }
+        public Boolean getIsBaseReference() { return IsBaseReference; }
+        public StandardReferenceDatum setIsBaseReference(Boolean value) { this.IsBaseReference = value; return this; }
+        public Double getOffsetToBaseReference() { return OffsetToBaseReference; }
+        public StandardReferenceDatum setOffsetToBaseReference(Double value) { this.OffsetToBaseReference = value; return this; }
+    }
+
+    public static class ReferencePointResponse
+    {
+        /**
+        * The list of reference points
+        */
+        @ApiMember(DataType="Array<ReferencePoint>", Description="The list of reference points")
+        public ArrayList<ReferencePoint> Results = null;
+        
+        public ArrayList<ReferencePoint> getResults() { return Results; }
+        public ReferencePointResponse setResults(ArrayList<ReferencePoint> value) { this.Results = value; return this; }
+    }
+
+    public static class ReferencePoint extends ReferencePointBase
+    {
+        /**
+        * Unique ID of the reference point
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the reference point")
+        public String UniqueId = null;
+
+        /**
+        * Periods of applicablity for this reference point
+        */
+        @ApiMember(DataType="Array<ReferencePointPeriod>", Description="Periods of applicablity for this reference point")
+        public ArrayList<ReferencePointPeriod> ReferencePointPeriods = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public ReferencePoint setUniqueId(String value) { this.UniqueId = value; return this; }
+        public ArrayList<ReferencePointPeriod> getReferencePointPeriods() { return ReferencePointPeriods; }
+        public ReferencePoint setReferencePointPeriods(ArrayList<ReferencePointPeriod> value) { this.ReferencePointPeriods = value; return this; }
+    }
+
+    public static class StandardDatumsResponse
+    {
+        /**
+        * The list of standard datums
+        */
+        @ApiMember(DataType="Array<StandardDatum>", Description="The list of standard datums")
+        public ArrayList<StandardDatum> Results = null;
+        
+        public ArrayList<StandardDatum> getResults() { return Results; }
+        public StandardDatumsResponse setResults(ArrayList<StandardDatum> value) { this.Results = value; return this; }
+    }
+
+    public static class StandardDatum
+    {
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public StandardDatum setIdentifier(String value) { this.Identifier = value; return this; }
+    }
+
+    public static class LocationFolder
+    {
+        /**
+        * Unique ID of the location folder
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location folder")
+        public String UniqueId = null;
+
+        /**
+        * Location folder name
+        */
+        @ApiMember(Description="Location folder name")
+        public String LocationFolderName = null;
+
+        /**
+        * Location folder description
+        */
+        @ApiMember(Description="Location folder description")
+        public String LocationFolderDescription = null;
+
+        /**
+        * Location folder path
+        */
+        @ApiMember(Description="Location folder path")
+        public String LocationFolderPath = null;
+
+        /**
+        * Unique ID of the parent location folder
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the parent location folder")
+        public String ParentLocationFolderUniqueId = null;
+
+        /**
+        * Parent location folder path
+        */
+        @ApiMember(Description="Parent location folder path")
+        public String ParentLocationFolderPath = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public LocationFolder setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getLocationFolderName() { return LocationFolderName; }
+        public LocationFolder setLocationFolderName(String value) { this.LocationFolderName = value; return this; }
+        public String getLocationFolderDescription() { return LocationFolderDescription; }
+        public LocationFolder setLocationFolderDescription(String value) { this.LocationFolderDescription = value; return this; }
+        public String getLocationFolderPath() { return LocationFolderPath; }
+        public LocationFolder setLocationFolderPath(String value) { this.LocationFolderPath = value; return this; }
+        public String getParentLocationFolderUniqueId() { return ParentLocationFolderUniqueId; }
+        public LocationFolder setParentLocationFolderUniqueId(String value) { this.ParentLocationFolderUniqueId = value; return this; }
+        public String getParentLocationFolderPath() { return ParentLocationFolderPath; }
+        public LocationFolder setParentLocationFolderPath(String value) { this.ParentLocationFolderPath = value; return this; }
+    }
+
+    public static class LocationFoldersResponse
+    {
+        /**
+        * The list of location folders
+        */
+        @ApiMember(DataType="Array<LocationFolder>", Description="The list of location folders")
+        public ArrayList<LocationFolder> Results = null;
+        
+        public ArrayList<LocationFolder> getResults() { return Results; }
+        public LocationFoldersResponse setResults(ArrayList<LocationFolder> value) { this.Results = value; return this; }
+    }
+
+    public static class OpenIdConnectRelyingPartyConfiguration
+    {
+        /**
+        * Issuer identifier
+        */
+        @ApiMember(Description="Issuer identifier")
+        public String IssuerIdentifier = null;
+
+        /**
+        * Client identifier
+        */
+        @ApiMember(Description="Client identifier")
+        public String ClientIdentifier = null;
+
+        /**
+        * Redirect uri
+        */
+        @ApiMember(Description="Redirect uri")
+        public String RedirectUri = null;
+
+        /**
+        * Scopes
+        */
+        @ApiMember(DataType="Array<string>", Description="Scopes")
+        public ArrayList<String> Scopes = null;
+
+        /**
+        * Hosted domains
+        */
+        @ApiMember(DataType="Array<string>", Description="Hosted domains")
+        public ArrayList<String> HostedDomains = null;
+        
+        public String getIssuerIdentifier() { return IssuerIdentifier; }
+        public OpenIdConnectRelyingPartyConfiguration setIssuerIdentifier(String value) { this.IssuerIdentifier = value; return this; }
+        public String getClientIdentifier() { return ClientIdentifier; }
+        public OpenIdConnectRelyingPartyConfiguration setClientIdentifier(String value) { this.ClientIdentifier = value; return this; }
+        public String getRedirectUri() { return RedirectUri; }
+        public OpenIdConnectRelyingPartyConfiguration setRedirectUri(String value) { this.RedirectUri = value; return this; }
+        public ArrayList<String> getScopes() { return Scopes; }
+        public OpenIdConnectRelyingPartyConfiguration setScopes(ArrayList<String> value) { this.Scopes = value; return this; }
+        public ArrayList<String> getHostedDomains() { return HostedDomains; }
+        public OpenIdConnectRelyingPartyConfiguration setHostedDomains(ArrayList<String> value) { this.HostedDomains = value; return this; }
+    }
+
     public static class LocationType
     {
         /**
@@ -1674,6 +2170,110 @@ public class Provisioning
         
         public ArrayList<LocationType> getResults() { return Results; }
         public LocationTypesResponse setResults(ArrayList<LocationType> value) { this.Results = value; return this; }
+    }
+
+    public static class Parameter
+    {
+        /**
+        * Unique ID of the parameter
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the parameter")
+        public String UniqueId = null;
+
+        /**
+        * Parameter id
+        */
+        @ApiMember(Description="Parameter id")
+        public String ParameterId = null;
+
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
+
+        /**
+        * Unit group identifier
+        */
+        @ApiMember(Description="Unit group identifier")
+        public String UnitGroupIdentifier = null;
+
+        /**
+        * Unit identifier
+        */
+        @ApiMember(Description="Unit identifier")
+        public String UnitIdentifier = null;
+
+        /**
+        * Min value
+        */
+        @ApiMember(DataType="double", Description="Min value")
+        public Double MinValue = null;
+
+        /**
+        * Max value
+        */
+        @ApiMember(DataType="double", Description="Max value")
+        public Double MaxValue = null;
+
+        /**
+        * Interpolation type
+        */
+        @ApiMember(DataType="InterpolationType", Description="Interpolation type")
+        public InterpolationType InterpolationType = null;
+
+        /**
+        * Rounding spec
+        */
+        @ApiMember(Description="Rounding spec")
+        public String RoundingSpec = null;
+
+        /**
+        * True if the parameter is required by the system
+        */
+        @ApiMember(DataType="boolean", Description="True if the parameter is required by the system")
+        public Boolean System = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public Parameter setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getParameterId() { return ParameterId; }
+        public Parameter setParameterId(String value) { this.ParameterId = value; return this; }
+        public String getIdentifier() { return Identifier; }
+        public Parameter setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public Parameter setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getUnitGroupIdentifier() { return UnitGroupIdentifier; }
+        public Parameter setUnitGroupIdentifier(String value) { this.UnitGroupIdentifier = value; return this; }
+        public String getUnitIdentifier() { return UnitIdentifier; }
+        public Parameter setUnitIdentifier(String value) { this.UnitIdentifier = value; return this; }
+        public Double getMinValue() { return MinValue; }
+        public Parameter setMinValue(Double value) { this.MinValue = value; return this; }
+        public Double getMaxValue() { return MaxValue; }
+        public Parameter setMaxValue(Double value) { this.MaxValue = value; return this; }
+        public InterpolationType getInterpolationType() { return InterpolationType; }
+        public Parameter setInterpolationType(InterpolationType value) { this.InterpolationType = value; return this; }
+        public String getRoundingSpec() { return RoundingSpec; }
+        public Parameter setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
+        public Boolean isSystem() { return System; }
+        public Parameter setSystem(Boolean value) { this.System = value; return this; }
+    }
+
+    public static class ParametersResponse
+    {
+        /**
+        * The list of parameters
+        */
+        @ApiMember(DataType="Array<Parameter>", Description="The list of parameters")
+        public ArrayList<Parameter> Results = null;
+        
+        public ArrayList<Parameter> getResults() { return Results; }
+        public ParametersResponse setResults(ArrayList<Parameter> value) { this.Results = value; return this; }
     }
 
     public static class UnitGroup
@@ -1888,234 +2488,6 @@ public class Provisioning
         public UnitsResponse setResults(ArrayList<Unit> value) { this.Results = value; return this; }
     }
 
-    public static class FieldDataPluginsResponse
-    {
-        /**
-        * The list of registered field data plug-ins
-        */
-        @ApiMember(DataType="Array<FieldDataPlugin>", Description="The list of registered field data plug-ins")
-        public ArrayList<FieldDataPlugin> Results = null;
-        
-        public ArrayList<FieldDataPlugin> getResults() { return Results; }
-        public FieldDataPluginsResponse setResults(ArrayList<FieldDataPlugin> value) { this.Results = value; return this; }
-    }
-
-    public static class FieldDataPlugin
-    {
-        /**
-        * Unique ID of the field data plug-in
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the field data plug-in")
-        public String UniqueId = null;
-
-        /**
-        * Plug-in folder name
-        */
-        @ApiMember(Description="Plug-in folder name")
-        public String PluginFolderName = null;
-
-        /**
-        * Assembly qualified type name
-        */
-        @ApiMember(Description="Assembly qualified type name")
-        public String AssemblyQualifiedTypeName = null;
-
-        /**
-        * Plug-in priority; 1 has highest priority
-        */
-        @ApiMember(DataType="integer", Description="Plug-in priority; 1 has highest priority")
-        public Integer PluginPriority = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getPluginFolderName() { return PluginFolderName; }
-        public FieldDataPlugin setPluginFolderName(String value) { this.PluginFolderName = value; return this; }
-        public String getAssemblyQualifiedTypeName() { return AssemblyQualifiedTypeName; }
-        public FieldDataPlugin setAssemblyQualifiedTypeName(String value) { this.AssemblyQualifiedTypeName = value; return this; }
-        public Integer getPluginPriority() { return PluginPriority; }
-        public FieldDataPlugin setPluginPriority(Integer value) { this.PluginPriority = value; return this; }
-        public String getDescription() { return Description; }
-        public FieldDataPlugin setDescription(String value) { this.Description = value; return this; }
-    }
-
-    public static class OpenIdConnectRelyingPartyConfiguration
-    {
-        /**
-        * Issuer identifier
-        */
-        @ApiMember(Description="Issuer identifier")
-        public String IssuerIdentifier = null;
-
-        /**
-        * Client identifier
-        */
-        @ApiMember(Description="Client identifier")
-        public String ClientIdentifier = null;
-
-        /**
-        * Redirect uri
-        */
-        @ApiMember(Description="Redirect uri")
-        public String RedirectUri = null;
-
-        /**
-        * Scopes
-        */
-        @ApiMember(DataType="Array<string>", Description="Scopes")
-        public ArrayList<String> Scopes = null;
-
-        /**
-        * Hosted domains
-        */
-        @ApiMember(DataType="Array<string>", Description="Hosted domains")
-        public ArrayList<String> HostedDomains = null;
-        
-        public String getIssuerIdentifier() { return IssuerIdentifier; }
-        public OpenIdConnectRelyingPartyConfiguration setIssuerIdentifier(String value) { this.IssuerIdentifier = value; return this; }
-        public String getClientIdentifier() { return ClientIdentifier; }
-        public OpenIdConnectRelyingPartyConfiguration setClientIdentifier(String value) { this.ClientIdentifier = value; return this; }
-        public String getRedirectUri() { return RedirectUri; }
-        public OpenIdConnectRelyingPartyConfiguration setRedirectUri(String value) { this.RedirectUri = value; return this; }
-        public ArrayList<String> getScopes() { return Scopes; }
-        public OpenIdConnectRelyingPartyConfiguration setScopes(ArrayList<String> value) { this.Scopes = value; return this; }
-        public ArrayList<String> getHostedDomains() { return HostedDomains; }
-        public OpenIdConnectRelyingPartyConfiguration setHostedDomains(ArrayList<String> value) { this.HostedDomains = value; return this; }
-    }
-
-    public static class StandardDatumsResponse
-    {
-        /**
-        * The list of standard datums
-        */
-        @ApiMember(DataType="Array<StandardDatum>", Description="The list of standard datums")
-        public ArrayList<StandardDatum> Results = null;
-        
-        public ArrayList<StandardDatum> getResults() { return Results; }
-        public StandardDatumsResponse setResults(ArrayList<StandardDatum> value) { this.Results = value; return this; }
-    }
-
-    public static class StandardDatum
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public StandardDatum setIdentifier(String value) { this.Identifier = value; return this; }
-    }
-
-    public static class Parameter
-    {
-        /**
-        * Unique ID of the parameter
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the parameter")
-        public String UniqueId = null;
-
-        /**
-        * Parameter id
-        */
-        @ApiMember(Description="Parameter id")
-        public String ParameterId = null;
-
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Unit group identifier
-        */
-        @ApiMember(Description="Unit group identifier")
-        public String UnitGroupIdentifier = null;
-
-        /**
-        * Unit identifier
-        */
-        @ApiMember(Description="Unit identifier")
-        public String UnitIdentifier = null;
-
-        /**
-        * Min value
-        */
-        @ApiMember(DataType="double", Description="Min value")
-        public Double MinValue = null;
-
-        /**
-        * Max value
-        */
-        @ApiMember(DataType="double", Description="Max value")
-        public Double MaxValue = null;
-
-        /**
-        * Interpolation type
-        */
-        @ApiMember(DataType="InterpolationType", Description="Interpolation type")
-        public InterpolationType InterpolationType = null;
-
-        /**
-        * Rounding spec
-        */
-        @ApiMember(Description="Rounding spec")
-        public String RoundingSpec = null;
-
-        /**
-        * True if the parameter is required by the system
-        */
-        @ApiMember(DataType="boolean", Description="True if the parameter is required by the system")
-        public Boolean System = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public Parameter setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getParameterId() { return ParameterId; }
-        public Parameter setParameterId(String value) { this.ParameterId = value; return this; }
-        public String getIdentifier() { return Identifier; }
-        public Parameter setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public Parameter setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getUnitGroupIdentifier() { return UnitGroupIdentifier; }
-        public Parameter setUnitGroupIdentifier(String value) { this.UnitGroupIdentifier = value; return this; }
-        public String getUnitIdentifier() { return UnitIdentifier; }
-        public Parameter setUnitIdentifier(String value) { this.UnitIdentifier = value; return this; }
-        public Double getMinValue() { return MinValue; }
-        public Parameter setMinValue(Double value) { this.MinValue = value; return this; }
-        public Double getMaxValue() { return MaxValue; }
-        public Parameter setMaxValue(Double value) { this.MaxValue = value; return this; }
-        public InterpolationType getInterpolationType() { return InterpolationType; }
-        public Parameter setInterpolationType(InterpolationType value) { this.InterpolationType = value; return this; }
-        public String getRoundingSpec() { return RoundingSpec; }
-        public Parameter setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
-        public Boolean isSystem() { return System; }
-        public Parameter setSystem(Boolean value) { this.System = value; return this; }
-    }
-
-    public static class ParametersResponse
-    {
-        /**
-        * The list of parameters
-        */
-        @ApiMember(DataType="Array<Parameter>", Description="The list of parameters")
-        public ArrayList<Parameter> Results = null;
-        
-        public ArrayList<Parameter> getResults() { return Results; }
-        public ParametersResponse setResults(ArrayList<Parameter> value) { this.Results = value; return this; }
-    }
-
     public static class LocationDatumResponse
     {
         /**
@@ -2126,202 +2498,6 @@ public class Provisioning
         
         public ArrayList<LocationDatumPeriod> getResults() { return Results; }
         public LocationDatumResponse setResults(ArrayList<LocationDatumPeriod> value) { this.Results = value; return this; }
-    }
-
-    public static class Location
-    {
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location")
-        public String UniqueId = null;
-
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Location name
-        */
-        @ApiMember(Description="Location name")
-        public String LocationName = null;
-
-        /**
-        * Location path
-        */
-        @ApiMember(Description="Location path")
-        public String LocationPath = null;
-
-        /**
-        * Location type
-        */
-        @ApiMember(Description="Location type")
-        public String LocationType = null;
-
-        /**
-        * External locations are created by data connectors.  Only extended attributes can be modified on an external location.
-        */
-        @ApiMember(DataType="boolean", Description="External locations are created by data connectors.  Only extended attributes can be modified on an external location.")
-        public Boolean IsExternalLocation = null;
-
-        /**
-        * Longitude (WGS 84)
-        */
-        @ApiMember(DataType="double", Description="Longitude (WGS 84)")
-        public Double Longitude = null;
-
-        /**
-        * Latitude (WGS 84)
-        */
-        @ApiMember(DataType="double", Description="Latitude (WGS 84)")
-        public Double Latitude = null;
-
-        /**
-        * UTC offset
-        */
-        @ApiMember(DataType="Offset", Description="UTC offset")
-        public Duration UtcOffset = null;
-
-        /**
-        * Last modified
-        */
-        @ApiMember(DataType="Instant", Description="Last modified")
-        public Instant LastModified = null;
-
-        /**
-        * Elevation units
-        */
-        @ApiMember(Description="Elevation units")
-        public String ElevationUnits = null;
-
-        /**
-        * Elevation
-        */
-        @ApiMember(DataType="double", Description="Elevation")
-        public Double Elevation = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Extended attribute values
-        */
-        @ApiMember(DataType="Array<ExtendedAttributeValue>", Description="Extended attribute values")
-        public List<ExtendedAttributeValue> ExtendedAttributeValues = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public Location setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getIdentifier() { return Identifier; }
-        public Location setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getLocationName() { return LocationName; }
-        public Location setLocationName(String value) { this.LocationName = value; return this; }
-        public String getLocationPath() { return LocationPath; }
-        public Location setLocationPath(String value) { this.LocationPath = value; return this; }
-        public String getLocationType() { return LocationType; }
-        public Location setLocationType(String value) { this.LocationType = value; return this; }
-        public Boolean getIsExternalLocation() { return IsExternalLocation; }
-        public Location setIsExternalLocation(Boolean value) { this.IsExternalLocation = value; return this; }
-        public Double getLongitude() { return Longitude; }
-        public Location setLongitude(Double value) { this.Longitude = value; return this; }
-        public Double getLatitude() { return Latitude; }
-        public Location setLatitude(Double value) { this.Latitude = value; return this; }
-        public Duration getUtcOffset() { return UtcOffset; }
-        public Location setUtcOffset(Duration value) { this.UtcOffset = value; return this; }
-        public Instant getLastModified() { return LastModified; }
-        public Location setLastModified(Instant value) { this.LastModified = value; return this; }
-        public String getElevationUnits() { return ElevationUnits; }
-        public Location setElevationUnits(String value) { this.ElevationUnits = value; return this; }
-        public Double getElevation() { return Elevation; }
-        public Location setElevation(Double value) { this.Elevation = value; return this; }
-        public String getDescription() { return Description; }
-        public Location setDescription(String value) { this.Description = value; return this; }
-        public List<ExtendedAttributeValue> getExtendedAttributeValues() { return ExtendedAttributeValues; }
-        public Location setExtendedAttributeValues(List<ExtendedAttributeValue> value) { this.ExtendedAttributeValues = value; return this; }
-    }
-
-    public static class StandardReferenceDatumsResponse
-    {
-        /**
-        * The list of Standard Reference Datums
-        */
-        @ApiMember(DataType="Array<StandardReferenceDatum>", Description="The list of Standard Reference Datums")
-        public ArrayList<StandardReferenceDatum> Results = null;
-        
-        public ArrayList<StandardReferenceDatum> getResults() { return Results; }
-        public StandardReferenceDatumsResponse setResults(ArrayList<StandardReferenceDatum> value) { this.Results = value; return this; }
-    }
-
-    public static class StandardReferenceDatum
-    {
-        /**
-        * Unique ID of the Location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the Location")
-        public String LocationUniqueId = null;
-
-        /**
-        * StandardIdentifier
-        */
-        @ApiMember(Description="StandardIdentifier")
-        public String StandardIdentifier = null;
-
-        /**
-        * True if the Standard Reference Datum is the Base Reference
-        */
-        @ApiMember(DataType="boolean", Description="True if the Standard Reference Datum is the Base Reference")
-        public Boolean IsBaseReference = null;
-
-        /**
-        * Offset in relation to the Base Reference. Not used if IsBaseReference is set to true
-        */
-        @ApiMember(DataType="double", Description="Offset in relation to the Base Reference. Not used if IsBaseReference is set to true")
-        public Double OffsetToBaseReference = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public StandardReferenceDatum setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public String getStandardIdentifier() { return StandardIdentifier; }
-        public StandardReferenceDatum setStandardIdentifier(String value) { this.StandardIdentifier = value; return this; }
-        public Boolean getIsBaseReference() { return IsBaseReference; }
-        public StandardReferenceDatum setIsBaseReference(Boolean value) { this.IsBaseReference = value; return this; }
-        public Double getOffsetToBaseReference() { return OffsetToBaseReference; }
-        public StandardReferenceDatum setOffsetToBaseReference(Double value) { this.OffsetToBaseReference = value; return this; }
-    }
-
-    public static class ReferencePointResponse
-    {
-        /**
-        * The list of reference points
-        */
-        @ApiMember(DataType="Array<ReferencePoint>", Description="The list of reference points")
-        public ArrayList<ReferencePoint> Results = null;
-        
-        public ArrayList<ReferencePoint> getResults() { return Results; }
-        public ReferencePointResponse setResults(ArrayList<ReferencePoint> value) { this.Results = value; return this; }
-    }
-
-    public static class ReferencePoint extends ReferencePointBase
-    {
-        /**
-        * Unique ID of the reference point
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the reference point")
-        public String UniqueId = null;
-
-        /**
-        * Periods of applicablity for this reference point
-        */
-        @ApiMember(DataType="Array<ReferencePointPeriod>", Description="Periods of applicablity for this reference point")
-        public ArrayList<ReferencePointPeriod> ReferencePointPeriods = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public ReferencePoint setUniqueId(String value) { this.UniqueId = value; return this; }
-        public ArrayList<ReferencePointPeriod> getReferencePointPeriods() { return ReferencePointPeriods; }
-        public ReferencePoint setReferencePointPeriods(ArrayList<ReferencePointPeriod> value) { this.ReferencePointPeriods = value; return this; }
     }
 
     public static class Grade
@@ -2378,182 +2554,6 @@ public class Provisioning
         
         public ArrayList<Grade> getResults() { return Results; }
         public GradesResponse setResults(ArrayList<Grade> value) { this.Results = value; return this; }
-    }
-
-    public static class MonitoringMethod
-    {
-        /**
-        * Method code
-        */
-        @ApiMember(Description="Method code")
-        public String MethodCode = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Parameter id
-        */
-        @ApiMember(Description="Parameter id")
-        public String ParameterId = null;
-
-        /**
-        * Unique ID of the parameter
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the parameter")
-        public String ParameterUniqueId = null;
-
-        /**
-        * Parameter identifier
-        */
-        @ApiMember(Description="Parameter identifier")
-        public String ParameterIdentifier = null;
-
-        /**
-        * Rounding spec
-        */
-        @ApiMember(Description="Rounding spec")
-        public String RoundingSpec = null;
-
-        /**
-        * True if the monitoring method is required by system
-        */
-        @ApiMember(DataType="boolean", Description="True if the monitoring method is required by system")
-        public Boolean System = null;
-        
-        public String getMethodCode() { return MethodCode; }
-        public MonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public MonitoringMethod setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getDescription() { return Description; }
-        public MonitoringMethod setDescription(String value) { this.Description = value; return this; }
-        public String getParameterId() { return ParameterId; }
-        public MonitoringMethod setParameterId(String value) { this.ParameterId = value; return this; }
-        public String getParameterUniqueId() { return ParameterUniqueId; }
-        public MonitoringMethod setParameterUniqueId(String value) { this.ParameterUniqueId = value; return this; }
-        public String getParameterIdentifier() { return ParameterIdentifier; }
-        public MonitoringMethod setParameterIdentifier(String value) { this.ParameterIdentifier = value; return this; }
-        public String getRoundingSpec() { return RoundingSpec; }
-        public MonitoringMethod setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
-        public Boolean isSystem() { return System; }
-        public MonitoringMethod setSystem(Boolean value) { this.System = value; return this; }
-    }
-
-    public static class MonitoringMethodsResponse
-    {
-        /**
-        * The list of monitoring methods
-        */
-        @ApiMember(DataType="Array<MonitoringMethod>", Description="The list of monitoring methods")
-        public ArrayList<MonitoringMethod> Results = null;
-        
-        public ArrayList<MonitoringMethod> getResults() { return Results; }
-        public MonitoringMethodsResponse setResults(ArrayList<MonitoringMethod> value) { this.Results = value; return this; }
-    }
-
-    public static class LocationFolder
-    {
-        /**
-        * Unique ID of the location folder
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location folder")
-        public String UniqueId = null;
-
-        /**
-        * Location folder name
-        */
-        @ApiMember(Description="Location folder name")
-        public String LocationFolderName = null;
-
-        /**
-        * Location folder description
-        */
-        @ApiMember(Description="Location folder description")
-        public String LocationFolderDescription = null;
-
-        /**
-        * Location folder path
-        */
-        @ApiMember(Description="Location folder path")
-        public String LocationFolderPath = null;
-
-        /**
-        * Unique ID of the parent location folder
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the parent location folder")
-        public String ParentLocationFolderUniqueId = null;
-
-        /**
-        * Parent location folder path
-        */
-        @ApiMember(Description="Parent location folder path")
-        public String ParentLocationFolderPath = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public LocationFolder setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getLocationFolderName() { return LocationFolderName; }
-        public LocationFolder setLocationFolderName(String value) { this.LocationFolderName = value; return this; }
-        public String getLocationFolderDescription() { return LocationFolderDescription; }
-        public LocationFolder setLocationFolderDescription(String value) { this.LocationFolderDescription = value; return this; }
-        public String getLocationFolderPath() { return LocationFolderPath; }
-        public LocationFolder setLocationFolderPath(String value) { this.LocationFolderPath = value; return this; }
-        public String getParentLocationFolderUniqueId() { return ParentLocationFolderUniqueId; }
-        public LocationFolder setParentLocationFolderUniqueId(String value) { this.ParentLocationFolderUniqueId = value; return this; }
-        public String getParentLocationFolderPath() { return ParentLocationFolderPath; }
-        public LocationFolder setParentLocationFolderPath(String value) { this.ParentLocationFolderPath = value; return this; }
-    }
-
-    public static class LocationFoldersResponse
-    {
-        /**
-        * The list of location folders
-        */
-        @ApiMember(DataType="Array<LocationFolder>", Description="The list of location folders")
-        public ArrayList<LocationFolder> Results = null;
-        
-        public ArrayList<LocationFolder> getResults() { return Results; }
-        public LocationFoldersResponse setResults(ArrayList<LocationFolder> value) { this.Results = value; return this; }
-    }
-
-    public static class PublicKey
-    {
-        /**
-        * RSA key size in bits
-        */
-        @ApiMember(DataType="integer", Description="RSA key size in bits")
-        public Integer KeySize = null;
-
-        /**
-        * XML blob containing the RSA public key components
-        */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
-        
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
-    }
-
-    public static class UsersResponse
-    {
-        /**
-        * The list of users
-        */
-        @ApiMember(DataType="Array<User>", Description="The list of users")
-        public ArrayList<User> Results = null;
-        
-        public ArrayList<User> getResults() { return Results; }
-        public UsersResponse setResults(ArrayList<User> value) { this.Results = value; return this; }
     }
 
     public static class UserBase
@@ -2907,219 +2907,13 @@ public class Provisioning
         public ExtendedAttributeField setValueOptions(List<String> value) { this.ValueOptions = value; return this; }
     }
 
-    public static class LocationTypeBase
+    public static class MonitoringMethodWriteBase
     {
         /**
-        * Type name
+        * Method code
         */
-        @ApiMember(Description="Type name", IsRequired=true)
-        public String TypeName = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Name of database table used for extended attributes, omit if none
-        */
-        @ApiMember(Description="Name of database table used for extended attributes, omit if none")
-        public String AttributeTableName = null;
-        
-        public String getTypeName() { return TypeName; }
-        public LocationTypeBase setTypeName(String value) { this.TypeName = value; return this; }
-        public String getDescription() { return Description; }
-        public LocationTypeBase setDescription(String value) { this.Description = value; return this; }
-        public String getAttributeTableName() { return AttributeTableName; }
-        public LocationTypeBase setAttributeTableName(String value) { this.AttributeTableName = value; return this; }
-    }
-
-    public static class UnitGroupBase
-    {
-        /**
-        * Current dimension
-        */
-        @ApiMember(DataType="integer", Description="Current dimension")
-        public Integer CurrentDimension = null;
-
-        /**
-        * Intensity dimension
-        */
-        @ApiMember(DataType="integer", Description="Intensity dimension")
-        public Integer IntensityDimension = null;
-
-        /**
-        * Length dimension
-        */
-        @ApiMember(DataType="integer", Description="Length dimension")
-        public Integer LengthDimension = null;
-
-        /**
-        * Mass dimension
-        */
-        @ApiMember(DataType="integer", Description="Mass dimension")
-        public Integer MassDimension = null;
-
-        /**
-        * Substance dimension
-        */
-        @ApiMember(DataType="integer", Description="Substance dimension")
-        public Integer SubstanceDimension = null;
-
-        /**
-        * Temperature dimension
-        */
-        @ApiMember(DataType="integer", Description="Temperature dimension")
-        public Integer TemperatureDimension = null;
-
-        /**
-        * Time dimension
-        */
-        @ApiMember(DataType="integer", Description="Time dimension")
-        public Integer TimeDimension = null;
-        
-        public Integer getCurrentDimension() { return CurrentDimension; }
-        public UnitGroupBase setCurrentDimension(Integer value) { this.CurrentDimension = value; return this; }
-        public Integer getIntensityDimension() { return IntensityDimension; }
-        public UnitGroupBase setIntensityDimension(Integer value) { this.IntensityDimension = value; return this; }
-        public Integer getLengthDimension() { return LengthDimension; }
-        public UnitGroupBase setLengthDimension(Integer value) { this.LengthDimension = value; return this; }
-        public Integer getMassDimension() { return MassDimension; }
-        public UnitGroupBase setMassDimension(Integer value) { this.MassDimension = value; return this; }
-        public Integer getSubstanceDimension() { return SubstanceDimension; }
-        public UnitGroupBase setSubstanceDimension(Integer value) { this.SubstanceDimension = value; return this; }
-        public Integer getTemperatureDimension() { return TemperatureDimension; }
-        public UnitGroupBase setTemperatureDimension(Integer value) { this.TemperatureDimension = value; return this; }
-        public Integer getTimeDimension() { return TimeDimension; }
-        public UnitGroupBase setTimeDimension(Integer value) { this.TimeDimension = value; return this; }
-    }
-
-    public static class UnitBase
-    {
-        /**
-        * Base multiplier
-        */
-        @ApiMember(DataType="double", Description="Base multiplier", IsRequired=true)
-        public Double BaseMultiplier = null;
-
-        /**
-        * Base offset
-        */
-        @ApiMember(DataType="double", Description="Base offset", IsRequired=true)
-        public Double BaseOffset = null;
-
-        /**
-        * Localized short name or symbol
-        */
-        @ApiMember(Description="Localized short name or symbol", IsRequired=true)
-        public String Symbol = null;
-
-        /**
-        * Localized singular name
-        */
-        @ApiMember(Description="Localized singular name", IsRequired=true)
-        public String SingularName = null;
-
-        /**
-        * Localized plural name
-        */
-        @ApiMember(Description="Localized plural name", IsRequired=true)
-        public String PluralName = null;
-        
-        public Double getBaseMultiplier() { return BaseMultiplier; }
-        public UnitBase setBaseMultiplier(Double value) { this.BaseMultiplier = value; return this; }
-        public Double getBaseOffset() { return BaseOffset; }
-        public UnitBase setBaseOffset(Double value) { this.BaseOffset = value; return this; }
-        public String getSymbol() { return Symbol; }
-        public UnitBase setSymbol(String value) { this.Symbol = value; return this; }
-        public String getSingularName() { return SingularName; }
-        public UnitBase setSingularName(String value) { this.SingularName = value; return this; }
-        public String getPluralName() { return PluralName; }
-        public UnitBase setPluralName(String value) { this.PluralName = value; return this; }
-    }
-
-    public static class PopulatedUnitGroup extends UnitGroup
-    {
-        /**
-        * The list of units within the group
-        */
-        @ApiMember(DataType="Array<Unit>", Description="The list of units within the group")
-        public List<Unit> Units = null;
-        
-        public List<Unit> getUnits() { return Units; }
-        public PopulatedUnitGroup setUnits(List<Unit> value) { this.Units = value; return this; }
-    }
-
-    public static class OpenIdConnectRelyingPartyConfigurationBase
-    {
-        /**
-        * The Relying Party client identifier
-        */
-        @ApiMember(Description="The Relying Party client identifier", IsRequired=true)
-        public String ClientIdentifier = null;
-
-        /**
-        * The Relying Party client secret
-        */
-        @ApiMember(Description="The Relying Party client secret", IsRequired=true)
-        public String ClientSecret = null;
-
-        /**
-        * The redirection URI for the authorization response; e.g. http://my-domain/AQUARIUS/apps/v1/auth/openidconnect
-        */
-        @ApiMember(Description="The redirection URI for the authorization response; e.g. http://my-domain/AQUARIUS/apps/v1/auth/openidconnect", IsRequired=true)
-        public String RedirectUri = null;
-
-        /**
-        * If not specified, defaults to openid
-        */
-        @ApiMember(DataType="IList", Description="If not specified, defaults to openid")
-        public List<String> Scopes = null;
-
-        /**
-        * Hosted domains
-        */
-        @ApiMember(DataType="Array<string>", Description="Hosted domains")
-        public List<String> HostedDomains = null;
-        
-        public String getClientIdentifier() { return ClientIdentifier; }
-        public OpenIdConnectRelyingPartyConfigurationBase setClientIdentifier(String value) { this.ClientIdentifier = value; return this; }
-        public String getClientSecret() { return ClientSecret; }
-        public OpenIdConnectRelyingPartyConfigurationBase setClientSecret(String value) { this.ClientSecret = value; return this; }
-        public String getRedirectUri() { return RedirectUri; }
-        public OpenIdConnectRelyingPartyConfigurationBase setRedirectUri(String value) { this.RedirectUri = value; return this; }
-        public List<String> getScopes() { return Scopes; }
-        public OpenIdConnectRelyingPartyConfigurationBase setScopes(List<String> value) { this.Scopes = value; return this; }
-        public List<String> getHostedDomains() { return HostedDomains; }
-        public OpenIdConnectRelyingPartyConfigurationBase setHostedDomains(List<String> value) { this.HostedDomains = value; return this; }
-    }
-
-    public static class StandardDatumBase
-    {
-        /**
-        * Identifier of the standard datum
-        */
-        @ApiMember(Description="Identifier of the standard datum", IsRequired=true)
-        public String Identifier = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public StandardDatumBase setIdentifier(String value) { this.Identifier = value; return this; }
-    }
-
-    public static class ParameterBase
-    {
-        /**
-        * Parameter id
-        */
-        @ApiMember(Description="Parameter id", IsRequired=true)
-        public String ParameterId = null;
-
-        /**
-        * The display ID of the parameter
-        */
-        @ApiMember(Description="The display ID of the parameter", IsRequired=true)
-        public String Identifier = null;
+        @ApiMember(Description="Method code", IsRequired=true)
+        public String MethodCode = null;
 
         /**
         * Display name
@@ -3128,34 +2922,16 @@ public class Provisioning
         public String DisplayName = null;
 
         /**
-        * Unit group identifier
+        * Description
         */
-        @ApiMember(Description="Unit group identifier", IsRequired=true)
-        public String UnitGroupIdentifier = null;
+        @ApiMember(Description="Description")
+        public String Description = null;
 
         /**
-        * Unit identifier
+        * Unique ID of the method's parameter
         */
-        @ApiMember(Description="Unit identifier", IsRequired=true)
-        public String UnitIdentifier = null;
-
-        /**
-        * Min value
-        */
-        @ApiMember(DataType="double", Description="Min value")
-        public Double MinValue = null;
-
-        /**
-        * Max value
-        */
-        @ApiMember(DataType="double", Description="Max value")
-        public Double MaxValue = null;
-
-        /**
-        * Interpolation type
-        */
-        @ApiMember(DataType="InterpolationType", Description="Interpolation type", IsRequired=true)
-        public InterpolationType InterpolationType = null;
+        @ApiMember(DataType="string", Description="Unique ID of the method's parameter", IsRequired=true)
+        public String ParameterUniqueId = null;
 
         /**
         * Rounding spec
@@ -3163,95 +2939,16 @@ public class Provisioning
         @ApiMember(Description="Rounding spec")
         public String RoundingSpec = null;
         
-        public String getParameterId() { return ParameterId; }
-        public ParameterBase setParameterId(String value) { this.ParameterId = value; return this; }
-        public String getIdentifier() { return Identifier; }
-        public ParameterBase setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getMethodCode() { return MethodCode; }
+        public MonitoringMethodWriteBase setMethodCode(String value) { this.MethodCode = value; return this; }
         public String getDisplayName() { return DisplayName; }
-        public ParameterBase setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getUnitGroupIdentifier() { return UnitGroupIdentifier; }
-        public ParameterBase setUnitGroupIdentifier(String value) { this.UnitGroupIdentifier = value; return this; }
-        public String getUnitIdentifier() { return UnitIdentifier; }
-        public ParameterBase setUnitIdentifier(String value) { this.UnitIdentifier = value; return this; }
-        public Double getMinValue() { return MinValue; }
-        public ParameterBase setMinValue(Double value) { this.MinValue = value; return this; }
-        public Double getMaxValue() { return MaxValue; }
-        public ParameterBase setMaxValue(Double value) { this.MaxValue = value; return this; }
-        public InterpolationType getInterpolationType() { return InterpolationType; }
-        public ParameterBase setInterpolationType(InterpolationType value) { this.InterpolationType = value; return this; }
+        public MonitoringMethodWriteBase setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getDescription() { return Description; }
+        public MonitoringMethodWriteBase setDescription(String value) { this.Description = value; return this; }
+        public String getParameterUniqueId() { return ParameterUniqueId; }
+        public MonitoringMethodWriteBase setParameterUniqueId(String value) { this.ParameterUniqueId = value; return this; }
         public String getRoundingSpec() { return RoundingSpec; }
-        public ParameterBase setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
-    }
-
-    public static class LocationDatumPeriod extends LocationDatumPeriodBase
-    {
-        /**
-        * Applied date
-        */
-        @ApiMember(DataType="Instant", Description="Applied date")
-        public Instant AppliedTimeUtc = null;
-
-        /**
-        * Applied by user
-        */
-        @ApiMember(Description="Applied by user")
-        public String AppliedByUser = null;
-
-        /**
-        * Reference standard this period is related to
-        */
-        @ApiMember(DataType="StandardReferenceDatum", Description="Reference standard this period is related to")
-        public StandardReferenceDatum ReferenceStandard = null;
-        
-        public Instant getAppliedTimeUtc() { return AppliedTimeUtc; }
-        public LocationDatumPeriod setAppliedTimeUtc(Instant value) { this.AppliedTimeUtc = value; return this; }
-        public String getAppliedByUser() { return AppliedByUser; }
-        public LocationDatumPeriod setAppliedByUser(String value) { this.AppliedByUser = value; return this; }
-        public StandardReferenceDatum getReferenceStandard() { return ReferenceStandard; }
-        public LocationDatumPeriod setReferenceStandard(StandardReferenceDatum value) { this.ReferenceStandard = value; return this; }
-    }
-
-    public static enum MeasurementDirection
-    {
-        Unknown,
-        FromTopToBottom,
-        FromBottomToTop;
-    }
-
-    public static class LocationDatumPeriodBase
-    {
-        /**
-        * Time this period is valid from
-        */
-        @ApiMember(DataType="Instant", Description="Time this period is valid from", IsRequired=true)
-        public Instant ValidFrom = null;
-
-        /**
-        * Elevation difference from the reference standard
-        */
-        @ApiMember(DataType="double", Description="Elevation difference from the reference standard", IsRequired=true)
-        public Double Elevation = null;
-
-        /**
-        * Direction of positive elevations in relation to the reference standard
-        */
-        @ApiMember(DataType="MeasurementDirection", Description="Direction of positive elevations in relation to the reference standard", IsRequired=true)
-        public MeasurementDirection MeasurementDirection = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comment = null;
-        
-        public Instant getValidFrom() { return ValidFrom; }
-        public LocationDatumPeriodBase setValidFrom(Instant value) { this.ValidFrom = value; return this; }
-        public Double getElevation() { return Elevation; }
-        public LocationDatumPeriodBase setElevation(Double value) { this.Elevation = value; return this; }
-        public MeasurementDirection getMeasurementDirection() { return MeasurementDirection; }
-        public LocationDatumPeriodBase setMeasurementDirection(MeasurementDirection value) { this.MeasurementDirection = value; return this; }
-        public String getComment() { return Comment; }
-        public LocationDatumPeriodBase setComment(String value) { this.Comment = value; return this; }
+        public MonitoringMethodWriteBase setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
     }
 
     public static class LocationBase
@@ -3459,6 +3156,373 @@ public class Provisioning
         public ReferencePointPeriod setAppliedByUser(String value) { this.AppliedByUser = value; return this; }
     }
 
+    public static class StandardDatumBase
+    {
+        /**
+        * Identifier of the standard datum
+        */
+        @ApiMember(Description="Identifier of the standard datum", IsRequired=true)
+        public String Identifier = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public StandardDatumBase setIdentifier(String value) { this.Identifier = value; return this; }
+    }
+
+    public static class LocationFolderWriteBase
+    {
+        /**
+        * Location folder name
+        */
+        @ApiMember(Description="Location folder name", IsRequired=true)
+        public String LocationFolderName = null;
+
+        /**
+        * Location folder description
+        */
+        @ApiMember(Description="Location folder description")
+        public String LocationFolderDescription = null;
+        
+        public String getLocationFolderName() { return LocationFolderName; }
+        public LocationFolderWriteBase setLocationFolderName(String value) { this.LocationFolderName = value; return this; }
+        public String getLocationFolderDescription() { return LocationFolderDescription; }
+        public LocationFolderWriteBase setLocationFolderDescription(String value) { this.LocationFolderDescription = value; return this; }
+    }
+
+    public static class OpenIdConnectRelyingPartyConfigurationBase
+    {
+        /**
+        * The Relying Party client identifier
+        */
+        @ApiMember(Description="The Relying Party client identifier", IsRequired=true)
+        public String ClientIdentifier = null;
+
+        /**
+        * The Relying Party client secret
+        */
+        @ApiMember(Description="The Relying Party client secret", IsRequired=true)
+        public String ClientSecret = null;
+
+        /**
+        * The redirection URI for the authorization response; e.g. http://my-domain/AQUARIUS/apps/v1/auth/openidconnect
+        */
+        @ApiMember(Description="The redirection URI for the authorization response; e.g. http://my-domain/AQUARIUS/apps/v1/auth/openidconnect", IsRequired=true)
+        public String RedirectUri = null;
+
+        /**
+        * If not specified, defaults to openid
+        */
+        @ApiMember(DataType="IList", Description="If not specified, defaults to openid")
+        public List<String> Scopes = null;
+
+        /**
+        * Hosted domains
+        */
+        @ApiMember(DataType="Array<string>", Description="Hosted domains")
+        public List<String> HostedDomains = null;
+        
+        public String getClientIdentifier() { return ClientIdentifier; }
+        public OpenIdConnectRelyingPartyConfigurationBase setClientIdentifier(String value) { this.ClientIdentifier = value; return this; }
+        public String getClientSecret() { return ClientSecret; }
+        public OpenIdConnectRelyingPartyConfigurationBase setClientSecret(String value) { this.ClientSecret = value; return this; }
+        public String getRedirectUri() { return RedirectUri; }
+        public OpenIdConnectRelyingPartyConfigurationBase setRedirectUri(String value) { this.RedirectUri = value; return this; }
+        public List<String> getScopes() { return Scopes; }
+        public OpenIdConnectRelyingPartyConfigurationBase setScopes(List<String> value) { this.Scopes = value; return this; }
+        public List<String> getHostedDomains() { return HostedDomains; }
+        public OpenIdConnectRelyingPartyConfigurationBase setHostedDomains(List<String> value) { this.HostedDomains = value; return this; }
+    }
+
+    public static class LocationTypeBase
+    {
+        /**
+        * Type name
+        */
+        @ApiMember(Description="Type name", IsRequired=true)
+        public String TypeName = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Name of database table used for extended attributes, omit if none
+        */
+        @ApiMember(Description="Name of database table used for extended attributes, omit if none")
+        public String AttributeTableName = null;
+        
+        public String getTypeName() { return TypeName; }
+        public LocationTypeBase setTypeName(String value) { this.TypeName = value; return this; }
+        public String getDescription() { return Description; }
+        public LocationTypeBase setDescription(String value) { this.Description = value; return this; }
+        public String getAttributeTableName() { return AttributeTableName; }
+        public LocationTypeBase setAttributeTableName(String value) { this.AttributeTableName = value; return this; }
+    }
+
+    public static class ParameterBase
+    {
+        /**
+        * Parameter id
+        */
+        @ApiMember(Description="Parameter id", IsRequired=true)
+        public String ParameterId = null;
+
+        /**
+        * The display ID of the parameter
+        */
+        @ApiMember(Description="The display ID of the parameter", IsRequired=true)
+        public String Identifier = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name", IsRequired=true)
+        public String DisplayName = null;
+
+        /**
+        * Unit group identifier
+        */
+        @ApiMember(Description="Unit group identifier", IsRequired=true)
+        public String UnitGroupIdentifier = null;
+
+        /**
+        * Unit identifier
+        */
+        @ApiMember(Description="Unit identifier", IsRequired=true)
+        public String UnitIdentifier = null;
+
+        /**
+        * Min value
+        */
+        @ApiMember(DataType="double", Description="Min value")
+        public Double MinValue = null;
+
+        /**
+        * Max value
+        */
+        @ApiMember(DataType="double", Description="Max value")
+        public Double MaxValue = null;
+
+        /**
+        * Interpolation type
+        */
+        @ApiMember(DataType="InterpolationType", Description="Interpolation type", IsRequired=true)
+        public InterpolationType InterpolationType = null;
+
+        /**
+        * Rounding spec
+        */
+        @ApiMember(Description="Rounding spec")
+        public String RoundingSpec = null;
+        
+        public String getParameterId() { return ParameterId; }
+        public ParameterBase setParameterId(String value) { this.ParameterId = value; return this; }
+        public String getIdentifier() { return Identifier; }
+        public ParameterBase setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public ParameterBase setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getUnitGroupIdentifier() { return UnitGroupIdentifier; }
+        public ParameterBase setUnitGroupIdentifier(String value) { this.UnitGroupIdentifier = value; return this; }
+        public String getUnitIdentifier() { return UnitIdentifier; }
+        public ParameterBase setUnitIdentifier(String value) { this.UnitIdentifier = value; return this; }
+        public Double getMinValue() { return MinValue; }
+        public ParameterBase setMinValue(Double value) { this.MinValue = value; return this; }
+        public Double getMaxValue() { return MaxValue; }
+        public ParameterBase setMaxValue(Double value) { this.MaxValue = value; return this; }
+        public InterpolationType getInterpolationType() { return InterpolationType; }
+        public ParameterBase setInterpolationType(InterpolationType value) { this.InterpolationType = value; return this; }
+        public String getRoundingSpec() { return RoundingSpec; }
+        public ParameterBase setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
+    }
+
+    public static class UnitGroupBase
+    {
+        /**
+        * Current dimension
+        */
+        @ApiMember(DataType="integer", Description="Current dimension")
+        public Integer CurrentDimension = null;
+
+        /**
+        * Intensity dimension
+        */
+        @ApiMember(DataType="integer", Description="Intensity dimension")
+        public Integer IntensityDimension = null;
+
+        /**
+        * Length dimension
+        */
+        @ApiMember(DataType="integer", Description="Length dimension")
+        public Integer LengthDimension = null;
+
+        /**
+        * Mass dimension
+        */
+        @ApiMember(DataType="integer", Description="Mass dimension")
+        public Integer MassDimension = null;
+
+        /**
+        * Substance dimension
+        */
+        @ApiMember(DataType="integer", Description="Substance dimension")
+        public Integer SubstanceDimension = null;
+
+        /**
+        * Temperature dimension
+        */
+        @ApiMember(DataType="integer", Description="Temperature dimension")
+        public Integer TemperatureDimension = null;
+
+        /**
+        * Time dimension
+        */
+        @ApiMember(DataType="integer", Description="Time dimension")
+        public Integer TimeDimension = null;
+        
+        public Integer getCurrentDimension() { return CurrentDimension; }
+        public UnitGroupBase setCurrentDimension(Integer value) { this.CurrentDimension = value; return this; }
+        public Integer getIntensityDimension() { return IntensityDimension; }
+        public UnitGroupBase setIntensityDimension(Integer value) { this.IntensityDimension = value; return this; }
+        public Integer getLengthDimension() { return LengthDimension; }
+        public UnitGroupBase setLengthDimension(Integer value) { this.LengthDimension = value; return this; }
+        public Integer getMassDimension() { return MassDimension; }
+        public UnitGroupBase setMassDimension(Integer value) { this.MassDimension = value; return this; }
+        public Integer getSubstanceDimension() { return SubstanceDimension; }
+        public UnitGroupBase setSubstanceDimension(Integer value) { this.SubstanceDimension = value; return this; }
+        public Integer getTemperatureDimension() { return TemperatureDimension; }
+        public UnitGroupBase setTemperatureDimension(Integer value) { this.TemperatureDimension = value; return this; }
+        public Integer getTimeDimension() { return TimeDimension; }
+        public UnitGroupBase setTimeDimension(Integer value) { this.TimeDimension = value; return this; }
+    }
+
+    public static class UnitBase
+    {
+        /**
+        * Base multiplier
+        */
+        @ApiMember(DataType="double", Description="Base multiplier", IsRequired=true)
+        public Double BaseMultiplier = null;
+
+        /**
+        * Base offset
+        */
+        @ApiMember(DataType="double", Description="Base offset", IsRequired=true)
+        public Double BaseOffset = null;
+
+        /**
+        * Localized short name or symbol
+        */
+        @ApiMember(Description="Localized short name or symbol", IsRequired=true)
+        public String Symbol = null;
+
+        /**
+        * Localized singular name
+        */
+        @ApiMember(Description="Localized singular name", IsRequired=true)
+        public String SingularName = null;
+
+        /**
+        * Localized plural name
+        */
+        @ApiMember(Description="Localized plural name", IsRequired=true)
+        public String PluralName = null;
+        
+        public Double getBaseMultiplier() { return BaseMultiplier; }
+        public UnitBase setBaseMultiplier(Double value) { this.BaseMultiplier = value; return this; }
+        public Double getBaseOffset() { return BaseOffset; }
+        public UnitBase setBaseOffset(Double value) { this.BaseOffset = value; return this; }
+        public String getSymbol() { return Symbol; }
+        public UnitBase setSymbol(String value) { this.Symbol = value; return this; }
+        public String getSingularName() { return SingularName; }
+        public UnitBase setSingularName(String value) { this.SingularName = value; return this; }
+        public String getPluralName() { return PluralName; }
+        public UnitBase setPluralName(String value) { this.PluralName = value; return this; }
+    }
+
+    public static class PopulatedUnitGroup extends UnitGroup
+    {
+        /**
+        * The list of units within the group
+        */
+        @ApiMember(DataType="Array<Unit>", Description="The list of units within the group")
+        public List<Unit> Units = null;
+        
+        public List<Unit> getUnits() { return Units; }
+        public PopulatedUnitGroup setUnits(List<Unit> value) { this.Units = value; return this; }
+    }
+
+    public static class LocationDatumPeriod extends LocationDatumPeriodBase
+    {
+        /**
+        * Applied date
+        */
+        @ApiMember(DataType="Instant", Description="Applied date")
+        public Instant AppliedTimeUtc = null;
+
+        /**
+        * Applied by user
+        */
+        @ApiMember(Description="Applied by user")
+        public String AppliedByUser = null;
+
+        /**
+        * Reference standard this period is related to
+        */
+        @ApiMember(DataType="StandardReferenceDatum", Description="Reference standard this period is related to")
+        public StandardReferenceDatum ReferenceStandard = null;
+        
+        public Instant getAppliedTimeUtc() { return AppliedTimeUtc; }
+        public LocationDatumPeriod setAppliedTimeUtc(Instant value) { this.AppliedTimeUtc = value; return this; }
+        public String getAppliedByUser() { return AppliedByUser; }
+        public LocationDatumPeriod setAppliedByUser(String value) { this.AppliedByUser = value; return this; }
+        public StandardReferenceDatum getReferenceStandard() { return ReferenceStandard; }
+        public LocationDatumPeriod setReferenceStandard(StandardReferenceDatum value) { this.ReferenceStandard = value; return this; }
+    }
+
+    public static enum MeasurementDirection
+    {
+        Unknown,
+        FromTopToBottom,
+        FromBottomToTop;
+    }
+
+    public static class LocationDatumPeriodBase
+    {
+        /**
+        * Time this period is valid from
+        */
+        @ApiMember(DataType="Instant", Description="Time this period is valid from", IsRequired=true)
+        public Instant ValidFrom = null;
+
+        /**
+        * Elevation difference from the reference standard
+        */
+        @ApiMember(DataType="double", Description="Elevation difference from the reference standard", IsRequired=true)
+        public Double Elevation = null;
+
+        /**
+        * Direction of positive elevations in relation to the reference standard
+        */
+        @ApiMember(DataType="MeasurementDirection", Description="Direction of positive elevations in relation to the reference standard", IsRequired=true)
+        public MeasurementDirection MeasurementDirection = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comment = null;
+        
+        public Instant getValidFrom() { return ValidFrom; }
+        public LocationDatumPeriodBase setValidFrom(Instant value) { this.ValidFrom = value; return this; }
+        public Double getElevation() { return Elevation; }
+        public LocationDatumPeriodBase setElevation(Double value) { this.Elevation = value; return this; }
+        public MeasurementDirection getMeasurementDirection() { return MeasurementDirection; }
+        public LocationDatumPeriodBase setMeasurementDirection(MeasurementDirection value) { this.MeasurementDirection = value; return this; }
+        public String getComment() { return Comment; }
+        public LocationDatumPeriodBase setComment(String value) { this.Comment = value; return this; }
+    }
+
     public static class QualityCodeBase
     {
         /**
@@ -3493,70 +3557,6 @@ public class Provisioning
         public QualityCodeBase setDisplayName(String value) { this.DisplayName = value; return this; }
         public String getDescription() { return Description; }
         public QualityCodeBase setDescription(String value) { this.Description = value; return this; }
-    }
-
-    public static class MonitoringMethodWriteBase
-    {
-        /**
-        * Method code
-        */
-        @ApiMember(Description="Method code", IsRequired=true)
-        public String MethodCode = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name", IsRequired=true)
-        public String DisplayName = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Unique ID of the method's parameter
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the method's parameter", IsRequired=true)
-        public String ParameterUniqueId = null;
-
-        /**
-        * Rounding spec
-        */
-        @ApiMember(Description="Rounding spec")
-        public String RoundingSpec = null;
-        
-        public String getMethodCode() { return MethodCode; }
-        public MonitoringMethodWriteBase setMethodCode(String value) { this.MethodCode = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public MonitoringMethodWriteBase setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getDescription() { return Description; }
-        public MonitoringMethodWriteBase setDescription(String value) { this.Description = value; return this; }
-        public String getParameterUniqueId() { return ParameterUniqueId; }
-        public MonitoringMethodWriteBase setParameterUniqueId(String value) { this.ParameterUniqueId = value; return this; }
-        public String getRoundingSpec() { return RoundingSpec; }
-        public MonitoringMethodWriteBase setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
-    }
-
-    public static class LocationFolderWriteBase
-    {
-        /**
-        * Location folder name
-        */
-        @ApiMember(Description="Location folder name", IsRequired=true)
-        public String LocationFolderName = null;
-
-        /**
-        * Location folder description
-        */
-        @ApiMember(Description="Location folder description")
-        public String LocationFolderDescription = null;
-        
-        public String getLocationFolderName() { return LocationFolderName; }
-        public LocationFolderWriteBase setLocationFolderName(String value) { this.LocationFolderName = value; return this; }
-        public String getLocationFolderDescription() { return LocationFolderDescription; }
-        public LocationFolderWriteBase setLocationFolderDescription(String value) { this.LocationFolderDescription = value; return this; }
     }
 
     public static enum ExtendedAttributeFieldType
@@ -3622,6 +3622,6 @@ public class Provisioning
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.4.73.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("17.4.79.0");
     }
 }
