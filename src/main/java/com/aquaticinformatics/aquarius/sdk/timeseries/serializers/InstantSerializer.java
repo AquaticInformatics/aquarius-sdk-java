@@ -6,10 +6,13 @@ import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class InstantSerializer implements JsonSerializer<Instant> {
 
-    public static final DateTimeFormatter FORMATTER = InstantDeserializer.FORMATTER
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern(InstantDeserializer.Pattern)
+            .withLocale(Locale.US)
             .withZone( ZoneId.of("UTC"));
 
     @Override
