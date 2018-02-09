@@ -7,16 +7,22 @@ import com.google.gson.JsonParseException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.lang.reflect.Type;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.Locale;
 
 public class InstantDeserializer implements JsonDeserializer<Instant> {
 
     public static final String ZoneFieldPattern = "ZZZZZ";
-    public static final String Pattern = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSSSSSS" + ZoneFieldPattern;
+    public static final String DateAndTimePattern = "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
+    public static final String FractionalSecondsPattern = "'.'SSSSSSS";
+    public static final String Pattern = DateAndTimePattern + FractionalSecondsPattern + ZoneFieldPattern;
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter
-            .ofPattern(Pattern)
-            .withLocale(Locale.US);
+    public static final DateTimeFormatter FORMATTER =
+            new DateTimeFormatterBuilder().appendPattern(DateAndTimePattern)
+                    .appendFraction(ChronoField.NANO_OF_SECOND, 0, 7, true)
+                    .appendPattern(ZoneFieldPattern)
+                    .toFormatter();
 
     public static final String JsonMaxValue = "MaxInstant";
     public static final String JsonMinValue = "MinInstant";
