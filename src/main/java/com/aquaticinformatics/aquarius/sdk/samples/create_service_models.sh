@@ -18,7 +18,7 @@ show_usage() {
 	exit_abort "$@"
 }
 
-Generator=../../../../../../../../../aquarius-sdk-net/src/SamplesServiceModelGenerator/bin/Release/SamplesServiceModelGenerator.exe
+Generator=../../../../../../../../../aquarius-sdk-net/src/SamplesServiceModelGenerator/bin/Release//netcoreapp2.0/SamplesServiceModelGenerator.dll
 
 ServerName=$1
 OutputPath=$2
@@ -27,4 +27,4 @@ OutputPath=$2
 [ ! -z "$ServerName" ] || ServerName=https://demo.aqsamples.com
 [ ! -z "$OutputPath" ] || OutputPath=./ServiceModel.java
 
-$Generator -language=Java -filename=$OutputPath -url=$ServerName/api/swagger.json || exit_abort
+dotnet $Generator -language=Java -filename=$OutputPath -url=$ServerName/api/swagger.json || exit_abort

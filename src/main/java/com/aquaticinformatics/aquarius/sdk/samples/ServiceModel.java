@@ -1,12 +1,13 @@
-// Date: 2017-12-04T17:24:21.2039619-08:00
-// Base URL: https://test.gaiaserve.net/api/swagger.json
-// Source: AQUARIUS Samples API (2017.14.2634)
+// Date: 2018-03-10T21:33:57.8627838-08:00
+// Base URL: https://demo.aqsamples.com/api/swagger.json
+// Source: AQUARIUS Samples API (2018.03.2863)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
 import java.time.*;
 import java.util.*;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import net.servicestack.client.*;
 import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
@@ -14,7 +15,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2017.14.2634");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2018.03.2863");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -62,7 +63,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/accessgroups/{id}", Verbs="PUT")
-    public static class PutSparseAccessGroup implements IReturn<AccessGroup>
+    public static class PutAccessGroup implements IReturn<AccessGroup>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("name") public String Name = null;
@@ -72,28 +73,28 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseAccessGroup setId(String value) { this.Id = value; return this; }
+        public PutAccessGroup setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
-        public PutSparseAccessGroup setName(String value) { this.Name = value; return this; }
+        public PutAccessGroup setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseAccessGroup setDescription(String value) { this.Description = value; return this; }
+        public PutAccessGroup setDescription(String value) { this.Description = value; return this; }
         public Boolean getCanEditAllData() { return CanEditAllData; }
-        public PutSparseAccessGroup setCanEditAllData(Boolean value) { this.CanEditAllData = value; return this; }
+        public PutAccessGroup setCanEditAllData(Boolean value) { this.CanEditAllData = value; return this; }
         public List<SamplingLocationGroupSimple> getSamplingLocationGroups() { return SamplingLocationGroups; }
-        public PutSparseAccessGroup setSamplingLocationGroups(List<SamplingLocationGroupSimple> value) { this.SamplingLocationGroups = value; return this; }
+        public PutAccessGroup setSamplingLocationGroups(List<SamplingLocationGroupSimple> value) { this.SamplingLocationGroups = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseAccessGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutAccessGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = AccessGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/accessgroups/{id}", Verbs="DELETE")
-    public static class DeleteAccessGroupById implements IReturnVoid
+    public static class DeleteAccessGroup implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteAccessGroupById setId(String value) { this.Id = value; return this; }
+        public DeleteAccessGroup setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/activities", Verbs="GET")
@@ -146,10 +147,6 @@ public class ServiceModel
     @Route(Path="/v1/activities", Verbs="POST")
     public static class PostActivity implements IReturn<Activity>
     {
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("type") public ActivityType Type = null;
@@ -162,17 +159,13 @@ public class ServiceModel
         @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
         @SerializedName("medium") public MediumType Medium = null;
         @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
+        @SerializedName("depth") public Quantity Depth = null;
+        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
+        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
+        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
         @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
-        public Quantity getDepth() { return Depth; }
-        public PostActivity setDepth(Quantity value) { this.Depth = value; return this; }
-        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public PostActivity setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
-        public FieldVisit getFieldVisit() { return FieldVisit; }
-        public PostActivity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
-        public List<SamplingContextTag> getSamplingContextTags() { return SamplingContextTags; }
-        public PostActivity setSamplingContextTags(List<SamplingContextTag> value) { this.SamplingContextTags = value; return this; }
         public String getId() { return Id; }
         public PostActivity setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -197,6 +190,14 @@ public class ServiceModel
         public PostActivity setMedium(MediumType value) { this.Medium = value; return this; }
         public PlannedActivity getPlannedActivity() { return PlannedActivity; }
         public PostActivity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
+        public Quantity getDepth() { return Depth; }
+        public PostActivity setDepth(Quantity value) { this.Depth = value; return this; }
+        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
+        public PostActivity setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public FieldVisit getFieldVisit() { return FieldVisit; }
+        public PostActivity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public List<SamplingContextTag> getSamplingContextTags() { return SamplingContextTags; }
+        public PostActivity setSamplingContextTags(List<SamplingContextTag> value) { this.SamplingContextTags = value; return this; }
         public ActivityTemplate getActivityTemplate() { return ActivityTemplate; }
         public PostActivity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -265,13 +266,9 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/activities/{id}", Verbs="PUT")
-    public static class PutSparseActivity implements IReturn<Activity>
+    public static class PutActivity implements IReturn<Activity>
     {
         @SerializedName("id") public String Id = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("type") public ActivityType Type = null;
         @SerializedName("replicateSourceActivityId") public String ReplicateSourceActivityId = null;
@@ -283,65 +280,69 @@ public class ServiceModel
         @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
         @SerializedName("medium") public MediumType Medium = null;
         @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
+        @SerializedName("depth") public Quantity Depth = null;
+        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
+        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
+        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
         @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseActivity setId(String value) { this.Id = value; return this; }
-        public Quantity getDepth() { return Depth; }
-        public PutSparseActivity setDepth(Quantity value) { this.Depth = value; return this; }
-        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public PutSparseActivity setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
-        public FieldVisit getFieldVisit() { return FieldVisit; }
-        public PutSparseActivity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
-        public List<SamplingContextTag> getSamplingContextTags() { return SamplingContextTags; }
-        public PutSparseActivity setSamplingContextTags(List<SamplingContextTag> value) { this.SamplingContextTags = value; return this; }
+        public PutActivity setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseActivity setCustomId(String value) { this.CustomId = value; return this; }
+        public PutActivity setCustomId(String value) { this.CustomId = value; return this; }
         public ActivityType getType() { return Type; }
-        public PutSparseActivity setType(ActivityType value) { this.Type = value; return this; }
+        public PutActivity setType(ActivityType value) { this.Type = value; return this; }
         public String getReplicateSourceActivityId() { return ReplicateSourceActivityId; }
-        public PutSparseActivity setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
+        public PutActivity setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
         public Instant getStartTime() { return StartTime; }
-        public PutSparseActivity setStartTime(Instant value) { this.StartTime = value; return this; }
+        public PutActivity setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
-        public PutSparseActivity setEndTime(Instant value) { this.EndTime = value; return this; }
+        public PutActivity setEndTime(Instant value) { this.EndTime = value; return this; }
         public String getComment() { return Comment; }
-        public PutSparseActivity setComment(String value) { this.Comment = value; return this; }
+        public PutActivity setComment(String value) { this.Comment = value; return this; }
         public String getLoggerFileName() { return LoggerFileName; }
-        public PutSparseActivity setLoggerFileName(String value) { this.LoggerFileName = value; return this; }
+        public PutActivity setLoggerFileName(String value) { this.LoggerFileName = value; return this; }
         public Device getDevice() { return Device; }
-        public PutSparseActivity setDevice(Device value) { this.Device = value; return this; }
+        public PutActivity setDevice(Device value) { this.Device = value; return this; }
         public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PutSparseActivity setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
+        public PutActivity setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
         public MediumType getMedium() { return Medium; }
-        public PutSparseActivity setMedium(MediumType value) { this.Medium = value; return this; }
+        public PutActivity setMedium(MediumType value) { this.Medium = value; return this; }
         public PlannedActivity getPlannedActivity() { return PlannedActivity; }
-        public PutSparseActivity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
+        public PutActivity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
+        public Quantity getDepth() { return Depth; }
+        public PutActivity setDepth(Quantity value) { this.Depth = value; return this; }
+        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
+        public PutActivity setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public FieldVisit getFieldVisit() { return FieldVisit; }
+        public PutActivity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public List<SamplingContextTag> getSamplingContextTags() { return SamplingContextTags; }
+        public PutActivity setSamplingContextTags(List<SamplingContextTag> value) { this.SamplingContextTags = value; return this; }
         public ActivityTemplate getActivityTemplate() { return ActivityTemplate; }
-        public PutSparseActivity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
+        public PutActivity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Activity.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/activities/{id}", Verbs="DELETE")
-    public static class DeleteActivityById implements IReturnVoid
+    public static class DeleteActivity implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteActivityById setId(String value) { this.Id = value; return this; }
+        public DeleteActivity setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/activities/{id}/replicate", Verbs="POST")
-    public static class PostReplicateActivity implements IReturn<Activity>
+    public static class PostActivityReplicate implements IReturn<Activity>
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public PostReplicateActivity setId(String value) { this.Id = value; return this; }
+        public PostActivityReplicate setId(String value) { this.Id = value; return this; }
         private static Object responseType = Activity.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -404,7 +405,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/activitytemplates/{id}", Verbs="PUT")
-    public static class PutSparseActivityTemplate implements IReturn<ActivityTemplate>
+    public static class PutActivityTemplate implements IReturn<ActivityTemplate>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("specimenTemplates") public List<SpecimenTemplate> SpecimenTemplates = null;
@@ -417,34 +418,34 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseActivityTemplate setId(String value) { this.Id = value; return this; }
+        public PutActivityTemplate setId(String value) { this.Id = value; return this; }
         public List<SpecimenTemplate> getSpecimenTemplates() { return SpecimenTemplates; }
-        public PutSparseActivityTemplate setSpecimenTemplates(List<SpecimenTemplate> value) { this.SpecimenTemplates = value; return this; }
+        public PutActivityTemplate setSpecimenTemplates(List<SpecimenTemplate> value) { this.SpecimenTemplates = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseActivityTemplate setCustomId(String value) { this.CustomId = value; return this; }
+        public PutActivityTemplate setCustomId(String value) { this.CustomId = value; return this; }
         public ActivityType getType() { return Type; }
-        public PutSparseActivityTemplate setType(ActivityType value) { this.Type = value; return this; }
+        public PutActivityTemplate setType(ActivityType value) { this.Type = value; return this; }
         public String getComment() { return Comment; }
-        public PutSparseActivityTemplate setComment(String value) { this.Comment = value; return this; }
+        public PutActivityTemplate setComment(String value) { this.Comment = value; return this; }
         public MediumType getMedium() { return Medium; }
-        public PutSparseActivityTemplate setMedium(MediumType value) { this.Medium = value; return this; }
+        public PutActivityTemplate setMedium(MediumType value) { this.Medium = value; return this; }
         public Quantity getDepth() { return Depth; }
-        public PutSparseActivityTemplate setDepth(Quantity value) { this.Depth = value; return this; }
+        public PutActivityTemplate setDepth(Quantity value) { this.Depth = value; return this; }
         public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PutSparseActivityTemplate setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
+        public PutActivityTemplate setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseActivityTemplate setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutActivityTemplate setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = ActivityTemplate.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/activitytemplates/{id}", Verbs="DELETE")
-    public static class DeleteActivityTemplateById implements IReturnVoid
+    public static class DeleteActivityTemplate implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteActivityTemplateById setId(String value) { this.Id = value; return this; }
+        public DeleteActivityTemplate setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/analyticalgroups", Verbs="GET")
@@ -502,7 +503,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/analyticalgroups/{id}", Verbs="PUT")
-    public static class PutSparseAnalyticalGroup implements IReturn<AnalyticalGroup>
+    public static class PutAnalyticalGroup implements IReturn<AnalyticalGroup>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("name") public String Name = null;
@@ -514,32 +515,32 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseAnalyticalGroup setId(String value) { this.Id = value; return this; }
+        public PutAnalyticalGroup setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
-        public PutSparseAnalyticalGroup setName(String value) { this.Name = value; return this; }
+        public PutAnalyticalGroup setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseAnalyticalGroup setDescription(String value) { this.Description = value; return this; }
+        public PutAnalyticalGroup setDescription(String value) { this.Description = value; return this; }
         public AnalyticalGroupType getType() { return Type; }
-        public PutSparseAnalyticalGroup setType(AnalyticalGroupType value) { this.Type = value; return this; }
+        public PutAnalyticalGroup setType(AnalyticalGroupType value) { this.Type = value; return this; }
         public Integer getNumberOfObservedPropertiesInGroupItems() { return NumberOfObservedPropertiesInGroupItems; }
-        public PutSparseAnalyticalGroup setNumberOfObservedPropertiesInGroupItems(Integer value) { this.NumberOfObservedPropertiesInGroupItems = value; return this; }
+        public PutAnalyticalGroup setNumberOfObservedPropertiesInGroupItems(Integer value) { this.NumberOfObservedPropertiesInGroupItems = value; return this; }
         public Integer getNumberOfAnalysisMethodsInGroupItems() { return NumberOfAnalysisMethodsInGroupItems; }
-        public PutSparseAnalyticalGroup setNumberOfAnalysisMethodsInGroupItems(Integer value) { this.NumberOfAnalysisMethodsInGroupItems = value; return this; }
+        public PutAnalyticalGroup setNumberOfAnalysisMethodsInGroupItems(Integer value) { this.NumberOfAnalysisMethodsInGroupItems = value; return this; }
         public List<AnalyticalGroupItem> getAnalyticalGroupItems() { return AnalyticalGroupItems; }
-        public PutSparseAnalyticalGroup setAnalyticalGroupItems(List<AnalyticalGroupItem> value) { this.AnalyticalGroupItems = value; return this; }
+        public PutAnalyticalGroup setAnalyticalGroupItems(List<AnalyticalGroupItem> value) { this.AnalyticalGroupItems = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseAnalyticalGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutAnalyticalGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = AnalyticalGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/analyticalgroups/{id}", Verbs="DELETE")
-    public static class DeleteAnalyticalGroupById implements IReturnVoid
+    public static class DeleteAnalyticalGroup implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteAnalyticalGroupById setId(String value) { this.Id = value; return this; }
+        public DeleteAnalyticalGroup setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/attachments/{id}", Verbs="GET")
@@ -601,12 +602,12 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/attachments/{id}/contents", Verbs="GET")
-    public static class GetAttachmentContent implements IReturnVoid
+    public static class GetAttachmentContents implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public GetAttachmentContent setId(String value) { this.Id = value; return this; }
+        public GetAttachmentContents setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/attachments/upload", Verbs="POST")
@@ -658,7 +659,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/collectionmethods/{id}", Verbs="PUT")
-    public static class PutSparseCollectionMethod implements IReturn<CollectionMethod>
+    public static class PutCollectionMethod implements IReturn<CollectionMethod>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -667,26 +668,26 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseCollectionMethod setId(String value) { this.Id = value; return this; }
+        public PutCollectionMethod setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseCollectionMethod setCustomId(String value) { this.CustomId = value; return this; }
+        public PutCollectionMethod setCustomId(String value) { this.CustomId = value; return this; }
         public String getIdentifierOrganization() { return IdentifierOrganization; }
-        public PutSparseCollectionMethod setIdentifierOrganization(String value) { this.IdentifierOrganization = value; return this; }
+        public PutCollectionMethod setIdentifierOrganization(String value) { this.IdentifierOrganization = value; return this; }
         public String getName() { return Name; }
-        public PutSparseCollectionMethod setName(String value) { this.Name = value; return this; }
+        public PutCollectionMethod setName(String value) { this.Name = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseCollectionMethod setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutCollectionMethod setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = CollectionMethod.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/collectionmethods/{id}", Verbs="DELETE")
-    public static class DeleteCollectionMethodById implements IReturnVoid
+    public static class DeleteCollectionMethod implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteCollectionMethodById setId(String value) { this.Id = value; return this; }
+        public DeleteCollectionMethod setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/fieldtrips", Verbs="GET")
@@ -750,7 +751,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/fieldtrips/{id}", Verbs="PUT")
-    public static class PutSparseFieldTrip implements IReturn<FieldTrip>
+    public static class PutFieldTrip implements IReturn<FieldTrip>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -763,34 +764,34 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseFieldTrip setId(String value) { this.Id = value; return this; }
+        public PutFieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseFieldTrip setCustomId(String value) { this.CustomId = value; return this; }
+        public PutFieldTrip setCustomId(String value) { this.CustomId = value; return this; }
         public List<FieldVisit> getFieldVisits() { return FieldVisits; }
-        public PutSparseFieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
+        public PutFieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public Instant getStartTime() { return StartTime; }
-        public PutSparseFieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
+        public PutFieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
-        public PutSparseFieldTrip setEndTime(Instant value) { this.EndTime = value; return this; }
+        public PutFieldTrip setEndTime(Instant value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
-        public PutSparseFieldTrip setParticipants(String value) { this.Participants = value; return this; }
+        public PutFieldTrip setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
-        public PutSparseFieldTrip setNotes(String value) { this.Notes = value; return this; }
+        public PutFieldTrip setNotes(String value) { this.Notes = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutSparseFieldTrip setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public PutFieldTrip setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseFieldTrip setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutFieldTrip setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = FieldTrip.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/fieldtrips/{id}", Verbs="DELETE")
-    public static class DeleteFieldTripById implements IReturnVoid
+    public static class DeleteFieldTrip implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteFieldTripById setId(String value) { this.Id = value; return this; }
+        public DeleteFieldTrip setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/fieldvisits", Verbs="GET")
@@ -905,7 +906,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/fieldvisits/{id}", Verbs="PUT")
-    public static class PutSparseFieldVisit implements IReturn<FieldVisit>
+    public static class PutFieldVisit implements IReturn<FieldVisit>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("startTime") public Instant StartTime = null;
@@ -921,44 +922,44 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseFieldVisit setId(String value) { this.Id = value; return this; }
+        public PutFieldVisit setId(String value) { this.Id = value; return this; }
         public Instant getStartTime() { return StartTime; }
-        public PutSparseFieldVisit setStartTime(Instant value) { this.StartTime = value; return this; }
+        public PutFieldVisit setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
-        public PutSparseFieldVisit setEndTime(Instant value) { this.EndTime = value; return this; }
+        public PutFieldVisit setEndTime(Instant value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
-        public PutSparseFieldVisit setParticipants(String value) { this.Participants = value; return this; }
+        public PutFieldVisit setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
-        public PutSparseFieldVisit setNotes(String value) { this.Notes = value; return this; }
+        public PutFieldVisit setNotes(String value) { this.Notes = value; return this; }
         public FieldTripSimple getFieldTrip() { return FieldTrip; }
-        public PutSparseFieldVisit setFieldTrip(FieldTripSimple value) { this.FieldTrip = value; return this; }
+        public PutFieldVisit setFieldTrip(FieldTripSimple value) { this.FieldTrip = value; return this; }
         public PlanningStatusType getPlanningStatus() { return PlanningStatus; }
-        public PutSparseFieldVisit setPlanningStatus(PlanningStatusType value) { this.PlanningStatus = value; return this; }
+        public PutFieldVisit setPlanningStatus(PlanningStatusType value) { this.PlanningStatus = value; return this; }
         public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public PutSparseFieldVisit setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public PutFieldVisit setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
         public List<PlannedFieldResult> getPlannedFieldResults() { return PlannedFieldResults; }
-        public PutSparseFieldVisit setPlannedFieldResults(List<PlannedFieldResult> value) { this.PlannedFieldResults = value; return this; }
+        public PutFieldVisit setPlannedFieldResults(List<PlannedFieldResult> value) { this.PlannedFieldResults = value; return this; }
         public List<PlannedActivity> getPlannedActivities() { return PlannedActivities; }
-        public PutSparseFieldVisit setPlannedActivities(List<PlannedActivity> value) { this.PlannedActivities = value; return this; }
+        public PutFieldVisit setPlannedActivities(List<PlannedActivity> value) { this.PlannedActivities = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutSparseFieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public PutFieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseFieldVisit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutFieldVisit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = FieldVisit.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/fieldvisits/{id}", Verbs="DELETE")
-    public static class DeleteFieldVisitById implements IReturnVoid
+    public static class DeleteFieldVisit implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteFieldVisitById setId(String value) { this.Id = value; return this; }
+        public DeleteFieldVisit setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/fieldvisits/{id}/activityfromplannedactivity", Verbs="POST")
-    public static class PostActivityFromPlannedActivity implements IReturn<Activity>
+    public static class PostFieldVisitActivityFromPlannedActivity implements IReturn<Activity>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
@@ -970,27 +971,27 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PostActivityFromPlannedActivity setId(String value) { this.Id = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setId(String value) { this.Id = value; return this; }
         public ActivityTemplate getActivityTemplate() { return ActivityTemplate; }
-        public PostActivityFromPlannedActivity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
         public String getInstruction() { return Instruction; }
-        public PostActivityFromPlannedActivity setInstruction(String value) { this.Instruction = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setInstruction(String value) { this.Instruction = value; return this; }
         public ActivityType getActivityType() { return ActivityType; }
-        public PostActivityFromPlannedActivity setActivityType(ActivityType value) { this.ActivityType = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setActivityType(ActivityType value) { this.ActivityType = value; return this; }
         public MediumType getMedium() { return Medium; }
-        public PostActivityFromPlannedActivity setMedium(MediumType value) { this.Medium = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setMedium(MediumType value) { this.Medium = value; return this; }
         public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PostActivityFromPlannedActivity setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
         public String getHashForFieldsThatRequireUniqueness() { return HashForFieldsThatRequireUniqueness; }
-        public PostActivityFromPlannedActivity setHashForFieldsThatRequireUniqueness(String value) { this.HashForFieldsThatRequireUniqueness = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setHashForFieldsThatRequireUniqueness(String value) { this.HashForFieldsThatRequireUniqueness = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PostActivityFromPlannedActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PostFieldVisitActivityFromPlannedActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Activity.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/fieldvisits/{id}/activitywithtemplate", Verbs="POST")
-    public static class PostActivityWithTemplate implements IReturn<Activity>
+    public static class PostFieldVisitActivityWithTemplate implements IReturn<Activity>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("specimenTemplates") public List<SpecimenTemplate> SpecimenTemplates = null;
@@ -1003,23 +1004,23 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PostActivityWithTemplate setId(String value) { this.Id = value; return this; }
+        public PostFieldVisitActivityWithTemplate setId(String value) { this.Id = value; return this; }
         public List<SpecimenTemplate> getSpecimenTemplates() { return SpecimenTemplates; }
-        public PostActivityWithTemplate setSpecimenTemplates(List<SpecimenTemplate> value) { this.SpecimenTemplates = value; return this; }
+        public PostFieldVisitActivityWithTemplate setSpecimenTemplates(List<SpecimenTemplate> value) { this.SpecimenTemplates = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PostActivityWithTemplate setCustomId(String value) { this.CustomId = value; return this; }
+        public PostFieldVisitActivityWithTemplate setCustomId(String value) { this.CustomId = value; return this; }
         public ActivityType getType() { return Type; }
-        public PostActivityWithTemplate setType(ActivityType value) { this.Type = value; return this; }
+        public PostFieldVisitActivityWithTemplate setType(ActivityType value) { this.Type = value; return this; }
         public String getComment() { return Comment; }
-        public PostActivityWithTemplate setComment(String value) { this.Comment = value; return this; }
+        public PostFieldVisitActivityWithTemplate setComment(String value) { this.Comment = value; return this; }
         public MediumType getMedium() { return Medium; }
-        public PostActivityWithTemplate setMedium(MediumType value) { this.Medium = value; return this; }
+        public PostFieldVisitActivityWithTemplate setMedium(MediumType value) { this.Medium = value; return this; }
         public Quantity getDepth() { return Depth; }
-        public PostActivityWithTemplate setDepth(Quantity value) { this.Depth = value; return this; }
+        public PostFieldVisitActivityWithTemplate setDepth(Quantity value) { this.Depth = value; return this; }
         public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PostActivityWithTemplate setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
+        public PostFieldVisitActivityWithTemplate setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PostActivityWithTemplate setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PostFieldVisitActivityWithTemplate setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Activity.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -1104,7 +1105,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/labanalysismethods/{id}", Verbs="PUT")
-    public static class PutSparseLabAnalysisMethod implements IReturn<LabAnalysisMethod>
+    public static class PutLabAnalysisMethod implements IReturn<LabAnalysisMethod>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("observedProperties") public List<ObservedProperty> ObservedProperties = null;
@@ -1116,32 +1117,32 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseLabAnalysisMethod setId(String value) { this.Id = value; return this; }
+        public PutLabAnalysisMethod setId(String value) { this.Id = value; return this; }
         public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PutSparseLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
+        public PutLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public String getMethodId() { return MethodId; }
-        public PutSparseLabAnalysisMethod setMethodId(String value) { this.MethodId = value; return this; }
+        public PutLabAnalysisMethod setMethodId(String value) { this.MethodId = value; return this; }
         public String getName() { return Name; }
-        public PutSparseLabAnalysisMethod setName(String value) { this.Name = value; return this; }
+        public PutLabAnalysisMethod setName(String value) { this.Name = value; return this; }
         public String getContext() { return Context; }
-        public PutSparseLabAnalysisMethod setContext(String value) { this.Context = value; return this; }
+        public PutLabAnalysisMethod setContext(String value) { this.Context = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseLabAnalysisMethod setDescription(String value) { this.Description = value; return this; }
+        public PutLabAnalysisMethod setDescription(String value) { this.Description = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSparseLabAnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public PutLabAnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseLabAnalysisMethod setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutLabAnalysisMethod setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = LabAnalysisMethod.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/labanalysismethods/{id}", Verbs="DELETE")
-    public static class DeleteLabAnalysisMethodById implements IReturnVoid
+    public static class DeleteLabAnalysisMethod implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteLabAnalysisMethodById setId(String value) { this.Id = value; return this; }
+        public DeleteLabAnalysisMethod setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/laboratories", Verbs="GET")
@@ -1198,7 +1199,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/laboratories/{id}", Verbs="PUT")
-    public static class PutSparseLaboratory implements IReturn<Laboratory>
+    public static class PutLaboratory implements IReturn<Laboratory>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -1211,34 +1212,34 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseLaboratory setId(String value) { this.Id = value; return this; }
+        public PutLaboratory setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseLaboratory setCustomId(String value) { this.CustomId = value; return this; }
+        public PutLaboratory setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
-        public PutSparseLaboratory setName(String value) { this.Name = value; return this; }
+        public PutLaboratory setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseLaboratory setDescription(String value) { this.Description = value; return this; }
+        public PutLaboratory setDescription(String value) { this.Description = value; return this; }
         public String getAddress() { return Address; }
-        public PutSparseLaboratory setAddress(String value) { this.Address = value; return this; }
+        public PutLaboratory setAddress(String value) { this.Address = value; return this; }
         public String getPointOfContact() { return PointOfContact; }
-        public PutSparseLaboratory setPointOfContact(String value) { this.PointOfContact = value; return this; }
+        public PutLaboratory setPointOfContact(String value) { this.PointOfContact = value; return this; }
         public String getEmailAddress() { return EmailAddress; }
-        public PutSparseLaboratory setEmailAddress(String value) { this.EmailAddress = value; return this; }
+        public PutLaboratory setEmailAddress(String value) { this.EmailAddress = value; return this; }
         public String getPhoneNumber() { return PhoneNumber; }
-        public PutSparseLaboratory setPhoneNumber(String value) { this.PhoneNumber = value; return this; }
+        public PutLaboratory setPhoneNumber(String value) { this.PhoneNumber = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseLaboratory setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutLaboratory setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Laboratory.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/laboratories/{id}", Verbs="DELETE")
-    public static class DeleteLaboratoryById implements IReturnVoid
+    public static class DeleteLaboratory implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteLaboratoryById setId(String value) { this.Id = value; return this; }
+        public DeleteLaboratory setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/labreportimporthistoryevents", Verbs="GET")
@@ -1328,7 +1329,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/labreports/{id}", Verbs="PUT")
-    public static class PutSparseLabReport implements IReturn<LabReport>
+    public static class PutLabReport implements IReturn<LabReport>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -1341,34 +1342,34 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseLabReport setId(String value) { this.Id = value; return this; }
+        public PutLabReport setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseLabReport setCustomId(String value) { this.CustomId = value; return this; }
+        public PutLabReport setCustomId(String value) { this.CustomId = value; return this; }
         public Instant getDateReceived() { return DateReceived; }
-        public PutSparseLabReport setDateReceived(Instant value) { this.DateReceived = value; return this; }
+        public PutLabReport setDateReceived(Instant value) { this.DateReceived = value; return this; }
         public String getCaseNarrative() { return CaseNarrative; }
-        public PutSparseLabReport setCaseNarrative(String value) { this.CaseNarrative = value; return this; }
+        public PutLabReport setCaseNarrative(String value) { this.CaseNarrative = value; return this; }
         public String getQcSummary() { return QcSummary; }
-        public PutSparseLabReport setQcSummary(String value) { this.QcSummary = value; return this; }
+        public PutLabReport setQcSummary(String value) { this.QcSummary = value; return this; }
         public Laboratory getLaboratory() { return Laboratory; }
-        public PutSparseLabReport setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
+        public PutLabReport setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSparseLabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public PutLabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutSparseLabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public PutLabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseLabReport setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutLabReport setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = LabReport.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/labreports/{id}", Verbs="DELETE")
-    public static class DeleteLabReportById implements IReturnVoid
+    public static class DeleteLabReport implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteLabReportById setId(String value) { this.Id = value; return this; }
+        public DeleteLabReport setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/observations", Verbs="GET")
@@ -1517,8 +1518,8 @@ public class ServiceModel
         @SerializedName("device") public Device Device = null;
         @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         @SerializedName("validationWarnings") public List<RuleValidationDetails> ValidationWarnings = null;
-        @SerializedName("resultGrade") public ResultGradeType ResultGrade = null;
-        @SerializedName("resultStatus") public ResultStatusType ResultStatus = null;
+        @SerializedName("resultGrade") public ResultGrade ResultGrade = null;
+        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
         @SerializedName("plannedFieldResult") public PlannedFieldResult PlannedFieldResult = null;
         @SerializedName("relatedTaxon") public Taxon RelatedTaxon = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
@@ -1571,10 +1572,10 @@ public class ServiceModel
         public PostObservation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public List<RuleValidationDetails> getValidationWarnings() { return ValidationWarnings; }
         public PostObservation setValidationWarnings(List<RuleValidationDetails> value) { this.ValidationWarnings = value; return this; }
-        public ResultGradeType getResultGrade() { return ResultGrade; }
-        public PostObservation setResultGrade(ResultGradeType value) { this.ResultGrade = value; return this; }
-        public ResultStatusType getResultStatus() { return ResultStatus; }
-        public PostObservation setResultStatus(ResultStatusType value) { this.ResultStatus = value; return this; }
+        public ResultGrade getResultGrade() { return ResultGrade; }
+        public PostObservation setResultGrade(ResultGrade value) { this.ResultGrade = value; return this; }
+        public ResultStatus getResultStatus() { return ResultStatus; }
+        public PostObservation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public PostObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
@@ -1714,7 +1715,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/observations/{id}", Verbs="PUT")
-    public static class PutSparseObservation implements IReturn<Observation>
+    public static class PutObservation implements IReturn<Observation>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -1740,81 +1741,81 @@ public class ServiceModel
         @SerializedName("device") public Device Device = null;
         @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         @SerializedName("validationWarnings") public List<RuleValidationDetails> ValidationWarnings = null;
-        @SerializedName("resultGrade") public ResultGradeType ResultGrade = null;
-        @SerializedName("resultStatus") public ResultStatusType ResultStatus = null;
+        @SerializedName("resultGrade") public ResultGrade ResultGrade = null;
+        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
         @SerializedName("plannedFieldResult") public PlannedFieldResult PlannedFieldResult = null;
         @SerializedName("relatedTaxon") public Taxon RelatedTaxon = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseObservation setId(String value) { this.Id = value; return this; }
+        public PutObservation setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseObservation setCustomId(String value) { this.CustomId = value; return this; }
+        public PutObservation setCustomId(String value) { this.CustomId = value; return this; }
         public Activity getActivity() { return Activity; }
-        public PutSparseObservation setActivity(Activity value) { this.Activity = value; return this; }
+        public PutObservation setActivity(Activity value) { this.Activity = value; return this; }
         public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PutSparseObservation setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
+        public PutObservation setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
         public ObservedProperty getObservedProperty() { return ObservedProperty; }
-        public PutSparseObservation setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
+        public PutObservation setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
         public Specimen getSpecimen() { return Specimen; }
-        public PutSparseObservation setSpecimen(Specimen value) { this.Specimen = value; return this; }
+        public PutObservation setSpecimen(Specimen value) { this.Specimen = value; return this; }
         public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public PutSparseObservation setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public PutObservation setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
         public NumericResult getNumericResult() { return NumericResult; }
-        public PutSparseObservation setNumericResult(NumericResult value) { this.NumericResult = value; return this; }
+        public PutObservation setNumericResult(NumericResult value) { this.NumericResult = value; return this; }
         public CategoricalResult getCategoricalResult() { return CategoricalResult; }
-        public PutSparseObservation setCategoricalResult(CategoricalResult value) { this.CategoricalResult = value; return this; }
+        public PutObservation setCategoricalResult(CategoricalResult value) { this.CategoricalResult = value; return this; }
         public TaxonomicResult getTaxonomicResult() { return TaxonomicResult; }
-        public PutSparseObservation setTaxonomicResult(TaxonomicResult value) { this.TaxonomicResult = value; return this; }
+        public PutObservation setTaxonomicResult(TaxonomicResult value) { this.TaxonomicResult = value; return this; }
         public QualityControlType getQualityControlType() { return QualityControlType; }
-        public PutSparseObservation setQualityControlType(QualityControlType value) { this.QualityControlType = value; return this; }
+        public PutObservation setQualityControlType(QualityControlType value) { this.QualityControlType = value; return this; }
         public DataClassificationType getDataClassification() { return DataClassification; }
-        public PutSparseObservation setDataClassification(DataClassificationType value) { this.DataClassification = value; return this; }
+        public PutObservation setDataClassification(DataClassificationType value) { this.DataClassification = value; return this; }
         public MediumType getMedium() { return Medium; }
-        public PutSparseObservation setMedium(MediumType value) { this.Medium = value; return this; }
+        public PutObservation setMedium(MediumType value) { this.Medium = value; return this; }
         public String getMediumSubdivision() { return MediumSubdivision; }
-        public PutSparseObservation setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
+        public PutObservation setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
         public Instant getObservedTime() { return ObservedTime; }
-        public PutSparseObservation setObservedTime(Instant value) { this.ObservedTime = value; return this; }
+        public PutObservation setObservedTime(Instant value) { this.ObservedTime = value; return this; }
         public Instant getResultTime() { return ResultTime; }
-        public PutSparseObservation setResultTime(Instant value) { this.ResultTime = value; return this; }
+        public PutObservation setResultTime(Instant value) { this.ResultTime = value; return this; }
         public Quantity getDepth() { return Depth; }
-        public PutSparseObservation setDepth(Quantity value) { this.Depth = value; return this; }
+        public PutObservation setDepth(Quantity value) { this.Depth = value; return this; }
         public LabInstruction getLabInstruction() { return LabInstruction; }
-        public PutSparseObservation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
+        public PutObservation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
         public LabResultDetails getLabResultDetails() { return LabResultDetails; }
-        public PutSparseObservation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
+        public PutObservation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
         public String getComment() { return Comment; }
-        public PutSparseObservation setComment(String value) { this.Comment = value; return this; }
+        public PutObservation setComment(String value) { this.Comment = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
-        public PutSparseObservation setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public PutObservation setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
         public Device getDevice() { return Device; }
-        public PutSparseObservation setDevice(Device value) { this.Device = value; return this; }
+        public PutObservation setDevice(Device value) { this.Device = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSparseObservation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public PutObservation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public List<RuleValidationDetails> getValidationWarnings() { return ValidationWarnings; }
-        public PutSparseObservation setValidationWarnings(List<RuleValidationDetails> value) { this.ValidationWarnings = value; return this; }
-        public ResultGradeType getResultGrade() { return ResultGrade; }
-        public PutSparseObservation setResultGrade(ResultGradeType value) { this.ResultGrade = value; return this; }
-        public ResultStatusType getResultStatus() { return ResultStatus; }
-        public PutSparseObservation setResultStatus(ResultStatusType value) { this.ResultStatus = value; return this; }
+        public PutObservation setValidationWarnings(List<RuleValidationDetails> value) { this.ValidationWarnings = value; return this; }
+        public ResultGrade getResultGrade() { return ResultGrade; }
+        public PutObservation setResultGrade(ResultGrade value) { this.ResultGrade = value; return this; }
+        public ResultStatus getResultStatus() { return ResultStatus; }
+        public PutObservation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
-        public PutSparseObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
+        public PutObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
-        public PutSparseObservation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
+        public PutObservation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseObservation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutObservation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Observation.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/observations/{id}", Verbs="DELETE")
-    public static class DeleteObservationById implements IReturnVoid
+    public static class DeleteObservation implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteObservationById setId(String value) { this.Id = value; return this; }
+        public DeleteObservation setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/observations/charts", Verbs="GET")
@@ -2137,7 +2138,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/observedproperties/{id}", Verbs="PUT")
-    public static class PutSparseObservedProperty implements IReturn<ObservedProperty>
+    public static class PutObservedProperty implements IReturn<ObservedProperty>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -2154,42 +2155,42 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseObservedProperty setId(String value) { this.Id = value; return this; }
+        public PutObservedProperty setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseObservedProperty setCustomId(String value) { this.CustomId = value; return this; }
+        public PutObservedProperty setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
-        public PutSparseObservedProperty setName(String value) { this.Name = value; return this; }
+        public PutObservedProperty setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseObservedProperty setDescription(String value) { this.Description = value; return this; }
+        public PutObservedProperty setDescription(String value) { this.Description = value; return this; }
         public ResultType getResultType() { return ResultType; }
-        public PutSparseObservedProperty setResultType(ResultType value) { this.ResultType = value; return this; }
+        public PutObservedProperty setResultType(ResultType value) { this.ResultType = value; return this; }
         public AnalysisType getAnalysisType() { return AnalysisType; }
-        public PutSparseObservedProperty setAnalysisType(AnalysisType value) { this.AnalysisType = value; return this; }
+        public PutObservedProperty setAnalysisType(AnalysisType value) { this.AnalysisType = value; return this; }
         public UnitGroup getUnitGroup() { return UnitGroup; }
-        public PutSparseObservedProperty setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
+        public PutObservedProperty setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
         public Unit getDefaultUnit() { return DefaultUnit; }
-        public PutSparseObservedProperty setDefaultUnit(Unit value) { this.DefaultUnit = value; return this; }
+        public PutObservedProperty setDefaultUnit(Unit value) { this.DefaultUnit = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSparseObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public PutObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getCasNumber() { return CasNumber; }
-        public PutSparseObservedProperty setCasNumber(String value) { this.CasNumber = value; return this; }
+        public PutObservedProperty setCasNumber(String value) { this.CasNumber = value; return this; }
         public Quantity getLowerLimit() { return LowerLimit; }
-        public PutSparseObservedProperty setLowerLimit(Quantity value) { this.LowerLimit = value; return this; }
+        public PutObservedProperty setLowerLimit(Quantity value) { this.LowerLimit = value; return this; }
         public Quantity getUpperLimit() { return UpperLimit; }
-        public PutSparseObservedProperty setUpperLimit(Quantity value) { this.UpperLimit = value; return this; }
+        public PutObservedProperty setUpperLimit(Quantity value) { this.UpperLimit = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseObservedProperty setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutObservedProperty setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = ObservedProperty.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/observedproperties/{id}", Verbs="DELETE")
-    public static class DeleteObservedPropertyById implements IReturnVoid
+    public static class DeleteObservedProperty implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteObservedPropertyById setId(String value) { this.Id = value; return this; }
+        public DeleteObservedProperty setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/projects", Verbs="GET")
@@ -2255,7 +2256,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/projects/{id}", Verbs="PUT")
-    public static class PutSparseProject implements IReturn<Project>
+    public static class PutProject implements IReturn<Project>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -2271,40 +2272,68 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseProject setId(String value) { this.Id = value; return this; }
+        public PutProject setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseProject setCustomId(String value) { this.CustomId = value; return this; }
+        public PutProject setCustomId(String value) { this.CustomId = value; return this; }
         public ProjectType getType() { return Type; }
-        public PutSparseProject setType(ProjectType value) { this.Type = value; return this; }
+        public PutProject setType(ProjectType value) { this.Type = value; return this; }
         public String getName() { return Name; }
-        public PutSparseProject setName(String value) { this.Name = value; return this; }
+        public PutProject setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseProject setDescription(String value) { this.Description = value; return this; }
+        public PutProject setDescription(String value) { this.Description = value; return this; }
         public String getScopeStatement() { return ScopeStatement; }
-        public PutSparseProject setScopeStatement(String value) { this.ScopeStatement = value; return this; }
+        public PutProject setScopeStatement(String value) { this.ScopeStatement = value; return this; }
         public Boolean getApproved() { return Approved; }
-        public PutSparseProject setApproved(Boolean value) { this.Approved = value; return this; }
+        public PutProject setApproved(Boolean value) { this.Approved = value; return this; }
         public String getApprovalAgency() { return ApprovalAgency; }
-        public PutSparseProject setApprovalAgency(String value) { this.ApprovalAgency = value; return this; }
+        public PutProject setApprovalAgency(String value) { this.ApprovalAgency = value; return this; }
         public Instant getStartTime() { return StartTime; }
-        public PutSparseProject setStartTime(Instant value) { this.StartTime = value; return this; }
+        public PutProject setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
-        public PutSparseProject setEndTime(Instant value) { this.EndTime = value; return this; }
+        public PutProject setEndTime(Instant value) { this.EndTime = value; return this; }
         public Filter getFilter() { return Filter; }
-        public PutSparseProject setFilter(Filter value) { this.Filter = value; return this; }
+        public PutProject setFilter(Filter value) { this.Filter = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseProject setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutProject setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Project.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/projects/{id}", Verbs="DELETE")
-    public static class DeleteProjectById implements IReturnVoid
+    public static class DeleteProject implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteProjectById setId(String value) { this.Id = value; return this; }
+        public DeleteProject setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/resultgrades", Verbs="GET")
+    public static class GetResultGrades implements IReturn<SearchResultResultGrade>
+    {
+        private static Object responseType = SearchResultResultGrade.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/resultgrades", Verbs="PUT")
+    public static class PutResultGrades implements IReturn<List<ResultGrade>>
+    {
+        private static Object responseType = new TypeToken<List<ResultGrade>>(){};
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/resultstatuses", Verbs="GET")
+    public static class GetResultStatuses implements IReturn<SearchResultResultStatus>
+    {
+        private static Object responseType = SearchResultResultStatus.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/resultstatuses", Verbs="PUT")
+    public static class PutResultStatuses implements IReturn<List<ResultStatus>>
+    {
+        private static Object responseType = new TypeToken<List<ResultStatus>>(){};
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/samplinglocationgroups", Verbs="GET")
@@ -2346,7 +2375,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/samplinglocationgroups/{id}", Verbs="PUT")
-    public static class PutSparseSamplingLocationGroup implements IReturn<SamplingLocationGroup>
+    public static class PutSamplingLocationGroup implements IReturn<SamplingLocationGroup>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("name") public String Name = null;
@@ -2354,24 +2383,24 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseSamplingLocationGroup setId(String value) { this.Id = value; return this; }
+        public PutSamplingLocationGroup setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
-        public PutSparseSamplingLocationGroup setName(String value) { this.Name = value; return this; }
+        public PutSamplingLocationGroup setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseSamplingLocationGroup setDescription(String value) { this.Description = value; return this; }
+        public PutSamplingLocationGroup setDescription(String value) { this.Description = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseSamplingLocationGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutSamplingLocationGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = SamplingLocationGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/samplinglocationgroups/{id}", Verbs="DELETE")
-    public static class DeleteSamplingLocationGroupById implements IReturnVoid
+    public static class DeleteSamplingLocationGroup implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteSamplingLocationGroupById setId(String value) { this.Id = value; return this; }
+        public DeleteSamplingLocationGroup setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/samplinglocations", Verbs="GET")
@@ -2381,6 +2410,7 @@ public class ServiceModel
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("endModificationTime") public Instant EndModificationTime = null;
         @SerializedName("limit") public Integer Limit = null;
+        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
         @SerializedName("search") public List<String> Search = null;
         @SerializedName("sort") public String Sort = null;
         @SerializedName("startModificationTime") public Instant StartModificationTime = null;
@@ -2393,6 +2423,8 @@ public class ServiceModel
         public GetSamplingLocations setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetSamplingLocations setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSamplingLocationGroupIds() { return SamplingLocationGroupIds; }
+        public GetSamplingLocations setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
         public List<String> getSearch() { return Search; }
         public GetSamplingLocations setSearch(List<String> value) { this.Search = value; return this; }
         public String getSort() { return Sort; }
@@ -2406,7 +2438,10 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations", Verbs="POST")
     public static class PostSamplingLocation implements IReturn<SamplingLocation>
     {
-        @SerializedName("type") public SamplingLocationType Type = null;
+        @SerializedName("id") public String Id = null;
+        @SerializedName("customId") public String CustomId = null;
+        @SerializedName("name") public String Name = null;
+        @SerializedName("type") public LocationType Type = null;
         @SerializedName("latitude") public String Latitude = null;
         @SerializedName("longitude") public String Longitude = null;
         @SerializedName("horizontalDatum") public String HorizontalDatum = null;
@@ -2420,13 +2455,17 @@ public class ServiceModel
         @SerializedName("standards") public List<StandardSimple> Standards = null;
         @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
         @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
+        @SerializedName("extendedAttributes") public List<ExtendedAttribute> ExtendedAttributes = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
-        public SamplingLocationType getType() { return Type; }
-        public PostSamplingLocation setType(SamplingLocationType value) { this.Type = value; return this; }
+        public String getId() { return Id; }
+        public PostSamplingLocation setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PostSamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public PostSamplingLocation setName(String value) { this.Name = value; return this; }
+        public LocationType getType() { return Type; }
+        public PostSamplingLocation setType(LocationType value) { this.Type = value; return this; }
         public String getLatitude() { return Latitude; }
         public PostSamplingLocation setLatitude(String value) { this.Latitude = value; return this; }
         public String getLongitude() { return Longitude; }
@@ -2453,12 +2492,8 @@ public class ServiceModel
         public PostSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<SamplingLocationGroupSimple> getSamplingLocationGroups() { return SamplingLocationGroups; }
         public PostSamplingLocation setSamplingLocationGroups(List<SamplingLocationGroupSimple> value) { this.SamplingLocationGroups = value; return this; }
-        public String getId() { return Id; }
-        public PostSamplingLocation setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public PostSamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
-        public String getName() { return Name; }
-        public PostSamplingLocation setName(String value) { this.Name = value; return this; }
+        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
+        public PostSamplingLocation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostSamplingLocation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = SamplingLocation.class;
@@ -2477,10 +2512,12 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/samplinglocations/{id}", Verbs="PUT")
-    public static class PutSparseSamplingLocation implements IReturn<SamplingLocation>
+    public static class PutSamplingLocation implements IReturn<SamplingLocation>
     {
         @SerializedName("id") public String Id = null;
-        @SerializedName("type") public SamplingLocationType Type = null;
+        @SerializedName("customId") public String CustomId = null;
+        @SerializedName("name") public String Name = null;
+        @SerializedName("type") public LocationType Type = null;
         @SerializedName("latitude") public String Latitude = null;
         @SerializedName("longitude") public String Longitude = null;
         @SerializedName("horizontalDatum") public String HorizontalDatum = null;
@@ -2494,57 +2531,58 @@ public class ServiceModel
         @SerializedName("standards") public List<StandardSimple> Standards = null;
         @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
         @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
+        @SerializedName("extendedAttributes") public List<ExtendedAttribute> ExtendedAttributes = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseSamplingLocation setId(String value) { this.Id = value; return this; }
-        public SamplingLocationType getType() { return Type; }
-        public PutSparseSamplingLocation setType(SamplingLocationType value) { this.Type = value; return this; }
-        public String getLatitude() { return Latitude; }
-        public PutSparseSamplingLocation setLatitude(String value) { this.Latitude = value; return this; }
-        public String getLongitude() { return Longitude; }
-        public PutSparseSamplingLocation setLongitude(String value) { this.Longitude = value; return this; }
-        public String getHorizontalDatum() { return HorizontalDatum; }
-        public PutSparseSamplingLocation setHorizontalDatum(String value) { this.HorizontalDatum = value; return this; }
-        public String getVerticalDatum() { return VerticalDatum; }
-        public PutSparseSamplingLocation setVerticalDatum(String value) { this.VerticalDatum = value; return this; }
-        public String getHorizontalCollectionMethod() { return HorizontalCollectionMethod; }
-        public PutSparseSamplingLocation setHorizontalCollectionMethod(String value) { this.HorizontalCollectionMethod = value; return this; }
-        public String getVerticalCollectionMethod() { return VerticalCollectionMethod; }
-        public PutSparseSamplingLocation setVerticalCollectionMethod(String value) { this.VerticalCollectionMethod = value; return this; }
-        public String getDescription() { return Description; }
-        public PutSparseSamplingLocation setDescription(String value) { this.Description = value; return this; }
-        public Address getAddress() { return Address; }
-        public PutSparseSamplingLocation setAddress(Address value) { this.Address = value; return this; }
-        public Quantity getElevation() { return Elevation; }
-        public PutSparseSamplingLocation setElevation(Quantity value) { this.Elevation = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSparseSamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<StandardSimple> getStandards() { return Standards; }
-        public PutSparseSamplingLocation setStandards(List<StandardSimple> value) { this.Standards = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutSparseSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
-        public List<SamplingLocationGroupSimple> getSamplingLocationGroups() { return SamplingLocationGroups; }
-        public PutSparseSamplingLocation setSamplingLocationGroups(List<SamplingLocationGroupSimple> value) { this.SamplingLocationGroups = value; return this; }
+        public PutSamplingLocation setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseSamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
+        public PutSamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
-        public PutSparseSamplingLocation setName(String value) { this.Name = value; return this; }
+        public PutSamplingLocation setName(String value) { this.Name = value; return this; }
+        public LocationType getType() { return Type; }
+        public PutSamplingLocation setType(LocationType value) { this.Type = value; return this; }
+        public String getLatitude() { return Latitude; }
+        public PutSamplingLocation setLatitude(String value) { this.Latitude = value; return this; }
+        public String getLongitude() { return Longitude; }
+        public PutSamplingLocation setLongitude(String value) { this.Longitude = value; return this; }
+        public String getHorizontalDatum() { return HorizontalDatum; }
+        public PutSamplingLocation setHorizontalDatum(String value) { this.HorizontalDatum = value; return this; }
+        public String getVerticalDatum() { return VerticalDatum; }
+        public PutSamplingLocation setVerticalDatum(String value) { this.VerticalDatum = value; return this; }
+        public String getHorizontalCollectionMethod() { return HorizontalCollectionMethod; }
+        public PutSamplingLocation setHorizontalCollectionMethod(String value) { this.HorizontalCollectionMethod = value; return this; }
+        public String getVerticalCollectionMethod() { return VerticalCollectionMethod; }
+        public PutSamplingLocation setVerticalCollectionMethod(String value) { this.VerticalCollectionMethod = value; return this; }
+        public String getDescription() { return Description; }
+        public PutSamplingLocation setDescription(String value) { this.Description = value; return this; }
+        public Address getAddress() { return Address; }
+        public PutSamplingLocation setAddress(Address value) { this.Address = value; return this; }
+        public Quantity getElevation() { return Elevation; }
+        public PutSamplingLocation setElevation(Quantity value) { this.Elevation = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PutSamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<StandardSimple> getStandards() { return Standards; }
+        public PutSamplingLocation setStandards(List<StandardSimple> value) { this.Standards = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PutSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public List<SamplingLocationGroupSimple> getSamplingLocationGroups() { return SamplingLocationGroups; }
+        public PutSamplingLocation setSamplingLocationGroups(List<SamplingLocationGroupSimple> value) { this.SamplingLocationGroups = value; return this; }
+        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
+        public PutSamplingLocation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseSamplingLocation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutSamplingLocation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = SamplingLocation.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/samplinglocations/{id}", Verbs="DELETE")
-    public static class DeleteSamplingLocationById implements IReturnVoid
+    public static class DeleteSamplingLocation implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteSamplingLocationById setId(String value) { this.Id = value; return this; }
+        public DeleteSamplingLocation setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/samplinglocations/{id}/attachments", Verbs="GET")
@@ -2559,24 +2597,38 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/samplinglocations/{id}/canedit", Verbs="GET")
-    public static class GetCanUserEditSamplingLocationData implements IReturn<Boolean>
+    public static class GetSamplingLocationCanEdit implements IReturn<Boolean>
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public GetCanUserEditSamplingLocationData setId(String value) { this.Id = value; return this; }
+        public GetSamplingLocationCanEdit setId(String value) { this.Id = value; return this; }
         private static Object responseType = Boolean.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/samplinglocations/{id}/summary", Verbs="GET")
-    public static class GetSummary implements IReturn<SamplingLocationSummary>
+    public static class GetSamplingLocationSummary implements IReturn<SamplingLocationSummary>
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public GetSummary setId(String value) { this.Id = value; return this; }
+        public GetSamplingLocationSummary setId(String value) { this.Id = value; return this; }
         private static Object responseType = SamplingLocationSummary.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/samplinglocationtypes", Verbs="GET")
+    public static class GetSamplingLocationTypes implements IReturn<SearchResultLocationType>
+    {
+        private static Object responseType = SearchResultLocationType.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/samplinglocationtypes", Verbs="PUT")
+    public static class PutSamplingLocationTypes implements IReturn<List<LocationType>>
+    {
+        private static Object responseType = new TypeToken<List<LocationType>>(){};
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -2790,7 +2842,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/services/import/labanalysismethods/dryrun", Verbs="POST")
-    public static class PostImportAnalysisMethodsDryrun implements IReturn<LabAnalysisMethodImportSummary>
+    public static class PostImportAnalysisMethodsDryRun implements IReturn<LabAnalysisMethodImportSummary>
     {
         private static Object responseType = LabAnalysisMethodImportSummary.class;
         public Object getResponseType() {{ return responseType; }}
@@ -2854,18 +2906,18 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/services/import/observations/dryrun", Verbs="POST")
-    public static class PostImportObservationsDryrun implements IReturn<ObservationImportSummary>
+    public static class PostImportObservationsDryRun implements IReturn<ObservationImportSummary>
     {
         @SerializedName("fileType") public String FileType = null;
         @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
         @SerializedName("linkFieldVisitsForNewObservations") public Boolean LinkFieldVisitsForNewObservations = null;
 
         public String getFileType() { return FileType; }
-        public PostImportObservationsDryrun setFileType(String value) { this.FileType = value; return this; }
+        public PostImportObservationsDryRun setFileType(String value) { this.FileType = value; return this; }
         public String getTimeZoneOffset() { return TimeZoneOffset; }
-        public PostImportObservationsDryrun setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
+        public PostImportObservationsDryRun setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
         public Boolean getLinkFieldVisitsForNewObservations() { return LinkFieldVisitsForNewObservations; }
-        public PostImportObservationsDryrun setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
+        public PostImportObservationsDryRun setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
         private static Object responseType = ObservationImportSummary.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -2878,7 +2930,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/services/import/observedproperties/dryrun", Verbs="POST")
-    public static class PostImportObservedPropertiesDryrun implements IReturn<ObservedPropertyImportSummary>
+    public static class PostImportObservedPropertiesDryRun implements IReturn<ObservedPropertyImportSummary>
     {
         private static Object responseType = ObservedPropertyImportSummary.class;
         public Object getResponseType() {{ return responseType; }}
@@ -2896,12 +2948,12 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/services/import/samplinglocations/dryrun", Verbs="POST")
-    public static class PostImportSamplingLocationsDryrun implements IReturn<SamplingLocationImportSummary>
+    public static class PostImportSamplingLocationsDryRun implements IReturn<SamplingLocationImportSummary>
     {
         @SerializedName("fileType") public String FileType = null;
 
         public String getFileType() { return FileType; }
-        public PostImportSamplingLocationsDryrun setFileType(String value) { this.FileType = value; return this; }
+        public PostImportSamplingLocationsDryRun setFileType(String value) { this.FileType = value; return this; }
         private static Object responseType = SamplingLocationImportSummary.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -3006,7 +3058,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/shippingcontainers/{id}", Verbs="PUT")
-    public static class PutSparseShippingContainer implements IReturn<ShippingContainer>
+    public static class PutShippingContainer implements IReturn<ShippingContainer>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -3015,26 +3067,26 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseShippingContainer setId(String value) { this.Id = value; return this; }
+        public PutShippingContainer setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseShippingContainer setCustomId(String value) { this.CustomId = value; return this; }
+        public PutShippingContainer setCustomId(String value) { this.CustomId = value; return this; }
         public String getTrackingId() { return TrackingId; }
-        public PutSparseShippingContainer setTrackingId(String value) { this.TrackingId = value; return this; }
+        public PutShippingContainer setTrackingId(String value) { this.TrackingId = value; return this; }
         public String getComment() { return Comment; }
-        public PutSparseShippingContainer setComment(String value) { this.Comment = value; return this; }
+        public PutShippingContainer setComment(String value) { this.Comment = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseShippingContainer setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutShippingContainer setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = ShippingContainer.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/shippingcontainers/{id}", Verbs="DELETE")
-    public static class DeleteShippingContainerById implements IReturnVoid
+    public static class DeleteShippingContainer implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteShippingContainerById setId(String value) { this.Id = value; return this; }
+        public DeleteShippingContainer setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/specimens", Verbs="GET")
@@ -3155,7 +3207,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/specimens/{id}", Verbs="PUT")
-    public static class PutSparseSpecimen implements IReturn<SpecimenWithObservations>
+    public static class PutSpecimen implements IReturn<SpecimenWithObservations>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("name") public String Name = null;
@@ -3173,44 +3225,44 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseSpecimen setId(String value) { this.Id = value; return this; }
+        public PutSpecimen setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
-        public PutSparseSpecimen setName(String value) { this.Name = value; return this; }
+        public PutSpecimen setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseSpecimen setDescription(String value) { this.Description = value; return this; }
+        public PutSpecimen setDescription(String value) { this.Description = value; return this; }
         public PreservativeType getPreservative() { return Preservative; }
-        public PutSparseSpecimen setPreservative(PreservativeType value) { this.Preservative = value; return this; }
+        public PutSpecimen setPreservative(PreservativeType value) { this.Preservative = value; return this; }
         public Boolean getFiltered() { return Filtered; }
-        public PutSparseSpecimen setFiltered(Boolean value) { this.Filtered = value; return this; }
+        public PutSpecimen setFiltered(Boolean value) { this.Filtered = value; return this; }
         public String getFiltrationComment() { return FiltrationComment; }
-        public PutSparseSpecimen setFiltrationComment(String value) { this.FiltrationComment = value; return this; }
+        public PutSpecimen setFiltrationComment(String value) { this.FiltrationComment = value; return this; }
         public Laboratory getLaboratory() { return Laboratory; }
-        public PutSparseSpecimen setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
+        public PutSpecimen setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
         public ShippingContainer getShippingContainer() { return ShippingContainer; }
-        public PutSparseSpecimen setShippingContainer(ShippingContainer value) { this.ShippingContainer = value; return this; }
+        public PutSpecimen setShippingContainer(ShippingContainer value) { this.ShippingContainer = value; return this; }
         public List<Surrogate> getSurrogates() { return Surrogates; }
-        public PutSparseSpecimen setSurrogates(List<Surrogate> value) { this.Surrogates = value; return this; }
+        public PutSpecimen setSurrogates(List<Surrogate> value) { this.Surrogates = value; return this; }
         public AnalyticalGroup getAnalyticalGroup() { return AnalyticalGroup; }
-        public PutSparseSpecimen setAnalyticalGroup(AnalyticalGroup value) { this.AnalyticalGroup = value; return this; }
+        public PutSpecimen setAnalyticalGroup(AnalyticalGroup value) { this.AnalyticalGroup = value; return this; }
         public Activity getActivity() { return Activity; }
-        public PutSparseSpecimen setActivity(Activity value) { this.Activity = value; return this; }
+        public PutSpecimen setActivity(Activity value) { this.Activity = value; return this; }
         public SpecimenTemplate getTemplateCreatedFrom() { return TemplateCreatedFrom; }
-        public PutSparseSpecimen setTemplateCreatedFrom(SpecimenTemplate value) { this.TemplateCreatedFrom = value; return this; }
+        public PutSpecimen setTemplateCreatedFrom(SpecimenTemplate value) { this.TemplateCreatedFrom = value; return this; }
         public List<Observation> getObservations() { return Observations; }
-        public PutSparseSpecimen setObservations(List<Observation> value) { this.Observations = value; return this; }
+        public PutSpecimen setObservations(List<Observation> value) { this.Observations = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseSpecimen setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutSpecimen setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = SpecimenWithObservations.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/specimens/{id}", Verbs="DELETE")
-    public static class DeleteSpecimenById implements IReturnVoid
+    public static class DeleteSpecimen implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteSpecimenById setId(String value) { this.Id = value; return this; }
+        public DeleteSpecimen setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/spreadsheettemplates", Verbs="GET")
@@ -3255,7 +3307,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/spreadsheettemplates/{id}", Verbs="PUT")
-    public static class PutSparseSpreadsheetTemplate implements IReturn<SpreadsheetTemplate>
+    public static class PutSpreadsheetTemplate implements IReturn<SpreadsheetTemplate>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -3264,26 +3316,26 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
+        public PutSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseSpreadsheetTemplate setCustomId(String value) { this.CustomId = value; return this; }
+        public PutSpreadsheetTemplate setCustomId(String value) { this.CustomId = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseSpreadsheetTemplate setDescription(String value) { this.Description = value; return this; }
+        public PutSpreadsheetTemplate setDescription(String value) { this.Description = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutSparseSpreadsheetTemplate setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public PutSpreadsheetTemplate setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseSpreadsheetTemplate setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutSpreadsheetTemplate setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = SpreadsheetTemplate.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/spreadsheettemplates/{id}", Verbs="DELETE")
-    public static class DeleteSpreadsheetTemplateById implements IReturnVoid
+    public static class DeleteSpreadsheetTemplate implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteSpreadsheetTemplateById setId(String value) { this.Id = value; return this; }
+        public DeleteSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/standards", Verbs="GET")
@@ -3343,7 +3395,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/standards/{id}", Verbs="PUT")
-    public static class PutSparseStandard implements IReturn<StandardDefinition>
+    public static class PutStandard implements IReturn<StandardDefinition>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -3357,25 +3409,25 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseStandard setId(String value) { this.Id = value; return this; }
+        public PutStandard setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseStandard setCustomId(String value) { this.CustomId = value; return this; }
+        public PutStandard setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
-        public PutSparseStandard setName(String value) { this.Name = value; return this; }
+        public PutStandard setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseStandard setDescription(String value) { this.Description = value; return this; }
+        public PutStandard setDescription(String value) { this.Description = value; return this; }
         public String getIssuingOrganization() { return IssuingOrganization; }
-        public PutSparseStandard setIssuingOrganization(String value) { this.IssuingOrganization = value; return this; }
+        public PutStandard setIssuingOrganization(String value) { this.IssuingOrganization = value; return this; }
         public Interval getApplicabilityRange() { return ApplicabilityRange; }
-        public PutSparseStandard setApplicabilityRange(Interval value) { this.ApplicabilityRange = value; return this; }
+        public PutStandard setApplicabilityRange(Interval value) { this.ApplicabilityRange = value; return this; }
         public Boolean getActive() { return Active; }
-        public PutSparseStandard setActive(Boolean value) { this.Active = value; return this; }
+        public PutStandard setActive(Boolean value) { this.Active = value; return this; }
         public List<SamplingLocationSimple> getSamplingLocations() { return SamplingLocations; }
-        public PutSparseStandard setSamplingLocations(List<SamplingLocationSimple> value) { this.SamplingLocations = value; return this; }
+        public PutStandard setSamplingLocations(List<SamplingLocationSimple> value) { this.SamplingLocations = value; return this; }
         public List<ObservationStandard> getObservationStandards() { return ObservationStandards; }
-        public PutSparseStandard setObservationStandards(List<ObservationStandard> value) { this.ObservationStandards = value; return this; }
+        public PutStandard setObservationStandards(List<ObservationStandard> value) { this.ObservationStandards = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseStandard setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutStandard setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = StandardDefinition.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -3435,7 +3487,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/tags/{id}", Verbs="PUT")
-    public static class PutSparseTag implements IReturn<SamplingContextTag>
+    public static class PutTag implements IReturn<SamplingContextTag>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("name") public String Name = null;
@@ -3443,24 +3495,24 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseTag setId(String value) { this.Id = value; return this; }
+        public PutTag setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
-        public PutSparseTag setName(String value) { this.Name = value; return this; }
+        public PutTag setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
-        public PutSparseTag setDescription(String value) { this.Description = value; return this; }
+        public PutTag setDescription(String value) { this.Description = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseTag setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutTag setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = SamplingContextTag.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/tags/{id}", Verbs="DELETE")
-    public static class DeleteTagById implements IReturnVoid
+    public static class DeleteTag implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteTagById setId(String value) { this.Id = value; return this; }
+        public DeleteTag setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/taxons", Verbs="GET")
@@ -3477,6 +3529,7 @@ public class ServiceModel
     @Route(Path="/v1/taxons", Verbs="POST")
     public static class PostTaxon implements IReturn<Taxon>
     {
+        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         @SerializedName("id") public String Id = null;
         @SerializedName("scientificName") public String ScientificName = null;
         @SerializedName("commonName") public String CommonName = null;
@@ -3486,9 +3539,11 @@ public class ServiceModel
         @SerializedName("itisTsn") public String ItisTsn = null;
         @SerializedName("itisComment") public String ItisComment = null;
         @SerializedName("itisUrl") public String ItisUrl = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        @SerializedName("parentId") public String ParentId = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PostTaxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getId() { return Id; }
         public PostTaxon setId(String value) { this.Id = value; return this; }
         public String getScientificName() { return ScientificName; }
@@ -3507,8 +3562,8 @@ public class ServiceModel
         public PostTaxon setItisComment(String value) { this.ItisComment = value; return this; }
         public String getItisUrl() { return ItisUrl; }
         public PostTaxon setItisUrl(String value) { this.ItisUrl = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PostTaxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public String getParentId() { return ParentId; }
+        public PostTaxon setParentId(String value) { this.ParentId = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostTaxon setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Taxon.class;
@@ -3527,9 +3582,10 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/taxons/{id}", Verbs="PUT")
-    public static class PutSparseTaxon implements IReturn<Taxon>
+    public static class PutTaxon implements IReturn<Taxon>
     {
         @SerializedName("id") public String Id = null;
+        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         @SerializedName("scientificName") public String ScientificName = null;
         @SerializedName("commonName") public String CommonName = null;
         @SerializedName("level") public String Level = null;
@@ -3538,54 +3594,56 @@ public class ServiceModel
         @SerializedName("itisTsn") public String ItisTsn = null;
         @SerializedName("itisComment") public String ItisComment = null;
         @SerializedName("itisUrl") public String ItisUrl = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        @SerializedName("parentId") public String ParentId = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseTaxon setId(String value) { this.Id = value; return this; }
-        public String getScientificName() { return ScientificName; }
-        public PutSparseTaxon setScientificName(String value) { this.ScientificName = value; return this; }
-        public String getCommonName() { return CommonName; }
-        public PutSparseTaxon setCommonName(String value) { this.CommonName = value; return this; }
-        public String getLevel() { return Level; }
-        public PutSparseTaxon setLevel(String value) { this.Level = value; return this; }
-        public String getSource() { return Source; }
-        public PutSparseTaxon setSource(String value) { this.Source = value; return this; }
-        public String getComment() { return Comment; }
-        public PutSparseTaxon setComment(String value) { this.Comment = value; return this; }
-        public String getItisTsn() { return ItisTsn; }
-        public PutSparseTaxon setItisTsn(String value) { this.ItisTsn = value; return this; }
-        public String getItisComment() { return ItisComment; }
-        public PutSparseTaxon setItisComment(String value) { this.ItisComment = value; return this; }
-        public String getItisUrl() { return ItisUrl; }
-        public PutSparseTaxon setItisUrl(String value) { this.ItisUrl = value; return this; }
+        public PutTaxon setId(String value) { this.Id = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSparseTaxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public PutTaxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public String getScientificName() { return ScientificName; }
+        public PutTaxon setScientificName(String value) { this.ScientificName = value; return this; }
+        public String getCommonName() { return CommonName; }
+        public PutTaxon setCommonName(String value) { this.CommonName = value; return this; }
+        public String getLevel() { return Level; }
+        public PutTaxon setLevel(String value) { this.Level = value; return this; }
+        public String getSource() { return Source; }
+        public PutTaxon setSource(String value) { this.Source = value; return this; }
+        public String getComment() { return Comment; }
+        public PutTaxon setComment(String value) { this.Comment = value; return this; }
+        public String getItisTsn() { return ItisTsn; }
+        public PutTaxon setItisTsn(String value) { this.ItisTsn = value; return this; }
+        public String getItisComment() { return ItisComment; }
+        public PutTaxon setItisComment(String value) { this.ItisComment = value; return this; }
+        public String getItisUrl() { return ItisUrl; }
+        public PutTaxon setItisUrl(String value) { this.ItisUrl = value; return this; }
+        public String getParentId() { return ParentId; }
+        public PutTaxon setParentId(String value) { this.ParentId = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseTaxon setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutTaxon setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Taxon.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/taxons/{id}", Verbs="DELETE")
-    public static class DeleteTaxonById implements IReturnVoid
+    public static class DeleteTaxon implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteTaxonById setId(String value) { this.Id = value; return this; }
+        public DeleteTaxon setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/unitgroups", Verbs="GET")
     public static class GetUnitGroups implements IReturn<SearchResultUnitGroup>
     {
         @SerializedName("customId") public String CustomId = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public GetUnitGroupsSystemCodeType SystemCode = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnitGroups setCustomId(String value) { this.CustomId = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public GetUnitGroups setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public GetUnitGroupsSystemCodeType getSystemCode() { return SystemCode; }
+        public GetUnitGroups setSystemCode(GetUnitGroupsSystemCodeType value) { this.SystemCode = value; return this; }
         private static Object responseType = SearchResultUnitGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -3596,7 +3654,7 @@ public class ServiceModel
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -3605,8 +3663,8 @@ public class ServiceModel
         public PostUnitGroup setCustomId(String value) { this.CustomId = value; return this; }
         public Boolean getSupportsConversion() { return SupportsConversion; }
         public PostUnitGroup setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public PostUnitGroup setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public UnitGroupSystemCodeType getSystemCode() { return SystemCode; }
+        public PostUnitGroup setSystemCode(UnitGroupSystemCodeType value) { this.SystemCode = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostUnitGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = UnitGroup.class;
@@ -3625,47 +3683,47 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/unitgroups/{id}", Verbs="PUT")
-    public static class PutSparseUnitGroup implements IReturn<UnitGroup>
+    public static class PutUnitGroup implements IReturn<UnitGroup>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseUnitGroup setId(String value) { this.Id = value; return this; }
+        public PutUnitGroup setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseUnitGroup setCustomId(String value) { this.CustomId = value; return this; }
+        public PutUnitGroup setCustomId(String value) { this.CustomId = value; return this; }
         public Boolean getSupportsConversion() { return SupportsConversion; }
-        public PutSparseUnitGroup setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public PutSparseUnitGroup setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public PutUnitGroup setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
+        public UnitGroupSystemCodeType getSystemCode() { return SystemCode; }
+        public PutUnitGroup setSystemCode(UnitGroupSystemCodeType value) { this.SystemCode = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseUnitGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutUnitGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = UnitGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/unitgroups/{id}", Verbs="DELETE")
-    public static class DeleteUnitGroupById implements IReturnVoid
+    public static class DeleteUnitGroup implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteUnitGroupById setId(String value) { this.Id = value; return this; }
+        public DeleteUnitGroup setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/unitgroupwithunits", Verbs="GET")
-    public static class GetUnitGroupsWithUnits implements IReturn<SearchResultUnitGroupWithUnits>
+    public static class GetUnitGroupWithUnits implements IReturn<SearchResultUnitGroupWithUnits>
     {
         @SerializedName("customId") public String CustomId = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public GetUnitGroupWithUnitsSystemCodeType SystemCode = null;
 
         public String getCustomId() { return CustomId; }
-        public GetUnitGroupsWithUnits setCustomId(String value) { this.CustomId = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public GetUnitGroupsWithUnits setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public GetUnitGroupWithUnits setCustomId(String value) { this.CustomId = value; return this; }
+        public GetUnitGroupWithUnitsSystemCodeType getSystemCode() { return SystemCode; }
+        public GetUnitGroupWithUnits setSystemCode(GetUnitGroupWithUnitsSystemCodeType value) { this.SystemCode = value; return this; }
         private static Object responseType = SearchResultUnitGroupWithUnits.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -3676,7 +3734,7 @@ public class ServiceModel
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public UnitGroupWithUnitsSystemCodeType SystemCode = null;
         @SerializedName("units") public List<Unit> Units = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
@@ -3686,8 +3744,8 @@ public class ServiceModel
         public PostUnitGroupWithUnit setCustomId(String value) { this.CustomId = value; return this; }
         public Boolean getSupportsConversion() { return SupportsConversion; }
         public PostUnitGroupWithUnit setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public PostUnitGroupWithUnit setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public UnitGroupWithUnitsSystemCodeType getSystemCode() { return SystemCode; }
+        public PostUnitGroupWithUnit setSystemCode(UnitGroupWithUnitsSystemCodeType value) { this.SystemCode = value; return this; }
         public List<Unit> getUnits() { return Units; }
         public PostUnitGroupWithUnit setUnits(List<Unit> value) { this.Units = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -3697,46 +3755,46 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/unitgroupwithunits/{id}", Verbs="GET")
-    public static class GetUnitGroupWithUnits implements IReturn<UnitGroupWithUnits>
+    public static class GetUnitGroupWithUnit implements IReturn<UnitGroupWithUnits>
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public GetUnitGroupWithUnits setId(String value) { this.Id = value; return this; }
+        public GetUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
         private static Object responseType = UnitGroupWithUnits.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/unitgroupwithunits/{id}", Verbs="PUT")
-    public static class PutSparseUnitGroupWithUnits implements IReturn<UnitGroup>
+    public static class PutUnitGroupWithUnit implements IReturn<UnitGroup>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseUnitGroupWithUnits setId(String value) { this.Id = value; return this; }
+        public PutUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseUnitGroupWithUnits setCustomId(String value) { this.CustomId = value; return this; }
+        public PutUnitGroupWithUnit setCustomId(String value) { this.CustomId = value; return this; }
         public Boolean getSupportsConversion() { return SupportsConversion; }
-        public PutSparseUnitGroupWithUnits setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public PutSparseUnitGroupWithUnits setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public PutUnitGroupWithUnit setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
+        public UnitGroupSystemCodeType getSystemCode() { return SystemCode; }
+        public PutUnitGroupWithUnit setSystemCode(UnitGroupSystemCodeType value) { this.SystemCode = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseUnitGroupWithUnits setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutUnitGroupWithUnit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = UnitGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/unitgroupwithunits/{id}", Verbs="DELETE")
-    public static class DeleteUnitGroupWithUnitsById implements IReturnVoid
+    public static class DeleteUnitGroupWithUnit implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteUnitGroupWithUnitsById setId(String value) { this.Id = value; return this; }
+        public DeleteUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/units", Verbs="GET")
@@ -3794,7 +3852,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/units/{id}", Verbs="PUT")
-    public static class PutSparseUnit implements IReturn<Unit>
+    public static class PutUnit implements IReturn<Unit>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
@@ -3805,30 +3863,30 @@ public class ServiceModel
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
-        public PutSparseUnit setId(String value) { this.Id = value; return this; }
+        public PutUnit setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
-        public PutSparseUnit setCustomId(String value) { this.CustomId = value; return this; }
+        public PutUnit setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
-        public PutSparseUnit setName(String value) { this.Name = value; return this; }
+        public PutUnit setName(String value) { this.Name = value; return this; }
         public Double getBaseMultiplier() { return BaseMultiplier; }
-        public PutSparseUnit setBaseMultiplier(Double value) { this.BaseMultiplier = value; return this; }
+        public PutUnit setBaseMultiplier(Double value) { this.BaseMultiplier = value; return this; }
         public Double getBaseOffset() { return BaseOffset; }
-        public PutSparseUnit setBaseOffset(Double value) { this.BaseOffset = value; return this; }
+        public PutUnit setBaseOffset(Double value) { this.BaseOffset = value; return this; }
         public UnitGroup getUnitGroup() { return UnitGroup; }
-        public PutSparseUnit setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
+        public PutUnit setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutSparseUnit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        public PutUnit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Unit.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/units/{id}", Verbs="DELETE")
-    public static class DeleteUnitById implements IReturnVoid
+    public static class DeleteUnit implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteUnitById setId(String value) { this.Id = value; return this; }
+        public DeleteUnit setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/users", Verbs="GET")
@@ -3849,6 +3907,7 @@ public class ServiceModel
         @SerializedName("userProfile") public UserProfile UserProfile = null;
         @SerializedName("providerId") public String ProviderId = null;
         @SerializedName("email") public String Email = null;
+        @SerializedName("userType") public UserType UserType = null;
 
         public List<Role> getRoles() { return Roles; }
         public PostUser setRoles(List<Role> value) { this.Roles = value; return this; }
@@ -3866,6 +3925,8 @@ public class ServiceModel
         public PostUser setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
         public PostUser setEmail(String value) { this.Email = value; return this; }
+        public UserType getUserType() { return UserType; }
+        public PostUser setUserType(UserType value) { this.UserType = value; return this; }
         private static Object responseType = User.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -3882,7 +3943,7 @@ public class ServiceModel
     }
 
     @Route(Path="/v1/users/{id}", Verbs="PUT")
-    public static class Put implements IReturn<User>
+    public static class PutUser implements IReturn<User>
     {
         @SerializedName("id") public String Id = null;
         @SerializedName("roles") public List<Role> Roles = null;
@@ -3892,34 +3953,37 @@ public class ServiceModel
         @SerializedName("userProfile") public UserProfile UserProfile = null;
         @SerializedName("providerId") public String ProviderId = null;
         @SerializedName("email") public String Email = null;
+        @SerializedName("userType") public UserType UserType = null;
 
         public String getId() { return Id; }
-        public Put setId(String value) { this.Id = value; return this; }
+        public PutUser setId(String value) { this.Id = value; return this; }
         public List<Role> getRoles() { return Roles; }
-        public Put setRoles(List<Role> value) { this.Roles = value; return this; }
+        public PutUser setRoles(List<Role> value) { this.Roles = value; return this; }
         public List<AccessGroup> getAccessGroups() { return AccessGroups; }
-        public Put setAccessGroups(List<AccessGroup> value) { this.AccessGroups = value; return this; }
+        public PutUser setAccessGroups(List<AccessGroup> value) { this.AccessGroups = value; return this; }
         public String getCustomId() { return CustomId; }
-        public Put setCustomId(String value) { this.CustomId = value; return this; }
+        public PutUser setCustomId(String value) { this.CustomId = value; return this; }
         public String getTenantId() { return TenantId; }
-        public Put setTenantId(String value) { this.TenantId = value; return this; }
+        public PutUser setTenantId(String value) { this.TenantId = value; return this; }
         public UserProfile getUserProfile() { return UserProfile; }
-        public Put setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
+        public PutUser setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
         public String getProviderId() { return ProviderId; }
-        public Put setProviderId(String value) { this.ProviderId = value; return this; }
+        public PutUser setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
-        public Put setEmail(String value) { this.Email = value; return this; }
+        public PutUser setEmail(String value) { this.Email = value; return this; }
+        public UserType getUserType() { return UserType; }
+        public PutUser setUserType(UserType value) { this.UserType = value; return this; }
         private static Object responseType = User.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/users/{id}", Verbs="DELETE")
-    public static class DeleteUserById implements IReturnVoid
+    public static class DeleteUser implements IReturnVoid
     {
         @SerializedName("id") public String Id = null;
 
         public String getId() { return Id; }
-        public DeleteUserById setId(String value) { this.Id = value; return this; }
+        public DeleteUser setId(String value) { this.Id = value; return this; }
     }
 
     public static class AccessGroup
@@ -3947,10 +4011,6 @@ public class ServiceModel
 
     public static class Activity
     {
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("type") public ActivityType Type = null;
@@ -3963,17 +4023,13 @@ public class ServiceModel
         @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
         @SerializedName("medium") public MediumType Medium = null;
         @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
+        @SerializedName("depth") public Quantity Depth = null;
+        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
+        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
+        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
         @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
-        public Quantity getDepth() { return Depth; }
-        public Activity setDepth(Quantity value) { this.Depth = value; return this; }
-        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public Activity setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
-        public FieldVisit getFieldVisit() { return FieldVisit; }
-        public Activity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
-        public List<SamplingContextTag> getSamplingContextTags() { return SamplingContextTags; }
-        public Activity setSamplingContextTags(List<SamplingContextTag> value) { this.SamplingContextTags = value; return this; }
         public String getId() { return Id; }
         public Activity setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -3998,6 +4054,14 @@ public class ServiceModel
         public Activity setMedium(MediumType value) { this.Medium = value; return this; }
         public PlannedActivity getPlannedActivity() { return PlannedActivity; }
         public Activity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
+        public Quantity getDepth() { return Depth; }
+        public Activity setDepth(Quantity value) { this.Depth = value; return this; }
+        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
+        public Activity setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public FieldVisit getFieldVisit() { return FieldVisit; }
+        public Activity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public List<SamplingContextTag> getSamplingContextTags() { return SamplingContextTags; }
+        public Activity setSamplingContextTags(List<SamplingContextTag> value) { this.SamplingContextTags = value; return this; }
         public ActivityTemplate getActivityTemplate() { return ActivityTemplate; }
         public Activity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -4067,59 +4131,6 @@ public class ServiceModel
         public ActivityRepresentation setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public ActivityRepresentation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
-    }
-
-    public static class ActivitySimple
-    {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("replicateSourceActivityId") public String ReplicateSourceActivityId = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("loggerFileName") public String LoggerFileName = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("depth") public QuantitySimple Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocationSimple SamplingLocation = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTagSimple> SamplingContextTags = null;
-
-        public String getId() { return Id; }
-        public ActivitySimple setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public ActivitySimple setCustomId(String value) { this.CustomId = value; return this; }
-        public ActivityType getType() { return Type; }
-        public ActivitySimple setType(ActivityType value) { this.Type = value; return this; }
-        public String getReplicateSourceActivityId() { return ReplicateSourceActivityId; }
-        public ActivitySimple setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public ActivitySimple setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public ActivitySimple setEndTime(Instant value) { this.EndTime = value; return this; }
-        public String getComment() { return Comment; }
-        public ActivitySimple setComment(String value) { this.Comment = value; return this; }
-        public String getLoggerFileName() { return LoggerFileName; }
-        public ActivitySimple setLoggerFileName(String value) { this.LoggerFileName = value; return this; }
-        public Device getDevice() { return Device; }
-        public ActivitySimple setDevice(Device value) { this.Device = value; return this; }
-        public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public ActivitySimple setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
-        public MediumType getMedium() { return Medium; }
-        public ActivitySimple setMedium(MediumType value) { this.Medium = value; return this; }
-        public PlannedActivity getPlannedActivity() { return PlannedActivity; }
-        public ActivitySimple setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
-        public ActivityTemplate getActivityTemplate() { return ActivityTemplate; }
-        public ActivitySimple setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
-        public QuantitySimple getDepth() { return Depth; }
-        public ActivitySimple setDepth(QuantitySimple value) { this.Depth = value; return this; }
-        public SamplingLocationSimple getSamplingLocation() { return SamplingLocation; }
-        public ActivitySimple setSamplingLocation(SamplingLocationSimple value) { this.SamplingLocation = value; return this; }
-        public List<SamplingContextTagSimple> getSamplingContextTags() { return SamplingContextTags; }
-        public ActivitySimple setSamplingContextTags(List<SamplingContextTagSimple> value) { this.SamplingContextTags = value; return this; }
     }
 
     public static class ActivityTemplate
@@ -4440,37 +4451,46 @@ public class ServiceModel
     {
         @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
         @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("unit") public Unit Unit = null;
+        @SerializedName("unitGroupWithUnits") public UnitGroupWithUnits UnitGroupWithUnits = null;
+        @SerializedName("depthUnitGroupWithUnits") public UnitGroupWithUnits DepthUnitGroupWithUnits = null;
         @SerializedName("dataPoints") public List<ChartDataPoint> DataPoints = null;
 
         public ObservedProperty getObservedProperty() { return ObservedProperty; }
         public ChartData setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
         public SamplingLocation getSamplingLocation() { return SamplingLocation; }
         public ChartData setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
-        public Unit getUnit() { return Unit; }
-        public ChartData setUnit(Unit value) { this.Unit = value; return this; }
+        public UnitGroupWithUnits getUnitGroupWithUnits() { return UnitGroupWithUnits; }
+        public ChartData setUnitGroupWithUnits(UnitGroupWithUnits value) { this.UnitGroupWithUnits = value; return this; }
+        public UnitGroupWithUnits getDepthUnitGroupWithUnits() { return DepthUnitGroupWithUnits; }
+        public ChartData setDepthUnitGroupWithUnits(UnitGroupWithUnits value) { this.DepthUnitGroupWithUnits = value; return this; }
         public List<ChartDataPoint> getDataPoints() { return DataPoints; }
         public ChartData setDataPoints(List<ChartDataPoint> value) { this.DataPoints = value; return this; }
     }
 
     public static class ChartDataPoint
     {
+        @SerializedName("value") public Double Value = null;
         @SerializedName("observationId") public String ObservationId = null;
         @SerializedName("observedTime") public Instant ObservedTime = null;
-        @SerializedName("value") public Double Value = null;
+        @SerializedName("numericResultUnitCustomId") public String NumericResultUnitCustomId = null;
         @SerializedName("mdlValue") public Double MdlValue = null;
+        @SerializedName("mdlValueUnitCustomId") public String MdlValueUnitCustomId = null;
         @SerializedName("depthValue") public Double DepthValue = null;
         @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
         @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
 
+        public Double getValue() { return Value; }
+        public ChartDataPoint setValue(Double value) { this.Value = value; return this; }
         public String getObservationId() { return ObservationId; }
         public ChartDataPoint setObservationId(String value) { this.ObservationId = value; return this; }
         public Instant getObservedTime() { return ObservedTime; }
         public ChartDataPoint setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Double getValue() { return Value; }
-        public ChartDataPoint setValue(Double value) { this.Value = value; return this; }
+        public String getNumericResultUnitCustomId() { return NumericResultUnitCustomId; }
+        public ChartDataPoint setNumericResultUnitCustomId(String value) { this.NumericResultUnitCustomId = value; return this; }
         public Double getMdlValue() { return MdlValue; }
         public ChartDataPoint setMdlValue(Double value) { this.MdlValue = value; return this; }
+        public String getMdlValueUnitCustomId() { return MdlValueUnitCustomId; }
+        public ChartDataPoint setMdlValueUnitCustomId(String value) { this.MdlValueUnitCustomId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public ChartDataPoint setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDepthUnitCustomId() { return DepthUnitCustomId; }
@@ -4544,6 +4564,26 @@ public class ServiceModel
         public ErrorInfo setLocalizationParameters(List<String> value) { this.LocalizationParameters = value; return this; }
         public String getRequestId() { return RequestId; }
         public ErrorInfo setRequestId(String value) { this.RequestId = value; return this; }
+    }
+
+    public static class ExtendedAttribute
+    {
+        @SerializedName("id") public String Id = null;
+        @SerializedName("attributeId") public String AttributeId = null;
+        @SerializedName("text") public String Text = null;
+        @SerializedName("number") public Double Number = null;
+        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public ExtendedAttribute setId(String value) { this.Id = value; return this; }
+        public String getAttributeId() { return AttributeId; }
+        public ExtendedAttribute setAttributeId(String value) { this.AttributeId = value; return this; }
+        public String getText() { return Text; }
+        public ExtendedAttribute setText(String value) { this.Text = value; return this; }
+        public Double getNumber() { return Number; }
+        public ExtendedAttribute setNumber(Double value) { this.Number = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public ExtendedAttribute setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
 
     public static class FieldSheetImportSummary
@@ -4648,8 +4688,8 @@ public class ServiceModel
         @SerializedName("endTime") public Instant EndTime = null;
         @SerializedName("participants") public String Participants = null;
         @SerializedName("notes") public String Notes = null;
-        @SerializedName("fieldTrip") public FieldTripSimple FieldTrip = null;
         @SerializedName("planningStatus") public PlanningStatusType PlanningStatus = null;
+        @SerializedName("fieldTrip") public FieldTripSimple FieldTrip = null;
         @SerializedName("samplingLocation") public SamplingLocationSimple SamplingLocation = null;
 
         public String getId() { return Id; }
@@ -4662,10 +4702,10 @@ public class ServiceModel
         public FieldVisitSimple setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
         public FieldVisitSimple setNotes(String value) { this.Notes = value; return this; }
-        public FieldTripSimple getFieldTrip() { return FieldTrip; }
-        public FieldVisitSimple setFieldTrip(FieldTripSimple value) { this.FieldTrip = value; return this; }
         public PlanningStatusType getPlanningStatus() { return PlanningStatus; }
         public FieldVisitSimple setPlanningStatus(PlanningStatusType value) { this.PlanningStatus = value; return this; }
+        public FieldTripSimple getFieldTrip() { return FieldTrip; }
+        public FieldVisitSimple setFieldTrip(FieldTripSimple value) { this.FieldTrip = value; return this; }
         public SamplingLocationSimple getSamplingLocation() { return SamplingLocation; }
         public FieldVisitSimple setSamplingLocation(SamplingLocationSimple value) { this.SamplingLocation = value; return this; }
     }
@@ -4754,16 +4794,14 @@ public class ServiceModel
 
     public static class ImportHistoryEvent
     {
-        @SerializedName("domainObjectIds") public List<String> DomainObjectIds = null;
         @SerializedName("id") public String Id = null;
         @SerializedName("importType") public ImportType ImportType = null;
         @SerializedName("importTime") public Instant ImportTime = null;
         @SerializedName("fileName") public String FileName = null;
         @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
         @SerializedName("importedBy") public UserProfile ImportedBy = null;
+        @SerializedName("domainObjectIds") public List<String> DomainObjectIds = null;
 
-        public List<String> getDomainObjectIds() { return DomainObjectIds; }
-        public ImportHistoryEvent setDomainObjectIds(List<String> value) { this.DomainObjectIds = value; return this; }
         public String getId() { return Id; }
         public ImportHistoryEvent setId(String value) { this.Id = value; return this; }
         public ImportType getImportType() { return ImportType; }
@@ -4776,6 +4814,8 @@ public class ServiceModel
         public ImportHistoryEvent setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
         public UserProfile getImportedBy() { return ImportedBy; }
         public ImportHistoryEvent setImportedBy(UserProfile value) { this.ImportedBy = value; return this; }
+        public List<String> getDomainObjectIds() { return DomainObjectIds; }
+        public ImportHistoryEvent setDomainObjectIds(List<String> value) { this.DomainObjectIds = value; return this; }
     }
 
     public static class ImportHistoryEventSimple
@@ -5160,17 +5200,17 @@ public class ServiceModel
     {
         @SerializedName("headers") public Object Headers = null;
         @SerializedName("mediaType") public MediaType MediaType = null;
-        @SerializedName("contentTypeFromMessage") public Boolean ContentTypeFromMessage = null;
         @SerializedName("bodyAsString") public String BodyAsString = null;
+        @SerializedName("contentTypeFromMessage") public Boolean ContentTypeFromMessage = null;
 
         public Object getHeaders() { return Headers; }
         public InputPart setHeaders(Object value) { this.Headers = value; return this; }
         public MediaType getMediaType() { return MediaType; }
         public InputPart setMediaType(MediaType value) { this.MediaType = value; return this; }
-        public Boolean getContentTypeFromMessage() { return ContentTypeFromMessage; }
-        public InputPart setContentTypeFromMessage(Boolean value) { this.ContentTypeFromMessage = value; return this; }
         public String getBodyAsString() { return BodyAsString; }
         public InputPart setBodyAsString(String value) { this.BodyAsString = value; return this; }
+        public Boolean getContentTypeFromMessage() { return ContentTypeFromMessage; }
+        public InputPart setContentTypeFromMessage(Boolean value) { this.ContentTypeFromMessage = value; return this; }
     }
 
     public static class LabAnalysisMethod
@@ -5444,6 +5484,20 @@ public class ServiceModel
         public LocationObservationsGroup setTotalCount(Integer value) { this.TotalCount = value; return this; }
     }
 
+    public static class LocationType
+    {
+        @SerializedName("id") public String Id = null;
+        @SerializedName("customId") public String CustomId = null;
+        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public LocationType setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public LocationType setCustomId(String value) { this.CustomId = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public LocationType setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
     public static class MediaType
     {
         @SerializedName("type") public String Type = null;
@@ -5528,8 +5582,8 @@ public class ServiceModel
         @SerializedName("device") public Device Device = null;
         @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         @SerializedName("validationWarnings") public List<RuleValidationDetails> ValidationWarnings = null;
-        @SerializedName("resultGrade") public ResultGradeType ResultGrade = null;
-        @SerializedName("resultStatus") public ResultStatusType ResultStatus = null;
+        @SerializedName("resultGrade") public ResultGrade ResultGrade = null;
+        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
         @SerializedName("plannedFieldResult") public PlannedFieldResult PlannedFieldResult = null;
         @SerializedName("relatedTaxon") public Taxon RelatedTaxon = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
@@ -5582,10 +5636,10 @@ public class ServiceModel
         public Observation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public List<RuleValidationDetails> getValidationWarnings() { return ValidationWarnings; }
         public Observation setValidationWarnings(List<RuleValidationDetails> value) { this.ValidationWarnings = value; return this; }
-        public ResultGradeType getResultGrade() { return ResultGrade; }
-        public Observation setResultGrade(ResultGradeType value) { this.ResultGrade = value; return this; }
-        public ResultStatusType getResultStatus() { return ResultStatus; }
-        public Observation setResultStatus(ResultStatusType value) { this.ResultStatus = value; return this; }
+        public ResultGrade getResultGrade() { return ResultGrade; }
+        public Observation setResultGrade(ResultGrade value) { this.ResultGrade = value; return this; }
+        public ResultStatus getResultStatus() { return ResultStatus; }
+        public Observation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public Observation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
@@ -5643,7 +5697,7 @@ public class ServiceModel
         @SerializedName("numericResult") public NumericResult NumericResult = null;
         @SerializedName("categoricalResult") public CategoricalResult CategoricalResult = null;
         @SerializedName("taxonomicResult") public TaxonomicResult TaxonomicResult = null;
-        @SerializedName("resultStatus") public ResultStatusType ResultStatus = null;
+        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
         @SerializedName("labInstruction") public LabInstructionMinimal LabInstruction = null;
         @SerializedName("dataClassification") public DataClassificationType DataClassification = null;
         @SerializedName("comment") public String Comment = null;
@@ -5660,8 +5714,8 @@ public class ServiceModel
         public ObservationMinimal setCategoricalResult(CategoricalResult value) { this.CategoricalResult = value; return this; }
         public TaxonomicResult getTaxonomicResult() { return TaxonomicResult; }
         public ObservationMinimal setTaxonomicResult(TaxonomicResult value) { this.TaxonomicResult = value; return this; }
-        public ResultStatusType getResultStatus() { return ResultStatus; }
-        public ObservationMinimal setResultStatus(ResultStatusType value) { this.ResultStatus = value; return this; }
+        public ResultStatus getResultStatus() { return ResultStatus; }
+        public ObservationMinimal setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public LabInstructionMinimal getLabInstruction() { return LabInstruction; }
         public ObservationMinimal setLabInstruction(LabInstructionMinimal value) { this.LabInstruction = value; return this; }
         public DataClassificationType getDataClassification() { return DataClassification; }
@@ -5775,26 +5829,6 @@ public class ServiceModel
         public ObservedPropertyImportSummary setErrorImportItems(List<ImportItemObservedProperty> value) { this.ErrorImportItems = value; return this; }
     }
 
-    public static class Permission
-    {
-        @SerializedName("actions") public List<String> Actions = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("resource") public String Resource = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
-
-        public List<String> getActions() { return Actions; }
-        public Permission setActions(List<String> value) { this.Actions = value; return this; }
-        public String getId() { return Id; }
-        public Permission setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public Permission setCustomId(String value) { this.CustomId = value; return this; }
-        public String getResource() { return Resource; }
-        public Permission setResource(String value) { this.Resource = value; return this; }
-        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public Permission setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
-    }
-
     public static class PlannedActivity
     {
         @SerializedName("id") public String Id = null;
@@ -5899,15 +5933,38 @@ public class ServiceModel
         public Quantity setUnit(Unit value) { this.Unit = value; return this; }
     }
 
-    public static class QuantitySimple
+    public static class ResultGrade
     {
-        @SerializedName("value") public Double Value = null;
-        @SerializedName("unit") public UnitSimple Unit = null;
+        @SerializedName("id") public String Id = null;
+        @SerializedName("customId") public String CustomId = null;
+        @SerializedName("systemCode") public ResultGradeSystemCodeType SystemCode = null;
+        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
-        public Double getValue() { return Value; }
-        public QuantitySimple setValue(Double value) { this.Value = value; return this; }
-        public UnitSimple getUnit() { return Unit; }
-        public QuantitySimple setUnit(UnitSimple value) { this.Unit = value; return this; }
+        public String getId() { return Id; }
+        public ResultGrade setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public ResultGrade setCustomId(String value) { this.CustomId = value; return this; }
+        public ResultGradeSystemCodeType getSystemCode() { return SystemCode; }
+        public ResultGrade setSystemCode(ResultGradeSystemCodeType value) { this.SystemCode = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public ResultGrade setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
+    public static class ResultStatus
+    {
+        @SerializedName("id") public String Id = null;
+        @SerializedName("customId") public String CustomId = null;
+        @SerializedName("systemCode") public ResultStatusSystemCodeType SystemCode = null;
+        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public ResultStatus setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public ResultStatus setCustomId(String value) { this.CustomId = value; return this; }
+        public ResultStatusSystemCodeType getSystemCode() { return SystemCode; }
+        public ResultStatus setSystemCode(ResultStatusSystemCodeType value) { this.SystemCode = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public ResultStatus setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
 
     public static class Role
@@ -5915,6 +5972,7 @@ public class ServiceModel
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("name") public String Name = null;
+        @SerializedName("userType") public UserType UserType = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -5923,6 +5981,8 @@ public class ServiceModel
         public Role setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
         public Role setName(String value) { this.Name = value; return this; }
+        public UserType getUserType() { return UserType; }
+        public Role setUserType(UserType value) { this.UserType = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public Role setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -5958,20 +6018,12 @@ public class ServiceModel
         public SamplingContextTag setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
 
-    public static class SamplingContextTagSimple
-    {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-
-        public String getId() { return Id; }
-        public SamplingContextTagSimple setId(String value) { this.Id = value; return this; }
-        public String getName() { return Name; }
-        public SamplingContextTagSimple setName(String value) { this.Name = value; return this; }
-    }
-
     public static class SamplingLocation
     {
-        @SerializedName("type") public SamplingLocationType Type = null;
+        @SerializedName("id") public String Id = null;
+        @SerializedName("customId") public String CustomId = null;
+        @SerializedName("name") public String Name = null;
+        @SerializedName("type") public LocationType Type = null;
         @SerializedName("latitude") public String Latitude = null;
         @SerializedName("longitude") public String Longitude = null;
         @SerializedName("horizontalDatum") public String HorizontalDatum = null;
@@ -5985,13 +6037,17 @@ public class ServiceModel
         @SerializedName("standards") public List<StandardSimple> Standards = null;
         @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
         @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
+        @SerializedName("extendedAttributes") public List<ExtendedAttribute> ExtendedAttributes = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
-        public SamplingLocationType getType() { return Type; }
-        public SamplingLocation setType(SamplingLocationType value) { this.Type = value; return this; }
+        public String getId() { return Id; }
+        public SamplingLocation setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public SamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public SamplingLocation setName(String value) { this.Name = value; return this; }
+        public LocationType getType() { return Type; }
+        public SamplingLocation setType(LocationType value) { this.Type = value; return this; }
         public String getLatitude() { return Latitude; }
         public SamplingLocation setLatitude(String value) { this.Latitude = value; return this; }
         public String getLongitude() { return Longitude; }
@@ -6018,12 +6074,8 @@ public class ServiceModel
         public SamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<SamplingLocationGroupSimple> getSamplingLocationGroups() { return SamplingLocationGroups; }
         public SamplingLocation setSamplingLocationGroups(List<SamplingLocationGroupSimple> value) { this.SamplingLocationGroups = value; return this; }
-        public String getId() { return Id; }
-        public SamplingLocation setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public SamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
-        public String getName() { return Name; }
-        public SamplingLocation setName(String value) { this.Name = value; return this; }
+        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
+        public SamplingLocation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public SamplingLocation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -6349,6 +6401,20 @@ public class ServiceModel
         public SearchResultLocationObservationsGroup setDomainObjects(List<LocationObservationsGroup> value) { this.DomainObjects = value; return this; }
     }
 
+    public static class SearchResultLocationType implements IPaginatedResponse<LocationType>
+    {
+        @SerializedName("totalCount") public Integer TotalCount = null;
+        @SerializedName("cursor") public String Cursor = null;
+        @SerializedName("domainObjects") public List<LocationType> DomainObjects = null;
+
+        public Integer getTotalCount() { return TotalCount; }
+        public SearchResultLocationType setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public String getCursor() { return Cursor; }
+        public SearchResultLocationType setCursor(String value) { this.Cursor = value; return this; }
+        public List<LocationType> getDomainObjects() { return DomainObjects; }
+        public SearchResultLocationType setDomainObjects(List<LocationType> value) { this.DomainObjects = value; return this; }
+    }
+
     public static class SearchResultObservation implements IPaginatedResponse<Observation>
     {
         @SerializedName("totalCount") public Integer TotalCount = null;
@@ -6389,6 +6455,34 @@ public class ServiceModel
         public SearchResultProject setCursor(String value) { this.Cursor = value; return this; }
         public List<Project> getDomainObjects() { return DomainObjects; }
         public SearchResultProject setDomainObjects(List<Project> value) { this.DomainObjects = value; return this; }
+    }
+
+    public static class SearchResultResultGrade implements IPaginatedResponse<ResultGrade>
+    {
+        @SerializedName("totalCount") public Integer TotalCount = null;
+        @SerializedName("cursor") public String Cursor = null;
+        @SerializedName("domainObjects") public List<ResultGrade> DomainObjects = null;
+
+        public Integer getTotalCount() { return TotalCount; }
+        public SearchResultResultGrade setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public String getCursor() { return Cursor; }
+        public SearchResultResultGrade setCursor(String value) { this.Cursor = value; return this; }
+        public List<ResultGrade> getDomainObjects() { return DomainObjects; }
+        public SearchResultResultGrade setDomainObjects(List<ResultGrade> value) { this.DomainObjects = value; return this; }
+    }
+
+    public static class SearchResultResultStatus implements IPaginatedResponse<ResultStatus>
+    {
+        @SerializedName("totalCount") public Integer TotalCount = null;
+        @SerializedName("cursor") public String Cursor = null;
+        @SerializedName("domainObjects") public List<ResultStatus> DomainObjects = null;
+
+        public Integer getTotalCount() { return TotalCount; }
+        public SearchResultResultStatus setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public String getCursor() { return Cursor; }
+        public SearchResultResultStatus setCursor(String value) { this.Cursor = value; return this; }
+        public List<ResultStatus> getDomainObjects() { return DomainObjects; }
+        public SearchResultResultStatus setDomainObjects(List<ResultStatus> value) { this.DomainObjects = value; return this; }
     }
 
     public static class SearchResultSamplingContextTag implements IPaginatedResponse<SamplingContextTag>
@@ -6845,6 +6939,7 @@ public class ServiceModel
 
     public static class Taxon
     {
+        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         @SerializedName("id") public String Id = null;
         @SerializedName("scientificName") public String ScientificName = null;
         @SerializedName("commonName") public String CommonName = null;
@@ -6854,9 +6949,11 @@ public class ServiceModel
         @SerializedName("itisTsn") public String ItisTsn = null;
         @SerializedName("itisComment") public String ItisComment = null;
         @SerializedName("itisUrl") public String ItisUrl = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        @SerializedName("parentId") public String ParentId = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public Taxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getId() { return Id; }
         public Taxon setId(String value) { this.Id = value; return this; }
         public String getScientificName() { return ScientificName; }
@@ -6875,8 +6972,8 @@ public class ServiceModel
         public Taxon setItisComment(String value) { this.ItisComment = value; return this; }
         public String getItisUrl() { return ItisUrl; }
         public Taxon setItisUrl(String value) { this.ItisUrl = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public Taxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public String getParentId() { return ParentId; }
+        public Taxon setParentId(String value) { this.ParentId = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public Taxon setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -6967,7 +7064,7 @@ public class ServiceModel
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -6976,8 +7073,8 @@ public class ServiceModel
         public UnitGroup setCustomId(String value) { this.CustomId = value; return this; }
         public Boolean getSupportsConversion() { return SupportsConversion; }
         public UnitGroup setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public UnitGroup setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public UnitGroupSystemCodeType getSystemCode() { return SystemCode; }
+        public UnitGroup setSystemCode(UnitGroupSystemCodeType value) { this.SystemCode = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public UnitGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -6987,7 +7084,7 @@ public class ServiceModel
         @SerializedName("id") public String Id = null;
         @SerializedName("customId") public String CustomId = null;
         @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public SystemCodeType SystemCode = null;
+        @SerializedName("systemCode") public UnitGroupWithUnitsSystemCodeType SystemCode = null;
         @SerializedName("units") public List<Unit> Units = null;
         @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
 
@@ -6997,32 +7094,12 @@ public class ServiceModel
         public UnitGroupWithUnits setCustomId(String value) { this.CustomId = value; return this; }
         public Boolean getSupportsConversion() { return SupportsConversion; }
         public UnitGroupWithUnits setSupportsConversion(Boolean value) { this.SupportsConversion = value; return this; }
-        public SystemCodeType getSystemCode() { return SystemCode; }
-        public UnitGroupWithUnits setSystemCode(SystemCodeType value) { this.SystemCode = value; return this; }
+        public UnitGroupWithUnitsSystemCodeType getSystemCode() { return SystemCode; }
+        public UnitGroupWithUnits setSystemCode(UnitGroupWithUnitsSystemCodeType value) { this.SystemCode = value; return this; }
         public List<Unit> getUnits() { return Units; }
         public UnitGroupWithUnits setUnits(List<Unit> value) { this.Units = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public UnitGroupWithUnits setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
-    }
-
-    public static class UnitSimple
-    {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("baseMultiplier") public Double BaseMultiplier = null;
-        @SerializedName("baseOffset") public Double BaseOffset = null;
-
-        public String getId() { return Id; }
-        public UnitSimple setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public UnitSimple setCustomId(String value) { this.CustomId = value; return this; }
-        public String getName() { return Name; }
-        public UnitSimple setName(String value) { this.Name = value; return this; }
-        public Double getBaseMultiplier() { return BaseMultiplier; }
-        public UnitSimple setBaseMultiplier(Double value) { this.BaseMultiplier = value; return this; }
-        public Double getBaseOffset() { return BaseOffset; }
-        public UnitSimple setBaseOffset(Double value) { this.BaseOffset = value; return this; }
     }
 
     public static class User
@@ -7035,6 +7112,7 @@ public class ServiceModel
         @SerializedName("userProfile") public UserProfile UserProfile = null;
         @SerializedName("providerId") public String ProviderId = null;
         @SerializedName("email") public String Email = null;
+        @SerializedName("userType") public UserType UserType = null;
 
         public List<Role> getRoles() { return Roles; }
         public User setRoles(List<Role> value) { this.Roles = value; return this; }
@@ -7052,6 +7130,8 @@ public class ServiceModel
         public User setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
         public User setEmail(String value) { this.Email = value; return this; }
+        public UserType getUserType() { return UserType; }
+        public User setUserType(UserType value) { this.UserType = value; return this; }
     }
 
     public static class UserProfile
@@ -7132,7 +7212,10 @@ public class ServiceModel
         NumericResult,
         CategoricalResult,
         TaxonomicResult,
+        ResultGrade,
+        LocationType,
         DomainDateTime,
+        ResultStatus,
         None
     }
 
@@ -7165,6 +7248,16 @@ public class ServiceModel
         CSV,
         WQX,
         CROSSTAB_CSV
+    }
+
+    public static enum GetUnitGroupsSystemCodeType
+    {
+        LENGTH
+    }
+
+    public static enum GetUnitGroupWithUnitsSystemCodeType
+    {
+        LENGTH
     }
 
     public static enum ImportItemStatusType
@@ -7249,18 +7342,15 @@ public class ServiceModel
         TRIP_BLANK
     }
 
-    public static enum ResultGradeType
+    public static enum ResultGradeSystemCodeType
     {
-        OK,
-        SUSPECT,
         UNKNOWN
     }
 
-    public static enum ResultStatusType
+    public static enum ResultStatusSystemCodeType
     {
-        PRELIMINARY,
-        REVIEWED,
-        REQUESTED
+        REQUESTED,
+        PRELIMINARY
     }
 
     public static enum ResultType
@@ -7276,20 +7366,19 @@ public class ServiceModel
         TOTAL
     }
 
-    public static enum SamplingLocationType
-    {
-        SPRING,
-        STREAM,
-        RIVER,
-        CANAL,
-        LAKE,
-        GROUNDWATER,
-        OCEAN,
-        RESERVOIR
-    }
-
-    public static enum SystemCodeType
+    public static enum UnitGroupSystemCodeType
     {
         LENGTH
+    }
+
+    public static enum UnitGroupWithUnitsSystemCodeType
+    {
+        LENGTH
+    }
+
+    public static enum UserType
+    {
+        INTERNAL,
+        EXTERNAL
     }
 }

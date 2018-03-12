@@ -17,12 +17,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SdkServiceClient extends net.servicestack.client.JsonServiceClient {
+
+    public static final String HttpScheme = "http";
+    public static final String HttpsScheme = "https";
+
     private String endpointUrl;
 
     private final Map<Object,Type> _typeAdapters;
 
     private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters) {
         super(baseUrl);
+
+        endpointUrl = baseUrl;
         _typeAdapters = typeAdapters;
     }
 
@@ -30,11 +36,18 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     {
         setUserAgent();
 
-        if (!server.startsWith("http")) {
-            server = "http://" + server;
-        }
+        server = resolveServerWithDefaultScheme(server, HttpScheme);
 
         return new SdkServiceClient(server + baseUrl, typeAdapters);
+    }
+
+    public static String resolveServerWithDefaultScheme(String server, String defaultScheme) {
+
+        if (!server.startsWith("http")) {
+            server = defaultScheme + "://" + server;
+        }
+
+        return server;
     }
 
     private static void setUserAgent() {
@@ -51,6 +64,10 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
         // TODO: Compose the agent dynamically from its dependencies. Until we figure that out, hack it in at build time via a Powershell script during the AppVeyor build.
         userAgent = "com.aquaticinformatics.aquarius.sdk:<<VERSION_PLACEHOLDER>>/net.servicestack.client:1.033";
+    }
+
+    public String getEndpointUrl() {
+        return endpointUrl;
     }
 
     public String authenticate(String username, String password)
