@@ -1,4 +1,4 @@
-// Date: 2018-03-10T21:33:57.8627838-08:00
+// Date: 2018-03-13T10:38:39.4689734-07:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
 // Source: AQUARIUS Samples API (2018.03.2863)
 
@@ -6,7 +6,6 @@ package com.aquaticinformatics.aquarius.sdk.samples;
 
 import java.time.*;
 import java.util.*;
-import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import net.servicestack.client.*;
 import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
@@ -28,12 +27,12 @@ public class ServiceModel
     @Route(Path="/v1/accessgroups", Verbs="POST")
     public static class PostAccessGroup implements IReturn<AccessGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("canEditAllData") public Boolean CanEditAllData = null;
-        @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public Boolean CanEditAllData = null;
+        public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostAccessGroup setId(String value) { this.Id = value; return this; }
@@ -54,7 +53,7 @@ public class ServiceModel
     @Route(Path="/v1/accessgroups/{id}", Verbs="GET")
     public static class GetAccessGroup implements IReturn<AccessGroup>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetAccessGroup setId(String value) { this.Id = value; return this; }
@@ -65,12 +64,12 @@ public class ServiceModel
     @Route(Path="/v1/accessgroups/{id}", Verbs="PUT")
     public static class PutAccessGroup implements IReturn<AccessGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("canEditAllData") public Boolean CanEditAllData = null;
-        @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public Boolean CanEditAllData = null;
+        public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutAccessGroup setId(String value) { this.Id = value; return this; }
@@ -91,7 +90,7 @@ public class ServiceModel
     @Route(Path="/v1/accessgroups/{id}", Verbs="DELETE")
     public static class DeleteAccessGroup implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteAccessGroup setId(String value) { this.Id = value; return this; }
@@ -100,19 +99,19 @@ public class ServiceModel
     @Route(Path="/v1/activities", Verbs="GET")
     public static class GetActivities implements IReturn<SearchResultActivity>, IPaginatedRequest
     {
-        @SerializedName("activityTemplateId") public List<String> ActivityTemplateId = null;
-        @SerializedName("activityTypes") public List<String> ActivityTypes = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("fromStartTime") public Instant FromStartTime = null;
-        @SerializedName("ids") public List<String> Ids = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("toStartTime") public Instant ToStartTime = null;
+        public List<String> ActivityTemplateId = null;
+        public List<String> ActivityTypes = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public String FieldVisitId = null;
+        public Instant FromStartTime = null;
+        public List<String> Ids = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> SamplingLocationIds = null;
+        public String Sort = null;
+        public Instant ToStartTime = null;
 
         public List<String> getActivityTemplateId() { return ActivityTemplateId; }
         public GetActivities setActivityTemplateId(List<String> value) { this.ActivityTemplateId = value; return this; }
@@ -147,24 +146,24 @@ public class ServiceModel
     @Route(Path="/v1/activities", Verbs="POST")
     public static class PostActivity implements IReturn<Activity>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("replicateSourceActivityId") public String ReplicateSourceActivityId = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("loggerFileName") public String LoggerFileName = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String ReplicateSourceActivityId = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Comment = null;
+        public String LoggerFileName = null;
+        public Device Device = null;
+        public CollectionMethod CollectionMethod = null;
+        public MediumType Medium = null;
+        public PlannedActivity PlannedActivity = null;
+        public Quantity Depth = null;
+        public SamplingLocation SamplingLocation = null;
+        public FieldVisit FieldVisit = null;
+        public List<SamplingContextTag> SamplingContextTags = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostActivity setId(String value) { this.Id = value; return this; }
@@ -209,19 +208,19 @@ public class ServiceModel
     @Route(Path="/v1/activities", Verbs="DELETE")
     public static class DeleteActivities implements IReturnVoid
     {
-        @SerializedName("activityTemplateId") public List<String> ActivityTemplateId = null;
-        @SerializedName("activityTypes") public List<String> ActivityTypes = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("fromStartTime") public Instant FromStartTime = null;
-        @SerializedName("ids") public List<String> Ids = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("toStartTime") public Instant ToStartTime = null;
+        public List<String> ActivityTemplateId = null;
+        public List<String> ActivityTypes = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public String FieldVisitId = null;
+        public Instant FromStartTime = null;
+        public List<String> Ids = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> SamplingLocationIds = null;
+        public String Sort = null;
+        public Instant ToStartTime = null;
 
         public List<String> getActivityTemplateId() { return ActivityTemplateId; }
         public DeleteActivities setActivityTemplateId(List<String> value) { this.ActivityTemplateId = value; return this; }
@@ -254,8 +253,8 @@ public class ServiceModel
     @Route(Path="/v1/activities/{id}", Verbs="GET")
     public static class GetActivity implements IReturn<ActivityRepresentation>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("detail") public Boolean Detail = null;
+        public String Id = null;
+        public Boolean Detail = null;
 
         public String getId() { return Id; }
         public GetActivity setId(String value) { this.Id = value; return this; }
@@ -268,24 +267,24 @@ public class ServiceModel
     @Route(Path="/v1/activities/{id}", Verbs="PUT")
     public static class PutActivity implements IReturn<Activity>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("replicateSourceActivityId") public String ReplicateSourceActivityId = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("loggerFileName") public String LoggerFileName = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String ReplicateSourceActivityId = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Comment = null;
+        public String LoggerFileName = null;
+        public Device Device = null;
+        public CollectionMethod CollectionMethod = null;
+        public MediumType Medium = null;
+        public PlannedActivity PlannedActivity = null;
+        public Quantity Depth = null;
+        public SamplingLocation SamplingLocation = null;
+        public FieldVisit FieldVisit = null;
+        public List<SamplingContextTag> SamplingContextTags = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutActivity setId(String value) { this.Id = value; return this; }
@@ -330,7 +329,7 @@ public class ServiceModel
     @Route(Path="/v1/activities/{id}", Verbs="DELETE")
     public static class DeleteActivity implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteActivity setId(String value) { this.Id = value; return this; }
@@ -339,7 +338,7 @@ public class ServiceModel
     @Route(Path="/v1/activities/{id}/replicate", Verbs="POST")
     public static class PostActivityReplicate implements IReturn<Activity>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public PostActivityReplicate setId(String value) { this.Id = value; return this; }
@@ -350,7 +349,7 @@ public class ServiceModel
     @Route(Path="/v1/activitytemplates", Verbs="GET")
     public static class GetActivityTemplates implements IReturn<SearchResultActivityTemplate>
     {
-        @SerializedName("type") public List<String> Type = null;
+        public List<String> Type = null;
 
         public List<String> getType() { return Type; }
         public GetActivityTemplates setType(List<String> value) { this.Type = value; return this; }
@@ -361,15 +360,15 @@ public class ServiceModel
     @Route(Path="/v1/activitytemplates", Verbs="POST")
     public static class PostActivityTemplate implements IReturn<ActivityTemplate>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("specimenTemplates") public List<SpecimenTemplate> SpecimenTemplates = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public List<SpecimenTemplate> SpecimenTemplates = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String Comment = null;
+        public MediumType Medium = null;
+        public Quantity Depth = null;
+        public CollectionMethod CollectionMethod = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostActivityTemplate setId(String value) { this.Id = value; return this; }
@@ -396,7 +395,7 @@ public class ServiceModel
     @Route(Path="/v1/activitytemplates/{id}", Verbs="GET")
     public static class GetActivityTemplate implements IReturn<ActivityTemplate>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetActivityTemplate setId(String value) { this.Id = value; return this; }
@@ -407,15 +406,15 @@ public class ServiceModel
     @Route(Path="/v1/activitytemplates/{id}", Verbs="PUT")
     public static class PutActivityTemplate implements IReturn<ActivityTemplate>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("specimenTemplates") public List<SpecimenTemplate> SpecimenTemplates = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public List<SpecimenTemplate> SpecimenTemplates = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String Comment = null;
+        public MediumType Medium = null;
+        public Quantity Depth = null;
+        public CollectionMethod CollectionMethod = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutActivityTemplate setId(String value) { this.Id = value; return this; }
@@ -442,7 +441,7 @@ public class ServiceModel
     @Route(Path="/v1/activitytemplates/{id}", Verbs="DELETE")
     public static class DeleteActivityTemplate implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteActivityTemplate setId(String value) { this.Id = value; return this; }
@@ -451,7 +450,7 @@ public class ServiceModel
     @Route(Path="/v1/analyticalgroups", Verbs="GET")
     public static class GetAnalyticalGroups implements IReturn<SearchResultAnalyticalGroup>
     {
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
+        public List<String> ObservedPropertyIds = null;
 
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetAnalyticalGroups setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
@@ -462,14 +461,14 @@ public class ServiceModel
     @Route(Path="/v1/analyticalgroups", Verbs="POST")
     public static class PostAnalyticalGroup implements IReturn<AnalyticalGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("type") public AnalyticalGroupType Type = null;
-        @SerializedName("numberOfObservedPropertiesInGroupItems") public Integer NumberOfObservedPropertiesInGroupItems = null;
-        @SerializedName("numberOfAnalysisMethodsInGroupItems") public Integer NumberOfAnalysisMethodsInGroupItems = null;
-        @SerializedName("analyticalGroupItems") public List<AnalyticalGroupItem> AnalyticalGroupItems = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AnalyticalGroupType Type = null;
+        public Integer NumberOfObservedPropertiesInGroupItems = null;
+        public Integer NumberOfAnalysisMethodsInGroupItems = null;
+        public List<AnalyticalGroupItem> AnalyticalGroupItems = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostAnalyticalGroup setId(String value) { this.Id = value; return this; }
@@ -494,7 +493,7 @@ public class ServiceModel
     @Route(Path="/v1/analyticalgroups/{id}", Verbs="GET")
     public static class GetAnalyticalGroup implements IReturn<AnalyticalGroup>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetAnalyticalGroup setId(String value) { this.Id = value; return this; }
@@ -505,14 +504,14 @@ public class ServiceModel
     @Route(Path="/v1/analyticalgroups/{id}", Verbs="PUT")
     public static class PutAnalyticalGroup implements IReturn<AnalyticalGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("type") public AnalyticalGroupType Type = null;
-        @SerializedName("numberOfObservedPropertiesInGroupItems") public Integer NumberOfObservedPropertiesInGroupItems = null;
-        @SerializedName("numberOfAnalysisMethodsInGroupItems") public Integer NumberOfAnalysisMethodsInGroupItems = null;
-        @SerializedName("analyticalGroupItems") public List<AnalyticalGroupItem> AnalyticalGroupItems = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AnalyticalGroupType Type = null;
+        public Integer NumberOfObservedPropertiesInGroupItems = null;
+        public Integer NumberOfAnalysisMethodsInGroupItems = null;
+        public List<AnalyticalGroupItem> AnalyticalGroupItems = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutAnalyticalGroup setId(String value) { this.Id = value; return this; }
@@ -537,7 +536,7 @@ public class ServiceModel
     @Route(Path="/v1/analyticalgroups/{id}", Verbs="DELETE")
     public static class DeleteAnalyticalGroup implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteAnalyticalGroup setId(String value) { this.Id = value; return this; }
@@ -546,7 +545,7 @@ public class ServiceModel
     @Route(Path="/v1/attachments/{id}", Verbs="GET")
     public static class GetAttachment implements IReturn<Attachment>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetAttachment setId(String value) { this.Id = value; return this; }
@@ -557,16 +556,16 @@ public class ServiceModel
     @Route(Path="/v1/attachments/{id}", Verbs="PUT")
     public static class PutAttachment implements IReturn<Attachment>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("fileName") public String FileName = null;
-        @SerializedName("contentType") public String ContentType = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("fileSize") public Integer FileSize = null;
-        @SerializedName("dateTaken") public Instant DateTaken = null;
-        @SerializedName("latitude") public String Latitude = null;
-        @SerializedName("longitude") public String Longitude = null;
-        @SerializedName("resolution") public String Resolution = null;
-        @SerializedName("auditAttributes") public AuditAttributesFull AuditAttributes = null;
+        public String Id = null;
+        public String FileName = null;
+        public String ContentType = null;
+        public String Comment = null;
+        public Integer FileSize = null;
+        public Instant DateTaken = null;
+        public String Latitude = null;
+        public String Longitude = null;
+        public String Resolution = null;
+        public AuditAttributesFull AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutAttachment setId(String value) { this.Id = value; return this; }
@@ -595,7 +594,7 @@ public class ServiceModel
     @Route(Path="/v1/attachments/{id}", Verbs="DELETE")
     public static class DeleteAttachment implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteAttachment setId(String value) { this.Id = value; return this; }
@@ -604,7 +603,7 @@ public class ServiceModel
     @Route(Path="/v1/attachments/{id}/contents", Verbs="GET")
     public static class GetAttachmentContents implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetAttachmentContents setId(String value) { this.Id = value; return this; }
@@ -627,11 +626,11 @@ public class ServiceModel
     @Route(Path="/v1/collectionmethods", Verbs="POST")
     public static class PostCollectionMethod implements IReturn<CollectionMethod>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("identifierOrganization") public String IdentifierOrganization = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String IdentifierOrganization = null;
+        public String Name = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostCollectionMethod setId(String value) { this.Id = value; return this; }
@@ -650,7 +649,7 @@ public class ServiceModel
     @Route(Path="/v1/collectionmethods/{id}", Verbs="GET")
     public static class GetCollectionMethod implements IReturn<CollectionMethod>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetCollectionMethod setId(String value) { this.Id = value; return this; }
@@ -661,11 +660,11 @@ public class ServiceModel
     @Route(Path="/v1/collectionmethods/{id}", Verbs="PUT")
     public static class PutCollectionMethod implements IReturn<CollectionMethod>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("identifierOrganization") public String IdentifierOrganization = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String IdentifierOrganization = null;
+        public String Name = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutCollectionMethod setId(String value) { this.Id = value; return this; }
@@ -684,7 +683,7 @@ public class ServiceModel
     @Route(Path="/v1/collectionmethods/{id}", Verbs="DELETE")
     public static class DeleteCollectionMethod implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteCollectionMethod setId(String value) { this.Id = value; return this; }
@@ -693,8 +692,8 @@ public class ServiceModel
     @Route(Path="/v1/fieldtrips", Verbs="GET")
     public static class GetFieldTrips implements IReturn<SearchResultFieldTrip>
     {
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("search") public List<String> Search = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
 
         public Integer getLimit() { return Limit; }
         public GetFieldTrips setLimit(Integer value) { this.Limit = value; return this; }
@@ -707,15 +706,15 @@ public class ServiceModel
     @Route(Path="/v1/fieldtrips", Verbs="POST")
     public static class PostFieldTrip implements IReturn<FieldTrip>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("fieldVisits") public List<FieldVisit> FieldVisits = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public List<FieldVisit> FieldVisits = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostFieldTrip setId(String value) { this.Id = value; return this; }
@@ -742,7 +741,7 @@ public class ServiceModel
     @Route(Path="/v1/fieldtrips/{id}", Verbs="GET")
     public static class GetFieldTrip implements IReturn<FieldTrip>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetFieldTrip setId(String value) { this.Id = value; return this; }
@@ -753,15 +752,15 @@ public class ServiceModel
     @Route(Path="/v1/fieldtrips/{id}", Verbs="PUT")
     public static class PutFieldTrip implements IReturn<FieldTrip>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("fieldVisits") public List<FieldVisit> FieldVisits = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public List<FieldVisit> FieldVisits = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutFieldTrip setId(String value) { this.Id = value; return this; }
@@ -788,7 +787,7 @@ public class ServiceModel
     @Route(Path="/v1/fieldtrips/{id}", Verbs="DELETE")
     public static class DeleteFieldTrip implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteFieldTrip setId(String value) { this.Id = value; return this; }
@@ -797,13 +796,13 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits", Verbs="GET")
     public static class GetFieldVisits implements IReturn<SearchResultFieldVisitSimple>
     {
-        @SerializedName("endStartTime") public Instant EndStartTime = null;
-        @SerializedName("fieldTripIds") public List<String> FieldTripIds = null;
-        @SerializedName("ids") public List<String> Ids = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("planningStatuses") public List<String> PlanningStatuses = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("startStartTime") public Instant StartStartTime = null;
+        public Instant EndStartTime = null;
+        public List<String> FieldTripIds = null;
+        public List<String> Ids = null;
+        public Integer Limit = null;
+        public List<String> PlanningStatuses = null;
+        public List<String> SamplingLocationIds = null;
+        public Instant StartStartTime = null;
 
         public Instant getEndStartTime() { return EndStartTime; }
         public GetFieldVisits setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
@@ -826,18 +825,18 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits", Verbs="POST")
     public static class PostFieldVisit implements IReturn<FieldVisit>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("fieldTrip") public FieldTripSimple FieldTrip = null;
-        @SerializedName("planningStatus") public PlanningStatusType PlanningStatus = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("plannedFieldResults") public List<PlannedFieldResult> PlannedFieldResults = null;
-        @SerializedName("plannedActivities") public List<PlannedActivity> PlannedActivities = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public FieldTripSimple FieldTrip = null;
+        public PlanningStatusType PlanningStatus = null;
+        public SamplingLocation SamplingLocation = null;
+        public List<PlannedFieldResult> PlannedFieldResults = null;
+        public List<PlannedActivity> PlannedActivities = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostFieldVisit setId(String value) { this.Id = value; return this; }
@@ -870,13 +869,13 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits", Verbs="DELETE")
     public static class DeleteFieldVisits implements IReturnVoid
     {
-        @SerializedName("endStartTime") public Instant EndStartTime = null;
-        @SerializedName("fieldTripIds") public List<String> FieldTripIds = null;
-        @SerializedName("ids") public List<String> Ids = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("planningStatuses") public List<String> PlanningStatuses = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("startStartTime") public Instant StartStartTime = null;
+        public Instant EndStartTime = null;
+        public List<String> FieldTripIds = null;
+        public List<String> Ids = null;
+        public Integer Limit = null;
+        public List<String> PlanningStatuses = null;
+        public List<String> SamplingLocationIds = null;
+        public Instant StartStartTime = null;
 
         public Instant getEndStartTime() { return EndStartTime; }
         public DeleteFieldVisits setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
@@ -897,7 +896,7 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}", Verbs="GET")
     public static class GetFieldVisit implements IReturn<FieldVisit>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetFieldVisit setId(String value) { this.Id = value; return this; }
@@ -908,18 +907,18 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}", Verbs="PUT")
     public static class PutFieldVisit implements IReturn<FieldVisit>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("fieldTrip") public FieldTripSimple FieldTrip = null;
-        @SerializedName("planningStatus") public PlanningStatusType PlanningStatus = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("plannedFieldResults") public List<PlannedFieldResult> PlannedFieldResults = null;
-        @SerializedName("plannedActivities") public List<PlannedActivity> PlannedActivities = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public FieldTripSimple FieldTrip = null;
+        public PlanningStatusType PlanningStatus = null;
+        public SamplingLocation SamplingLocation = null;
+        public List<PlannedFieldResult> PlannedFieldResults = null;
+        public List<PlannedActivity> PlannedActivities = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutFieldVisit setId(String value) { this.Id = value; return this; }
@@ -952,7 +951,7 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}", Verbs="DELETE")
     public static class DeleteFieldVisit implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteFieldVisit setId(String value) { this.Id = value; return this; }
@@ -961,14 +960,14 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}/activityfromplannedactivity", Verbs="POST")
     public static class PostFieldVisitActivityFromPlannedActivity implements IReturn<Activity>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("instruction") public String Instruction = null;
-        @SerializedName("activityType") public ActivityType ActivityType = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("hashForFieldsThatRequireUniqueness") public String HashForFieldsThatRequireUniqueness = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public String Instruction = null;
+        public ActivityType ActivityType = null;
+        public MediumType Medium = null;
+        public CollectionMethod CollectionMethod = null;
+        public String HashForFieldsThatRequireUniqueness = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostFieldVisitActivityFromPlannedActivity setId(String value) { this.Id = value; return this; }
@@ -993,15 +992,15 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}/activitywithtemplate", Verbs="POST")
     public static class PostFieldVisitActivityWithTemplate implements IReturn<Activity>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("specimenTemplates") public List<SpecimenTemplate> SpecimenTemplates = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public List<SpecimenTemplate> SpecimenTemplates = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String Comment = null;
+        public MediumType Medium = null;
+        public Quantity Depth = null;
+        public CollectionMethod CollectionMethod = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostFieldVisitActivityWithTemplate setId(String value) { this.Id = value; return this; }
@@ -1028,7 +1027,7 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}/attachments", Verbs="GET")
     public static class GetFieldVisitAttachments implements IReturn<SearchResultAttachment>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetFieldVisitAttachments setId(String value) { this.Id = value; return this; }
@@ -1039,7 +1038,7 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits/{id}/statistics", Verbs="GET")
     public static class GetFieldVisitStatistics implements IReturn<FieldVisitStatistics>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetFieldVisitStatistics setId(String value) { this.Id = value; return this; }
@@ -1050,8 +1049,8 @@ public class ServiceModel
     @Route(Path="/v1/labanalysismethods", Verbs="GET")
     public static class GetLabAnalysisMethods implements IReturn<SearchResultLabAnalysisMethod>
     {
-        @SerializedName("context") public String Context = null;
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
+        public String Context = null;
+        public List<String> ObservedPropertyIds = null;
 
         public String getContext() { return Context; }
         public GetLabAnalysisMethods setContext(String value) { this.Context = value; return this; }
@@ -1064,14 +1063,14 @@ public class ServiceModel
     @Route(Path="/v1/labanalysismethods", Verbs="POST")
     public static class PostLabAnalysisMethod implements IReturn<LabAnalysisMethod>
     {
-        @SerializedName("observedProperties") public List<ObservedProperty> ObservedProperties = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("methodId") public String MethodId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("context") public String Context = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public List<ObservedProperty> ObservedProperties = null;
+        public String Id = null;
+        public String MethodId = null;
+        public String Name = null;
+        public String Context = null;
+        public String Description = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public AuditAttributes AuditAttributes = null;
 
         public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
         public PostLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
@@ -1096,7 +1095,7 @@ public class ServiceModel
     @Route(Path="/v1/labanalysismethods/{id}", Verbs="GET")
     public static class GetLabAnalysisMethod implements IReturn<LabAnalysisMethod>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetLabAnalysisMethod setId(String value) { this.Id = value; return this; }
@@ -1107,14 +1106,14 @@ public class ServiceModel
     @Route(Path="/v1/labanalysismethods/{id}", Verbs="PUT")
     public static class PutLabAnalysisMethod implements IReturn<LabAnalysisMethod>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("observedProperties") public List<ObservedProperty> ObservedProperties = null;
-        @SerializedName("methodId") public String MethodId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("context") public String Context = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public List<ObservedProperty> ObservedProperties = null;
+        public String MethodId = null;
+        public String Name = null;
+        public String Context = null;
+        public String Description = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutLabAnalysisMethod setId(String value) { this.Id = value; return this; }
@@ -1139,7 +1138,7 @@ public class ServiceModel
     @Route(Path="/v1/labanalysismethods/{id}", Verbs="DELETE")
     public static class DeleteLabAnalysisMethod implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteLabAnalysisMethod setId(String value) { this.Id = value; return this; }
@@ -1155,15 +1154,15 @@ public class ServiceModel
     @Route(Path="/v1/laboratories", Verbs="POST")
     public static class PostLaboratory implements IReturn<Laboratory>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("address") public String Address = null;
-        @SerializedName("pointOfContact") public String PointOfContact = null;
-        @SerializedName("emailAddress") public String EmailAddress = null;
-        @SerializedName("phoneNumber") public String PhoneNumber = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String Address = null;
+        public String PointOfContact = null;
+        public String EmailAddress = null;
+        public String PhoneNumber = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostLaboratory setId(String value) { this.Id = value; return this; }
@@ -1190,7 +1189,7 @@ public class ServiceModel
     @Route(Path="/v1/laboratories/{id}", Verbs="GET")
     public static class GetLaboratory implements IReturn<Laboratory>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetLaboratory setId(String value) { this.Id = value; return this; }
@@ -1201,15 +1200,15 @@ public class ServiceModel
     @Route(Path="/v1/laboratories/{id}", Verbs="PUT")
     public static class PutLaboratory implements IReturn<Laboratory>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("address") public String Address = null;
-        @SerializedName("pointOfContact") public String PointOfContact = null;
-        @SerializedName("emailAddress") public String EmailAddress = null;
-        @SerializedName("phoneNumber") public String PhoneNumber = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String Address = null;
+        public String PointOfContact = null;
+        public String EmailAddress = null;
+        public String PhoneNumber = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutLaboratory setId(String value) { this.Id = value; return this; }
@@ -1236,7 +1235,7 @@ public class ServiceModel
     @Route(Path="/v1/laboratories/{id}", Verbs="DELETE")
     public static class DeleteLaboratory implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteLaboratory setId(String value) { this.Id = value; return this; }
@@ -1245,10 +1244,10 @@ public class ServiceModel
     @Route(Path="/v1/labreportimporthistoryevents", Verbs="GET")
     public static class GetLabReportImportHistoryEvents implements IReturn<SearchResultLabReportImportHistoryEvent>, IPaginatedRequest
     {
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("labReportIds") public List<String> LabReportIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("sort") public String Sort = null;
+        public String Cursor = null;
+        public List<String> LabReportIds = null;
+        public Integer Limit = null;
+        public String Sort = null;
 
         public String getCursor() { return Cursor; }
         public GetLabReportImportHistoryEvents setCursor(String value) { this.Cursor = value; return this; }
@@ -1265,10 +1264,10 @@ public class ServiceModel
     @Route(Path="/v1/labreports", Verbs="GET")
     public static class GetLabReports implements IReturn<SearchResultLabReport>
     {
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("laboratoryIds") public List<String> LaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("search") public List<String> Search = null;
+        public String CustomId = null;
+        public List<String> LaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
 
         public String getCustomId() { return CustomId; }
         public GetLabReports setCustomId(String value) { this.CustomId = value; return this; }
@@ -1285,15 +1284,15 @@ public class ServiceModel
     @Route(Path="/v1/labreports", Verbs="POST")
     public static class PostLabReport implements IReturn<LabReport>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dateReceived") public Instant DateReceived = null;
-        @SerializedName("caseNarrative") public String CaseNarrative = null;
-        @SerializedName("qcSummary") public String QcSummary = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Instant DateReceived = null;
+        public String CaseNarrative = null;
+        public String QcSummary = null;
+        public Laboratory Laboratory = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostLabReport setId(String value) { this.Id = value; return this; }
@@ -1320,7 +1319,7 @@ public class ServiceModel
     @Route(Path="/v1/labreports/{id}", Verbs="GET")
     public static class GetLabReport implements IReturn<LabReport>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetLabReport setId(String value) { this.Id = value; return this; }
@@ -1331,15 +1330,15 @@ public class ServiceModel
     @Route(Path="/v1/labreports/{id}", Verbs="PUT")
     public static class PutLabReport implements IReturn<LabReport>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dateReceived") public Instant DateReceived = null;
-        @SerializedName("caseNarrative") public String CaseNarrative = null;
-        @SerializedName("qcSummary") public String QcSummary = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Instant DateReceived = null;
+        public String CaseNarrative = null;
+        public String QcSummary = null;
+        public Laboratory Laboratory = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutLabReport setId(String value) { this.Id = value; return this; }
@@ -1366,7 +1365,7 @@ public class ServiceModel
     @Route(Path="/v1/labreports/{id}", Verbs="DELETE")
     public static class DeleteLabReport implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteLabReport setId(String value) { this.Id = value; return this; }
@@ -1375,43 +1374,43 @@ public class ServiceModel
     @Route(Path="/v1/observations", Verbs="GET")
     public static class GetObservations implements IReturn<SearchResultObservation>, IPaginatedRequest
     {
-        @SerializedName("activityCustomId") public String ActivityCustomId = null;
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dataClassifications") public List<String> DataClassifications = null;
-        @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
-        @SerializedName("depthUnitId") public String DepthUnitId = null;
-        @SerializedName("depthValue") public Double DepthValue = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
-        @SerializedName("endObservedTime") public Instant EndObservedTime = null;
-        @SerializedName("endResultTime") public Instant EndResultTime = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("importHistoryEventId") public String ImportHistoryEventId = null;
-        @SerializedName("labReportIds") public List<String> LabReportIds = null;
-        @SerializedName("labResultLabAnalysisMethodIds") public List<String> LabResultLabAnalysisMethodIds = null;
-        @SerializedName("labResultLaboratoryIds") public List<String> LabResultLaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
-        @SerializedName("projectId") public String ProjectId = null;
-        @SerializedName("qualityControlTypes") public List<String> QualityControlTypes = null;
-        @SerializedName("resultGrades") public List<String> ResultGrades = null;
-        @SerializedName("resultStatuses") public List<String> ResultStatuses = null;
-        @SerializedName("sampleFraction") public SampleFractionType SampleFraction = null;
-        @SerializedName("samplingContextTagIds") public List<String> SamplingContextTagIds = null;
-        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenName") public String SpecimenName = null;
-        @SerializedName("startObservedTime") public Instant StartObservedTime = null;
-        @SerializedName("startResultTime") public Instant StartResultTime = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
-        @SerializedName("taxonIds") public List<String> TaxonIds = null;
+        public String ActivityCustomId = null;
+        public List<String> ActivityIds = null;
+        public List<String> AnalyticalGroupIds = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public List<String> DataClassifications = null;
+        public String DepthUnitCustomId = null;
+        public String DepthUnitId = null;
+        public Double DepthValue = null;
+        public DetectionConditionType DetectionCondition = null;
+        public Instant EndObservedTime = null;
+        public Instant EndResultTime = null;
+        public Instant EndModificationTime = null;
+        public String FieldVisitId = null;
+        public String ImportHistoryEventId = null;
+        public List<String> LabReportIds = null;
+        public List<String> LabResultLabAnalysisMethodIds = null;
+        public List<String> LabResultLaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> ObservedPropertyIds = null;
+        public String ProjectId = null;
+        public List<String> QualityControlTypes = null;
+        public List<String> ResultGrades = null;
+        public List<String> ResultStatuses = null;
+        public SampleFractionType SampleFraction = null;
+        public List<String> SamplingContextTagIds = null;
+        public List<String> SamplingLocationGroupIds = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public String SpecimenName = null;
+        public Instant StartObservedTime = null;
+        public Instant StartResultTime = null;
+        public Instant StartModificationTime = null;
+        public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
         public GetObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
@@ -1494,35 +1493,35 @@ public class ServiceModel
     @Route(Path="/v1/observations", Verbs="POST")
     public static class PostObservation implements IReturn<Observation>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("specimen") public Specimen Specimen = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("numericResult") public NumericResult NumericResult = null;
-        @SerializedName("categoricalResult") public CategoricalResult CategoricalResult = null;
-        @SerializedName("taxonomicResult") public TaxonomicResult TaxonomicResult = null;
-        @SerializedName("qualityControlType") public QualityControlType QualityControlType = null;
-        @SerializedName("dataClassification") public DataClassificationType DataClassification = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("mediumSubdivision") public String MediumSubdivision = null;
-        @SerializedName("observedTime") public Instant ObservedTime = null;
-        @SerializedName("resultTime") public Instant ResultTime = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("labInstruction") public LabInstruction LabInstruction = null;
-        @SerializedName("labResultDetails") public LabResultDetails LabResultDetails = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("validationWarnings") public List<RuleValidationDetails> ValidationWarnings = null;
-        @SerializedName("resultGrade") public ResultGrade ResultGrade = null;
-        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
-        @SerializedName("plannedFieldResult") public PlannedFieldResult PlannedFieldResult = null;
-        @SerializedName("relatedTaxon") public Taxon RelatedTaxon = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Activity Activity = null;
+        public CollectionMethod CollectionMethod = null;
+        public ObservedProperty ObservedProperty = null;
+        public Specimen Specimen = null;
+        public SamplingLocation SamplingLocation = null;
+        public NumericResult NumericResult = null;
+        public CategoricalResult CategoricalResult = null;
+        public TaxonomicResult TaxonomicResult = null;
+        public QualityControlType QualityControlType = null;
+        public DataClassificationType DataClassification = null;
+        public MediumType Medium = null;
+        public String MediumSubdivision = null;
+        public Instant ObservedTime = null;
+        public Instant ResultTime = null;
+        public Quantity Depth = null;
+        public LabInstruction LabInstruction = null;
+        public LabResultDetails LabResultDetails = null;
+        public String Comment = null;
+        public FieldVisit FieldVisit = null;
+        public Device Device = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<RuleValidationDetails> ValidationWarnings = null;
+        public ResultGrade ResultGrade = null;
+        public ResultStatus ResultStatus = null;
+        public PlannedFieldResult PlannedFieldResult = null;
+        public Taxon RelatedTaxon = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostObservation setId(String value) { this.Id = value; return this; }
@@ -1589,43 +1588,43 @@ public class ServiceModel
     @Route(Path="/v1/observations", Verbs="DELETE")
     public static class DeleteObservations implements IReturnVoid
     {
-        @SerializedName("activityCustomId") public String ActivityCustomId = null;
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dataClassifications") public List<String> DataClassifications = null;
-        @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
-        @SerializedName("depthUnitId") public String DepthUnitId = null;
-        @SerializedName("depthValue") public Double DepthValue = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
-        @SerializedName("endObservedTime") public Instant EndObservedTime = null;
-        @SerializedName("endResultTime") public Instant EndResultTime = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("importHistoryEventId") public String ImportHistoryEventId = null;
-        @SerializedName("labReportIds") public List<String> LabReportIds = null;
-        @SerializedName("labResultLabAnalysisMethodIds") public List<String> LabResultLabAnalysisMethodIds = null;
-        @SerializedName("labResultLaboratoryIds") public List<String> LabResultLaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
-        @SerializedName("projectId") public String ProjectId = null;
-        @SerializedName("qualityControlTypes") public List<String> QualityControlTypes = null;
-        @SerializedName("resultGrades") public List<String> ResultGrades = null;
-        @SerializedName("resultStatuses") public List<String> ResultStatuses = null;
-        @SerializedName("sampleFraction") public SampleFractionType SampleFraction = null;
-        @SerializedName("samplingContextTagIds") public List<String> SamplingContextTagIds = null;
-        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenName") public String SpecimenName = null;
-        @SerializedName("startObservedTime") public Instant StartObservedTime = null;
-        @SerializedName("startResultTime") public Instant StartResultTime = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
-        @SerializedName("taxonIds") public List<String> TaxonIds = null;
+        public String ActivityCustomId = null;
+        public List<String> ActivityIds = null;
+        public List<String> AnalyticalGroupIds = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public List<String> DataClassifications = null;
+        public String DepthUnitCustomId = null;
+        public String DepthUnitId = null;
+        public Double DepthValue = null;
+        public DetectionConditionType DetectionCondition = null;
+        public Instant EndObservedTime = null;
+        public Instant EndResultTime = null;
+        public Instant EndModificationTime = null;
+        public String FieldVisitId = null;
+        public String ImportHistoryEventId = null;
+        public List<String> LabReportIds = null;
+        public List<String> LabResultLabAnalysisMethodIds = null;
+        public List<String> LabResultLaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> ObservedPropertyIds = null;
+        public String ProjectId = null;
+        public List<String> QualityControlTypes = null;
+        public List<String> ResultGrades = null;
+        public List<String> ResultStatuses = null;
+        public SampleFractionType SampleFraction = null;
+        public List<String> SamplingContextTagIds = null;
+        public List<String> SamplingLocationGroupIds = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public String SpecimenName = null;
+        public Instant StartObservedTime = null;
+        public Instant StartResultTime = null;
+        public Instant StartModificationTime = null;
+        public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
         public DeleteObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
@@ -1706,7 +1705,7 @@ public class ServiceModel
     @Route(Path="/v1/observations/{id}", Verbs="GET")
     public static class GetObservation implements IReturn<Observation>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetObservation setId(String value) { this.Id = value; return this; }
@@ -1717,35 +1716,35 @@ public class ServiceModel
     @Route(Path="/v1/observations/{id}", Verbs="PUT")
     public static class PutObservation implements IReturn<Observation>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("specimen") public Specimen Specimen = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("numericResult") public NumericResult NumericResult = null;
-        @SerializedName("categoricalResult") public CategoricalResult CategoricalResult = null;
-        @SerializedName("taxonomicResult") public TaxonomicResult TaxonomicResult = null;
-        @SerializedName("qualityControlType") public QualityControlType QualityControlType = null;
-        @SerializedName("dataClassification") public DataClassificationType DataClassification = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("mediumSubdivision") public String MediumSubdivision = null;
-        @SerializedName("observedTime") public Instant ObservedTime = null;
-        @SerializedName("resultTime") public Instant ResultTime = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("labInstruction") public LabInstruction LabInstruction = null;
-        @SerializedName("labResultDetails") public LabResultDetails LabResultDetails = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("validationWarnings") public List<RuleValidationDetails> ValidationWarnings = null;
-        @SerializedName("resultGrade") public ResultGrade ResultGrade = null;
-        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
-        @SerializedName("plannedFieldResult") public PlannedFieldResult PlannedFieldResult = null;
-        @SerializedName("relatedTaxon") public Taxon RelatedTaxon = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Activity Activity = null;
+        public CollectionMethod CollectionMethod = null;
+        public ObservedProperty ObservedProperty = null;
+        public Specimen Specimen = null;
+        public SamplingLocation SamplingLocation = null;
+        public NumericResult NumericResult = null;
+        public CategoricalResult CategoricalResult = null;
+        public TaxonomicResult TaxonomicResult = null;
+        public QualityControlType QualityControlType = null;
+        public DataClassificationType DataClassification = null;
+        public MediumType Medium = null;
+        public String MediumSubdivision = null;
+        public Instant ObservedTime = null;
+        public Instant ResultTime = null;
+        public Quantity Depth = null;
+        public LabInstruction LabInstruction = null;
+        public LabResultDetails LabResultDetails = null;
+        public String Comment = null;
+        public FieldVisit FieldVisit = null;
+        public Device Device = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<RuleValidationDetails> ValidationWarnings = null;
+        public ResultGrade ResultGrade = null;
+        public ResultStatus ResultStatus = null;
+        public PlannedFieldResult PlannedFieldResult = null;
+        public Taxon RelatedTaxon = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutObservation setId(String value) { this.Id = value; return this; }
@@ -1812,7 +1811,7 @@ public class ServiceModel
     @Route(Path="/v1/observations/{id}", Verbs="DELETE")
     public static class DeleteObservation implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteObservation setId(String value) { this.Id = value; return this; }
@@ -1821,43 +1820,43 @@ public class ServiceModel
     @Route(Path="/v1/observations/charts", Verbs="GET")
     public static class GetChartData implements IReturn<MultiChartData>
     {
-        @SerializedName("activityCustomId") public String ActivityCustomId = null;
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dataClassifications") public List<String> DataClassifications = null;
-        @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
-        @SerializedName("depthUnitId") public String DepthUnitId = null;
-        @SerializedName("depthValue") public Double DepthValue = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
-        @SerializedName("endObservedTime") public Instant EndObservedTime = null;
-        @SerializedName("endResultTime") public Instant EndResultTime = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("importHistoryEventId") public String ImportHistoryEventId = null;
-        @SerializedName("labReportIds") public List<String> LabReportIds = null;
-        @SerializedName("labResultLabAnalysisMethodIds") public List<String> LabResultLabAnalysisMethodIds = null;
-        @SerializedName("labResultLaboratoryIds") public List<String> LabResultLaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
-        @SerializedName("projectId") public String ProjectId = null;
-        @SerializedName("qualityControlTypes") public List<String> QualityControlTypes = null;
-        @SerializedName("resultGrades") public List<String> ResultGrades = null;
-        @SerializedName("resultStatuses") public List<String> ResultStatuses = null;
-        @SerializedName("sampleFraction") public SampleFractionType SampleFraction = null;
-        @SerializedName("samplingContextTagIds") public List<String> SamplingContextTagIds = null;
-        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenName") public String SpecimenName = null;
-        @SerializedName("startObservedTime") public Instant StartObservedTime = null;
-        @SerializedName("startResultTime") public Instant StartResultTime = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
-        @SerializedName("taxonIds") public List<String> TaxonIds = null;
+        public String ActivityCustomId = null;
+        public List<String> ActivityIds = null;
+        public List<String> AnalyticalGroupIds = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public List<String> DataClassifications = null;
+        public String DepthUnitCustomId = null;
+        public String DepthUnitId = null;
+        public Double DepthValue = null;
+        public DetectionConditionType DetectionCondition = null;
+        public Instant EndObservedTime = null;
+        public Instant EndResultTime = null;
+        public Instant EndModificationTime = null;
+        public String FieldVisitId = null;
+        public String ImportHistoryEventId = null;
+        public List<String> LabReportIds = null;
+        public List<String> LabResultLabAnalysisMethodIds = null;
+        public List<String> LabResultLaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> ObservedPropertyIds = null;
+        public String ProjectId = null;
+        public List<String> QualityControlTypes = null;
+        public List<String> ResultGrades = null;
+        public List<String> ResultStatuses = null;
+        public SampleFractionType SampleFraction = null;
+        public List<String> SamplingContextTagIds = null;
+        public List<String> SamplingLocationGroupIds = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public String SpecimenName = null;
+        public Instant StartObservedTime = null;
+        public Instant StartResultTime = null;
+        public Instant StartModificationTime = null;
+        public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
         public GetChartData setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
@@ -1940,43 +1939,43 @@ public class ServiceModel
     @Route(Path="/v1/observations/geographic", Verbs="GET")
     public static class GetGroupedObservations implements IReturn<SearchResultLocationObservationsGroup>, IPaginatedRequest
     {
-        @SerializedName("activityCustomId") public String ActivityCustomId = null;
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dataClassifications") public List<String> DataClassifications = null;
-        @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
-        @SerializedName("depthUnitId") public String DepthUnitId = null;
-        @SerializedName("depthValue") public Double DepthValue = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
-        @SerializedName("endObservedTime") public Instant EndObservedTime = null;
-        @SerializedName("endResultTime") public Instant EndResultTime = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("importHistoryEventId") public String ImportHistoryEventId = null;
-        @SerializedName("labReportIds") public List<String> LabReportIds = null;
-        @SerializedName("labResultLabAnalysisMethodIds") public List<String> LabResultLabAnalysisMethodIds = null;
-        @SerializedName("labResultLaboratoryIds") public List<String> LabResultLaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
-        @SerializedName("projectId") public String ProjectId = null;
-        @SerializedName("qualityControlTypes") public List<String> QualityControlTypes = null;
-        @SerializedName("resultGrades") public List<String> ResultGrades = null;
-        @SerializedName("resultStatuses") public List<String> ResultStatuses = null;
-        @SerializedName("sampleFraction") public SampleFractionType SampleFraction = null;
-        @SerializedName("samplingContextTagIds") public List<String> SamplingContextTagIds = null;
-        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenName") public String SpecimenName = null;
-        @SerializedName("startObservedTime") public Instant StartObservedTime = null;
-        @SerializedName("startResultTime") public Instant StartResultTime = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
-        @SerializedName("taxonIds") public List<String> TaxonIds = null;
+        public String ActivityCustomId = null;
+        public List<String> ActivityIds = null;
+        public List<String> AnalyticalGroupIds = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public List<String> DataClassifications = null;
+        public String DepthUnitCustomId = null;
+        public String DepthUnitId = null;
+        public Double DepthValue = null;
+        public DetectionConditionType DetectionCondition = null;
+        public Instant EndObservedTime = null;
+        public Instant EndResultTime = null;
+        public Instant EndModificationTime = null;
+        public String FieldVisitId = null;
+        public String ImportHistoryEventId = null;
+        public List<String> LabReportIds = null;
+        public List<String> LabResultLabAnalysisMethodIds = null;
+        public List<String> LabResultLaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> ObservedPropertyIds = null;
+        public String ProjectId = null;
+        public List<String> QualityControlTypes = null;
+        public List<String> ResultGrades = null;
+        public List<String> ResultStatuses = null;
+        public SampleFractionType SampleFraction = null;
+        public List<String> SamplingContextTagIds = null;
+        public List<String> SamplingLocationGroupIds = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public String SpecimenName = null;
+        public Instant StartObservedTime = null;
+        public Instant StartResultTime = null;
+        public Instant StartModificationTime = null;
+        public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
         public GetGroupedObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
@@ -2059,11 +2058,11 @@ public class ServiceModel
     @Route(Path="/v1/observedproperties", Verbs="GET")
     public static class GetObservedProperties implements IReturn<SearchResultObservedProperty>
     {
-        @SerializedName("analysisTypes") public List<String> AnalysisTypes = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("resultTypes") public List<String> ResultTypes = null;
-        @SerializedName("search") public List<String> Search = null;
+        public List<String> AnalysisTypes = null;
+        public String CustomId = null;
+        public Integer Limit = null;
+        public List<String> ResultTypes = null;
+        public List<String> Search = null;
 
         public List<String> getAnalysisTypes() { return AnalysisTypes; }
         public GetObservedProperties setAnalysisTypes(List<String> value) { this.AnalysisTypes = value; return this; }
@@ -2082,19 +2081,19 @@ public class ServiceModel
     @Route(Path="/v1/observedproperties", Verbs="POST")
     public static class PostObservedProperty implements IReturn<ObservedProperty>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("resultType") public ResultType ResultType = null;
-        @SerializedName("analysisType") public AnalysisType AnalysisType = null;
-        @SerializedName("unitGroup") public UnitGroup UnitGroup = null;
-        @SerializedName("defaultUnit") public Unit DefaultUnit = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("casNumber") public String CasNumber = null;
-        @SerializedName("lowerLimit") public Quantity LowerLimit = null;
-        @SerializedName("upperLimit") public Quantity UpperLimit = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public ResultType ResultType = null;
+        public AnalysisType AnalysisType = null;
+        public UnitGroup UnitGroup = null;
+        public Unit DefaultUnit = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public String CasNumber = null;
+        public Quantity LowerLimit = null;
+        public Quantity UpperLimit = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostObservedProperty setId(String value) { this.Id = value; return this; }
@@ -2129,7 +2128,7 @@ public class ServiceModel
     @Route(Path="/v1/observedproperties/{id}", Verbs="GET")
     public static class GetObservedProperty implements IReturn<ObservedProperty>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetObservedProperty setId(String value) { this.Id = value; return this; }
@@ -2140,19 +2139,19 @@ public class ServiceModel
     @Route(Path="/v1/observedproperties/{id}", Verbs="PUT")
     public static class PutObservedProperty implements IReturn<ObservedProperty>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("resultType") public ResultType ResultType = null;
-        @SerializedName("analysisType") public AnalysisType AnalysisType = null;
-        @SerializedName("unitGroup") public UnitGroup UnitGroup = null;
-        @SerializedName("defaultUnit") public Unit DefaultUnit = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("casNumber") public String CasNumber = null;
-        @SerializedName("lowerLimit") public Quantity LowerLimit = null;
-        @SerializedName("upperLimit") public Quantity UpperLimit = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public ResultType ResultType = null;
+        public AnalysisType AnalysisType = null;
+        public UnitGroup UnitGroup = null;
+        public Unit DefaultUnit = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public String CasNumber = null;
+        public Quantity LowerLimit = null;
+        public Quantity UpperLimit = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutObservedProperty setId(String value) { this.Id = value; return this; }
@@ -2187,7 +2186,7 @@ public class ServiceModel
     @Route(Path="/v1/observedproperties/{id}", Verbs="DELETE")
     public static class DeleteObservedProperty implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteObservedProperty setId(String value) { this.Id = value; return this; }
@@ -2203,18 +2202,18 @@ public class ServiceModel
     @Route(Path="/v1/projects", Verbs="POST")
     public static class PostProject implements IReturn<Project>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ProjectType Type = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("scopeStatement") public String ScopeStatement = null;
-        @SerializedName("approved") public Boolean Approved = null;
-        @SerializedName("approvalAgency") public String ApprovalAgency = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("filter") public Filter Filter = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ProjectType Type = null;
+        public String Name = null;
+        public String Description = null;
+        public String ScopeStatement = null;
+        public Boolean Approved = null;
+        public String ApprovalAgency = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public Filter Filter = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostProject setId(String value) { this.Id = value; return this; }
@@ -2247,7 +2246,7 @@ public class ServiceModel
     @Route(Path="/v1/projects/{id}", Verbs="GET")
     public static class GetProject implements IReturn<Project>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetProject setId(String value) { this.Id = value; return this; }
@@ -2258,18 +2257,18 @@ public class ServiceModel
     @Route(Path="/v1/projects/{id}", Verbs="PUT")
     public static class PutProject implements IReturn<Project>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ProjectType Type = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("scopeStatement") public String ScopeStatement = null;
-        @SerializedName("approved") public Boolean Approved = null;
-        @SerializedName("approvalAgency") public String ApprovalAgency = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("filter") public Filter Filter = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ProjectType Type = null;
+        public String Name = null;
+        public String Description = null;
+        public String ScopeStatement = null;
+        public Boolean Approved = null;
+        public String ApprovalAgency = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public Filter Filter = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutProject setId(String value) { this.Id = value; return this; }
@@ -2302,7 +2301,7 @@ public class ServiceModel
     @Route(Path="/v1/projects/{id}", Verbs="DELETE")
     public static class DeleteProject implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteProject setId(String value) { this.Id = value; return this; }
@@ -2346,10 +2345,10 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocationgroups", Verbs="POST")
     public static class PostSamplingLocationGroup implements IReturn<SamplingLocationGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostSamplingLocationGroup setId(String value) { this.Id = value; return this; }
@@ -2366,7 +2365,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocationgroups/{id}", Verbs="GET")
     public static class GetSamplingLocationGroup implements IReturn<SamplingLocationGroup>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetSamplingLocationGroup setId(String value) { this.Id = value; return this; }
@@ -2377,10 +2376,10 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocationgroups/{id}", Verbs="PUT")
     public static class PutSamplingLocationGroup implements IReturn<SamplingLocationGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutSamplingLocationGroup setId(String value) { this.Id = value; return this; }
@@ -2397,7 +2396,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocationgroups/{id}", Verbs="DELETE")
     public static class DeleteSamplingLocationGroup implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteSamplingLocationGroup setId(String value) { this.Id = value; return this; }
@@ -2406,14 +2405,14 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations", Verbs="GET")
     public static class GetSamplingLocations implements IReturn<SearchResultSamplingLocation>, IPaginatedRequest
     {
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public Instant EndModificationTime = null;
+        public Integer Limit = null;
+        public List<String> SamplingLocationGroupIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public Instant StartModificationTime = null;
 
         public String getCursor() { return Cursor; }
         public GetSamplingLocations setCursor(String value) { this.Cursor = value; return this; }
@@ -2438,25 +2437,25 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations", Verbs="POST")
     public static class PostSamplingLocation implements IReturn<SamplingLocation>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("type") public LocationType Type = null;
-        @SerializedName("latitude") public String Latitude = null;
-        @SerializedName("longitude") public String Longitude = null;
-        @SerializedName("horizontalDatum") public String HorizontalDatum = null;
-        @SerializedName("verticalDatum") public String VerticalDatum = null;
-        @SerializedName("horizontalCollectionMethod") public String HorizontalCollectionMethod = null;
-        @SerializedName("verticalCollectionMethod") public String VerticalCollectionMethod = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("address") public Address Address = null;
-        @SerializedName("elevation") public Quantity Elevation = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("standards") public List<StandardSimple> Standards = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("extendedAttributes") public List<ExtendedAttribute> ExtendedAttributes = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public LocationType Type = null;
+        public String Latitude = null;
+        public String Longitude = null;
+        public String HorizontalDatum = null;
+        public String VerticalDatum = null;
+        public String HorizontalCollectionMethod = null;
+        public String VerticalCollectionMethod = null;
+        public String Description = null;
+        public Address Address = null;
+        public Quantity Elevation = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<StandardSimple> Standards = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
+        public List<ExtendedAttribute> ExtendedAttributes = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostSamplingLocation setId(String value) { this.Id = value; return this; }
@@ -2503,7 +2502,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations/{id}", Verbs="GET")
     public static class GetSamplingLocation implements IReturn<SamplingLocation>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetSamplingLocation setId(String value) { this.Id = value; return this; }
@@ -2514,25 +2513,25 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations/{id}", Verbs="PUT")
     public static class PutSamplingLocation implements IReturn<SamplingLocation>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("type") public LocationType Type = null;
-        @SerializedName("latitude") public String Latitude = null;
-        @SerializedName("longitude") public String Longitude = null;
-        @SerializedName("horizontalDatum") public String HorizontalDatum = null;
-        @SerializedName("verticalDatum") public String VerticalDatum = null;
-        @SerializedName("horizontalCollectionMethod") public String HorizontalCollectionMethod = null;
-        @SerializedName("verticalCollectionMethod") public String VerticalCollectionMethod = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("address") public Address Address = null;
-        @SerializedName("elevation") public Quantity Elevation = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("standards") public List<StandardSimple> Standards = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("extendedAttributes") public List<ExtendedAttribute> ExtendedAttributes = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public LocationType Type = null;
+        public String Latitude = null;
+        public String Longitude = null;
+        public String HorizontalDatum = null;
+        public String VerticalDatum = null;
+        public String HorizontalCollectionMethod = null;
+        public String VerticalCollectionMethod = null;
+        public String Description = null;
+        public Address Address = null;
+        public Quantity Elevation = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<StandardSimple> Standards = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
+        public List<ExtendedAttribute> ExtendedAttributes = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutSamplingLocation setId(String value) { this.Id = value; return this; }
@@ -2579,7 +2578,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations/{id}", Verbs="DELETE")
     public static class DeleteSamplingLocation implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteSamplingLocation setId(String value) { this.Id = value; return this; }
@@ -2588,7 +2587,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations/{id}/attachments", Verbs="GET")
     public static class GetSamplingLocationAttachments implements IReturn<SearchResultAttachment>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetSamplingLocationAttachments setId(String value) { this.Id = value; return this; }
@@ -2599,7 +2598,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations/{id}/canedit", Verbs="GET")
     public static class GetSamplingLocationCanEdit implements IReturn<Boolean>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetSamplingLocationCanEdit setId(String value) { this.Id = value; return this; }
@@ -2610,7 +2609,7 @@ public class ServiceModel
     @Route(Path="/v1/samplinglocations/{id}/summary", Verbs="GET")
     public static class GetSamplingLocationSummary implements IReturn<SamplingLocationSummary>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetSamplingLocationSummary setId(String value) { this.Id = value; return this; }
@@ -2635,7 +2634,7 @@ public class ServiceModel
     @Route(Path="/v1/services/export/fieldsheets/{fieldVisitId}", Verbs="GET")
     public static class GetExportFieldSheet implements IReturnVoid
     {
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
+        public String FieldVisitId = null;
 
         public String getFieldVisitId() { return FieldVisitId; }
         public GetExportFieldSheet setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
@@ -2644,44 +2643,44 @@ public class ServiceModel
     @Route(Path="/v1/services/export/observations", Verbs="GET")
     public static class GetExportObservations implements IReturnVoid
     {
-        @SerializedName("format") public FormatType Format = null;
-        @SerializedName("activityCustomId") public String ActivityCustomId = null;
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("collectionMethodIds") public List<String> CollectionMethodIds = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dataClassifications") public List<String> DataClassifications = null;
-        @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
-        @SerializedName("depthUnitId") public String DepthUnitId = null;
-        @SerializedName("depthValue") public Double DepthValue = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
-        @SerializedName("endObservedTime") public Instant EndObservedTime = null;
-        @SerializedName("endResultTime") public Instant EndResultTime = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldVisitId") public String FieldVisitId = null;
-        @SerializedName("importHistoryEventId") public String ImportHistoryEventId = null;
-        @SerializedName("labReportIds") public List<String> LabReportIds = null;
-        @SerializedName("labResultLabAnalysisMethodIds") public List<String> LabResultLabAnalysisMethodIds = null;
-        @SerializedName("labResultLaboratoryIds") public List<String> LabResultLaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("media") public List<String> Media = null;
-        @SerializedName("observedPropertyIds") public List<String> ObservedPropertyIds = null;
-        @SerializedName("projectId") public String ProjectId = null;
-        @SerializedName("qualityControlTypes") public List<String> QualityControlTypes = null;
-        @SerializedName("resultGrades") public List<String> ResultGrades = null;
-        @SerializedName("resultStatuses") public List<String> ResultStatuses = null;
-        @SerializedName("sampleFraction") public SampleFractionType SampleFraction = null;
-        @SerializedName("samplingContextTagIds") public List<String> SamplingContextTagIds = null;
-        @SerializedName("samplingLocationGroupIds") public List<String> SamplingLocationGroupIds = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenName") public String SpecimenName = null;
-        @SerializedName("startObservedTime") public Instant StartObservedTime = null;
-        @SerializedName("startResultTime") public Instant StartResultTime = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
-        @SerializedName("taxonIds") public List<String> TaxonIds = null;
+        public FormatType Format = null;
+        public String ActivityCustomId = null;
+        public List<String> ActivityIds = null;
+        public List<String> AnalyticalGroupIds = null;
+        public List<String> CollectionMethodIds = null;
+        public String Cursor = null;
+        public String CustomId = null;
+        public List<String> DataClassifications = null;
+        public String DepthUnitCustomId = null;
+        public String DepthUnitId = null;
+        public Double DepthValue = null;
+        public DetectionConditionType DetectionCondition = null;
+        public Instant EndObservedTime = null;
+        public Instant EndResultTime = null;
+        public Instant EndModificationTime = null;
+        public String FieldVisitId = null;
+        public String ImportHistoryEventId = null;
+        public List<String> LabReportIds = null;
+        public List<String> LabResultLabAnalysisMethodIds = null;
+        public List<String> LabResultLaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> Media = null;
+        public List<String> ObservedPropertyIds = null;
+        public String ProjectId = null;
+        public List<String> QualityControlTypes = null;
+        public List<String> ResultGrades = null;
+        public List<String> ResultStatuses = null;
+        public SampleFractionType SampleFraction = null;
+        public List<String> SamplingContextTagIds = null;
+        public List<String> SamplingLocationGroupIds = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public String SpecimenName = null;
+        public Instant StartObservedTime = null;
+        public Instant StartResultTime = null;
+        public Instant StartModificationTime = null;
+        public List<String> TaxonIds = null;
 
         public FormatType getFormat() { return Format; }
         public GetExportObservations setFormat(FormatType value) { this.Format = value; return this; }
@@ -2764,21 +2763,21 @@ public class ServiceModel
     @Route(Path="/v1/services/export/specimens", Verbs="GET")
     public static class GetExportSpecimens implements IReturnVoid
     {
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("activityTypes") public List<String> ActivityTypes = null;
-        @SerializedName("after") public Instant After = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("before") public Instant Before = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldTripIds") public List<String> FieldTripIds = null;
-        @SerializedName("laboratoryIds") public List<String> LaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenStatuses") public List<String> SpecimenStatuses = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
+        public List<String> ActivityIds = null;
+        public List<String> ActivityTypes = null;
+        public Instant After = null;
+        public List<String> AnalyticalGroupIds = null;
+        public Instant Before = null;
+        public String Cursor = null;
+        public Instant EndModificationTime = null;
+        public List<String> FieldTripIds = null;
+        public List<String> LaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public List<String> SpecimenStatuses = null;
+        public Instant StartModificationTime = null;
 
         public List<String> getActivityIds() { return ActivityIds; }
         public GetExportSpecimens setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
@@ -2815,7 +2814,7 @@ public class ServiceModel
     @Route(Path="/v1/services/import/fieldsheets", Verbs="POST")
     public static class PostImportFieldSheet implements IReturn<FieldSheetImportSummary>
     {
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
+        public String TimeZoneOffset = null;
 
         public String getTimeZoneOffset() { return TimeZoneOffset; }
         public PostImportFieldSheet setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
@@ -2826,7 +2825,7 @@ public class ServiceModel
     @Route(Path="/v1/services/import/fieldsheets/dryrun", Verbs="POST")
     public static class PostImportFieldSheetDryRun implements IReturn<FieldSheetImportSummary>
     {
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
+        public String TimeZoneOffset = null;
 
         public String getTimeZoneOffset() { return TimeZoneOffset; }
         public PostImportFieldSheetDryRun setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
@@ -2851,10 +2850,10 @@ public class ServiceModel
     @Route(Path="/v1/services/import/labreportdata", Verbs="POST")
     public static class PostImportLabReportData implements IReturn<ObservationImportSummary>
     {
-        @SerializedName("fileType") public String FileType = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
-        @SerializedName("createMissingObjects") public Boolean CreateMissingObjects = null;
-        @SerializedName("updateExistingResults") public Boolean UpdateExistingResults = null;
+        public String FileType = null;
+        public String TimeZoneOffset = null;
+        public Boolean CreateMissingObjects = null;
+        public Boolean UpdateExistingResults = null;
 
         public String getFileType() { return FileType; }
         public PostImportLabReportData setFileType(String value) { this.FileType = value; return this; }
@@ -2871,10 +2870,10 @@ public class ServiceModel
     @Route(Path="/v1/services/import/labreportdata/dryrun", Verbs="POST")
     public static class PostImportLabReportDataDryRun implements IReturn<ObservationImportSummary>
     {
-        @SerializedName("fileType") public String FileType = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
-        @SerializedName("createMissingObjects") public Boolean CreateMissingObjects = null;
-        @SerializedName("updateExistingResults") public Boolean UpdateExistingResults = null;
+        public String FileType = null;
+        public String TimeZoneOffset = null;
+        public Boolean CreateMissingObjects = null;
+        public Boolean UpdateExistingResults = null;
 
         public String getFileType() { return FileType; }
         public PostImportLabReportDataDryRun setFileType(String value) { this.FileType = value; return this; }
@@ -2891,9 +2890,9 @@ public class ServiceModel
     @Route(Path="/v1/services/import/observations", Verbs="POST")
     public static class PostImportObservations implements IReturn<ObservationImportSummary>
     {
-        @SerializedName("fileType") public String FileType = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
-        @SerializedName("linkFieldVisitsForNewObservations") public Boolean LinkFieldVisitsForNewObservations = null;
+        public String FileType = null;
+        public String TimeZoneOffset = null;
+        public Boolean LinkFieldVisitsForNewObservations = null;
 
         public String getFileType() { return FileType; }
         public PostImportObservations setFileType(String value) { this.FileType = value; return this; }
@@ -2908,9 +2907,9 @@ public class ServiceModel
     @Route(Path="/v1/services/import/observations/dryrun", Verbs="POST")
     public static class PostImportObservationsDryRun implements IReturn<ObservationImportSummary>
     {
-        @SerializedName("fileType") public String FileType = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
-        @SerializedName("linkFieldVisitsForNewObservations") public Boolean LinkFieldVisitsForNewObservations = null;
+        public String FileType = null;
+        public String TimeZoneOffset = null;
+        public Boolean LinkFieldVisitsForNewObservations = null;
 
         public String getFileType() { return FileType; }
         public PostImportObservationsDryRun setFileType(String value) { this.FileType = value; return this; }
@@ -2939,7 +2938,7 @@ public class ServiceModel
     @Route(Path="/v1/services/import/samplinglocations", Verbs="POST")
     public static class PostImportSamplingLocations implements IReturn<SamplingLocationImportSummary>
     {
-        @SerializedName("fileType") public String FileType = null;
+        public String FileType = null;
 
         public String getFileType() { return FileType; }
         public PostImportSamplingLocations setFileType(String value) { this.FileType = value; return this; }
@@ -2950,7 +2949,7 @@ public class ServiceModel
     @Route(Path="/v1/services/import/samplinglocations/dryrun", Verbs="POST")
     public static class PostImportSamplingLocationsDryRun implements IReturn<SamplingLocationImportSummary>
     {
-        @SerializedName("fileType") public String FileType = null;
+        public String FileType = null;
 
         public String getFileType() { return FileType; }
         public PostImportSamplingLocationsDryRun setFileType(String value) { this.FileType = value; return this; }
@@ -2961,7 +2960,7 @@ public class ServiceModel
     @Route(Path="/v1/services/import/samplingplan", Verbs="POST")
     public static class PostImportSamplingPlan implements IReturn<FieldSheetImportSummary>
     {
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
+        public String TimeZoneOffset = null;
 
         public String getTimeZoneOffset() { return TimeZoneOffset; }
         public PostImportSamplingPlan setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
@@ -2972,7 +2971,7 @@ public class ServiceModel
     @Route(Path="/v1/services/import/samplingplan/dryrun", Verbs="POST")
     public static class PostImportSamplingPlanDryRun implements IReturn<FieldSheetImportSummary>
     {
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
+        public String TimeZoneOffset = null;
 
         public String getTimeZoneOffset() { return TimeZoneOffset; }
         public PostImportSamplingPlanDryRun setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
@@ -2997,9 +2996,9 @@ public class ServiceModel
     @Route(Path="/v1/services/import/verticalprofiledata", Verbs="POST")
     public static class PostImportVerticalProfileData implements IReturnVoid
     {
-        @SerializedName("activityId") public String ActivityId = null;
-        @SerializedName("samplingLocationIds") public String SamplingLocationIds = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
+        public String ActivityId = null;
+        public String SamplingLocationIds = null;
+        public String TimeZoneOffset = null;
 
         public String getActivityId() { return ActivityId; }
         public PostImportVerticalProfileData setActivityId(String value) { this.ActivityId = value; return this; }
@@ -3012,8 +3011,8 @@ public class ServiceModel
     @Route(Path="/v1/shippingcontainers", Verbs="GET")
     public static class GetShippingContainers implements IReturn<SearchResultShippingContainer>
     {
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("search") public List<String> Search = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
 
         public Integer getLimit() { return Limit; }
         public GetShippingContainers setLimit(Integer value) { this.Limit = value; return this; }
@@ -3026,11 +3025,11 @@ public class ServiceModel
     @Route(Path="/v1/shippingcontainers", Verbs="POST")
     public static class PostShippingContainer implements IReturn<ShippingContainer>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("trackingId") public String TrackingId = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String TrackingId = null;
+        public String Comment = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostShippingContainer setId(String value) { this.Id = value; return this; }
@@ -3049,7 +3048,7 @@ public class ServiceModel
     @Route(Path="/v1/shippingcontainers/{id}", Verbs="GET")
     public static class GetShippingContainer implements IReturn<ShippingContainer>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetShippingContainer setId(String value) { this.Id = value; return this; }
@@ -3060,11 +3059,11 @@ public class ServiceModel
     @Route(Path="/v1/shippingcontainers/{id}", Verbs="PUT")
     public static class PutShippingContainer implements IReturn<ShippingContainer>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("trackingId") public String TrackingId = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String TrackingId = null;
+        public String Comment = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutShippingContainer setId(String value) { this.Id = value; return this; }
@@ -3083,7 +3082,7 @@ public class ServiceModel
     @Route(Path="/v1/shippingcontainers/{id}", Verbs="DELETE")
     public static class DeleteShippingContainer implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteShippingContainer setId(String value) { this.Id = value; return this; }
@@ -3092,21 +3091,21 @@ public class ServiceModel
     @Route(Path="/v1/specimens", Verbs="GET")
     public static class GetSpecimens implements IReturn<SearchResultSpecimen>, IPaginatedRequest
     {
-        @SerializedName("activityIds") public List<String> ActivityIds = null;
-        @SerializedName("activityTypes") public List<String> ActivityTypes = null;
-        @SerializedName("after") public Instant After = null;
-        @SerializedName("analyticalGroupIds") public List<String> AnalyticalGroupIds = null;
-        @SerializedName("before") public Instant Before = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("endModificationTime") public Instant EndModificationTime = null;
-        @SerializedName("fieldTripIds") public List<String> FieldTripIds = null;
-        @SerializedName("laboratoryIds") public List<String> LaboratoryIds = null;
-        @SerializedName("limit") public Integer Limit = null;
-        @SerializedName("samplingLocationIds") public List<String> SamplingLocationIds = null;
-        @SerializedName("search") public List<String> Search = null;
-        @SerializedName("sort") public String Sort = null;
-        @SerializedName("specimenStatuses") public List<String> SpecimenStatuses = null;
-        @SerializedName("startModificationTime") public Instant StartModificationTime = null;
+        public List<String> ActivityIds = null;
+        public List<String> ActivityTypes = null;
+        public Instant After = null;
+        public List<String> AnalyticalGroupIds = null;
+        public Instant Before = null;
+        public String Cursor = null;
+        public Instant EndModificationTime = null;
+        public List<String> FieldTripIds = null;
+        public List<String> LaboratoryIds = null;
+        public Integer Limit = null;
+        public List<String> SamplingLocationIds = null;
+        public List<String> Search = null;
+        public String Sort = null;
+        public List<String> SpecimenStatuses = null;
+        public Instant StartModificationTime = null;
 
         public List<String> getActivityIds() { return ActivityIds; }
         public GetSpecimens setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
@@ -3145,20 +3144,20 @@ public class ServiceModel
     @Route(Path="/v1/specimens", Verbs="POST")
     public static class PostSpecimen implements IReturn<SpecimenWithObservations>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("preservative") public PreservativeType Preservative = null;
-        @SerializedName("filtered") public Boolean Filtered = null;
-        @SerializedName("filtrationComment") public String FiltrationComment = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("shippingContainer") public ShippingContainer ShippingContainer = null;
-        @SerializedName("surrogates") public List<Surrogate> Surrogates = null;
-        @SerializedName("analyticalGroup") public AnalyticalGroup AnalyticalGroup = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("templateCreatedFrom") public SpecimenTemplate TemplateCreatedFrom = null;
-        @SerializedName("observations") public List<Observation> Observations = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public PreservativeType Preservative = null;
+        public Boolean Filtered = null;
+        public String FiltrationComment = null;
+        public Laboratory Laboratory = null;
+        public ShippingContainer ShippingContainer = null;
+        public List<Surrogate> Surrogates = null;
+        public AnalyticalGroup AnalyticalGroup = null;
+        public Activity Activity = null;
+        public SpecimenTemplate TemplateCreatedFrom = null;
+        public List<Observation> Observations = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostSpecimen setId(String value) { this.Id = value; return this; }
@@ -3195,8 +3194,8 @@ public class ServiceModel
     @Route(Path="/v1/specimens/{id}", Verbs="GET")
     public static class GetSpecimen implements IReturn<SpecimenWithObservations>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("detail") public Boolean Detail = null;
+        public String Id = null;
+        public Boolean Detail = null;
 
         public String getId() { return Id; }
         public GetSpecimen setId(String value) { this.Id = value; return this; }
@@ -3209,20 +3208,20 @@ public class ServiceModel
     @Route(Path="/v1/specimens/{id}", Verbs="PUT")
     public static class PutSpecimen implements IReturn<SpecimenWithObservations>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("preservative") public PreservativeType Preservative = null;
-        @SerializedName("filtered") public Boolean Filtered = null;
-        @SerializedName("filtrationComment") public String FiltrationComment = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("shippingContainer") public ShippingContainer ShippingContainer = null;
-        @SerializedName("surrogates") public List<Surrogate> Surrogates = null;
-        @SerializedName("analyticalGroup") public AnalyticalGroup AnalyticalGroup = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("templateCreatedFrom") public SpecimenTemplate TemplateCreatedFrom = null;
-        @SerializedName("observations") public List<Observation> Observations = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public PreservativeType Preservative = null;
+        public Boolean Filtered = null;
+        public String FiltrationComment = null;
+        public Laboratory Laboratory = null;
+        public ShippingContainer ShippingContainer = null;
+        public List<Surrogate> Surrogates = null;
+        public AnalyticalGroup AnalyticalGroup = null;
+        public Activity Activity = null;
+        public SpecimenTemplate TemplateCreatedFrom = null;
+        public List<Observation> Observations = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutSpecimen setId(String value) { this.Id = value; return this; }
@@ -3259,7 +3258,7 @@ public class ServiceModel
     @Route(Path="/v1/specimens/{id}", Verbs="DELETE")
     public static class DeleteSpecimen implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteSpecimen setId(String value) { this.Id = value; return this; }
@@ -3275,11 +3274,11 @@ public class ServiceModel
     @Route(Path="/v1/spreadsheettemplates", Verbs="POST")
     public static class PostSpreadsheetTemplate implements IReturn<SpreadsheetTemplate>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Description = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
@@ -3298,7 +3297,7 @@ public class ServiceModel
     @Route(Path="/v1/spreadsheettemplates/{id}", Verbs="GET")
     public static class GetSpreadsheetTemplate implements IReturn<SpreadsheetTemplate>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
@@ -3309,11 +3308,11 @@ public class ServiceModel
     @Route(Path="/v1/spreadsheettemplates/{id}", Verbs="PUT")
     public static class PutSpreadsheetTemplate implements IReturn<SpreadsheetTemplate>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Description = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
@@ -3332,7 +3331,7 @@ public class ServiceModel
     @Route(Path="/v1/spreadsheettemplates/{id}", Verbs="DELETE")
     public static class DeleteSpreadsheetTemplate implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
@@ -3348,16 +3347,16 @@ public class ServiceModel
     @Route(Path="/v1/standards", Verbs="POST")
     public static class PostStandard implements IReturn<StandardDefinition>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("issuingOrganization") public String IssuingOrganization = null;
-        @SerializedName("applicabilityRange") public Interval ApplicabilityRange = null;
-        @SerializedName("active") public Boolean Active = null;
-        @SerializedName("samplingLocations") public List<SamplingLocationSimple> SamplingLocations = null;
-        @SerializedName("observationStandards") public List<ObservationStandard> ObservationStandards = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String IssuingOrganization = null;
+        public Interval ApplicabilityRange = null;
+        public Boolean Active = null;
+        public List<SamplingLocationSimple> SamplingLocations = null;
+        public List<ObservationStandard> ObservationStandards = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostStandard setId(String value) { this.Id = value; return this; }
@@ -3386,7 +3385,7 @@ public class ServiceModel
     @Route(Path="/v1/standards/{id}", Verbs="GET")
     public static class GetStandard implements IReturn<StandardDefinition>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetStandard setId(String value) { this.Id = value; return this; }
@@ -3397,16 +3396,16 @@ public class ServiceModel
     @Route(Path="/v1/standards/{id}", Verbs="PUT")
     public static class PutStandard implements IReturn<StandardDefinition>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("issuingOrganization") public String IssuingOrganization = null;
-        @SerializedName("applicabilityRange") public Interval ApplicabilityRange = null;
-        @SerializedName("active") public Boolean Active = null;
-        @SerializedName("samplingLocations") public List<SamplingLocationSimple> SamplingLocations = null;
-        @SerializedName("observationStandards") public List<ObservationStandard> ObservationStandards = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String IssuingOrganization = null;
+        public Interval ApplicabilityRange = null;
+        public Boolean Active = null;
+        public List<SamplingLocationSimple> SamplingLocations = null;
+        public List<ObservationStandard> ObservationStandards = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutStandard setId(String value) { this.Id = value; return this; }
@@ -3435,7 +3434,7 @@ public class ServiceModel
     @Route(Path="/v1/standards/{id}", Verbs="DELETE")
     public static class DeleteStandard implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteStandard setId(String value) { this.Id = value; return this; }
@@ -3458,10 +3457,10 @@ public class ServiceModel
     @Route(Path="/v1/tags", Verbs="POST")
     public static class PostTag implements IReturn<SamplingContextTag>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostTag setId(String value) { this.Id = value; return this; }
@@ -3478,7 +3477,7 @@ public class ServiceModel
     @Route(Path="/v1/tags/{id}", Verbs="GET")
     public static class GetTag implements IReturn<SamplingContextTag>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetTag setId(String value) { this.Id = value; return this; }
@@ -3489,10 +3488,10 @@ public class ServiceModel
     @Route(Path="/v1/tags/{id}", Verbs="PUT")
     public static class PutTag implements IReturn<SamplingContextTag>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutTag setId(String value) { this.Id = value; return this; }
@@ -3509,7 +3508,7 @@ public class ServiceModel
     @Route(Path="/v1/tags/{id}", Verbs="DELETE")
     public static class DeleteTag implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteTag setId(String value) { this.Id = value; return this; }
@@ -3518,7 +3517,7 @@ public class ServiceModel
     @Route(Path="/v1/taxons", Verbs="GET")
     public static class GetTaxons implements IReturn<SearchResultTaxon>
     {
-        @SerializedName("scientificName") public String ScientificName = null;
+        public String ScientificName = null;
 
         public String getScientificName() { return ScientificName; }
         public GetTaxons setScientificName(String value) { this.ScientificName = value; return this; }
@@ -3529,18 +3528,18 @@ public class ServiceModel
     @Route(Path="/v1/taxons", Verbs="POST")
     public static class PostTaxon implements IReturn<Taxon>
     {
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("scientificName") public String ScientificName = null;
-        @SerializedName("commonName") public String CommonName = null;
-        @SerializedName("level") public String Level = null;
-        @SerializedName("source") public String Source = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("itisTsn") public String ItisTsn = null;
-        @SerializedName("itisComment") public String ItisComment = null;
-        @SerializedName("itisUrl") public String ItisUrl = null;
-        @SerializedName("parentId") public String ParentId = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public String Id = null;
+        public String ScientificName = null;
+        public String CommonName = null;
+        public String Level = null;
+        public String Source = null;
+        public String Comment = null;
+        public String ItisTsn = null;
+        public String ItisComment = null;
+        public String ItisUrl = null;
+        public String ParentId = null;
+        public AuditAttributes AuditAttributes = null;
 
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public PostTaxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
@@ -3573,7 +3572,7 @@ public class ServiceModel
     @Route(Path="/v1/taxons/{id}", Verbs="GET")
     public static class GetTaxon implements IReturn<Taxon>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetTaxon setId(String value) { this.Id = value; return this; }
@@ -3584,18 +3583,18 @@ public class ServiceModel
     @Route(Path="/v1/taxons/{id}", Verbs="PUT")
     public static class PutTaxon implements IReturn<Taxon>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("scientificName") public String ScientificName = null;
-        @SerializedName("commonName") public String CommonName = null;
-        @SerializedName("level") public String Level = null;
-        @SerializedName("source") public String Source = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("itisTsn") public String ItisTsn = null;
-        @SerializedName("itisComment") public String ItisComment = null;
-        @SerializedName("itisUrl") public String ItisUrl = null;
-        @SerializedName("parentId") public String ParentId = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public String ScientificName = null;
+        public String CommonName = null;
+        public String Level = null;
+        public String Source = null;
+        public String Comment = null;
+        public String ItisTsn = null;
+        public String ItisComment = null;
+        public String ItisUrl = null;
+        public String ParentId = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutTaxon setId(String value) { this.Id = value; return this; }
@@ -3628,7 +3627,7 @@ public class ServiceModel
     @Route(Path="/v1/taxons/{id}", Verbs="DELETE")
     public static class DeleteTaxon implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteTaxon setId(String value) { this.Id = value; return this; }
@@ -3637,8 +3636,8 @@ public class ServiceModel
     @Route(Path="/v1/unitgroups", Verbs="GET")
     public static class GetUnitGroups implements IReturn<SearchResultUnitGroup>
     {
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("systemCode") public GetUnitGroupsSystemCodeType SystemCode = null;
+        public String CustomId = null;
+        public GetUnitGroupsSystemCodeType SystemCode = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnitGroups setCustomId(String value) { this.CustomId = value; return this; }
@@ -3651,11 +3650,11 @@ public class ServiceModel
     @Route(Path="/v1/unitgroups", Verbs="POST")
     public static class PostUnitGroup implements IReturn<UnitGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Boolean SupportsConversion = null;
+        public UnitGroupSystemCodeType SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostUnitGroup setId(String value) { this.Id = value; return this; }
@@ -3674,7 +3673,7 @@ public class ServiceModel
     @Route(Path="/v1/unitgroups/{id}", Verbs="GET")
     public static class GetUnitGroup implements IReturn<UnitGroup>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetUnitGroup setId(String value) { this.Id = value; return this; }
@@ -3685,11 +3684,11 @@ public class ServiceModel
     @Route(Path="/v1/unitgroups/{id}", Verbs="PUT")
     public static class PutUnitGroup implements IReturn<UnitGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Boolean SupportsConversion = null;
+        public UnitGroupSystemCodeType SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutUnitGroup setId(String value) { this.Id = value; return this; }
@@ -3708,7 +3707,7 @@ public class ServiceModel
     @Route(Path="/v1/unitgroups/{id}", Verbs="DELETE")
     public static class DeleteUnitGroup implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteUnitGroup setId(String value) { this.Id = value; return this; }
@@ -3717,8 +3716,8 @@ public class ServiceModel
     @Route(Path="/v1/unitgroupwithunits", Verbs="GET")
     public static class GetUnitGroupWithUnits implements IReturn<SearchResultUnitGroupWithUnits>
     {
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("systemCode") public GetUnitGroupWithUnitsSystemCodeType SystemCode = null;
+        public String CustomId = null;
+        public GetUnitGroupWithUnitsSystemCodeType SystemCode = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnitGroupWithUnits setCustomId(String value) { this.CustomId = value; return this; }
@@ -3731,12 +3730,12 @@ public class ServiceModel
     @Route(Path="/v1/unitgroupwithunits", Verbs="POST")
     public static class PostUnitGroupWithUnit implements IReturn<UnitGroupWithUnits>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public UnitGroupWithUnitsSystemCodeType SystemCode = null;
-        @SerializedName("units") public List<Unit> Units = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Boolean SupportsConversion = null;
+        public UnitGroupWithUnitsSystemCodeType SystemCode = null;
+        public List<Unit> Units = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
@@ -3757,7 +3756,7 @@ public class ServiceModel
     @Route(Path="/v1/unitgroupwithunits/{id}", Verbs="GET")
     public static class GetUnitGroupWithUnit implements IReturn<UnitGroupWithUnits>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
@@ -3768,11 +3767,11 @@ public class ServiceModel
     @Route(Path="/v1/unitgroupwithunits/{id}", Verbs="PUT")
     public static class PutUnitGroupWithUnit implements IReturn<UnitGroup>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Boolean SupportsConversion = null;
+        public UnitGroupSystemCodeType SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
@@ -3791,7 +3790,7 @@ public class ServiceModel
     @Route(Path="/v1/unitgroupwithunits/{id}", Verbs="DELETE")
     public static class DeleteUnitGroupWithUnit implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
@@ -3800,8 +3799,8 @@ public class ServiceModel
     @Route(Path="/v1/units", Verbs="GET")
     public static class GetUnits implements IReturn<SearchResultUnit>
     {
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("unitgroup") public String Unitgroup = null;
+        public String CustomId = null;
+        public String Unitgroup = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnits setCustomId(String value) { this.CustomId = value; return this; }
@@ -3814,13 +3813,13 @@ public class ServiceModel
     @Route(Path="/v1/units", Verbs="POST")
     public static class PostUnit implements IReturn<Unit>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("baseMultiplier") public Double BaseMultiplier = null;
-        @SerializedName("baseOffset") public Double BaseOffset = null;
-        @SerializedName("unitGroup") public UnitGroup UnitGroup = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public Double BaseMultiplier = null;
+        public Double BaseOffset = null;
+        public UnitGroup UnitGroup = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostUnit setId(String value) { this.Id = value; return this; }
@@ -3843,7 +3842,7 @@ public class ServiceModel
     @Route(Path="/v1/units/{id}", Verbs="GET")
     public static class GetUnit implements IReturn<Unit>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetUnit setId(String value) { this.Id = value; return this; }
@@ -3854,13 +3853,13 @@ public class ServiceModel
     @Route(Path="/v1/units/{id}", Verbs="PUT")
     public static class PutUnit implements IReturn<Unit>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("baseMultiplier") public Double BaseMultiplier = null;
-        @SerializedName("baseOffset") public Double BaseOffset = null;
-        @SerializedName("unitGroup") public UnitGroup UnitGroup = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public Double BaseMultiplier = null;
+        public Double BaseOffset = null;
+        public UnitGroup UnitGroup = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutUnit setId(String value) { this.Id = value; return this; }
@@ -3883,7 +3882,7 @@ public class ServiceModel
     @Route(Path="/v1/units/{id}", Verbs="DELETE")
     public static class DeleteUnit implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteUnit setId(String value) { this.Id = value; return this; }
@@ -3899,15 +3898,15 @@ public class ServiceModel
     @Route(Path="/v1/users", Verbs="POST")
     public static class PostUser implements IReturn<User>
     {
-        @SerializedName("roles") public List<Role> Roles = null;
-        @SerializedName("accessGroups") public List<AccessGroup> AccessGroups = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("tenantId") public String TenantId = null;
-        @SerializedName("userProfile") public UserProfile UserProfile = null;
-        @SerializedName("providerId") public String ProviderId = null;
-        @SerializedName("email") public String Email = null;
-        @SerializedName("userType") public UserType UserType = null;
+        public List<Role> Roles = null;
+        public List<AccessGroup> AccessGroups = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String TenantId = null;
+        public UserProfile UserProfile = null;
+        public String ProviderId = null;
+        public String Email = null;
+        public UserType UserType = null;
 
         public List<Role> getRoles() { return Roles; }
         public PostUser setRoles(List<Role> value) { this.Roles = value; return this; }
@@ -3934,7 +3933,7 @@ public class ServiceModel
     @Route(Path="/v1/users/{id}", Verbs="GET")
     public static class GetUser implements IReturn<User>
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public GetUser setId(String value) { this.Id = value; return this; }
@@ -3945,15 +3944,15 @@ public class ServiceModel
     @Route(Path="/v1/users/{id}", Verbs="PUT")
     public static class PutUser implements IReturn<User>
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("roles") public List<Role> Roles = null;
-        @SerializedName("accessGroups") public List<AccessGroup> AccessGroups = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("tenantId") public String TenantId = null;
-        @SerializedName("userProfile") public UserProfile UserProfile = null;
-        @SerializedName("providerId") public String ProviderId = null;
-        @SerializedName("email") public String Email = null;
-        @SerializedName("userType") public UserType UserType = null;
+        public String Id = null;
+        public List<Role> Roles = null;
+        public List<AccessGroup> AccessGroups = null;
+        public String CustomId = null;
+        public String TenantId = null;
+        public UserProfile UserProfile = null;
+        public String ProviderId = null;
+        public String Email = null;
+        public UserType UserType = null;
 
         public String getId() { return Id; }
         public PutUser setId(String value) { this.Id = value; return this; }
@@ -3980,7 +3979,7 @@ public class ServiceModel
     @Route(Path="/v1/users/{id}", Verbs="DELETE")
     public static class DeleteUser implements IReturnVoid
     {
-        @SerializedName("id") public String Id = null;
+        public String Id = null;
 
         public String getId() { return Id; }
         public DeleteUser setId(String value) { this.Id = value; return this; }
@@ -3988,12 +3987,12 @@ public class ServiceModel
 
     public static class AccessGroup
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("canEditAllData") public Boolean CanEditAllData = null;
-        @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public Boolean CanEditAllData = null;
+        public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public AccessGroup setId(String value) { this.Id = value; return this; }
@@ -4011,24 +4010,24 @@ public class ServiceModel
 
     public static class Activity
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("replicateSourceActivityId") public String ReplicateSourceActivityId = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("loggerFileName") public String LoggerFileName = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String ReplicateSourceActivityId = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Comment = null;
+        public String LoggerFileName = null;
+        public Device Device = null;
+        public CollectionMethod CollectionMethod = null;
+        public MediumType Medium = null;
+        public PlannedActivity PlannedActivity = null;
+        public Quantity Depth = null;
+        public SamplingLocation SamplingLocation = null;
+        public FieldVisit FieldVisit = null;
+        public List<SamplingContextTag> SamplingContextTags = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Activity setId(String value) { this.Id = value; return this; }
@@ -4070,26 +4069,26 @@ public class ServiceModel
 
     public static class ActivityRepresentation
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("replicateSourceActivityId") public String ReplicateSourceActivityId = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("loggerFileName") public String LoggerFileName = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("plannedActivity") public PlannedActivity PlannedActivity = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("samplingContextTags") public List<SamplingContextTag> SamplingContextTags = null;
-        @SerializedName("specimens") public List<SpecimenNestedInActivity> Specimens = null;
-        @SerializedName("observations") public List<ObservationMinimal> Observations = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String ReplicateSourceActivityId = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Comment = null;
+        public String LoggerFileName = null;
+        public Device Device = null;
+        public CollectionMethod CollectionMethod = null;
+        public MediumType Medium = null;
+        public PlannedActivity PlannedActivity = null;
+        public Quantity Depth = null;
+        public SamplingLocation SamplingLocation = null;
+        public FieldVisit FieldVisit = null;
+        public List<SamplingContextTag> SamplingContextTags = null;
+        public List<SpecimenNestedInActivity> Specimens = null;
+        public List<ObservationMinimal> Observations = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ActivityRepresentation setId(String value) { this.Id = value; return this; }
@@ -4135,15 +4134,15 @@ public class ServiceModel
 
     public static class ActivityTemplate
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("specimenTemplates") public List<SpecimenTemplate> SpecimenTemplates = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ActivityType Type = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public List<SpecimenTemplate> SpecimenTemplates = null;
+        public String CustomId = null;
+        public ActivityType Type = null;
+        public String Comment = null;
+        public MediumType Medium = null;
+        public Quantity Depth = null;
+        public CollectionMethod CollectionMethod = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ActivityTemplate setId(String value) { this.Id = value; return this; }
@@ -4167,13 +4166,13 @@ public class ServiceModel
 
     public static class Address
     {
-        @SerializedName("streetName") public String StreetName = null;
-        @SerializedName("cityName") public String CityName = null;
-        @SerializedName("stateProvinceCode") public String StateProvinceCode = null;
-        @SerializedName("postalCode") public String PostalCode = null;
-        @SerializedName("countryCode") public String CountryCode = null;
-        @SerializedName("countyCode") public String CountyCode = null;
-        @SerializedName("addressType") public AddressType AddressType = null;
+        public String StreetName = null;
+        public String CityName = null;
+        public String StateProvinceCode = null;
+        public String PostalCode = null;
+        public String CountryCode = null;
+        public String CountyCode = null;
+        public AddressType AddressType = null;
 
         public String getStreetName() { return StreetName; }
         public Address setStreetName(String value) { this.StreetName = value; return this; }
@@ -4193,14 +4192,14 @@ public class ServiceModel
 
     public static class AnalyticalGroup
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("type") public AnalyticalGroupType Type = null;
-        @SerializedName("numberOfObservedPropertiesInGroupItems") public Integer NumberOfObservedPropertiesInGroupItems = null;
-        @SerializedName("numberOfAnalysisMethodsInGroupItems") public Integer NumberOfAnalysisMethodsInGroupItems = null;
-        @SerializedName("analyticalGroupItems") public List<AnalyticalGroupItem> AnalyticalGroupItems = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AnalyticalGroupType Type = null;
+        public Integer NumberOfObservedPropertiesInGroupItems = null;
+        public Integer NumberOfAnalysisMethodsInGroupItems = null;
+        public List<AnalyticalGroupItem> AnalyticalGroupItems = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public AnalyticalGroup setId(String value) { this.Id = value; return this; }
@@ -4222,9 +4221,9 @@ public class ServiceModel
 
     public static class AnalyticalGroupItem
     {
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("holdingTime") public String HoldingTime = null;
-        @SerializedName("labAnalysisMethod") public LabAnalysisMethod LabAnalysisMethod = null;
+        public ObservedProperty ObservedProperty = null;
+        public String HoldingTime = null;
+        public LabAnalysisMethod LabAnalysisMethod = null;
 
         public ObservedProperty getObservedProperty() { return ObservedProperty; }
         public AnalyticalGroupItem setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
@@ -4236,12 +4235,12 @@ public class ServiceModel
 
     public static class AnalyticalGroupSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("type") public AnalyticalGroupType Type = null;
-        @SerializedName("numberOfObservedPropertiesInGroupItems") public Integer NumberOfObservedPropertiesInGroupItems = null;
-        @SerializedName("numberOfAnalysisMethodsInGroupItems") public Integer NumberOfAnalysisMethodsInGroupItems = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AnalyticalGroupType Type = null;
+        public Integer NumberOfObservedPropertiesInGroupItems = null;
+        public Integer NumberOfAnalysisMethodsInGroupItems = null;
 
         public String getId() { return Id; }
         public AnalyticalGroupSimple setId(String value) { this.Id = value; return this; }
@@ -4259,16 +4258,16 @@ public class ServiceModel
 
     public static class Attachment
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("fileName") public String FileName = null;
-        @SerializedName("contentType") public String ContentType = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("fileSize") public Integer FileSize = null;
-        @SerializedName("dateTaken") public Instant DateTaken = null;
-        @SerializedName("latitude") public String Latitude = null;
-        @SerializedName("longitude") public String Longitude = null;
-        @SerializedName("resolution") public String Resolution = null;
-        @SerializedName("auditAttributes") public AuditAttributesFull AuditAttributes = null;
+        public String Id = null;
+        public String FileName = null;
+        public String ContentType = null;
+        public String Comment = null;
+        public Integer FileSize = null;
+        public Instant DateTaken = null;
+        public String Latitude = null;
+        public String Longitude = null;
+        public String Resolution = null;
+        public AuditAttributesFull AuditAttributes = null;
 
         public String getId() { return Id; }
         public Attachment setId(String value) { this.Id = value; return this; }
@@ -4294,17 +4293,17 @@ public class ServiceModel
 
     public static class AttachmentRepresentation
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("fileName") public String FileName = null;
-        @SerializedName("contentType") public String ContentType = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("fileSize") public Integer FileSize = null;
-        @SerializedName("dateTaken") public Instant DateTaken = null;
-        @SerializedName("latitude") public String Latitude = null;
-        @SerializedName("longitude") public String Longitude = null;
-        @SerializedName("resolution") public String Resolution = null;
-        @SerializedName("success") public Boolean Success = null;
-        @SerializedName("auditAttributes") public AuditAttributesFull AuditAttributes = null;
+        public String Id = null;
+        public String FileName = null;
+        public String ContentType = null;
+        public String Comment = null;
+        public Integer FileSize = null;
+        public Instant DateTaken = null;
+        public String Latitude = null;
+        public String Longitude = null;
+        public String Resolution = null;
+        public Boolean Success = null;
+        public AuditAttributesFull AuditAttributes = null;
 
         public String getId() { return Id; }
         public AttachmentRepresentation setId(String value) { this.Id = value; return this; }
@@ -4332,10 +4331,10 @@ public class ServiceModel
 
     public static class AuditAttributes
     {
-        @SerializedName("creationUserProfileId") public String CreationUserProfileId = null;
-        @SerializedName("creationTime") public Instant CreationTime = null;
-        @SerializedName("modificationUserProfileId") public String ModificationUserProfileId = null;
-        @SerializedName("modificationTime") public Instant ModificationTime = null;
+        public String CreationUserProfileId = null;
+        public Instant CreationTime = null;
+        public String ModificationUserProfileId = null;
+        public Instant ModificationTime = null;
 
         public String getCreationUserProfileId() { return CreationUserProfileId; }
         public AuditAttributes setCreationUserProfileId(String value) { this.CreationUserProfileId = value; return this; }
@@ -4349,12 +4348,12 @@ public class ServiceModel
 
     public static class AuditAttributesFull
     {
-        @SerializedName("creationUserProfileId") public String CreationUserProfileId = null;
-        @SerializedName("creationTime") public Instant CreationTime = null;
-        @SerializedName("modificationUserProfileId") public String ModificationUserProfileId = null;
-        @SerializedName("modificationTime") public Instant ModificationTime = null;
-        @SerializedName("creationUserProfile") public UserProfile CreationUserProfile = null;
-        @SerializedName("modificationUserProfile") public UserProfile ModificationUserProfile = null;
+        public String CreationUserProfileId = null;
+        public Instant CreationTime = null;
+        public String ModificationUserProfileId = null;
+        public Instant ModificationTime = null;
+        public UserProfile CreationUserProfile = null;
+        public UserProfile ModificationUserProfile = null;
 
         public String getCreationUserProfileId() { return CreationUserProfileId; }
         public AuditAttributesFull setCreationUserProfileId(String value) { this.CreationUserProfileId = value; return this; }
@@ -4372,12 +4371,12 @@ public class ServiceModel
 
     public static class AuditChange
     {
-        @SerializedName("key") public String Key = null;
-        @SerializedName("type") public AuditChangeType Type = null;
-        @SerializedName("fromValue") public String FromValue = null;
-        @SerializedName("fromId") public String FromId = null;
-        @SerializedName("toValue") public String ToValue = null;
-        @SerializedName("toId") public String ToId = null;
+        public String Key = null;
+        public AuditChangeType Type = null;
+        public String FromValue = null;
+        public String FromId = null;
+        public String ToValue = null;
+        public String ToId = null;
 
         public String getKey() { return Key; }
         public AuditChange setKey(String value) { this.Key = value; return this; }
@@ -4395,11 +4394,11 @@ public class ServiceModel
 
     public static class AuditHistory
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("modificationTime") public Instant ModificationTime = null;
-        @SerializedName("userProfile") public UserProfile UserProfile = null;
-        @SerializedName("operation") public OperationType Operation = null;
-        @SerializedName("auditChanges") public List<AuditChange> AuditChanges = null;
+        public String Id = null;
+        public Instant ModificationTime = null;
+        public UserProfile UserProfile = null;
+        public OperationType Operation = null;
+        public List<AuditChange> AuditChanges = null;
 
         public String getId() { return Id; }
         public AuditHistory setId(String value) { this.Id = value; return this; }
@@ -4415,12 +4414,12 @@ public class ServiceModel
 
     public static class AuditItem
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("userProfile") public UserProfile UserProfile = null;
-        @SerializedName("operation") public OperationType Operation = null;
-        @SerializedName("modificationTime") public Instant ModificationTime = null;
-        @SerializedName("originalData") public Object OriginalData = null;
-        @SerializedName("newData") public Object NewData = null;
+        public String Id = null;
+        public UserProfile UserProfile = null;
+        public OperationType Operation = null;
+        public Instant ModificationTime = null;
+        public Object OriginalData = null;
+        public Object NewData = null;
 
         public String getId() { return Id; }
         public AuditItem setId(String value) { this.Id = value; return this; }
@@ -4438,8 +4437,8 @@ public class ServiceModel
 
     public static class CategoricalResult
     {
-        @SerializedName("value") public String Value = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Value = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getValue() { return Value; }
         public CategoricalResult setValue(String value) { this.Value = value; return this; }
@@ -4449,11 +4448,11 @@ public class ServiceModel
 
     public static class ChartData
     {
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("unitGroupWithUnits") public UnitGroupWithUnits UnitGroupWithUnits = null;
-        @SerializedName("depthUnitGroupWithUnits") public UnitGroupWithUnits DepthUnitGroupWithUnits = null;
-        @SerializedName("dataPoints") public List<ChartDataPoint> DataPoints = null;
+        public ObservedProperty ObservedProperty = null;
+        public SamplingLocation SamplingLocation = null;
+        public UnitGroupWithUnits UnitGroupWithUnits = null;
+        public UnitGroupWithUnits DepthUnitGroupWithUnits = null;
+        public List<ChartDataPoint> DataPoints = null;
 
         public ObservedProperty getObservedProperty() { return ObservedProperty; }
         public ChartData setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
@@ -4469,15 +4468,15 @@ public class ServiceModel
 
     public static class ChartDataPoint
     {
-        @SerializedName("value") public Double Value = null;
-        @SerializedName("observationId") public String ObservationId = null;
-        @SerializedName("observedTime") public Instant ObservedTime = null;
-        @SerializedName("numericResultUnitCustomId") public String NumericResultUnitCustomId = null;
-        @SerializedName("mdlValue") public Double MdlValue = null;
-        @SerializedName("mdlValueUnitCustomId") public String MdlValueUnitCustomId = null;
-        @SerializedName("depthValue") public Double DepthValue = null;
-        @SerializedName("depthUnitCustomId") public String DepthUnitCustomId = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
+        public Double Value = null;
+        public String ObservationId = null;
+        public Instant ObservedTime = null;
+        public String NumericResultUnitCustomId = null;
+        public Double MdlValue = null;
+        public String MdlValueUnitCustomId = null;
+        public Double DepthValue = null;
+        public String DepthUnitCustomId = null;
+        public DetectionConditionType DetectionCondition = null;
 
         public Double getValue() { return Value; }
         public ChartDataPoint setValue(Double value) { this.Value = value; return this; }
@@ -4501,11 +4500,11 @@ public class ServiceModel
 
     public static class CollectionMethod
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("identifierOrganization") public String IdentifierOrganization = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String IdentifierOrganization = null;
+        public String Name = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public CollectionMethod setId(String value) { this.Id = value; return this; }
@@ -4521,10 +4520,10 @@ public class ServiceModel
 
     public static class Device
     {
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public String Type = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
+        public String CustomId = null;
+        public String Type = null;
+        public String Name = null;
+        public String Description = null;
 
         public String getCustomId() { return CustomId; }
         public Device setCustomId(String value) { this.CustomId = value; return this; }
@@ -4540,8 +4539,8 @@ public class ServiceModel
 
     public static class DomainObjectAttachment
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("attachment") public Attachment Attachment = null;
+        public String Id = null;
+        public Attachment Attachment = null;
 
         public String getId() { return Id; }
         public DomainObjectAttachment setId(String value) { this.Id = value; return this; }
@@ -4551,10 +4550,10 @@ public class ServiceModel
 
     public static class ErrorInfo
     {
-        @SerializedName("message") public String Message = null;
-        @SerializedName("localizationKey") public String LocalizationKey = null;
-        @SerializedName("localizationParameters") public List<String> LocalizationParameters = null;
-        @SerializedName("requestId") public String RequestId = null;
+        public String Message = null;
+        public String LocalizationKey = null;
+        public List<String> LocalizationParameters = null;
+        public String RequestId = null;
 
         public String getMessage() { return Message; }
         public ErrorInfo setMessage(String value) { this.Message = value; return this; }
@@ -4568,11 +4567,11 @@ public class ServiceModel
 
     public static class ExtendedAttribute
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("attributeId") public String AttributeId = null;
-        @SerializedName("text") public String Text = null;
-        @SerializedName("number") public Double Number = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String AttributeId = null;
+        public String Text = null;
+        public Double Number = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ExtendedAttribute setId(String value) { this.Id = value; return this; }
@@ -4588,8 +4587,8 @@ public class ServiceModel
 
     public static class FieldSheetImportSummary
     {
-        @SerializedName("fieldResultSummary") public ImportSummaryObservation FieldResultSummary = null;
-        @SerializedName("specimenSummary") public ImportSummarySpecimen SpecimenSummary = null;
+        public ImportSummaryObservation FieldResultSummary = null;
+        public ImportSummarySpecimen SpecimenSummary = null;
 
         public ImportSummaryObservation getFieldResultSummary() { return FieldResultSummary; }
         public FieldSheetImportSummary setFieldResultSummary(ImportSummaryObservation value) { this.FieldResultSummary = value; return this; }
@@ -4599,15 +4598,15 @@ public class ServiceModel
 
     public static class FieldTrip
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("fieldVisits") public List<FieldVisit> FieldVisits = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public List<FieldVisit> FieldVisits = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public FieldTrip setId(String value) { this.Id = value; return this; }
@@ -4631,8 +4630,8 @@ public class ServiceModel
 
     public static class FieldTripSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
+        public String Id = null;
+        public String CustomId = null;
 
         public String getId() { return Id; }
         public FieldTripSimple setId(String value) { this.Id = value; return this; }
@@ -4642,18 +4641,18 @@ public class ServiceModel
 
     public static class FieldVisit
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("fieldTrip") public FieldTripSimple FieldTrip = null;
-        @SerializedName("planningStatus") public PlanningStatusType PlanningStatus = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("plannedFieldResults") public List<PlannedFieldResult> PlannedFieldResults = null;
-        @SerializedName("plannedActivities") public List<PlannedActivity> PlannedActivities = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public FieldTripSimple FieldTrip = null;
+        public PlanningStatusType PlanningStatus = null;
+        public SamplingLocation SamplingLocation = null;
+        public List<PlannedFieldResult> PlannedFieldResults = null;
+        public List<PlannedActivity> PlannedActivities = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public FieldVisit setId(String value) { this.Id = value; return this; }
@@ -4683,14 +4682,14 @@ public class ServiceModel
 
     public static class FieldVisitSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("participants") public String Participants = null;
-        @SerializedName("notes") public String Notes = null;
-        @SerializedName("planningStatus") public PlanningStatusType PlanningStatus = null;
-        @SerializedName("fieldTrip") public FieldTripSimple FieldTrip = null;
-        @SerializedName("samplingLocation") public SamplingLocationSimple SamplingLocation = null;
+        public String Id = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public PlanningStatusType PlanningStatus = null;
+        public FieldTripSimple FieldTrip = null;
+        public SamplingLocationSimple SamplingLocation = null;
 
         public String getId() { return Id; }
         public FieldVisitSimple setId(String value) { this.Id = value; return this; }
@@ -4712,11 +4711,11 @@ public class ServiceModel
 
     public static class FieldVisitStatistics
     {
-        @SerializedName("routineSampleCount") public Integer RoutineSampleCount = null;
-        @SerializedName("qcSampleCount") public Integer QcSampleCount = null;
-        @SerializedName("verticalProfileCount") public Integer VerticalProfileCount = null;
-        @SerializedName("fieldResultCount") public Integer FieldResultCount = null;
-        @SerializedName("fieldSurveyCount") public Integer FieldSurveyCount = null;
+        public Integer RoutineSampleCount = null;
+        public Integer QcSampleCount = null;
+        public Integer VerticalProfileCount = null;
+        public Integer FieldResultCount = null;
+        public Integer FieldSurveyCount = null;
 
         public Integer getRoutineSampleCount() { return RoutineSampleCount; }
         public FieldVisitStatistics setRoutineSampleCount(Integer value) { this.RoutineSampleCount = value; return this; }
@@ -4732,9 +4731,9 @@ public class ServiceModel
 
     public static class FieldVisitSummaryRepresentation
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("startTime") public Instant StartTime = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Instant StartTime = null;
 
         public String getId() { return Id; }
         public FieldVisitSummaryRepresentation setId(String value) { this.Id = value; return this; }
@@ -4746,11 +4745,11 @@ public class ServiceModel
 
     public static class Filter
     {
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("observedProperties") public List<ObservedProperty> ObservedProperties = null;
-        @SerializedName("samplingLocations") public List<SamplingLocation> SamplingLocations = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public List<ObservedProperty> ObservedProperties = null;
+        public List<SamplingLocation> SamplingLocations = null;
+        public AuditAttributes AuditAttributes = null;
 
         public Instant getStartTime() { return StartTime; }
         public Filter setStartTime(Instant value) { this.StartTime = value; return this; }
@@ -4766,9 +4765,9 @@ public class ServiceModel
 
     public static class ImportChangeItem
     {
-        @SerializedName("propertyName") public String PropertyName = null;
-        @SerializedName("left") public Object Left = null;
-        @SerializedName("right") public Object Right = null;
+        public String PropertyName = null;
+        public Object Left = null;
+        public Object Right = null;
 
         public String getPropertyName() { return PropertyName; }
         public ImportChangeItem setPropertyName(String value) { this.PropertyName = value; return this; }
@@ -4780,9 +4779,9 @@ public class ServiceModel
 
     public static class ImportError
     {
-        @SerializedName("errorCode") public String ErrorCode = null;
-        @SerializedName("errorMessage") public String ErrorMessage = null;
-        @SerializedName("errorFieldValue") public String ErrorFieldValue = null;
+        public String ErrorCode = null;
+        public String ErrorMessage = null;
+        public String ErrorFieldValue = null;
 
         public String getErrorCode() { return ErrorCode; }
         public ImportError setErrorCode(String value) { this.ErrorCode = value; return this; }
@@ -4794,13 +4793,13 @@ public class ServiceModel
 
     public static class ImportHistoryEvent
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("importType") public ImportType ImportType = null;
-        @SerializedName("importTime") public Instant ImportTime = null;
-        @SerializedName("fileName") public String FileName = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
-        @SerializedName("importedBy") public UserProfile ImportedBy = null;
-        @SerializedName("domainObjectIds") public List<String> DomainObjectIds = null;
+        public String Id = null;
+        public ImportType ImportType = null;
+        public Instant ImportTime = null;
+        public String FileName = null;
+        public String TimeZoneOffset = null;
+        public UserProfile ImportedBy = null;
+        public List<String> DomainObjectIds = null;
 
         public String getId() { return Id; }
         public ImportHistoryEvent setId(String value) { this.Id = value; return this; }
@@ -4820,12 +4819,12 @@ public class ServiceModel
 
     public static class ImportHistoryEventSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("importType") public ImportType ImportType = null;
-        @SerializedName("importTime") public Instant ImportTime = null;
-        @SerializedName("fileName") public String FileName = null;
-        @SerializedName("timeZoneOffset") public String TimeZoneOffset = null;
-        @SerializedName("importedBy") public UserProfile ImportedBy = null;
+        public String Id = null;
+        public ImportType ImportType = null;
+        public Instant ImportTime = null;
+        public String FileName = null;
+        public String TimeZoneOffset = null;
+        public UserProfile ImportedBy = null;
 
         public String getId() { return Id; }
         public ImportHistoryEventSimple setId(String value) { this.Id = value; return this; }
@@ -4843,14 +4842,14 @@ public class ServiceModel
 
     public static class ImportItem
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public Object Item = null;
-        @SerializedName("existingItem") public Object ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public Object Item = null;
+        public Object ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItem setFields(List<String> value) { this.Fields = value; return this; }
@@ -4872,14 +4871,14 @@ public class ServiceModel
 
     public static class ImportItemLabAnalysisMethod
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public LabAnalysisMethod Item = null;
-        @SerializedName("existingItem") public LabAnalysisMethod ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public LabAnalysisMethod Item = null;
+        public LabAnalysisMethod ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemLabAnalysisMethod setFields(List<String> value) { this.Fields = value; return this; }
@@ -4901,14 +4900,14 @@ public class ServiceModel
 
     public static class ImportItemObject
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public Object Item = null;
-        @SerializedName("existingItem") public Object ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public Object Item = null;
+        public Object ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemObject setFields(List<String> value) { this.Fields = value; return this; }
@@ -4930,14 +4929,14 @@ public class ServiceModel
 
     public static class ImportItemObservation
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public Observation Item = null;
-        @SerializedName("existingItem") public Observation ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public Observation Item = null;
+        public Observation ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemObservation setFields(List<String> value) { this.Fields = value; return this; }
@@ -4959,14 +4958,14 @@ public class ServiceModel
 
     public static class ImportItemObservedProperty
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public ObservedProperty Item = null;
-        @SerializedName("existingItem") public ObservedProperty ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public ObservedProperty Item = null;
+        public ObservedProperty ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemObservedProperty setFields(List<String> value) { this.Fields = value; return this; }
@@ -4988,14 +4987,14 @@ public class ServiceModel
 
     public static class ImportItemSamplingLocation
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public SamplingLocation Item = null;
-        @SerializedName("existingItem") public SamplingLocation ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public SamplingLocation Item = null;
+        public SamplingLocation ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemSamplingLocation setFields(List<String> value) { this.Fields = value; return this; }
@@ -5017,14 +5016,14 @@ public class ServiceModel
 
     public static class ImportItemSpecimen
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public Specimen Item = null;
-        @SerializedName("existingItem") public Specimen ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public Specimen Item = null;
+        public Specimen ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemSpecimen setFields(List<String> value) { this.Fields = value; return this; }
@@ -5046,14 +5045,14 @@ public class ServiceModel
 
     public static class ImportItemTaxon
     {
-        @SerializedName("fields") public List<String> Fields = null;
-        @SerializedName("errors") public Object Errors = null;
-        @SerializedName("rowId") public String RowId = null;
-        @SerializedName("input") public String Input = null;
-        @SerializedName("status") public ImportItemStatusType Status = null;
-        @SerializedName("item") public Taxon Item = null;
-        @SerializedName("existingItem") public Taxon ExistingItem = null;
-        @SerializedName("itemComparison") public List<ImportChangeItem> ItemComparison = null;
+        public List<String> Fields = null;
+        public Object Errors = null;
+        public String RowId = null;
+        public String Input = null;
+        public ImportItemStatusType Status = null;
+        public Taxon Item = null;
+        public Taxon ExistingItem = null;
+        public List<ImportChangeItem> ItemComparison = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemTaxon setFields(List<String> value) { this.Fields = value; return this; }
@@ -5075,18 +5074,18 @@ public class ServiceModel
 
     public static class ImportSummary
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemObject> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemObject> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemObject> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemObject> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemObject> NonErrorImportItems = null;
+        public List<ImportItemObject> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public ImportSummary setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -5116,18 +5115,18 @@ public class ServiceModel
 
     public static class ImportSummaryObservation
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemObservation> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemObservation> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemObservation> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemObservation> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemObservation> NonErrorImportItems = null;
+        public List<ImportItemObservation> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public ImportSummaryObservation setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -5157,18 +5156,18 @@ public class ServiceModel
 
     public static class ImportSummarySpecimen
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemSpecimen> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemSpecimen> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemSpecimen> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemSpecimen> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemSpecimen> NonErrorImportItems = null;
+        public List<ImportItemSpecimen> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public ImportSummarySpecimen setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -5198,10 +5197,10 @@ public class ServiceModel
 
     public static class InputPart
     {
-        @SerializedName("headers") public Object Headers = null;
-        @SerializedName("mediaType") public MediaType MediaType = null;
-        @SerializedName("bodyAsString") public String BodyAsString = null;
-        @SerializedName("contentTypeFromMessage") public Boolean ContentTypeFromMessage = null;
+        public Object Headers = null;
+        public MediaType MediaType = null;
+        public String BodyAsString = null;
+        public Boolean ContentTypeFromMessage = null;
 
         public Object getHeaders() { return Headers; }
         public InputPart setHeaders(Object value) { this.Headers = value; return this; }
@@ -5215,14 +5214,14 @@ public class ServiceModel
 
     public static class LabAnalysisMethod
     {
-        @SerializedName("observedProperties") public List<ObservedProperty> ObservedProperties = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("methodId") public String MethodId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("context") public String Context = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public List<ObservedProperty> ObservedProperties = null;
+        public String Id = null;
+        public String MethodId = null;
+        public String Name = null;
+        public String Context = null;
+        public String Description = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public AuditAttributes AuditAttributes = null;
 
         public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
         public LabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
@@ -5244,18 +5243,18 @@ public class ServiceModel
 
     public static class LabAnalysisMethodImportSummary
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemLabAnalysisMethod> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemLabAnalysisMethod> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemLabAnalysisMethod> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemLabAnalysisMethod> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemLabAnalysisMethod> NonErrorImportItems = null;
+        public List<ImportItemLabAnalysisMethod> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public LabAnalysisMethodImportSummary setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -5285,8 +5284,8 @@ public class ServiceModel
 
     public static class LabAnalysisMethodMinimal
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
+        public String Id = null;
+        public String Name = null;
 
         public String getId() { return Id; }
         public LabAnalysisMethodMinimal setId(String value) { this.Id = value; return this; }
@@ -5296,11 +5295,11 @@ public class ServiceModel
 
     public static class LabInstruction
     {
-        @SerializedName("analysisMethod") public LabAnalysisMethod AnalysisMethod = null;
-        @SerializedName("preparationMethod") public String PreparationMethod = null;
-        @SerializedName("analysisComment") public String AnalysisComment = null;
-        @SerializedName("holdingTime") public String HoldingTime = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public LabAnalysisMethod AnalysisMethod = null;
+        public String PreparationMethod = null;
+        public String AnalysisComment = null;
+        public String HoldingTime = null;
+        public AuditAttributes AuditAttributes = null;
 
         public LabAnalysisMethod getAnalysisMethod() { return AnalysisMethod; }
         public LabInstruction setAnalysisMethod(LabAnalysisMethod value) { this.AnalysisMethod = value; return this; }
@@ -5316,10 +5315,10 @@ public class ServiceModel
 
     public static class LabInstructionMinimal
     {
-        @SerializedName("analysisMethod") public LabAnalysisMethodMinimal AnalysisMethod = null;
-        @SerializedName("preparationMethod") public String PreparationMethod = null;
-        @SerializedName("analysisComment") public String AnalysisComment = null;
-        @SerializedName("holdingTime") public String HoldingTime = null;
+        public LabAnalysisMethodMinimal AnalysisMethod = null;
+        public String PreparationMethod = null;
+        public String AnalysisComment = null;
+        public String HoldingTime = null;
 
         public LabAnalysisMethodMinimal getAnalysisMethod() { return AnalysisMethod; }
         public LabInstructionMinimal setAnalysisMethod(LabAnalysisMethodMinimal value) { this.AnalysisMethod = value; return this; }
@@ -5333,13 +5332,13 @@ public class ServiceModel
 
     public static class LabInstructionTemplate
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("analysisMethod") public LabAnalysisMethod AnalysisMethod = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("preparationMethod") public String PreparationMethod = null;
-        @SerializedName("analysisComment") public String AnalysisComment = null;
-        @SerializedName("holdingTime") public String HoldingTime = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public LabAnalysisMethod AnalysisMethod = null;
+        public ObservedProperty ObservedProperty = null;
+        public String PreparationMethod = null;
+        public String AnalysisComment = null;
+        public String HoldingTime = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public LabInstructionTemplate setId(String value) { this.Id = value; return this; }
@@ -5359,15 +5358,15 @@ public class ServiceModel
 
     public static class Laboratory
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("address") public String Address = null;
-        @SerializedName("pointOfContact") public String PointOfContact = null;
-        @SerializedName("emailAddress") public String EmailAddress = null;
-        @SerializedName("phoneNumber") public String PhoneNumber = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String Address = null;
+        public String PointOfContact = null;
+        public String EmailAddress = null;
+        public String PhoneNumber = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Laboratory setId(String value) { this.Id = value; return this; }
@@ -5391,15 +5390,15 @@ public class ServiceModel
 
     public static class LabReport
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("dateReceived") public Instant DateReceived = null;
-        @SerializedName("caseNarrative") public String CaseNarrative = null;
-        @SerializedName("qcSummary") public String QcSummary = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Instant DateReceived = null;
+        public String CaseNarrative = null;
+        public String QcSummary = null;
+        public Laboratory Laboratory = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public LabReport setId(String value) { this.Id = value; return this; }
@@ -5423,8 +5422,8 @@ public class ServiceModel
 
     public static class LabReportImportHistoryEvent
     {
-        @SerializedName("importHistoryEvent") public ImportHistoryEvent ImportHistoryEvent = null;
-        @SerializedName("labReport") public LabReport LabReport = null;
+        public ImportHistoryEvent ImportHistoryEvent = null;
+        public LabReport LabReport = null;
 
         public ImportHistoryEvent getImportHistoryEvent() { return ImportHistoryEvent; }
         public LabReportImportHistoryEvent setImportHistoryEvent(ImportHistoryEvent value) { this.ImportHistoryEvent = value; return this; }
@@ -5434,17 +5433,17 @@ public class ServiceModel
 
     public static class LabResultDetails
     {
-        @SerializedName("labSampleId") public String LabSampleId = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("analysisMethod") public LabAnalysisMethod AnalysisMethod = null;
-        @SerializedName("preparationMethod") public String PreparationMethod = null;
-        @SerializedName("dilutionFactor") public String DilutionFactor = null;
-        @SerializedName("dateReceived") public Instant DateReceived = null;
-        @SerializedName("analysisComment") public String AnalysisComment = null;
-        @SerializedName("qualityFlag") public String QualityFlag = null;
-        @SerializedName("datePrepared") public Instant DatePrepared = null;
-        @SerializedName("labReport") public LabReport LabReport = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String LabSampleId = null;
+        public Laboratory Laboratory = null;
+        public LabAnalysisMethod AnalysisMethod = null;
+        public String PreparationMethod = null;
+        public String DilutionFactor = null;
+        public Instant DateReceived = null;
+        public String AnalysisComment = null;
+        public String QualityFlag = null;
+        public Instant DatePrepared = null;
+        public LabReport LabReport = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getLabSampleId() { return LabSampleId; }
         public LabResultDetails setLabSampleId(String value) { this.LabSampleId = value; return this; }
@@ -5472,9 +5471,9 @@ public class ServiceModel
 
     public static class LocationObservationsGroup
     {
-        @SerializedName("observations") public List<Observation> Observations = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("totalCount") public Integer TotalCount = null;
+        public List<Observation> Observations = null;
+        public SamplingLocation SamplingLocation = null;
+        public Integer TotalCount = null;
 
         public List<Observation> getObservations() { return Observations; }
         public LocationObservationsGroup setObservations(List<Observation> value) { this.Observations = value; return this; }
@@ -5486,9 +5485,9 @@ public class ServiceModel
 
     public static class LocationType
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public LocationType setId(String value) { this.Id = value; return this; }
@@ -5500,11 +5499,11 @@ public class ServiceModel
 
     public static class MediaType
     {
-        @SerializedName("type") public String Type = null;
-        @SerializedName("subtype") public String Subtype = null;
-        @SerializedName("parameters") public Object Parameters = null;
-        @SerializedName("wildcardType") public Boolean WildcardType = null;
-        @SerializedName("wildcardSubtype") public Boolean WildcardSubtype = null;
+        public String Type = null;
+        public String Subtype = null;
+        public Object Parameters = null;
+        public Boolean WildcardType = null;
+        public Boolean WildcardSubtype = null;
 
         public String getType() { return Type; }
         public MediaType setType(String value) { this.Type = value; return this; }
@@ -5520,7 +5519,7 @@ public class ServiceModel
 
     public static class MultiChartData
     {
-        @SerializedName("charts") public List<ChartData> Charts = null;
+        public List<ChartData> Charts = null;
 
         public List<ChartData> getCharts() { return Charts; }
         public MultiChartData setCharts(List<ChartData> value) { this.Charts = value; return this; }
@@ -5532,13 +5531,13 @@ public class ServiceModel
 
     public static class NumericResult
     {
-        @SerializedName("quantity") public Quantity Quantity = null;
-        @SerializedName("sampleFraction") public SampleFractionType SampleFraction = null;
-        @SerializedName("determinationType") public DeterminationType DeterminationType = null;
-        @SerializedName("detectionCondition") public DetectionConditionType DetectionCondition = null;
-        @SerializedName("methodDetectionLevel") public Quantity MethodDetectionLevel = null;
-        @SerializedName("lowerMethodReportingLimit") public Quantity LowerMethodReportingLimit = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public Quantity Quantity = null;
+        public SampleFractionType SampleFraction = null;
+        public DeterminationType DeterminationType = null;
+        public DetectionConditionType DetectionCondition = null;
+        public Quantity MethodDetectionLevel = null;
+        public Quantity LowerMethodReportingLimit = null;
+        public AuditAttributes AuditAttributes = null;
 
         public Quantity getQuantity() { return Quantity; }
         public NumericResult setQuantity(Quantity value) { this.Quantity = value; return this; }
@@ -5558,35 +5557,35 @@ public class ServiceModel
 
     public static class Observation
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("specimen") public Specimen Specimen = null;
-        @SerializedName("samplingLocation") public SamplingLocation SamplingLocation = null;
-        @SerializedName("numericResult") public NumericResult NumericResult = null;
-        @SerializedName("categoricalResult") public CategoricalResult CategoricalResult = null;
-        @SerializedName("taxonomicResult") public TaxonomicResult TaxonomicResult = null;
-        @SerializedName("qualityControlType") public QualityControlType QualityControlType = null;
-        @SerializedName("dataClassification") public DataClassificationType DataClassification = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("mediumSubdivision") public String MediumSubdivision = null;
-        @SerializedName("observedTime") public Instant ObservedTime = null;
-        @SerializedName("resultTime") public Instant ResultTime = null;
-        @SerializedName("depth") public Quantity Depth = null;
-        @SerializedName("labInstruction") public LabInstruction LabInstruction = null;
-        @SerializedName("labResultDetails") public LabResultDetails LabResultDetails = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("fieldVisit") public FieldVisit FieldVisit = null;
-        @SerializedName("device") public Device Device = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("validationWarnings") public List<RuleValidationDetails> ValidationWarnings = null;
-        @SerializedName("resultGrade") public ResultGrade ResultGrade = null;
-        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
-        @SerializedName("plannedFieldResult") public PlannedFieldResult PlannedFieldResult = null;
-        @SerializedName("relatedTaxon") public Taxon RelatedTaxon = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Activity Activity = null;
+        public CollectionMethod CollectionMethod = null;
+        public ObservedProperty ObservedProperty = null;
+        public Specimen Specimen = null;
+        public SamplingLocation SamplingLocation = null;
+        public NumericResult NumericResult = null;
+        public CategoricalResult CategoricalResult = null;
+        public TaxonomicResult TaxonomicResult = null;
+        public QualityControlType QualityControlType = null;
+        public DataClassificationType DataClassification = null;
+        public MediumType Medium = null;
+        public String MediumSubdivision = null;
+        public Instant ObservedTime = null;
+        public Instant ResultTime = null;
+        public Quantity Depth = null;
+        public LabInstruction LabInstruction = null;
+        public LabResultDetails LabResultDetails = null;
+        public String Comment = null;
+        public FieldVisit FieldVisit = null;
+        public Device Device = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<RuleValidationDetails> ValidationWarnings = null;
+        public ResultGrade ResultGrade = null;
+        public ResultStatus ResultStatus = null;
+        public PlannedFieldResult PlannedFieldResult = null;
+        public Taxon RelatedTaxon = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Observation setId(String value) { this.Id = value; return this; }
@@ -5650,18 +5649,18 @@ public class ServiceModel
 
     public static class ObservationImportSummary
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemObservation> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemObservation> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemObservation> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemObservation> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemObservation> NonErrorImportItems = null;
+        public List<ImportItemObservation> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public ObservationImportSummary setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -5691,16 +5690,16 @@ public class ServiceModel
 
     public static class ObservationMinimal
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("specimen") public SpecimenNestedInActivity Specimen = null;
-        @SerializedName("numericResult") public NumericResult NumericResult = null;
-        @SerializedName("categoricalResult") public CategoricalResult CategoricalResult = null;
-        @SerializedName("taxonomicResult") public TaxonomicResult TaxonomicResult = null;
-        @SerializedName("resultStatus") public ResultStatus ResultStatus = null;
-        @SerializedName("labInstruction") public LabInstructionMinimal LabInstruction = null;
-        @SerializedName("dataClassification") public DataClassificationType DataClassification = null;
-        @SerializedName("comment") public String Comment = null;
+        public String Id = null;
+        public ObservedProperty ObservedProperty = null;
+        public SpecimenNestedInActivity Specimen = null;
+        public NumericResult NumericResult = null;
+        public CategoricalResult CategoricalResult = null;
+        public TaxonomicResult TaxonomicResult = null;
+        public ResultStatus ResultStatus = null;
+        public LabInstructionMinimal LabInstruction = null;
+        public DataClassificationType DataClassification = null;
+        public String Comment = null;
 
         public String getId() { return Id; }
         public ObservationMinimal setId(String value) { this.Id = value; return this; }
@@ -5726,11 +5725,11 @@ public class ServiceModel
 
     public static class ObservationStandard
     {
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("resultLowerLimit") public Quantity ResultLowerLimit = null;
-        @SerializedName("resultUpperLimit") public Quantity ResultUpperLimit = null;
-        @SerializedName("ruleText") public String RuleText = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public ObservedProperty ObservedProperty = null;
+        public Quantity ResultLowerLimit = null;
+        public Quantity ResultUpperLimit = null;
+        public String RuleText = null;
+        public AuditAttributes AuditAttributes = null;
 
         public ObservedProperty getObservedProperty() { return ObservedProperty; }
         public ObservationStandard setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
@@ -5746,19 +5745,19 @@ public class ServiceModel
 
     public static class ObservedProperty
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("resultType") public ResultType ResultType = null;
-        @SerializedName("analysisType") public AnalysisType AnalysisType = null;
-        @SerializedName("unitGroup") public UnitGroup UnitGroup = null;
-        @SerializedName("defaultUnit") public Unit DefaultUnit = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("casNumber") public String CasNumber = null;
-        @SerializedName("lowerLimit") public Quantity LowerLimit = null;
-        @SerializedName("upperLimit") public Quantity UpperLimit = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public ResultType ResultType = null;
+        public AnalysisType AnalysisType = null;
+        public UnitGroup UnitGroup = null;
+        public Unit DefaultUnit = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public String CasNumber = null;
+        public Quantity LowerLimit = null;
+        public Quantity UpperLimit = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ObservedProperty setId(String value) { this.Id = value; return this; }
@@ -5790,18 +5789,18 @@ public class ServiceModel
 
     public static class ObservedPropertyImportSummary
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemObservedProperty> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemObservedProperty> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemObservedProperty> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemObservedProperty> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemObservedProperty> NonErrorImportItems = null;
+        public List<ImportItemObservedProperty> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public ObservedPropertyImportSummary setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -5831,14 +5830,14 @@ public class ServiceModel
 
     public static class PlannedActivity
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("activityTemplate") public ActivityTemplate ActivityTemplate = null;
-        @SerializedName("instruction") public String Instruction = null;
-        @SerializedName("activityType") public ActivityType ActivityType = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("collectionMethod") public CollectionMethod CollectionMethod = null;
-        @SerializedName("hashForFieldsThatRequireUniqueness") public String HashForFieldsThatRequireUniqueness = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public String Instruction = null;
+        public ActivityType ActivityType = null;
+        public MediumType Medium = null;
+        public CollectionMethod CollectionMethod = null;
+        public String HashForFieldsThatRequireUniqueness = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PlannedActivity setId(String value) { this.Id = value; return this; }
@@ -5860,12 +5859,12 @@ public class ServiceModel
 
     public static class PlannedFieldResult
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("medium") public MediumType Medium = null;
-        @SerializedName("deviceType") public String DeviceType = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public ObservedProperty ObservedProperty = null;
+        public MediumType Medium = null;
+        public String DeviceType = null;
+        public String Comment = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PlannedFieldResult setId(String value) { this.Id = value; return this; }
@@ -5883,18 +5882,18 @@ public class ServiceModel
 
     public static class Project
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("type") public ProjectType Type = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("scopeStatement") public String ScopeStatement = null;
-        @SerializedName("approved") public Boolean Approved = null;
-        @SerializedName("approvalAgency") public String ApprovalAgency = null;
-        @SerializedName("startTime") public Instant StartTime = null;
-        @SerializedName("endTime") public Instant EndTime = null;
-        @SerializedName("filter") public Filter Filter = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ProjectType Type = null;
+        public String Name = null;
+        public String Description = null;
+        public String ScopeStatement = null;
+        public Boolean Approved = null;
+        public String ApprovalAgency = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public Filter Filter = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Project setId(String value) { this.Id = value; return this; }
@@ -5924,8 +5923,8 @@ public class ServiceModel
 
     public static class Quantity
     {
-        @SerializedName("value") public Double Value = null;
-        @SerializedName("unit") public Unit Unit = null;
+        public Double Value = null;
+        public Unit Unit = null;
 
         public Double getValue() { return Value; }
         public Quantity setValue(Double value) { this.Value = value; return this; }
@@ -5935,10 +5934,10 @@ public class ServiceModel
 
     public static class ResultGrade
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("systemCode") public ResultGradeSystemCodeType SystemCode = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ResultGradeSystemCodeType SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ResultGrade setId(String value) { this.Id = value; return this; }
@@ -5952,10 +5951,10 @@ public class ServiceModel
 
     public static class ResultStatus
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("systemCode") public ResultStatusSystemCodeType SystemCode = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public ResultStatusSystemCodeType SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ResultStatus setId(String value) { this.Id = value; return this; }
@@ -5969,11 +5968,11 @@ public class ServiceModel
 
     public static class Role
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("userType") public UserType UserType = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public UserType UserType = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Role setId(String value) { this.Id = value; return this; }
@@ -5989,9 +5988,9 @@ public class ServiceModel
 
     public static class RuleValidationDetails
     {
-        @SerializedName("type") public String Type = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("properties") public Object Properties = null;
+        public String Type = null;
+        public String Description = null;
+        public Object Properties = null;
 
         public String getType() { return Type; }
         public RuleValidationDetails setType(String value) { this.Type = value; return this; }
@@ -6003,10 +6002,10 @@ public class ServiceModel
 
     public static class SamplingContextTag
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public SamplingContextTag setId(String value) { this.Id = value; return this; }
@@ -6020,25 +6019,25 @@ public class ServiceModel
 
     public static class SamplingLocation
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("type") public LocationType Type = null;
-        @SerializedName("latitude") public String Latitude = null;
-        @SerializedName("longitude") public String Longitude = null;
-        @SerializedName("horizontalDatum") public String HorizontalDatum = null;
-        @SerializedName("verticalDatum") public String VerticalDatum = null;
-        @SerializedName("horizontalCollectionMethod") public String HorizontalCollectionMethod = null;
-        @SerializedName("verticalCollectionMethod") public String VerticalCollectionMethod = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("address") public Address Address = null;
-        @SerializedName("elevation") public Quantity Elevation = null;
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("standards") public List<StandardSimple> Standards = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("samplingLocationGroups") public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
-        @SerializedName("extendedAttributes") public List<ExtendedAttribute> ExtendedAttributes = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public LocationType Type = null;
+        public String Latitude = null;
+        public String Longitude = null;
+        public String HorizontalDatum = null;
+        public String VerticalDatum = null;
+        public String HorizontalCollectionMethod = null;
+        public String VerticalCollectionMethod = null;
+        public String Description = null;
+        public Address Address = null;
+        public Quantity Elevation = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<StandardSimple> Standards = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public List<SamplingLocationGroupSimple> SamplingLocationGroups = null;
+        public List<ExtendedAttribute> ExtendedAttributes = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public SamplingLocation setId(String value) { this.Id = value; return this; }
@@ -6082,10 +6081,10 @@ public class ServiceModel
 
     public static class SamplingLocationGroup
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public SamplingLocationGroup setId(String value) { this.Id = value; return this; }
@@ -6099,8 +6098,8 @@ public class ServiceModel
 
     public static class SamplingLocationGroupSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
+        public String Id = null;
+        public String Name = null;
 
         public String getId() { return Id; }
         public SamplingLocationGroupSimple setId(String value) { this.Id = value; return this; }
@@ -6110,18 +6109,18 @@ public class ServiceModel
 
     public static class SamplingLocationImportSummary
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemSamplingLocation> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemSamplingLocation> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemSamplingLocation> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemSamplingLocation> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemSamplingLocation> NonErrorImportItems = null;
+        public List<ImportItemSamplingLocation> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public SamplingLocationImportSummary setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -6151,9 +6150,9 @@ public class ServiceModel
 
     public static class SamplingLocationSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
 
         public String getId() { return Id; }
         public SamplingLocationSimple setId(String value) { this.Id = value; return this; }
@@ -6165,9 +6164,9 @@ public class ServiceModel
 
     public static class SamplingLocationSummary
     {
-        @SerializedName("observationCount") public Integer ObservationCount = null;
-        @SerializedName("fieldVisitCount") public Integer FieldVisitCount = null;
-        @SerializedName("latestFieldVisit") public FieldVisitSummaryRepresentation LatestFieldVisit = null;
+        public Integer ObservationCount = null;
+        public Integer FieldVisitCount = null;
+        public FieldVisitSummaryRepresentation LatestFieldVisit = null;
 
         public Integer getObservationCount() { return ObservationCount; }
         public SamplingLocationSummary setObservationCount(Integer value) { this.ObservationCount = value; return this; }
@@ -6179,9 +6178,9 @@ public class ServiceModel
 
     public static class SearchResult implements IPaginatedResponse<Object>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Object> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Object> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResult setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6193,9 +6192,9 @@ public class ServiceModel
 
     public static class SearchResultAccessGroup implements IPaginatedResponse<AccessGroup>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<AccessGroup> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<AccessGroup> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultAccessGroup setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6207,9 +6206,9 @@ public class ServiceModel
 
     public static class SearchResultActivity implements IPaginatedResponse<Activity>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Activity> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Activity> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultActivity setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6221,9 +6220,9 @@ public class ServiceModel
 
     public static class SearchResultActivityTemplate implements IPaginatedResponse<ActivityTemplate>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<ActivityTemplate> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ActivityTemplate> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultActivityTemplate setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6235,9 +6234,9 @@ public class ServiceModel
 
     public static class SearchResultAnalyticalGroup implements IPaginatedResponse<AnalyticalGroup>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<AnalyticalGroup> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<AnalyticalGroup> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultAnalyticalGroup setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6249,9 +6248,9 @@ public class ServiceModel
 
     public static class SearchResultAttachment implements IPaginatedResponse<Attachment>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Attachment> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Attachment> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultAttachment setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6263,9 +6262,9 @@ public class ServiceModel
 
     public static class SearchResultAuditHistory implements IPaginatedResponse<AuditHistory>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<AuditHistory> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<AuditHistory> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultAuditHistory setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6277,9 +6276,9 @@ public class ServiceModel
 
     public static class SearchResultAuditItem implements IPaginatedResponse<AuditItem>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<AuditItem> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<AuditItem> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultAuditItem setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6291,9 +6290,9 @@ public class ServiceModel
 
     public static class SearchResultCollectionMethod implements IPaginatedResponse<CollectionMethod>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<CollectionMethod> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<CollectionMethod> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultCollectionMethod setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6305,9 +6304,9 @@ public class ServiceModel
 
     public static class SearchResultFieldTrip implements IPaginatedResponse<FieldTrip>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<FieldTrip> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<FieldTrip> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultFieldTrip setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6319,9 +6318,9 @@ public class ServiceModel
 
     public static class SearchResultFieldVisitSimple implements IPaginatedResponse<FieldVisitSimple>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<FieldVisitSimple> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<FieldVisitSimple> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultFieldVisitSimple setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6333,9 +6332,9 @@ public class ServiceModel
 
     public static class SearchResultLabAnalysisMethod implements IPaginatedResponse<LabAnalysisMethod>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<LabAnalysisMethod> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<LabAnalysisMethod> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultLabAnalysisMethod setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6347,9 +6346,9 @@ public class ServiceModel
 
     public static class SearchResultLaboratory implements IPaginatedResponse<Laboratory>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Laboratory> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Laboratory> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultLaboratory setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6361,9 +6360,9 @@ public class ServiceModel
 
     public static class SearchResultLabReport implements IPaginatedResponse<LabReport>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<LabReport> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<LabReport> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultLabReport setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6375,9 +6374,9 @@ public class ServiceModel
 
     public static class SearchResultLabReportImportHistoryEvent implements IPaginatedResponse<LabReportImportHistoryEvent>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<LabReportImportHistoryEvent> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<LabReportImportHistoryEvent> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultLabReportImportHistoryEvent setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6389,9 +6388,9 @@ public class ServiceModel
 
     public static class SearchResultLocationObservationsGroup implements IPaginatedResponse<LocationObservationsGroup>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<LocationObservationsGroup> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<LocationObservationsGroup> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultLocationObservationsGroup setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6403,9 +6402,9 @@ public class ServiceModel
 
     public static class SearchResultLocationType implements IPaginatedResponse<LocationType>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<LocationType> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<LocationType> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultLocationType setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6417,9 +6416,9 @@ public class ServiceModel
 
     public static class SearchResultObservation implements IPaginatedResponse<Observation>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Observation> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Observation> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultObservation setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6431,9 +6430,9 @@ public class ServiceModel
 
     public static class SearchResultObservedProperty implements IPaginatedResponse<ObservedProperty>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<ObservedProperty> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ObservedProperty> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultObservedProperty setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6445,9 +6444,9 @@ public class ServiceModel
 
     public static class SearchResultProject implements IPaginatedResponse<Project>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Project> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Project> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultProject setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6459,9 +6458,9 @@ public class ServiceModel
 
     public static class SearchResultResultGrade implements IPaginatedResponse<ResultGrade>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<ResultGrade> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ResultGrade> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultResultGrade setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6473,9 +6472,9 @@ public class ServiceModel
 
     public static class SearchResultResultStatus implements IPaginatedResponse<ResultStatus>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<ResultStatus> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ResultStatus> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultResultStatus setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6487,9 +6486,9 @@ public class ServiceModel
 
     public static class SearchResultSamplingContextTag implements IPaginatedResponse<SamplingContextTag>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<SamplingContextTag> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<SamplingContextTag> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultSamplingContextTag setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6501,9 +6500,9 @@ public class ServiceModel
 
     public static class SearchResultSamplingLocation implements IPaginatedResponse<SamplingLocation>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<SamplingLocation> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<SamplingLocation> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultSamplingLocation setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6515,9 +6514,9 @@ public class ServiceModel
 
     public static class SearchResultSamplingLocationGroup implements IPaginatedResponse<SamplingLocationGroup>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<SamplingLocationGroup> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<SamplingLocationGroup> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultSamplingLocationGroup setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6529,9 +6528,9 @@ public class ServiceModel
 
     public static class SearchResultShippingContainer implements IPaginatedResponse<ShippingContainer>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<ShippingContainer> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ShippingContainer> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultShippingContainer setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6543,9 +6542,9 @@ public class ServiceModel
 
     public static class SearchResultSpecimen implements IPaginatedResponse<Specimen>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Specimen> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Specimen> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultSpecimen setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6557,9 +6556,9 @@ public class ServiceModel
 
     public static class SearchResultSpreadsheetTemplate implements IPaginatedResponse<SpreadsheetTemplate>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<SpreadsheetTemplate> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<SpreadsheetTemplate> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultSpreadsheetTemplate setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6571,9 +6570,9 @@ public class ServiceModel
 
     public static class SearchResultStandardSimple implements IPaginatedResponse<StandardSimple>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<StandardSimple> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<StandardSimple> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultStandardSimple setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6585,9 +6584,9 @@ public class ServiceModel
 
     public static class SearchResultTaxon implements IPaginatedResponse<Taxon>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Taxon> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Taxon> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultTaxon setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6599,9 +6598,9 @@ public class ServiceModel
 
     public static class SearchResultUnit implements IPaginatedResponse<Unit>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<Unit> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<Unit> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultUnit setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6613,9 +6612,9 @@ public class ServiceModel
 
     public static class SearchResultUnitGroup implements IPaginatedResponse<UnitGroup>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<UnitGroup> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<UnitGroup> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultUnitGroup setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6627,9 +6626,9 @@ public class ServiceModel
 
     public static class SearchResultUnitGroupWithUnits implements IPaginatedResponse<UnitGroupWithUnits>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<UnitGroupWithUnits> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<UnitGroupWithUnits> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultUnitGroupWithUnits setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6641,9 +6640,9 @@ public class ServiceModel
 
     public static class SearchResultUser implements IPaginatedResponse<User>
     {
-        @SerializedName("totalCount") public Integer TotalCount = null;
-        @SerializedName("cursor") public String Cursor = null;
-        @SerializedName("domainObjects") public List<User> DomainObjects = null;
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<User> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
         public SearchResultUser setTotalCount(Integer value) { this.TotalCount = value; return this; }
@@ -6655,11 +6654,11 @@ public class ServiceModel
 
     public static class ShippingContainer
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("trackingId") public String TrackingId = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String TrackingId = null;
+        public String Comment = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public ShippingContainer setId(String value) { this.Id = value; return this; }
@@ -6675,19 +6674,19 @@ public class ServiceModel
 
     public static class Specimen
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("preservative") public PreservativeType Preservative = null;
-        @SerializedName("filtered") public Boolean Filtered = null;
-        @SerializedName("filtrationComment") public String FiltrationComment = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("shippingContainer") public ShippingContainer ShippingContainer = null;
-        @SerializedName("surrogates") public List<Surrogate> Surrogates = null;
-        @SerializedName("analyticalGroup") public AnalyticalGroup AnalyticalGroup = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("templateCreatedFrom") public SpecimenTemplate TemplateCreatedFrom = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public PreservativeType Preservative = null;
+        public Boolean Filtered = null;
+        public String FiltrationComment = null;
+        public Laboratory Laboratory = null;
+        public ShippingContainer ShippingContainer = null;
+        public List<Surrogate> Surrogates = null;
+        public AnalyticalGroup AnalyticalGroup = null;
+        public Activity Activity = null;
+        public SpecimenTemplate TemplateCreatedFrom = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Specimen setId(String value) { this.Id = value; return this; }
@@ -6719,12 +6718,12 @@ public class ServiceModel
 
     public static class SpecimenNestedInActivity
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("preservative") public PreservativeType Preservative = null;
-        @SerializedName("filtered") public Boolean Filtered = null;
-        @SerializedName("filtrationComment") public String FiltrationComment = null;
-        @SerializedName("analyticalGroup") public AnalyticalGroupSimple AnalyticalGroup = null;
+        public String Id = null;
+        public String Name = null;
+        public PreservativeType Preservative = null;
+        public Boolean Filtered = null;
+        public String FiltrationComment = null;
+        public AnalyticalGroupSimple AnalyticalGroup = null;
 
         public String getId() { return Id; }
         public SpecimenNestedInActivity setId(String value) { this.Id = value; return this; }
@@ -6742,16 +6741,16 @@ public class ServiceModel
 
     public static class SpecimenTemplate
     {
-        @SerializedName("labInstructionTemplates") public List<LabInstructionTemplate> LabInstructionTemplates = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("analyticalGroup") public AnalyticalGroup AnalyticalGroup = null;
-        @SerializedName("preservative") public PreservativeType Preservative = null;
-        @SerializedName("filtered") public Boolean Filtered = null;
-        @SerializedName("filtrationComment") public String FiltrationComment = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public List<LabInstructionTemplate> LabInstructionTemplates = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public AnalyticalGroup AnalyticalGroup = null;
+        public PreservativeType Preservative = null;
+        public Boolean Filtered = null;
+        public String FiltrationComment = null;
+        public AuditAttributes AuditAttributes = null;
 
         public List<LabInstructionTemplate> getLabInstructionTemplates() { return LabInstructionTemplates; }
         public SpecimenTemplate setLabInstructionTemplates(List<LabInstructionTemplate> value) { this.LabInstructionTemplates = value; return this; }
@@ -6777,20 +6776,20 @@ public class ServiceModel
 
     public static class SpecimenWithObservations
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("preservative") public PreservativeType Preservative = null;
-        @SerializedName("filtered") public Boolean Filtered = null;
-        @SerializedName("filtrationComment") public String FiltrationComment = null;
-        @SerializedName("laboratory") public Laboratory Laboratory = null;
-        @SerializedName("shippingContainer") public ShippingContainer ShippingContainer = null;
-        @SerializedName("surrogates") public List<Surrogate> Surrogates = null;
-        @SerializedName("analyticalGroup") public AnalyticalGroup AnalyticalGroup = null;
-        @SerializedName("activity") public Activity Activity = null;
-        @SerializedName("templateCreatedFrom") public SpecimenTemplate TemplateCreatedFrom = null;
-        @SerializedName("observations") public List<Observation> Observations = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String Name = null;
+        public String Description = null;
+        public PreservativeType Preservative = null;
+        public Boolean Filtered = null;
+        public String FiltrationComment = null;
+        public Laboratory Laboratory = null;
+        public ShippingContainer ShippingContainer = null;
+        public List<Surrogate> Surrogates = null;
+        public AnalyticalGroup AnalyticalGroup = null;
+        public Activity Activity = null;
+        public SpecimenTemplate TemplateCreatedFrom = null;
+        public List<Observation> Observations = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public SpecimenWithObservations setId(String value) { this.Id = value; return this; }
@@ -6824,11 +6823,11 @@ public class ServiceModel
 
     public static class SpreadsheetTemplate
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("attachments") public List<DomainObjectAttachment> Attachments = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Description = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public SpreadsheetTemplate setId(String value) { this.Id = value; return this; }
@@ -6844,16 +6843,16 @@ public class ServiceModel
 
     public static class StandardDefinition
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("issuingOrganization") public String IssuingOrganization = null;
-        @SerializedName("applicabilityRange") public Interval ApplicabilityRange = null;
-        @SerializedName("active") public Boolean Active = null;
-        @SerializedName("samplingLocations") public List<SamplingLocationSimple> SamplingLocations = null;
-        @SerializedName("observationStandards") public List<ObservationStandard> ObservationStandards = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String IssuingOrganization = null;
+        public Interval ApplicabilityRange = null;
+        public Boolean Active = null;
+        public List<SamplingLocationSimple> SamplingLocations = null;
+        public List<ObservationStandard> ObservationStandards = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public StandardDefinition setId(String value) { this.Id = value; return this; }
@@ -6879,13 +6878,13 @@ public class ServiceModel
 
     public static class StandardSimple
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("description") public String Description = null;
-        @SerializedName("issuingOrganization") public String IssuingOrganization = null;
-        @SerializedName("applicabilityRange") public Interval ApplicabilityRange = null;
-        @SerializedName("active") public Boolean Active = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String IssuingOrganization = null;
+        public Interval ApplicabilityRange = null;
+        public Boolean Active = null;
 
         public String getId() { return Id; }
         public StandardSimple setId(String value) { this.Id = value; return this; }
@@ -6905,7 +6904,7 @@ public class ServiceModel
 
     public static class Status
     {
-        @SerializedName("releaseName") public String ReleaseName = null;
+        public String ReleaseName = null;
 
         public String getReleaseName() { return ReleaseName; }
         public Status setReleaseName(String value) { this.ReleaseName = value; return this; }
@@ -6913,13 +6912,13 @@ public class ServiceModel
 
     public static class Surrogate
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("percentRecovered") public Double PercentRecovered = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("controlLimit") public String ControlLimit = null;
-        @SerializedName("observedProperty") public ObservedProperty ObservedProperty = null;
-        @SerializedName("dateAnalyzed") public Instant DateAnalyzed = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public Double PercentRecovered = null;
+        public String Comment = null;
+        public String ControlLimit = null;
+        public ObservedProperty ObservedProperty = null;
+        public Instant DateAnalyzed = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Surrogate setId(String value) { this.Id = value; return this; }
@@ -6939,18 +6938,18 @@ public class ServiceModel
 
     public static class Taxon
     {
-        @SerializedName("importHistoryEventSimples") public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("scientificName") public String ScientificName = null;
-        @SerializedName("commonName") public String CommonName = null;
-        @SerializedName("level") public String Level = null;
-        @SerializedName("source") public String Source = null;
-        @SerializedName("comment") public String Comment = null;
-        @SerializedName("itisTsn") public String ItisTsn = null;
-        @SerializedName("itisComment") public String ItisComment = null;
-        @SerializedName("itisUrl") public String ItisUrl = null;
-        @SerializedName("parentId") public String ParentId = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public String Id = null;
+        public String ScientificName = null;
+        public String CommonName = null;
+        public String Level = null;
+        public String Source = null;
+        public String Comment = null;
+        public String ItisTsn = null;
+        public String ItisComment = null;
+        public String ItisUrl = null;
+        public String ParentId = null;
+        public AuditAttributes AuditAttributes = null;
 
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public Taxon setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
@@ -6980,18 +6979,18 @@ public class ServiceModel
 
     public static class TaxonImportSummary
     {
-        @SerializedName("importHistoryEventSimple") public ImportHistoryEventSimple ImportHistoryEventSimple = null;
-        @SerializedName("successCount") public Integer SuccessCount = null;
-        @SerializedName("skippedCount") public Integer SkippedCount = null;
-        @SerializedName("errorCount") public Integer ErrorCount = null;
-        @SerializedName("newCount") public Integer NewCount = null;
-        @SerializedName("updateCount") public Integer UpdateCount = null;
-        @SerializedName("expectedCount") public Integer ExpectedCount = null;
-        @SerializedName("importItems") public List<ImportItemTaxon> ImportItems = null;
-        @SerializedName("importJobErrors") public List<ImportError> ImportJobErrors = null;
-        @SerializedName("invalidRowsCsvUrl") public String InvalidRowsCsvUrl = null;
-        @SerializedName("nonErrorImportItems") public List<ImportItemTaxon> NonErrorImportItems = null;
-        @SerializedName("errorImportItems") public List<ImportItemTaxon> ErrorImportItems = null;
+        public ImportHistoryEventSimple ImportHistoryEventSimple = null;
+        public Integer SuccessCount = null;
+        public Integer SkippedCount = null;
+        public Integer ErrorCount = null;
+        public Integer NewCount = null;
+        public Integer UpdateCount = null;
+        public Integer ExpectedCount = null;
+        public List<ImportItemTaxon> ImportItems = null;
+        public List<ImportError> ImportJobErrors = null;
+        public String InvalidRowsCsvUrl = null;
+        public List<ImportItemTaxon> NonErrorImportItems = null;
+        public List<ImportItemTaxon> ErrorImportItems = null;
 
         public ImportHistoryEventSimple getImportHistoryEventSimple() { return ImportHistoryEventSimple; }
         public TaxonImportSummary setImportHistoryEventSimple(ImportHistoryEventSimple value) { this.ImportHistoryEventSimple = value; return this; }
@@ -7021,9 +7020,9 @@ public class ServiceModel
 
     public static class TaxonomicResult
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("taxon") public Taxon Taxon = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public Taxon Taxon = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public TaxonomicResult setId(String value) { this.Id = value; return this; }
@@ -7035,13 +7034,13 @@ public class ServiceModel
 
     public static class Unit
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("name") public String Name = null;
-        @SerializedName("baseMultiplier") public Double BaseMultiplier = null;
-        @SerializedName("baseOffset") public Double BaseOffset = null;
-        @SerializedName("unitGroup") public UnitGroup UnitGroup = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public Double BaseMultiplier = null;
+        public Double BaseOffset = null;
+        public UnitGroup UnitGroup = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public Unit setId(String value) { this.Id = value; return this; }
@@ -7061,11 +7060,11 @@ public class ServiceModel
 
     public static class UnitGroup
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public UnitGroupSystemCodeType SystemCode = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Boolean SupportsConversion = null;
+        public UnitGroupSystemCodeType SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public UnitGroup setId(String value) { this.Id = value; return this; }
@@ -7081,12 +7080,12 @@ public class ServiceModel
 
     public static class UnitGroupWithUnits
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("supportsConversion") public Boolean SupportsConversion = null;
-        @SerializedName("systemCode") public UnitGroupWithUnitsSystemCodeType SystemCode = null;
-        @SerializedName("units") public List<Unit> Units = null;
-        @SerializedName("auditAttributes") public AuditAttributes AuditAttributes = null;
+        public String Id = null;
+        public String CustomId = null;
+        public Boolean SupportsConversion = null;
+        public UnitGroupWithUnitsSystemCodeType SystemCode = null;
+        public List<Unit> Units = null;
+        public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public UnitGroupWithUnits setId(String value) { this.Id = value; return this; }
@@ -7104,15 +7103,15 @@ public class ServiceModel
 
     public static class User
     {
-        @SerializedName("roles") public List<Role> Roles = null;
-        @SerializedName("accessGroups") public List<AccessGroup> AccessGroups = null;
-        @SerializedName("id") public String Id = null;
-        @SerializedName("customId") public String CustomId = null;
-        @SerializedName("tenantId") public String TenantId = null;
-        @SerializedName("userProfile") public UserProfile UserProfile = null;
-        @SerializedName("providerId") public String ProviderId = null;
-        @SerializedName("email") public String Email = null;
-        @SerializedName("userType") public UserType UserType = null;
+        public List<Role> Roles = null;
+        public List<AccessGroup> AccessGroups = null;
+        public String Id = null;
+        public String CustomId = null;
+        public String TenantId = null;
+        public UserProfile UserProfile = null;
+        public String ProviderId = null;
+        public String Email = null;
+        public UserType UserType = null;
 
         public List<Role> getRoles() { return Roles; }
         public User setRoles(List<Role> value) { this.Roles = value; return this; }
@@ -7136,14 +7135,14 @@ public class ServiceModel
 
     public static class UserProfile
     {
-        @SerializedName("id") public String Id = null;
-        @SerializedName("providerId") public String ProviderId = null;
-        @SerializedName("email") public String Email = null;
-        @SerializedName("firstName") public String FirstName = null;
-        @SerializedName("lastName") public String LastName = null;
-        @SerializedName("fullName") public String FullName = null;
-        @SerializedName("displayName") public String DisplayName = null;
-        @SerializedName("profileImageUrl") public String ProfileImageUrl = null;
+        public String Id = null;
+        public String ProviderId = null;
+        public String Email = null;
+        public String FirstName = null;
+        public String LastName = null;
+        public String FullName = null;
+        public String DisplayName = null;
+        public String ProfileImageUrl = null;
 
         public String getId() { return Id; }
         public UserProfile setId(String value) { this.Id = value; return this; }

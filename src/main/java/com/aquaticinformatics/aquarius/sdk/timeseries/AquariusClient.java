@@ -1,6 +1,7 @@
 package com.aquaticinformatics.aquarius.sdk.timeseries;
 
 import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
+import com.aquaticinformatics.aquarius.sdk.helpers.IFieldNamer;
 import com.aquaticinformatics.aquarius.sdk.helpers.SdkServiceClient;
 import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.*;
 import net.servicestack.client.IReturn;
@@ -28,6 +29,7 @@ public class AquariusClient implements AutoCloseable {
     }
 
     private final Map<Object,Type> _typeAdapters;
+    private final IFieldNamer _fieldNamer;
 
     private AquariusClient(String hostname){
         _typeAdapters = new HashMap<Object,Type>();
@@ -37,15 +39,17 @@ public class AquariusClient implements AutoCloseable {
         _typeAdapters.put(new DurationDeserializer(), Duration.class);
         _typeAdapters.put(new DurationSerializer(), Duration.class);
 
-        Provisioning = SdkServiceClient.Create(hostname, EndPoints.PROVISIONING, _typeAdapters);
-        Publish = SdkServiceClient.Create(hostname, EndPoints.PUBLISHV2, _typeAdapters);
-        Acquisition = SdkServiceClient.Create(hostname, EndPoints.ACQUISITIONV2, _typeAdapters);
+        _fieldNamer = new FieldNamer();
+
+        Provisioning = SdkServiceClient.Create(hostname, EndPoints.PROVISIONING, _typeAdapters, _fieldNamer);
+        Publish = SdkServiceClient.Create(hostname, EndPoints.PUBLISHV2, _typeAdapters, _fieldNamer);
+        Acquisition = SdkServiceClient.Create(hostname, EndPoints.ACQUISITIONV2, _typeAdapters, _fieldNamer);
 
         ServerVersion = getServerVersion(hostname);
     }
 
     private AquariusServerVersion getServerVersion(String hostname) {
-        SdkServiceClient versionClient = SdkServiceClient.Create(hostname, EndPoints.ROOT + "/apps/v1", new HashMap<Object,Type>());
+        SdkServiceClient versionClient = SdkServiceClient.Create(hostname, EndPoints.ROOT + "/apps/v1", new HashMap<Object,Type>(), _fieldNamer);
 
         versionClient.RequestFilter = request -> {
             request.setConnectTimeout(10000);

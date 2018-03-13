@@ -23,22 +23,30 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
     private String endpointUrl;
 
+    private final boolean _serializeNulls;
+    private final IFieldNamer _fieldNamer;
+
     private final Map<Object,Type> _typeAdapters;
 
-    private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters) {
+    private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer, boolean serializeNulls) {
         super(baseUrl);
 
         endpointUrl = baseUrl;
         _typeAdapters = typeAdapters;
+        _fieldNamer = fieldNamer;
+        _serializeNulls = serializeNulls;
     }
 
-    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters)
-    {
+    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer) {
+        return Create(server, baseUrl, typeAdapters, fieldNamer, false);
+    }
+
+    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer, boolean serializeNulls) {
         setUserAgent();
 
         server = resolveServerWithDefaultScheme(server, HttpScheme);
 
-        return new SdkServiceClient(server + baseUrl, typeAdapters);
+        return new SdkServiceClient(server + baseUrl, typeAdapters, fieldNamer, serializeNulls);
     }
 
     public static String resolveServerWithDefaultScheme(String server, String defaultScheme) {
@@ -70,8 +78,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return endpointUrl;
     }
 
-    public String authenticate(String username, String password)
-    {
+    public String authenticate(String username, String password) {
         return post( new Provisioning.PostSession()
                 .setUsername(username)
                 .setEncryptedPassword(password));
@@ -82,14 +89,23 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         delete(new Provisioning.DeleteSession());
     }
 
-    public void setAuthenticationToken(String authenticationToken)
-    {
+    public void setAuthenticationToken(String authenticationToken) {
         RequestFilter = request -> request.setRequestProperty("X-Authentication-Token", authenticationToken);
+    }
+
+    public void setApiToken(String apiToken) {
+        RequestFilter = request -> request.setRequestProperty(HttpHeaders.Authorization, "token " + apiToken);
     }
 
     @Override
     public GsonBuilder getGsonBuilder() {
         GsonBuilder gsonBuilder = super.getGsonBuilder();
+
+        _fieldNamer.configure(gsonBuilder);
+
+        if (_serializeNulls) {
+            gsonBuilder.serializeNulls();
+        }
 
         _typeAdapters.forEach((object, type) -> gsonBuilder.registerTypeAdapter(type, object));
 
@@ -214,7 +230,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     }
 
     @Override
-    public String createUrl(Object requestDto, Map<String,String> query){
+    public String createUrl(Object requestDto, Map<String,String> query) {
         return createUrl(requestDto, query, HttpMethods.Get);
     }
 
@@ -222,7 +238,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return createUrl(requestDto, null, httpMethod);
     }
 
-    public String createUrl(Object requestDto, Map<String,String> query, String httpMethod){
+    public String createUrl(Object requestDto, Map<String,String> query, String httpMethod) {
 
         Route route = getRoute(requestDto);
 
@@ -262,7 +278,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         try {
             queryBuilder.append(queryBuilder.length() == 0 ? "?" : "&");
 
-            queryBuilder.append(URLEncoder.encode(name, "UTF-8"));
+            queryBuilder.append(URLEncoder.encode(name.toLowerCase(), "UTF-8"));
             queryBuilder.append("=");
 
             if (value != null) {
