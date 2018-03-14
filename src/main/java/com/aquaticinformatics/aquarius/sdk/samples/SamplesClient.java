@@ -107,7 +107,7 @@ public class SamplesClient implements AutoCloseable {
         Map<String,String> extraProperties = new HashMap<String, String>();
         extraProperties.put("qqfilename", fileName);
         extraProperties.put("qqtotalfilesize", Integer.toString(bytes.length));
-        extraProperties.put("qquid", UUID.randomUUID().toString());
+        extraProperties.put("qquuid", UUID.randomUUID().toString());
 
         return Api.postFileWithRequest(new ByteArrayInputStream(bytes), fileName, requestDto, "qqfile", extraProperties);
     }

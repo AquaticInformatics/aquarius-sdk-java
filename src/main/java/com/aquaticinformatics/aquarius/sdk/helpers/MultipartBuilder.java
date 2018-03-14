@@ -1,9 +1,10 @@
 package com.aquaticinformatics.aquarius.sdk.helpers;
 
+import net.servicestack.client.MimeTypes;
+import org.apache.tika.Tika;
+
 import java.io.*;
-import java.nio.file.Path;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 public class MultipartBuilder {
 
@@ -30,7 +31,7 @@ public class MultipartBuilder {
     public void addFileContent(String fieldName, String fileName, InputStream content) {
         writeFieldBoundary();
         writeLine("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName + "\"");
-        writeLine("Content-Type: application/octet-stream");
+        writeLine("Content-Type: " + inferMimeTypeFromFilename(fileName));
         writeLine("");
 
         try {
@@ -39,6 +40,12 @@ public class MultipartBuilder {
             throw new RuntimeException(e);
         }
     }
+
+    private String inferMimeTypeFromFilename(String fileName) {
+        return Tika.detect(fileName);
+    }
+
+    private static final Tika Tika = new Tika();
 
     private void writeFieldBoundary() {
         writeLine("--" + boundaryMarker);
@@ -65,6 +72,6 @@ public class MultipartBuilder {
     }
 
     public String getContentType() {
-        return "multipart/form-data; boundary=" + boundaryMarker;
+        return MimeTypes.MultiPartFormData + "; boundary=" + boundaryMarker;
     }
 }
