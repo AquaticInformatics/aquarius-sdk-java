@@ -123,13 +123,15 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         }
     }
 
-    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto)
-    {
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto) {
         return postFileWithRequest(contentToUpload, fileName, requestDto, "upload");
     }
 
-    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName)
-    {
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName) {
+        return postFileWithRequest(contentToUpload, fileName, requestDto,  fieldName, null);
+    }
+
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName, Map<String,String> extraProperties) {
         Route route = getRoute(requestDto);
 
         if (route == null)
@@ -137,14 +139,21 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
         StringBuffer urlBuffer = new StringBuffer(this.endpointUrl);
 
-        Map<String,String> propertyMap = ResolveTemplateParameters(route, urlBuffer, requestDto);
+        Map<String,String> queryParams = ResolveTemplateParameters(route, urlBuffer, requestDto);
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryParams.forEach((name,value) -> appendQueryParameter(queryBuilder, name, value));
+        urlBuffer.append(queryBuilder.toString());
 
         String requestUrl = urlBuffer.toString();
 
         MultipartBuilder builder = new MultipartBuilder();
-        builder.addFileContent(fieldName, fileName, contentToUpload);
 
-        propertyMap.forEach((name,value) -> builder.addField(name, value));
+        if (extraProperties != null) {
+            extraProperties.forEach((name,value) -> builder.addField(name, value));
+        }
+
+        builder.addFileContent(fieldName, fileName, contentToUpload);
         builder.finish();
 
         return send(requestUrl, HttpMethods.Post, builder.toByteArray(), builder.getContentType(), requestDto.getResponseType());
@@ -176,12 +185,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
             while (m.find()) {
                 String parameterName = m.group(1);
 
-                Field f = Func.first(fields, new Predicate<Field>() {
-                    @Override
-                    public boolean apply(Field field) {
-                        return field.getName().equalsIgnoreCase(parameterName);
-                    }
-                });
+                Field f = Func.first(fields, field -> field.getName().equalsIgnoreCase(parameterName));
 
                 if (f == null)
                     continue;
@@ -264,7 +268,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return urlBuffer.toString();
     }
 
-    private Route getRoute(Object requestDto) {
+    public Route getRoute(Object requestDto) {
         Class<?> requestDtoClass = requestDto.getClass();
         Route[] routes = requestDtoClass.getDeclaredAnnotationsByType(Route.class);
 
@@ -278,7 +282,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         try {
             queryBuilder.append(queryBuilder.length() == 0 ? "?" : "&");
 
-            queryBuilder.append(URLEncoder.encode(name.toLowerCase(), "UTF-8"));
+            queryBuilder.append(URLEncoder.encode(camelCase(name), "UTF-8"));
             queryBuilder.append("=");
 
             if (value != null) {
@@ -287,6 +291,12 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String camelCase(String value) {
+        return Utils.isNullOrEmpty(value)
+                ? value
+                : value.substring(0, 1).toLowerCase() + value.substring(1);
     }
 
     // Utils.combinePath(replyUrl, typeName(request)) => 6 usages

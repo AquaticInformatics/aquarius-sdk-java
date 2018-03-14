@@ -38,8 +38,6 @@ public class MultipartBuilder {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        writeLine("");
     }
 
     private void writeFieldBoundary() {
