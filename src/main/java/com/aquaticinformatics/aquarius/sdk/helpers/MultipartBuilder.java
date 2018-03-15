@@ -1,6 +1,7 @@
 package com.aquaticinformatics.aquarius.sdk.helpers;
 
 import net.servicestack.client.MimeTypes;
+import net.servicestack.client.Utils;
 import org.apache.tika.Tika;
 
 import java.io.*;
@@ -18,6 +19,18 @@ public class MultipartBuilder {
         boundaryMarker = "****" + UUID.randomUUID().toString() + "****";
 
         outputStream = new ByteArrayOutputStream();
+    }
+
+    public void addContentPart(ContentPart contentPart) {
+        writeFieldBoundary();
+        writeLine("Content-Disposition: form-data; name=\"" + contentPart.getFieldName() + "\"");
+
+        if (!Utils.isNullOrEmpty(contentPart.getMimeType())) {
+            writeLine("Content-Type: " + contentPart.getMimeType());
+        }
+
+        writeLine("");
+        writeLine(contentPart.getFieldValue());
     }
 
     public void addField(String fieldName, String value) {

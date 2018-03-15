@@ -131,7 +131,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return postFileWithRequest(contentToUpload, fileName, requestDto,  fieldName, null);
     }
 
-    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName, Map<String,String> extraProperties) {
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName, ArrayList<ContentPart> contentParts) {
         Route route = getRoute(requestDto);
 
         if (route == null)
@@ -149,8 +149,8 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
         MultipartBuilder builder = new MultipartBuilder();
 
-        if (extraProperties != null) {
-            extraProperties.forEach((name,value) -> builder.addField(name, value));
+        if (contentParts != null) {
+            contentParts.forEach(contentPart -> builder.addContentPart(contentPart));
         }
 
         builder.addFileContent(fieldName, fileName, contentToUpload);
