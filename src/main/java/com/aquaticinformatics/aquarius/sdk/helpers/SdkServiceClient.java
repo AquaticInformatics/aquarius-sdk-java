@@ -17,24 +17,45 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SdkServiceClient extends net.servicestack.client.JsonServiceClient {
+
+    public static final String HttpScheme = "http";
+    public static final String HttpsScheme = "https";
+
     private String endpointUrl;
+
+    private final boolean _serializeNulls;
+    private final IFieldNamer _fieldNamer;
 
     private final Map<Object,Type> _typeAdapters;
 
-    private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters) {
+    private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer, boolean serializeNulls) {
         super(baseUrl);
+
+        endpointUrl = baseUrl;
         _typeAdapters = typeAdapters;
+        _fieldNamer = fieldNamer;
+        _serializeNulls = serializeNulls;
     }
 
-    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters)
-    {
+    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer) {
+        return Create(server, baseUrl, typeAdapters, fieldNamer, false);
+    }
+
+    public static SdkServiceClient Create(String server, String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer, boolean serializeNulls) {
         setUserAgent();
 
+        server = resolveServerWithDefaultScheme(server, HttpScheme);
+
+        return new SdkServiceClient(server + baseUrl, typeAdapters, fieldNamer, serializeNulls);
+    }
+
+    public static String resolveServerWithDefaultScheme(String server, String defaultScheme) {
+
         if (!server.startsWith("http")) {
-            server = "http://" + server;
+            server = defaultScheme + "://" + server;
         }
 
-        return new SdkServiceClient(server + baseUrl, typeAdapters);
+        return server;
     }
 
     private static void setUserAgent() {
@@ -53,8 +74,11 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         userAgent = "com.aquaticinformatics.aquarius.sdk:<<VERSION_PLACEHOLDER>>/net.servicestack.client:1.033";
     }
 
-    public String authenticate(String username, String password)
-    {
+    public String getEndpointUrl() {
+        return endpointUrl;
+    }
+
+    public String authenticate(String username, String password) {
         return post( new Provisioning.PostSession()
                 .setUsername(username)
                 .setEncryptedPassword(password));
@@ -65,14 +89,23 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         delete(new Provisioning.DeleteSession());
     }
 
-    public void setAuthenticationToken(String authenticationToken)
-    {
+    public void setAuthenticationToken(String authenticationToken) {
         RequestFilter = request -> request.setRequestProperty("X-Authentication-Token", authenticationToken);
+    }
+
+    public void setApiToken(String apiToken) {
+        RequestFilter = request -> request.setRequestProperty(HttpHeaders.Authorization, "token " + apiToken);
     }
 
     @Override
     public GsonBuilder getGsonBuilder() {
         GsonBuilder gsonBuilder = super.getGsonBuilder();
+
+        _fieldNamer.configure(gsonBuilder);
+
+        if (_serializeNulls) {
+            gsonBuilder.serializeNulls();
+        }
 
         _typeAdapters.forEach((object, type) -> gsonBuilder.registerTypeAdapter(type, object));
 
@@ -90,13 +123,15 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         }
     }
 
-    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto)
-    {
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto) {
         return postFileWithRequest(contentToUpload, fileName, requestDto, "upload");
     }
 
-    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName)
-    {
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName) {
+        return postFileWithRequest(contentToUpload, fileName, requestDto,  fieldName, null);
+    }
+
+    public <TResponse> TResponse postFileWithRequest(InputStream contentToUpload, String fileName, IReturn<TResponse> requestDto, String fieldName, ArrayList<ContentPart> contentParts) {
         Route route = getRoute(requestDto);
 
         if (route == null)
@@ -104,14 +139,21 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
 
         StringBuffer urlBuffer = new StringBuffer(this.endpointUrl);
 
-        Map<String,String> propertyMap = ResolveTemplateParameters(route, urlBuffer, requestDto);
+        Map<String,String> queryParams = ResolveTemplateParameters(route, urlBuffer, requestDto);
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryParams.forEach((name,value) -> appendQueryParameter(queryBuilder, name, value));
+        urlBuffer.append(queryBuilder.toString());
 
         String requestUrl = urlBuffer.toString();
 
         MultipartBuilder builder = new MultipartBuilder();
-        builder.addFileContent(fieldName, fileName, contentToUpload);
 
-        propertyMap.forEach((name,value) -> builder.addField(name, value));
+        if (contentParts != null) {
+            contentParts.forEach(contentPart -> builder.addContentPart(contentPart));
+        }
+
+        builder.addFileContent(fieldName, fileName, contentToUpload);
         builder.finish();
 
         return send(requestUrl, HttpMethods.Post, builder.toByteArray(), builder.getContentType(), requestDto.getResponseType());
@@ -143,12 +185,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
             while (m.find()) {
                 String parameterName = m.group(1);
 
-                Field f = Func.first(fields, new Predicate<Field>() {
-                    @Override
-                    public boolean apply(Field field) {
-                        return field.getName().equalsIgnoreCase(parameterName);
-                    }
-                });
+                Field f = Func.first(fields, field -> field.getName().equalsIgnoreCase(parameterName));
 
                 if (f == null)
                     continue;
@@ -197,7 +234,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     }
 
     @Override
-    public String createUrl(Object requestDto, Map<String,String> query){
+    public String createUrl(Object requestDto, Map<String,String> query) {
         return createUrl(requestDto, query, HttpMethods.Get);
     }
 
@@ -205,7 +242,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return createUrl(requestDto, null, httpMethod);
     }
 
-    public String createUrl(Object requestDto, Map<String,String> query, String httpMethod){
+    public String createUrl(Object requestDto, Map<String,String> query, String httpMethod) {
 
         Route route = getRoute(requestDto);
 
@@ -231,7 +268,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return urlBuffer.toString();
     }
 
-    private Route getRoute(Object requestDto) {
+    public Route getRoute(Object requestDto) {
         Class<?> requestDtoClass = requestDto.getClass();
         Route[] routes = requestDtoClass.getDeclaredAnnotationsByType(Route.class);
 
@@ -245,7 +282,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         try {
             queryBuilder.append(queryBuilder.length() == 0 ? "?" : "&");
 
-            queryBuilder.append(URLEncoder.encode(name, "UTF-8"));
+            queryBuilder.append(URLEncoder.encode(camelCase(name), "UTF-8"));
             queryBuilder.append("=");
 
             if (value != null) {
@@ -254,6 +291,12 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String camelCase(String value) {
+        return Utils.isNullOrEmpty(value)
+                ? value
+                : value.substring(0, 1).toLowerCase() + value.substring(1);
     }
 
     // Utils.combinePath(replyUrl, typeName(request)) => 6 usages
