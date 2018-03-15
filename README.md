@@ -7,7 +7,7 @@ The **AQUARIUS SDK for Java** enables JAVA developers to easily work with the [A
 ![AQUARIUS Platform](images/aquatic-informatics.png)
 
 * [AQUARIUS Time-Series](http://aquaticinformatics.com/products/aquarius-time-series/)
-* [AQUARIUS Samples](http://aquaticinformatics.com/products/aquarius-samples/) (coming soon!)
+* [AQUARIUS Samples](http://aquaticinformatics.com/products/aquarius-samples/)
 * [AQUARIUS WebPortal](http://aquaticinformatics.com/products/aquarius-webportal/) (coming soon!)
 
 View the [Release Notes](ReleaseNotes.md) here.
@@ -25,7 +25,7 @@ add the following dependency to your project's `pom.xml`:
 <dependency>
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
-  <version>17.4.1</version>
+  <version>18.1.1</version>
 </dependency>
 ```
 
@@ -35,7 +35,7 @@ To use this project as a dependency with [sbt](http://www.scala-sbt.org)
 add the following dependency to your project's `build.sbt`:
 
 ```scala
-libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "17.4.1"
+libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "18.1.1"
 ```
 
 ### Gradle
@@ -44,7 +44,7 @@ To use this project as a dependency with [Gradle](https://gradle.org/),
 add the following dependency to your project's `build.gradle`:
 
 ```groovy
-compile "com.aquaticinformatics:aquarius.sdk:17.4.1"
+compile "com.aquaticinformatics:aquarius.sdk:18.1.1"
 ```
 
 ### Others
@@ -54,12 +54,12 @@ To use this project as a dependency of another build system, a
 can be created by running the following commands:
 
 ```sh
-git clone --branch v17.4.1 https://github.com/AquaticInformatics/aquarius-sdk-java.git
+git clone --branch v18.1.1 https://github.com/AquaticInformatics/aquarius-sdk-java.git
 cd aquarius-sdk-java
 mvn package
 ```
 
-The generated JAR file will be at `target/aquarius-sdk-17.4.1.jar`.
+The generated JAR file will be at `target/aquarius-sdk-18.1.1.jar`.
 
 ## Getting Help
 

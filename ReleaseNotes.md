@@ -4,14 +4,21 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 18.1.1
+
+- Updated serice models for the AQUARIUS Time-Series 2018.1 release
+- Initial BETA support for the AQUARIUS Samples 2018.03 release.
+
+Since the Samples API support is considered BETA, there may be some breaking changes. We welcome community feedback to help smooth out any rough edges.
+
 ### 17.4.3
 
 - Fixed an Instant JSON deserialization bug.
 
 ### 17.4.1
 
-- Updated service models to support AQTS 2017.4
+- Updated serice models for the AQUARIUS Time-Series 2017.4 release
 
 ### 17.3.1
 
-- Initial public release of the SDK, supporting AQTS 2017.3
+- Initial public release of the SDK, supporting the AQUARIUS Time-Series 2017.3 release
