@@ -4,9 +4,14 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 18.4.1
+
+- Updated service models for the AQUARIUS Samples 2018.4 release
+- This Java SDK has skipped the 18.2 and 18.3 versions, to keep its "Major.Minor" version in sync with the .NET SDK.
+
 ### 18.1.1
 
-- Updated serice models for the AQUARIUS Time-Series 2018.1 release
+- Updated service models for the AQUARIUS Time-Series 2018.1 release
 - Initial BETA support for the AQUARIUS Samples 2018.03 release.
 
 Since the Samples API support is considered BETA, there may be some breaking changes. We welcome community feedback to help smooth out any rough edges.
@@ -17,7 +22,7 @@ Since the Samples API support is considered BETA, there may be some breaking cha
 
 ### 17.4.1
 
-- Updated serice models for the AQUARIUS Time-Series 2017.4 release
+- Updated service models for the AQUARIUS Time-Series 2017.4 release
 
 ### 17.3.1
 
