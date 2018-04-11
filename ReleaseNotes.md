@@ -4,6 +4,10 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 18.4.2
+
+- Authenticate against the Publish endpoint instead of Provisioning, since that endpoint is more likely to be active and able to quickly respond. This internal change should be invisible to SDK consumers.
+
 ### 18.4.1
 
 - Updated service models for the AQUARIUS Samples 2018.4 release

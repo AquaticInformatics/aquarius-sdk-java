@@ -90,7 +90,7 @@ public class AquariusClient implements AutoCloseable {
     }
 
     private void connect(String username, String password) {
-        String sessionToken = Provisioning.authenticate(username, password);
+        String sessionToken = Publish.authenticate(username, password);
 
         Provisioning.setAuthenticationToken(sessionToken);
         Publish.setAuthenticationToken(sessionToken);
@@ -102,7 +102,7 @@ public class AquariusClient implements AutoCloseable {
     }
 
     private void deleteSession(){
-        Provisioning.logoff();
+        Publish.logoff();
     }
 
     @Override
