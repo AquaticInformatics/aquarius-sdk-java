@@ -25,7 +25,7 @@ add the following dependency to your project's `pom.xml`:
 <dependency>
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
-  <version>18.4.2</version>
+  <version>18.5.1</version>
 </dependency>
 ```
 
@@ -35,7 +35,7 @@ To use this project as a dependency with [sbt](http://www.scala-sbt.org)
 add the following dependency to your project's `build.sbt`:
 
 ```scala
-libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "18.4.2"
+libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "18.5.1"
 ```
 
 ### Gradle
@@ -44,7 +44,7 @@ To use this project as a dependency with [Gradle](https://gradle.org/),
 add the following dependency to your project's `build.gradle`:
 
 ```groovy
-compile "com.aquaticinformatics:aquarius.sdk:18.4.2"
+compile "com.aquaticinformatics:aquarius.sdk:18.5.1"
 ```
 
 ### Others
@@ -54,12 +54,12 @@ To use this project as a dependency of another build system, a
 can be created by running the following commands:
 
 ```sh
-git clone --branch v18.4.2 https://github.com/AquaticInformatics/aquarius-sdk-java.git
+git clone --branch v18.5.1 https://github.com/AquaticInformatics/aquarius-sdk-java.git
 cd aquarius-sdk-java
 mvn package
 ```
 
-The generated JAR file will be at `target/aquarius-sdk-18.4.2.jar`.
+The generated JAR file will be at `target/aquarius-sdk-18.5.1.jar`.
 
 ## Getting Help
 
