@@ -101,6 +101,8 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     public GsonBuilder getGsonBuilder() {
         GsonBuilder gsonBuilder = super.getGsonBuilder();
 
+        gsonBuilder.registerTypeAdapterFactory(new CaseInsensitiveEnumTypeAdapterFactory());
+
         _fieldNamer.configure(gsonBuilder);
 
         if (_serializeNulls) {
