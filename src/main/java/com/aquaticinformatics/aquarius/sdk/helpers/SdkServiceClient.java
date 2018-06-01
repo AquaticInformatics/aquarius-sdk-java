@@ -223,7 +223,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
                     continue;
 
                 String name = f.getName();
-                String value = Utils.stripQuotes(getGson().toJson(val));
+                String value = removeUnescapedQuotes(getGson().toJson(val), 0);
 
                 propertyMap.put(name, value);
             }
@@ -233,6 +233,30 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         }
 
         return propertyMap;
+    }
+
+    private String removeUnescapedQuotes(String source, int startIndex) {
+		if(startIndex < source.length()) {
+			int quoteIndex = source.indexOf('"', startIndex);
+			if(quoteIndex >= 0) {
+				boolean escaped = false;
+				for(int i = quoteIndex-1; i >= startIndex; i--){
+					if(source.charAt(i) == '\\') {
+						escaped = !escaped;
+					} else {
+						break;
+					}
+				}
+
+				if(!escaped) {
+					source = source.substring(0, quoteIndex) + source.substring(quoteIndex+1, source.length());
+					quoteIndex--;
+				}
+				source = removeUnescapedQuotes(source, quoteIndex+1);
+			}
+		}
+		
+		return source;
     }
 
     @Override
