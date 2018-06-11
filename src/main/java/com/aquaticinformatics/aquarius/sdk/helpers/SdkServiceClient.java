@@ -235,7 +235,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return propertyMap;
     }
 
-    private String removeUnescapedQuotes(String source, int startIndex) {
+    protected String removeUnescapedQuotes(String source, int startIndex) {
 		if(startIndex < source.length()) {
 			int quoteIndex = source.indexOf('"', startIndex);
 			if(quoteIndex >= 0) {
