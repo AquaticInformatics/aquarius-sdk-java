@@ -85,7 +85,7 @@ public class Provisioning
     public static class PostTag implements IReturn<Tag>
     {
         /**
-        * Identifier of the tag. Cannot contain any of the following characters: '<', '>', '%', '+', '&', ':', '@', '*', '\', '?', '/', '\r', '\n'
+        * Identifier of the tag. Cannot contain any of the following characters: '&lt;', '%gt;', '%', '+', '&amp;', ':', '@', '*', '\', '?', '/', '\r', '\n'
         */
         @ApiMember(Description="Identifier of the tag. Cannot contain any of the following characters: '<', '>', '%', '+', '&', ':', '@', '*', '\', '?', '/', '\r', '\n'", IsRequired=true)
         public String Identifier = null;
@@ -106,7 +106,7 @@ public class Provisioning
         public String Identifier = null;
 
         /**
-        * Updated identifier for the tag. Cannot contain any of the following characters: '<', '>', '%', '+', '&', ':', '@', '*', '\', '?', '/', '\r', '\n'
+        * Updated identifier for the tag. Cannot contain any of the following characters: '&lt;', '&gt;', '%', '+', '&amp;', ':', '@', '*', '\', '?', '/', '\r', '\n'
         */
         @ApiMember(Description="Updated identifier for the tag. Cannot contain any of the following characters: '<', '>', '%', '+', '&', ':', '@', '*', '\', '?', '/', '\r', '\n'", IsRequired=true)
         public String UpdatedIdentifier = null;
