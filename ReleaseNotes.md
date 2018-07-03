@@ -4,6 +4,10 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 18.6.1
+
+- Updated the service models for the AQUARIUS Time-Series 2018.2 release.
+
 ### 18.5.2
 
 - Enumeration values are now deserialized using case-insensitive logic.
