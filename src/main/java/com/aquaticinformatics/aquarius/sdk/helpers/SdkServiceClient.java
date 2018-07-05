@@ -27,6 +27,11 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     private final IFieldNamer _fieldNamer;
 
     private final Map<Object,Type> _typeAdapters;
+    private static Pattern unescapedQuotePattern;
+
+    static {
+        unescapedQuotePattern = Pattern.compile("((?<!\\\\)(?:\\\\{2})*)(\\\")"); // A quote preceeded by an even number of backslashes
+    }
 
     private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer, boolean serializeNulls) {
         super(baseUrl);
@@ -223,7 +228,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
                     continue;
 
                 String name = f.getName();
-                String value = Utils.stripQuotes(getGson().toJson(val));
+                String value = removeUnescapedQuotes(getGson().toJson(val));
 
                 propertyMap.put(name, value);
             }
@@ -233,6 +238,16 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         }
 
         return propertyMap;
+    }
+
+    protected String removeUnescapedQuotes(String source) {
+		if(!Utils.isNullOrEmpty(source)) {
+            return unescapedQuotePattern
+                .matcher(source)
+                .replaceAll("$1");
+		}
+		
+		return source;
     }
 
     @Override
