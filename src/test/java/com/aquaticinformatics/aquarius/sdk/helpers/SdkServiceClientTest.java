@@ -29,10 +29,10 @@ public class SdkServiceClientTest {
         String case_5 = "\\\\\\\\\"T\"e\\\"st\\\\\\\\\\\"";
         String expected_5 = "\\\\\\\\Te\\\"st\\\\\\\\\\\"";
         
-        assertEquals(expected_1, client.removeUnescapedQuotes(case_1, 0));
-        assertEquals(expected_2, client.removeUnescapedQuotes(case_2, 0));
-        assertEquals(expected_3, client.removeUnescapedQuotes(case_3, 0));
-        assertEquals(expected_4, client.removeUnescapedQuotes(case_4, 0));
-        assertEquals(expected_5, client.removeUnescapedQuotes(case_5, 0));
+        assertEquals(expected_1, client.removeUnescapedQuotes(case_1));
+        assertEquals(expected_2, client.removeUnescapedQuotes(case_2));
+        assertEquals(expected_3, client.removeUnescapedQuotes(case_3));
+        assertEquals(expected_4, client.removeUnescapedQuotes(case_4));
+        assertEquals(expected_5, client.removeUnescapedQuotes(case_5));
     }
 }

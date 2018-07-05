@@ -27,6 +27,11 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
     private final IFieldNamer _fieldNamer;
 
     private final Map<Object,Type> _typeAdapters;
+    private static Pattern unescapedQuotePattern;
+
+    static {
+        unescapedQuotePattern = Pattern.compile("((?<!\\\\)(?:\\\\{2})*)(\\\")"); // A quote preceeded by an even number of backslashes
+    }
 
     private SdkServiceClient(String baseUrl, Map<Object,Type> typeAdapters, IFieldNamer fieldNamer, boolean serializeNulls) {
         super(baseUrl);
@@ -223,7 +228,7 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
                     continue;
 
                 String name = f.getName();
-                String value = removeUnescapedQuotes(getGson().toJson(val), 0);
+                String value = removeUnescapedQuotes(getGson().toJson(val));
 
                 propertyMap.put(name, value);
             }
@@ -235,25 +240,11 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
         return propertyMap;
     }
 
-    protected String removeUnescapedQuotes(String source, int startIndex) {
-		if(startIndex < source.length()) {
-			int quoteIndex = source.indexOf('"', startIndex);
-			if(quoteIndex >= 0) {
-				boolean escaped = false;
-				for(int i = quoteIndex-1; i >= startIndex; i--){
-					if(source.charAt(i) == '\\') {
-						escaped = !escaped;
-					} else {
-						break;
-					}
-				}
-
-				if(!escaped) {
-					source = source.substring(0, quoteIndex) + source.substring(quoteIndex+1, source.length());
-					quoteIndex--;
-				}
-				source = removeUnescapedQuotes(source, quoteIndex+1);
-			}
+    protected String removeUnescapedQuotes(String source) {
+		if(!Utils.isNullOrEmpty(source)) {
+            return unescapedQuotePattern
+                .matcher(source)
+                .replaceAll("$1");
 		}
 		
 		return source;
