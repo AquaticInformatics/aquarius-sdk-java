@@ -4,11 +4,25 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 import com.aquaticinformatics.aquarius.sdk.helpers.IFieldNamer;
 import com.aquaticinformatics.aquarius.sdk.helpers.SdkServiceClient;
 import com.aquaticinformatics.aquarius.sdk.timeseries.serializers.*;
+import com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels.Publish;
 import net.servicestack.client.IReturn;
 import net.servicestack.client.Route;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
+import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
+import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.net.SocketTimeoutException;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.RSAPublicKeySpec;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
@@ -90,11 +104,52 @@ public class AquariusClient implements AutoCloseable {
     }
 
     private void connect(String username, String password) {
-        String sessionToken = Publish.authenticate(username, password);
+        String sessionToken = Publish.authenticate(username, getEncryptedPassword(password));
 
         Provisioning.setAuthenticationToken(sessionToken);
         Publish.setAuthenticationToken(sessionToken);
         Acquisition.setAuthenticationToken(sessionToken);
+    }
+
+    private String getEncryptedPassword(String plaintextPassword) {
+        Publish.PublicKey publicKey = Publish.get(new Publish.GetPublicKey());
+
+        InputSource source = new InputSource(new StringReader(publicKey.Xml));
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document document = db.parse(source);
+
+            XPathFactory xpathFactory = XPathFactory.newInstance();
+            XPath xpath = xpathFactory.newXPath();
+
+            String modulusText = xpath.evaluate("/RSAKeyValue/Modulus", document);
+            String exponentText = xpath.evaluate("/RSAKeyValue/Exponent", document);
+
+            byte[] modulusByes = DatatypeConverter.parseBase64Binary(modulusText);
+            byte[] exponentBytes = DatatypeConverter.parseBase64Binary(exponentText);
+
+            BigInteger modulus = new BigInteger(1, modulusByes);
+            BigInteger exponent = new BigInteger(1, exponentBytes);
+
+            RSAPublicKeySpec pubSpec = new RSAPublicKeySpec(modulus, exponent);
+            // Now you can encrypt the password using the public key:
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA1AndMGF1Padding");
+            PublicKey pubKey = factory.generatePublic(pubSpec);
+            cipher.init(Cipher.ENCRYPT_MODE, pubKey);
+
+            byte[] encryptedPasswordBlob = cipher.doFinal(plaintextPassword.getBytes("UTF-8"));
+
+            // And finally, you can transform the blob into a base-64 string to assign the to
+            // the EncryptedPassword property of the login DTO:
+            return DatatypeConverter.printBase64Binary(encryptedPasswordBlob);
+        }
+        catch(Exception e) {
+            return plaintextPassword;
+        }
     }
 
     private void disconnect(){

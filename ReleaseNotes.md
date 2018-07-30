@@ -5,6 +5,10 @@ This page highlights some changes in the SDK.
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
 
+### 18.6.3
+
+- Added automatic password encryption of TimeSeries client connections, just like the .NET SDK
+
 ### 18.6.2
 
 - Fixed a JSV serialization bug ([Issue #52](https://github.com/AquaticInformatics/aquarius-sdk-java/issues/52)) so that extended attribute filter requests can be sent from the Java SDK.
