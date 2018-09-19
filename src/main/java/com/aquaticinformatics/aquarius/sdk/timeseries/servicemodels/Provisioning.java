@@ -3162,7 +3162,7 @@ public class Provisioning
     public static class ApprovalLevel
     {
         /**
-        * Approval Level. Values >=1000 are locking levels
+        * Approval Level. Values 1000 or higher are locking levels
         */
         @ApiMember(DataType="long integer", Description="Approval Level. Values >=1000 are locking levels", IsRequired=true)
         public Long Level = null;
