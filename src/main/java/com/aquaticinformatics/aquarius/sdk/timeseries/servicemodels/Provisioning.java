@@ -2554,7 +2554,7 @@ public class Provisioning
     public static class ApprovalLevel
     {
         /**
-        * Approval Level. Values >=1000 are locking levels
+        * Approval Level. Values &gt;=1000 are locking levels
         */
         @ApiMember(DataType="long integer", Description="Approval Level. Values >=1000 are locking levels", IsRequired=true)
         public Long Level = null;
@@ -3991,7 +3991,7 @@ public class Provisioning
     public static class ApprovalLevelBase
     {
         /**
-        * Approval Level. Values >=1000 are locking levels
+        * Approval Level. Values &gt;=1000 are locking levels
         */
         @ApiMember(DataType="long integer", Description="Approval Level. Values >=1000 are locking levels", IsRequired=true)
         public Long ApprovalLevel = null;
