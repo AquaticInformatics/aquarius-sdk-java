@@ -22,7 +22,7 @@ SecureFile=../../../secure-file/tools/secure-file.exe
 SecretPassphrase=$1
 
 [ -f "$SecureFile" ] || exit_abort "Can't find $SecureFile. Try 'nuget install secure-file -ExcludeVersion'"
-[ ! -z "$SecretPassphrase" ] || show_usage "Specify a passphrase to use for encruypting the files"
+[ ! -z "$SecretPassphrase" ] || show_usage "Specify a passphrase to use for encrypting the files"
 
 gpg --export -a "Open Source Aquatics (OpenSource-AI) <opensource@aquaticinformatics.com>" > OpenSourceAquatics.public.gpg.asc || exit_abort "Can't export public key"
 gpg --export-secret-key -a "Open Source Aquatics (OpenSource-AI) <opensource@aquaticinformatics.com>" > OpenSourceAquatics.secret.gpg.asc || exit_abort "Can't export private key"
