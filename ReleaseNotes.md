@@ -4,6 +4,14 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 19.2.1
+
+- Updated the service models for the AQUARIUS Time-Series 2019.2 Update 1 release.
+- **Source code change required:** Replace "ReflectedTimeSeriesPoint" with "TimeSeriesPoint"
+    - The `ReflectedTimeSeriesPoint` request DTO class has been removed, since its parent class `TimeSeriesPoint` can now be used for both appends to basic or reflected time-series.
+    - If your integration was appending to reflect time-series, just rename all instances of `ReflectedTimeSeriesPoint` to `TimeSeriesPoint`.
+    - Code compiled against SDK 19.2.1 continues to be compatible with earlier versions of AQTS.
+
 ### 19.2.0
 
 - Updated the service models for the AQUARIUS Time-Series 2019.2 release.
