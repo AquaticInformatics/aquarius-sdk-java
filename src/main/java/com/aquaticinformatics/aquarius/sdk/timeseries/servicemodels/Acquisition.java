@@ -1,8 +1,8 @@
 /* Options:
-Instant: 2019-08-14 13:28:19
+Instant: 2019-10-09 11:09:14
 Version: 4.512
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://autoserver1/AQUARIUS/Acquisition/v2
+BaseUrl: http://aqts-ora/AQUARIUS/Acquisition/v2
 
 Package: com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels
 GlobalNamespace: Acquisition
@@ -27,6 +27,57 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
+
+    @Route(Path="/session/keepalive", Verbs="GET")
+    public static class GetKeepAlive implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session", Verbs="POST")
+    public static class PostSession implements IReturn<String>
+    {
+        /**
+        * Username
+        */
+        @ApiMember(Description="Username")
+        public String Username = null;
+
+        /**
+        * Encrypted password
+        */
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Optional locale. Defaults to English
+        */
+        @ApiMember(Description="Optional locale. Defaults to English")
+        public String Locale = null;
+        
+        public String getUsername() { return Username; }
+        public PostSession setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public PostSession setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session", Verbs="DELETE")
+    public static class DeleteSession implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session/publickey", Verbs="GET")
+    public static class GetPublicKey implements IReturn<PublicKey>
+    {
+        
+        private static Object responseType = PublicKey.class;
+        public Object getResponseType() { return responseType; }
+    }
 
     @Route(Path="/timeseries/appendstatus/{AppendRequestIdentifier}", Verbs="GET")
     public static class GetTimeSeriesAppendStatus implements IReturn<TimeSeriesAppendStatus>
@@ -281,57 +332,6 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/session/keepalive", Verbs="GET")
-    public static class GetKeepAlive implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session", Verbs="POST")
-    public static class PostSession implements IReturn<String>
-    {
-        /**
-        * Username
-        */
-        @ApiMember(Description="Username")
-        public String Username = null;
-
-        /**
-        * Encrypted password
-        */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Optional locale. Defaults to English
-        */
-        @ApiMember(Description="Optional locale. Defaults to English")
-        public String Locale = null;
-        
-        public String getUsername() { return Username; }
-        public PostSession setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public PostSession setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/session", Verbs="DELETE")
-    public static class DeleteSession implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session/publickey", Verbs="GET")
-    public static class GetPublicKey implements IReturn<PublicKey>
-    {
-        
-        private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
-    }
-
     @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
     public static class PostVisitFile implements IReturn<PostVisitFileResponse>
     {
@@ -345,6 +345,26 @@ public class Acquisition
         public PostVisitFile setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
         private static Object responseType = PostVisitFileResponse.class;
         public Object getResponseType() { return responseType; }
+    }
+
+    public static class PublicKey
+    {
+        /**
+        * RSA key size in bits
+        */
+        @ApiMember(DataType="integer", Description="RSA key size in bits")
+        public Integer KeySize = null;
+
+        /**
+        * XML blob containing the RSA public key components
+        */
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
+        
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
     }
 
     public static class TimeSeriesAppendStatus
@@ -480,26 +500,6 @@ public class Acquisition
         public PostLocationAttachmentResponse setComments(String value) { this.Comments = value; return this; }
         public AttachmentType getAttachmentType() { return AttachmentType; }
         public PostLocationAttachmentResponse setAttachmentType(AttachmentType value) { this.AttachmentType = value; return this; }
-    }
-
-    public static class PublicKey
-    {
-        /**
-        * RSA key size in bits
-        */
-        @ApiMember(DataType="integer", Description="RSA key size in bits")
-        public Integer KeySize = null;
-
-        /**
-        * XML blob containing the RSA public key components
-        */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
-        
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
     }
 
     public static class PostVisitFileResponse
@@ -660,6 +660,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("19.2.185.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("19.3.70.0");
     }
 }
