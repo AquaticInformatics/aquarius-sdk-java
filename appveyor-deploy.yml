@@ -5,6 +5,10 @@
 # https://www.appveyor.com/docs/build-environment/#java
 image: Visual Studio 2019
 
+# Use the MSYS version of gpg, instead of the version bundled with git
+init:
+  - set PATH=C:\msys64\usr\bin;%PATH%
+
 # Only deploy nightly develop builds to the SNAPSHOT repository
 branches:
   only:
