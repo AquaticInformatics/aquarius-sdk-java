@@ -42,6 +42,7 @@ install:
   # Log versions for debugging
   - java -version
   - mvn --version
+  - gpg --version
 
   # Install secure-file if not present
   - ps: |
