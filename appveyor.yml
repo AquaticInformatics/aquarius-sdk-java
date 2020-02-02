@@ -7,6 +7,10 @@
 # https://www.appveyor.com/docs/build-environment/#java
 image: Visual Studio 2019
 
+# Use the MSYS version of gpg, instead of the version bundled with git
+init:
+  - set PATH=C:\msys64\usr\bin;%PATH%
+
 skip_tags: true
 
 environment:
@@ -17,6 +21,7 @@ install:
   # Log versions for debugging
   - java -version
   - mvn --version
+  - gpg --version
 
 build_script:
   - mvn -B clean install
