@@ -5,7 +5,7 @@
 # This follows the 3-project AppVeyor/Maven pattern established in https://github.com/dblock/log4jna/blob/master/AppVeyorMavenRelease.md
 
 # https://www.appveyor.com/docs/build-environment/#java
-# Use the standard "Visual Studio 2015" image, since that has all the required Maven tools
+image: Visual Studio 2019
 
 skip_tags: true
 
