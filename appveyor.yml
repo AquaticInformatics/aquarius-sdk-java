@@ -18,9 +18,12 @@ environment:
   M2: $(USERPROFILE)\.m2
 
 install:
-  # Log versions for debugging
+  # Log versions and locations for debugging
+  - where java
   - java -version
+  - where mvn
   - mvn --version
+  - where gpg
   - gpg --version
 
 build_script:

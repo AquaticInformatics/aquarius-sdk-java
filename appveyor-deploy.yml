@@ -39,9 +39,12 @@ environment:
     secure: WYu06hjvbgjSQERvZN+jZNj8RBPsxpaaAmvWUHtNzSA=
 
 install:
-  # Log versions for debugging
+  # Log versions and locations for debugging
+  - where java
   - java -version
+  - where mvn
   - mvn --version
+  - where gpg
   - gpg --version
 
   # Install secure-file if not present
