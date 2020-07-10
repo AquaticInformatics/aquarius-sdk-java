@@ -1,8 +1,8 @@
 /* Options:
-Instant: 2020-01-31 15:56:43
+Instant: 2020-07-10 13:55:25
 Version: 4.512
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://aqts-rel-sql.aquaticinformatics.com/AQUARIUS/Acquisition/v2
+BaseUrl: http://autoserver1/AQUARIUS/Acquisition/v2
 
 Package: com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels
 GlobalNamespace: Acquisition
@@ -27,6 +27,57 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
+
+    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFileToLocation extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Unique ID of the location of visits in the file
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostVisitFileToLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/{VisitIdentifier}/upload/plugins", Verbs="POST")
+    public static class PostVisitFileToVisit extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Identifier of the existing visit to add the file's content to
+        */
+        @ApiMember(Description="Identifier of the existing visit to add the file's content to", IsRequired=true, ParameterType="path")
+        public String VisitIdentifier = null;
+        
+        public String getVisitIdentifier() { return VisitIdentifier; }
+        public PostVisitFileToVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFile extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/{VisitIdentifier}", Verbs="DELETE")
+    public static class DeleteVisit implements IReturnVoid
+    {
+        /**
+        * Identifier of the existing visit to delete
+        */
+        @ApiMember(Description="Identifier of the existing visit to delete", IsRequired=true, ParameterType="path")
+        public String VisitIdentifier = null;
+        
+        public String getVisitIdentifier() { return VisitIdentifier; }
+        public DeleteVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
+    }
 
     @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
     public static class PostReportAttachment implements IReturn<PostReportResponse>
@@ -332,19 +383,32 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
-    public static class PostVisitFile implements IReturn<PostVisitFileResponse>
+    public static class PostVisitFileResponse
     {
         /**
-        * Unique ID of the location of visits in the file
+        * Relative URIs of created or modified visits
         */
-        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
+        @ApiMember(DataType="Array<string>", Description="Relative URIs of created or modified visits")
+        public ArrayList<String> VisitUris = null;
 
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostVisitFile setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
+        /**
+        * Identifiers of created or modified visits
+        */
+        @ApiMember(DataType="Array<string>", Description="Identifiers of created or modified visits")
+        public ArrayList<String> VisitIdentifiers = null;
+
+        /**
+        * Registered field data plug-in that processed the file
+        */
+        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
+        public FieldDataPlugin HandledByPlugin = null;
+        
+        public ArrayList<String> getVisitUris() { return VisitUris; }
+        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
+        public ArrayList<String> getVisitIdentifiers() { return VisitIdentifiers; }
+        public PostVisitFileResponse setVisitIdentifiers(ArrayList<String> value) { this.VisitIdentifiers = value; return this; }
+        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
+        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
     }
 
     public static class PostReportResponse
@@ -502,24 +566,28 @@ public class Acquisition
         public DeleteTimeSeriesNotesResponse setNotesDeleted(Integer value) { this.NotesDeleted = value; return this; }
     }
 
-    public static class PostVisitFileResponse
+    public static class PostVisitFileBase
+    {
+    }
+
+    public static class FieldDataPlugin
     {
         /**
-        * Relative URIs of created visits
+        * Name
         */
-        @ApiMember(DataType="Array<string>", Description="Relative URIs of created visits")
-        public ArrayList<String> VisitUris = null;
+        @ApiMember(Description="Name")
+        public String Name = null;
 
         /**
-        * Registered field data plug-in that processed the file
+        * Unique id
         */
-        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
-        public FieldDataPlugin HandledByPlugin = null;
+        @ApiMember(DataType="string", Description="Unique id")
+        public String UniqueId = null;
         
-        public ArrayList<String> getVisitUris() { return VisitUris; }
-        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
-        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
-        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
+        public String getName() { return Name; }
+        public FieldDataPlugin setName(String value) { this.Name = value; return this; }
+        public String getUniqueId() { return UniqueId; }
+        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
     public static enum AttachmentCategory
@@ -631,26 +699,6 @@ public class Acquisition
         public TimeSeriesNote setNoteText(String value) { this.NoteText = value; return this; }
     }
 
-    public static class FieldDataPlugin
-    {
-        /**
-        * Name
-        */
-        @ApiMember(Description="Name")
-        public String Name = null;
-
-        /**
-        * Unique id
-        */
-        @ApiMember(DataType="string", Description="Unique id")
-        public String UniqueId = null;
-        
-        public String getName() { return Name; }
-        public FieldDataPlugin setName(String value) { this.Name = value; return this; }
-        public String getUniqueId() { return UniqueId; }
-        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
-    }
-
     public static enum PointType
     {
         Unknown,
@@ -660,6 +708,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("19.4.169.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("20.2.85.0");
     }
 }
