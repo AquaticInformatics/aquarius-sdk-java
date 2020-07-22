@@ -1,0 +1,5 @@
+# Let's not store these in plain text
+/settings.xml
+/settings-security.xml
+/OpenSourceAquatics.public.gpg.asc
+/OpenSourceAquatics.secret.gpg.asc
