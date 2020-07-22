@@ -4,7 +4,7 @@
 
 The **AQUARIUS SDK for Java** enables JAVA developers to easily work with the [AQUARIUS Platform](http://aquaticinformatics.com/products/) of environmental monitoring products.
 
-![AQUARIUS Platform](images/aquatic-informatics.png)
+![AQUARIUS Platform](images/aquatic-informatics.svg)
 
 * [AQUARIUS Time-Series](http://aquaticinformatics.com/products/aquarius-time-series/)
 * [AQUARIUS Samples](http://aquaticinformatics.com/products/aquarius-samples/)
@@ -25,7 +25,7 @@ add the following dependency to your project's `pom.xml`:
 <dependency>
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
-  <version>19.4.1</version>
+  <version>20.2.0</version>
 </dependency>
 ```
 
@@ -35,7 +35,7 @@ To use this project as a dependency with [sbt](http://www.scala-sbt.org)
 add the following dependency to your project's `build.sbt`:
 
 ```scala
-libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "19.4.1"
+libraryDependencies += "com.aquaticinformatics" % "aquarius.sdk" % "20.2.0"
 ```
 
 ### Gradle
@@ -44,7 +44,7 @@ To use this project as a dependency with [Gradle](https://gradle.org/),
 add the following dependency to your project's `build.gradle`:
 
 ```groovy
-compile "com.aquaticinformatics:aquarius.sdk:19.4.1"
+compile "com.aquaticinformatics:aquarius.sdk:20.2.0"
 ```
 
 ### Others
@@ -54,12 +54,12 @@ To use this project as a dependency of another build system, a
 can be created by running the following commands:
 
 ```sh
-git clone --branch v19.4.1 https://github.com/AquaticInformatics/aquarius-sdk-java.git
+git clone --branch v20.2.0 https://github.com/AquaticInformatics/aquarius-sdk-java.git
 cd aquarius-sdk-java
 mvn package
 ```
 
-The generated JAR file will be at `target/aquarius-sdk-19.4.1.jar`.
+The generated JAR file will be at `target/aquarius-sdk-20.2.0.jar`.
 
 ## Getting Help
 

@@ -25,62 +25,54 @@ environment:
   SEC_KEY_FILE_ENC_DEST: $(USERPROFILE)\OpenSourceAquatics.secret.gpg.asc.enc
   PUB_KEY_FILE_GPG: $(USERPROFILE)\OpenSourceAquatics.public.gpg.asc
   SEC_KEY_FILE_GPG: $(USERPROFILE)\OpenSourceAquatics.secret.gpg.asc
-  SECURE_FILE_DIR: C:\secure-file
-  SECURE_FILE_CMD: C:\secure-file\tools\secure-file.exe
-  SECURE_FILE_DEC: '-decrypt'
-  SECURE_FILE_SEC: '-secret'
   VERSION_INFO_PATH: src\main\java\com\aquaticinformatics\aquarius\sdk\helpers\SdkServiceClient.java
   VERSION_INFO_TARGET: <<VERSION_PLACEHOLDER>>
 
-  secret:
+  passphrase:
     secure: WYu06hjvbgjSQERvZN+jZNj8RBPsxpaaAmvWUHtNzSA=
 
   access_token:
     secure: DeTORL7H+5KS+KHQDt52OCT0LsvkYIIPZdA0VfvWpQo7za9ZwLoHMmz76jkYOxpO
 
+  # Salts for the four files
+  settings_salt:
+    secure: IRCYVm6KZUIHfsgo0cpz6CtB2uJbRpSxeoLGxfS/qnHAYkR1/BkdY7ywddoKsHwvDbi2gGLJ58hhBo5m632CLQ==
+
+  settings_security_salt:
+    secure: 1Ce+FUEP+Riv+Y3IY+MIbNlzYhKp/99PMuaudib0vMj/agOkGLeh5r2X+lUdcGEvKWUdVWMkWSRtLGR3VFOk/g==
+
+  public_gpg_salt:
+    secure: tIc77vjrRocUe9zDzjsSEKI3/5nuvrJDoKV/VzlH7jfuxRKUc20lWI5Y0wjN2ZDxX4OtAsefHyPcm+aGdi3gAQ==
+
+  secret_gpg_salt:
+    secure: XoQzJ7kTuPXGUQ2S7oeSgqWfUmZ5sFtOK4r+h4yupr1C9Mk7QYvrP3pP053VJ3WIFWH4jee6jtfpCMfcVmCG0g==
+
+
 install:
   # Log versions for debugging
+  - where java
   - java -version
+  - where mvn
   - mvn --version
+  - where gpg
   - gpg --version
 
-  # Install secure-file if not present
-  - ps: |
-      if (!(Test-Path -Path $env:SECURE_FILE_DIR )) {
-        nuget install secure-file -ExcludeVersion -o C:\
-      }
+  # Install secure-file and decrypt everything
+  - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
 
-  # Create or update the Maven settings
+  # Might need to create output folders if they don't already exist
   - ps: |
-      $CMD = "C:\secure-file\tools\secure-file.exe"
-      $decrip = '-decrypt'
-      $secret = '-secret'
       if(!(Test-Path -Path $env:M2)) {
-          New-Item $env:M2 -type directory -Verbose
-          # Install maven settings
-          Copy-Item $env:SETTINGS_ENC $env:M2_SETTINGS_ENC -Verbose
-          Copy-Item $env:SETTINGS_SEC_ENC $env:M2_SETTINGS_SEC_ENC -Verbose
-          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_ENC $env:SECURE_FILE_SEC $env:secret
-          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_SEC_ENC $env:SECURE_FILE_SEC $env:secret
-      } else {
-      # The directory exists test Meven settings
-        if (!(Test-Path $env:M2_SETTINGS_ENC) -or ((Get-FileHash $env:M2_SETTINGS_ENC).hash -ne (Get-FileHash $env:SETTINGS_ENC).hash)) {
-          Copy-Item $env:SETTINGS_ENC $env:M2_SETTINGS_ENC -Verbose
-          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_ENC $env:SECURE_FILE_SEC $env:secret
-        } else {
-          Write-Host "$env:M2_SETTINGS_ENC up to date"
-        }
-        if (!(Test-Path $env:M2_SETTINGS_SEC_ENC) -or ((Get-FileHash $env:M2_SETTINGS_SEC_ENC).hash -ne (Get-FileHash $env:SETTINGS_SEC_ENC).hash)) {
-          Copy-Item $env:SETTINGS_SEC_ENC $env:M2_SETTINGS_SEC_ENC -Verbose
-          & $env:SECURE_FILE_CMD $env:SECURE_FILE_DEC $env:M2_SETTINGS_SEC_ENC $env:SECURE_FILE_SEC $env:secret
-        } else {
-          Write-Host "$env:M2_SETTINGS_SEC up to date"
-        }
+                New-Item $env:M2 -type directory -Verbose
       }
 
-  # Decrypt and install gpg keys
-  - C:\secure-file\tools\secure-file -decrypt %PUB_KEY_FILE_ENC% -secret %secret% -out %PUB_KEY_FILE_GPG%
-  - C:\secure-file\tools\secure-file -decrypt %SEC_KEY_FILE_ENC% -secret %secret% -out %SEC_KEY_FILE_GPG%
+  # Now we can decrypt to the correct destination
+  - cmd: appveyor-tools\secure-file -secret %passphrase% -decrypt %SETTINGS_ENC% -salt %settings_salt% -out %M2_SETTINGS%
+  - cmd: appveyor-tools\secure-file -secret %passphrase% -decrypt %SETTINGS_SEC_ENC% -salt %settings_security_salt% -out %M2_SETTINGS_SEC%
+  - cmd: appveyor-tools\secure-file -secret %passphrase% -decrypt %PUB_KEY_FILE_ENC% -salt %public_gpg_salt% -out %PUB_KEY_FILE_GPG%
+  - cmd: appveyor-tools\secure-file -secret %passphrase% -decrypt %SEC_KEY_FILE_ENC% -salt %secret_gpg_salt% -out %SEC_KEY_FILE_GPG%
+
+  # install gpg keys
   - gpg --import %PUB_KEY_FILE_GPG%
   - gpg --import %SEC_KEY_FILE_GPG%
 
