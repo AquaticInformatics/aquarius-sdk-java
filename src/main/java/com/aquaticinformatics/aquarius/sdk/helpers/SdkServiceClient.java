@@ -226,6 +226,16 @@ public class SdkServiceClient extends net.servicestack.client.JsonServiceClient 
                     continue;
 
                 String name = f.getName();
+
+                if (f.isAnnotationPresent(DataMember.class)) {
+                    DataMember dataMember = f.getDeclaredAnnotation(DataMember.class);
+                    String aliasedName = dataMember.Name();
+
+                    if (aliasedName != null && !aliasedName.isEmpty()) {
+                        name = aliasedName;
+                    }
+                }
+
                 String value = removeUnescapedQuotes(getGson().toJson(val));
 
                 propertyMap.put(name, value);
