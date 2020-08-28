@@ -1,4 +1,4 @@
-// Date: 2020-07-10T14:08:04.5770511-07:00
+// Date: 2020-08-28T15:04:31.9406646-07:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
 // Source: AQUARIUS Samples API (2020.04.3767)
 
@@ -1058,17 +1058,27 @@ public class ServiceModel
         public DeleteFieldTrip setId(String value) { this.Id = value; return this; }
     }
 
+    @DataContract
     @Route(Path="/v1/fieldvisits", Verbs="GET")
     public static class GetFieldVisits implements IReturn<SearchResultFieldVisitSimple>
     {
+        @DataMember(Name = "end-startTime")
         public Instant EndStartTime = null;
+        @DataMember(Name = "fieldTripIds")
         public List<String> FieldTripIds = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "planningStatuses")
         public List<String> PlanningStatuses = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "scheduleIds")
         public List<String> ScheduleIds = null;
+        @DataMember(Name = "start-startTime")
         public Instant StartStartTime = null;
 
         public Instant getEndStartTime() { return EndStartTime; }
@@ -1146,17 +1156,27 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v1/fieldvisits", Verbs="DELETE")
     public static class DeleteFieldVisits implements IReturnVoid
     {
+        @DataMember(Name = "end-startTime")
         public Instant EndStartTime = null;
+        @DataMember(Name = "fieldTripIds")
         public List<String> FieldTripIds = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "planningStatuses")
         public List<String> PlanningStatuses = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "scheduleIds")
         public List<String> ScheduleIds = null;
+        @DataMember(Name = "start-startTime")
         public Instant StartStartTime = null;
 
         public Instant getEndStartTime() { return EndStartTime; }
@@ -1782,51 +1802,95 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v1/observations", Verbs="GET")
     public static class GetObservations implements IReturn<SearchResultObservation>, IPaginatedRequest
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -2020,51 +2084,95 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v1/observations", Verbs="DELETE")
     public static class DeleteObservations implements IReturnVoid
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -2276,51 +2384,95 @@ public class ServiceModel
         public DeleteObservation setId(String value) { this.Id = value; return this; }
     }
 
+    @DataContract
     @Route(Path="/v1/observations/charts", Verbs="GET")
     public static class GetChartData implements IReturn<MultiChartData>
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -2413,51 +2565,95 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v1/observations/geographic", Verbs="GET")
     public static class GetGroupedObservations implements IReturn<SearchResultLocationObservationsGroup>, IPaginatedRequest
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -2550,52 +2746,97 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v1/observations/resultgrades", Verbs="PUT")
     public static class PutBulkEditResultGrades implements IReturnVoid
     {
+        @DataMember(Name = "targetResultGrade")
         public String TargetResultGrade = null;
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getTargetResultGrade() { return TargetResultGrade; }
@@ -3473,52 +3714,97 @@ public class ServiceModel
         public GetExportFieldSheet setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
     }
 
+    @DataContract
     @Route(Path="/v1/services/export/observations", Verbs="GET")
     public static class GetExportObservations implements IReturnVoid
     {
+        @DataMember(Name = "format")
         public FormatType Format = null;
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public FormatType getFormat() { return Format; }
@@ -4977,51 +5263,95 @@ public class ServiceModel
         public PostObservationsDryRunV2 setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
     }
 
+    @DataContract
     @Route(Path="/v2/observations", Verbs="GET")
     public static class GetObservationsV2 implements IReturn<SearchResultObservation>, IPaginatedRequest
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -5215,51 +5545,95 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v2/observations", Verbs="DELETE")
     public static class DeleteObservationsV2 implements IReturnVoid
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -5471,51 +5845,95 @@ public class ServiceModel
         public DeleteObservationV2 setId(String value) { this.Id = value; return this; }
     }
 
+    @DataContract
     @Route(Path="/v2/observations/charts", Verbs="GET")
     public static class GetChartDataV2 implements IReturn<MultiChartData>
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -5608,51 +6026,95 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v2/observations/geographic", Verbs="GET")
     public static class GetGroupedObservationsV2 implements IReturn<SearchResultLocationObservationsGroup>, IPaginatedRequest
     {
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getActivityCustomId() { return ActivityCustomId; }
@@ -5745,52 +6207,97 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
     @Route(Path="/v2/observations/resultgrades", Verbs="PUT")
     public static class PutBulkEditResultGradesV2 implements IReturnVoid
     {
+        @DataMember(Name = "targetResultGrade")
         public String TargetResultGrade = null;
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public String getTargetResultGrade() { return TargetResultGrade; }
@@ -5883,52 +6390,97 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
     }
 
+    @DataContract
     @Route(Path="/v2/services/export/observations", Verbs="GET")
     public static class GetObservationExportIIV2 implements IReturnVoid
     {
+        @DataMember(Name = "format")
         public FormatType Format = null;
+        @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
+        @DataMember(Name = "activityIds")
         public List<String> ActivityIds = null;
+        @DataMember(Name = "activityTypes")
         public List<String> ActivityTypes = null;
+        @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
+        @DataMember(Name = "collectionMethodIds")
         public List<String> CollectionMethodIds = null;
+        @DataMember(Name = "cursor")
         public String Cursor = null;
+        @DataMember(Name = "customId")
         public String CustomId = null;
+        @DataMember(Name = "dataClassifications")
         public List<String> DataClassifications = null;
+        @DataMember(Name = "depthUnitCustomId")
         public String DepthUnitCustomId = null;
+        @DataMember(Name = "depthUnitId")
         public String DepthUnitId = null;
+        @DataMember(Name = "depthValue")
         public Double DepthValue = null;
+        @DataMember(Name = "detectionCondition")
         public DetectionConditionType DetectionCondition = null;
+        @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
+        @DataMember(Name = "end-resultTime")
         public Instant EndResultTime = null;
+        @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "filterId")
         public String FilterId = null;
+        @DataMember(Name = "ids")
         public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
         public String ImportHistoryEventId = null;
+        @DataMember(Name = "labReportIds")
         public List<String> LabReportIds = null;
+        @DataMember(Name = "labResultLabAnalysisMethodIds")
         public List<String> LabResultLabAnalysisMethodIds = null;
+        @DataMember(Name = "labResultLaboratoryIds")
         public List<String> LabResultLaboratoryIds = null;
+        @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
+        @DataMember(Name = "projectIds")
         public List<String> ProjectIds = null;
+        @DataMember(Name = "qualityControlTypes")
         public List<String> QualityControlTypes = null;
+        @DataMember(Name = "resultGrades")
         public List<String> ResultGrades = null;
+        @DataMember(Name = "resultStatuses")
         public List<String> ResultStatuses = null;
+        @DataMember(Name = "sampleFraction")
         public SampleFractionType SampleFraction = null;
+        @DataMember(Name = "samplingContextTagIds")
         public List<String> SamplingContextTagIds = null;
+        @DataMember(Name = "samplingLocationGroupIds")
         public List<String> SamplingLocationGroupIds = null;
+        @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "search")
         public List<String> Search = null;
+        @DataMember(Name = "sort")
         public String Sort = null;
+        @DataMember(Name = "specimenIds")
         public List<String> SpecimenIds = null;
+        @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
+        @DataMember(Name = "start-resultTime")
         public Instant StartResultTime = null;
+        @DataMember(Name = "startModificationTime")
         public Instant StartModificationTime = null;
+        @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
         public FormatType getFormat() { return Format; }

@@ -4,10 +4,13 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 20.2.2
+- Improved some request parameter mapping for AQUARIUS Samples filtering requests.
+
 ### 20.2.0
 
 - Updated the service models for the AQUARIUS Time-Series 2020.2 release.
-- Updated the service models for the AQUARIUS Samples 2020.05 release.
+- Updated the service models for the AQUARIUS Samples 2020.04 release.
 
 ### 19.4.1
 
