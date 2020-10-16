@@ -7,6 +7,7 @@ Not all changes will be listed, but you can always [compare by version tags](htt
 ### 20.3.0
 
 - Updated the service models for the AQUARIUS Time-Series 2020.3 release.
+- Updated the service models for the AQUARIUS Samples 2020.05 release.
 
 ### 20.2.2
 - Improved some request parameter mapping for AQUARIUS Samples filtering requests.
