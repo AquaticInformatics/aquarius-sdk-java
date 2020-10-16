@@ -63,7 +63,13 @@ done
 # Also append a built-in Current version property into the service model namespace
 sed -i.bak -e "s/^}/    public static class Current\\n    {\\n        public static final AquariusServerVersion Version = AquariusServerVersion.Create(\"$ApiVersion\");\\n    }\\n}/" "$TempFile"
 
-# Pase 2 - Map some NodaTime .NET struct datatypes (exported as Java strings) to more appropriate Java types.
+# When "public static interface IFileUploadRequest" exists, insert "public static interface IHttpFile {}"
+sed -i.bak -e "s/public static interface IFileUploadRequest/public static interface IHttpFile\\n    {\\n    }\\n\\n    public static interface IFileUploadRequest/" "$TempFile"
+
+# Fix any "public static interface IDerived implements IBase" to "public static interface IDerived extends IBase"
+sed -i.bak -e "s/public static interface \\(I[A-Za-z0-9]*\\) implements \\(I[A-Za-z0-9]*\\)/public static interface \1 extends \2/" "$TempFile"
+
+# Phase 2 - Map some NodaTime .NET struct datatypes (exported as Java strings) to more appropriate Java types.
 # We need to match regeular expressions across multiline statements, so switch to perl, using -0777 for "slurp the entire file as one record".
 # Relevant XKCD: https://xkcd.com/1171/
 
