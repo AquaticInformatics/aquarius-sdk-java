@@ -1,6 +1,6 @@
-// Date: 2020-08-28T15:04:31.9406646-07:00
+// Date: 2020-10-23T08:26:10.0650107-07:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2020.04.3767)
+// Source: AQUARIUS Samples API (2020.05.3976)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2020.04.3767");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2020.05.3976");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -827,6 +827,85 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteCollectionMethod setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/detectionconditions", Verbs="GET")
+    public static class GetDetectionconditions implements IReturn<SearchResultResultDetectionCondition>
+    {
+        private static Object responseType = SearchResultResultDetectionCondition.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/detectionconditions", Verbs="POST")
+    public static class PostDetectioncondition implements IReturn<ResultDetectionCondition>
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public PostDetectioncondition setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PostDetectioncondition setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public PostDetectioncondition setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public PostDetectioncondition setDescription(String value) { this.Description = value; return this; }
+        public String getSystemCode() { return SystemCode; }
+        public PostDetectioncondition setSystemCode(String value) { this.SystemCode = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public PostDetectioncondition setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        private static Object responseType = ResultDetectionCondition.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/detectionconditions/{id}", Verbs="GET")
+    public static class GetDetectioncondition implements IReturn<ResultDetectionCondition>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetDetectioncondition setId(String value) { this.Id = value; return this; }
+        private static Object responseType = ResultDetectionCondition.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/detectionconditions/{id}", Verbs="PUT")
+    public static class PutDetectioncondition implements IReturn<ResultDetectionCondition>
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public PutDetectioncondition setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PutDetectioncondition setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public PutDetectioncondition setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public PutDetectioncondition setDescription(String value) { this.Description = value; return this; }
+        public String getSystemCode() { return SystemCode; }
+        public PutDetectioncondition setSystemCode(String value) { this.SystemCode = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public PutDetectioncondition setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        private static Object responseType = ResultDetectionCondition.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/detectionconditions/{id}", Verbs="DELETE")
+    public static class DeleteDetectioncondition implements IReturnVoid
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public DeleteDetectioncondition setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/extendedattributes", Verbs="GET")
@@ -1802,6 +1881,79 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @Route(Path="/v1/nullmeasurequalifiers", Verbs="GET")
+    public static class GetNullMeasureQualifiers implements IReturn<SearchResultNullMeasureQualifier>
+    {
+        private static Object responseType = SearchResultNullMeasureQualifier.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/nullmeasurequalifiers", Verbs="POST")
+    public static class PostNullMeasureQualifier implements IReturn<NullMeasureQualifier>
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public PostNullMeasureQualifier setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PostNullMeasureQualifier setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public PostNullMeasureQualifier setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public PostNullMeasureQualifier setDescription(String value) { this.Description = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public PostNullMeasureQualifier setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        private static Object responseType = NullMeasureQualifier.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/nullmeasurequalifiers/{id}", Verbs="GET")
+    public static class GetNullMeasureQualifier implements IReturn<NullMeasureQualifier>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetNullMeasureQualifier setId(String value) { this.Id = value; return this; }
+        private static Object responseType = NullMeasureQualifier.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/nullmeasurequalifiers/{id}", Verbs="PUT")
+    public static class PutNullMeasureQualifier implements IReturn<NullMeasureQualifier>
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public PutNullMeasureQualifier setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PutNullMeasureQualifier setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public PutNullMeasureQualifier setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public PutNullMeasureQualifier setDescription(String value) { this.Description = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public PutNullMeasureQualifier setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+        private static Object responseType = NullMeasureQualifier.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/nullmeasurequalifiers/{id}", Verbs="DELETE")
+    public static class DeleteNullMeasureQualifier implements IReturnVoid
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public DeleteNullMeasureQualifier setId(String value) { this.Id = value; return this; }
+    }
+
     @DataContract
     @Route(Path="/v1/observations", Verbs="GET")
     public static class GetObservations implements IReturn<SearchResultObservation>, IPaginatedRequest
@@ -1831,7 +1983,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -1917,8 +2069,8 @@ public class ServiceModel
         public GetObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetObservations setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -2014,8 +2166,10 @@ public class ServiceModel
         public ResultGrade ResultGrade = null;
         public ResultStatus ResultStatus = null;
         public PlannedFieldResult PlannedFieldResult = null;
+        public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -2074,10 +2228,14 @@ public class ServiceModel
         public PostObservation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public PostObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
+        public ObservationStatistics getStatistics() { return Statistics; }
+        public PostObservation setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public PostObservation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PostObservation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public PostObservation setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostObservation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Observation.class;
@@ -2113,7 +2271,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -2199,8 +2357,8 @@ public class ServiceModel
         public DeleteObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public DeleteObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public DeleteObservations setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public DeleteObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public DeleteObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -2305,8 +2463,10 @@ public class ServiceModel
         public ResultGrade ResultGrade = null;
         public ResultStatus ResultStatus = null;
         public PlannedFieldResult PlannedFieldResult = null;
+        public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -2365,10 +2525,14 @@ public class ServiceModel
         public PutObservation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public PutObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
+        public ObservationStatistics getStatistics() { return Statistics; }
+        public PutObservation setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public PutObservation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PutObservation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public PutObservation setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutObservation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Observation.class;
@@ -2413,7 +2577,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -2499,8 +2663,8 @@ public class ServiceModel
         public GetChartData setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetChartData setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetChartData setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetChartData setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetChartData setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -2594,7 +2758,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -2680,8 +2844,8 @@ public class ServiceModel
         public GetGroupedObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetGroupedObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetGroupedObservations setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetGroupedObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetGroupedObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -2777,7 +2941,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -2865,8 +3029,8 @@ public class ServiceModel
         public PutBulkEditResultGrades setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public PutBulkEditResultGrades setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public PutBulkEditResultGrades setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public PutBulkEditResultGrades setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public PutBulkEditResultGrades setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -3745,7 +3909,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -3833,8 +3997,8 @@ public class ServiceModel
         public GetExportObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetExportObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetExportObservations setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetExportObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetExportObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -4361,6 +4525,9 @@ public class ServiceModel
         public Activity Activity = null;
         public SpecimenTemplate TemplateCreatedFrom = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public SpecimenViewStatusType Status = null;
+        public Integer NumberOfRequestedObservations = null;
+        public Integer NumberOfReceivedObservations = null;
         public List<Observation> Observations = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -4388,6 +4555,12 @@ public class ServiceModel
         public PostSpecimen setTemplateCreatedFrom(SpecimenTemplate value) { this.TemplateCreatedFrom = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PostSpecimen setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public SpecimenViewStatusType getStatus() { return Status; }
+        public PostSpecimen setStatus(SpecimenViewStatusType value) { this.Status = value; return this; }
+        public Integer getNumberOfRequestedObservations() { return NumberOfRequestedObservations; }
+        public PostSpecimen setNumberOfRequestedObservations(Integer value) { this.NumberOfRequestedObservations = value; return this; }
+        public Integer getNumberOfReceivedObservations() { return NumberOfReceivedObservations; }
+        public PostSpecimen setNumberOfReceivedObservations(Integer value) { this.NumberOfReceivedObservations = value; return this; }
         public List<Observation> getObservations() { return Observations; }
         public PostSpecimen setObservations(List<Observation> value) { this.Observations = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -4425,6 +4598,9 @@ public class ServiceModel
         public Activity Activity = null;
         public SpecimenTemplate TemplateCreatedFrom = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public SpecimenViewStatusType Status = null;
+        public Integer NumberOfRequestedObservations = null;
+        public Integer NumberOfReceivedObservations = null;
         public List<Observation> Observations = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -4452,6 +4628,12 @@ public class ServiceModel
         public PutSpecimen setTemplateCreatedFrom(SpecimenTemplate value) { this.TemplateCreatedFrom = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PutSpecimen setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public SpecimenViewStatusType getStatus() { return Status; }
+        public PutSpecimen setStatus(SpecimenViewStatusType value) { this.Status = value; return this; }
+        public Integer getNumberOfRequestedObservations() { return NumberOfRequestedObservations; }
+        public PutSpecimen setNumberOfRequestedObservations(Integer value) { this.NumberOfRequestedObservations = value; return this; }
+        public Integer getNumberOfReceivedObservations() { return NumberOfReceivedObservations; }
+        public PutSpecimen setNumberOfReceivedObservations(Integer value) { this.NumberOfReceivedObservations = value; return this; }
         public List<Observation> getObservations() { return Observations; }
         public PutSpecimen setObservations(List<Observation> value) { this.Observations = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -4467,6 +4649,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteSpecimen setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/specimens/{id}/observations", Verbs="GET")
+    public static class GetSpecimenObservations implements IReturn<SearchResultObservationNestedInSpecimen>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSpecimenObservations setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultObservationNestedInSpecimen.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/spreadsheettemplates", Verbs="GET")
@@ -5292,7 +5485,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5378,8 +5571,8 @@ public class ServiceModel
         public GetObservationsV2 setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetObservationsV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetObservationsV2 setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetObservationsV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetObservationsV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -5475,8 +5668,10 @@ public class ServiceModel
         public ResultGrade ResultGrade = null;
         public ResultStatus ResultStatus = null;
         public PlannedFieldResult PlannedFieldResult = null;
+        public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -5535,10 +5730,14 @@ public class ServiceModel
         public PostObservationV2 setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public PostObservationV2 setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
+        public ObservationStatistics getStatistics() { return Statistics; }
+        public PostObservationV2 setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public PostObservationV2 setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PostObservationV2 setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public PostObservationV2 setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostObservationV2 setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Observation.class;
@@ -5574,7 +5773,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5660,8 +5859,8 @@ public class ServiceModel
         public DeleteObservationsV2 setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public DeleteObservationsV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public DeleteObservationsV2 setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public DeleteObservationsV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public DeleteObservationsV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -5766,8 +5965,10 @@ public class ServiceModel
         public ResultGrade ResultGrade = null;
         public ResultStatus ResultStatus = null;
         public PlannedFieldResult PlannedFieldResult = null;
+        public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -5826,10 +6027,14 @@ public class ServiceModel
         public PutObservationV2 setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public PutObservationV2 setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
+        public ObservationStatistics getStatistics() { return Statistics; }
+        public PutObservationV2 setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public PutObservationV2 setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PutObservationV2 setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public PutObservationV2 setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutObservationV2 setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Observation.class;
@@ -5874,7 +6079,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5960,8 +6165,8 @@ public class ServiceModel
         public GetChartDataV2 setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetChartDataV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetChartDataV2 setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetChartDataV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetChartDataV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -6055,7 +6260,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -6141,8 +6346,8 @@ public class ServiceModel
         public GetGroupedObservationsV2 setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetGroupedObservationsV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetGroupedObservationsV2 setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetGroupedObservationsV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetGroupedObservationsV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -6238,7 +6443,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -6326,8 +6531,8 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public PutBulkEditResultGradesV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public PutBulkEditResultGradesV2 setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public PutBulkEditResultGradesV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public PutBulkEditResultGradesV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -6421,7 +6626,7 @@ public class ServiceModel
         @DataMember(Name = "depthValue")
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
-        public DetectionConditionType DetectionCondition = null;
+        public String DetectionCondition = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -6509,8 +6714,8 @@ public class ServiceModel
         public GetObservationExportIIV2 setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
         public Double getDepthValue() { return DepthValue; }
         public GetObservationExportIIV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public GetObservationExportIIV2 setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public String getDetectionCondition() { return DetectionCondition; }
+        public GetObservationExportIIV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetObservationExportIIV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -7104,10 +7309,13 @@ public class ServiceModel
 
     public static class CategoricalResult
     {
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public CategoricalValue FixedValue = null;
         public String Type = null;
         public String Value = null;
 
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public CategoricalResult setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public CategoricalValue getFixedValue() { return FixedValue; }
         public CategoricalResult setFixedValue(CategoricalValue value) { this.FixedValue = value; return this; }
         public String getType() { return Type; }
@@ -7160,7 +7368,7 @@ public class ServiceModel
         public String MdlValueUnitCustomId = null;
         public Double DepthValue = null;
         public String DepthUnitCustomId = null;
-        public DetectionConditionType DetectionCondition = null;
+        public ResultDetectionCondition ResultDetectionCondition = null;
 
         public Double getValue() { return Value; }
         public ChartDataPoint setValue(Double value) { this.Value = value; return this; }
@@ -7178,8 +7386,8 @@ public class ServiceModel
         public ChartDataPoint setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDepthUnitCustomId() { return DepthUnitCustomId; }
         public ChartDataPoint setDepthUnitCustomId(String value) { this.DepthUnitCustomId = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public ChartDataPoint setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public ResultDetectionCondition getResultDetectionCondition() { return ResultDetectionCondition; }
+        public ChartDataPoint setResultDetectionCondition(ResultDetectionCondition value) { this.ResultDetectionCondition = value; return this; }
     }
 
     public static class CollectionMethod
@@ -8404,14 +8612,35 @@ public class ServiceModel
     {
     }
 
+    public static class NullMeasureQualifier
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public NullMeasureQualifier setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public NullMeasureQualifier setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public NullMeasureQualifier setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public NullMeasureQualifier setDescription(String value) { this.Description = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public NullMeasureQualifier setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
     public static class NumericResult
     {
         public Quantity Quantity = null;
         public SampleFractionType SampleFraction = null;
         public DeterminationType DeterminationType = null;
-        public DetectionConditionType DetectionCondition = null;
+        public ResultDetectionCondition DetectionCondition = null;
         public Quantity MethodDetectionLevel = null;
         public Quantity LowerMethodReportingLimit = null;
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
 
         public Quantity getQuantity() { return Quantity; }
@@ -8420,12 +8649,14 @@ public class ServiceModel
         public NumericResult setSampleFraction(SampleFractionType value) { this.SampleFraction = value; return this; }
         public DeterminationType getDeterminationType() { return DeterminationType; }
         public NumericResult setDeterminationType(DeterminationType value) { this.DeterminationType = value; return this; }
-        public DetectionConditionType getDetectionCondition() { return DetectionCondition; }
-        public NumericResult setDetectionCondition(DetectionConditionType value) { this.DetectionCondition = value; return this; }
+        public ResultDetectionCondition getDetectionCondition() { return DetectionCondition; }
+        public NumericResult setDetectionCondition(ResultDetectionCondition value) { this.DetectionCondition = value; return this; }
         public Quantity getMethodDetectionLevel() { return MethodDetectionLevel; }
         public NumericResult setMethodDetectionLevel(Quantity value) { this.MethodDetectionLevel = value; return this; }
         public Quantity getLowerMethodReportingLimit() { return LowerMethodReportingLimit; }
         public NumericResult setLowerMethodReportingLimit(Quantity value) { this.LowerMethodReportingLimit = value; return this; }
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public NumericResult setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public NumericResult setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8460,8 +8691,10 @@ public class ServiceModel
         public ResultGrade ResultGrade = null;
         public ResultStatus ResultStatus = null;
         public PlannedFieldResult PlannedFieldResult = null;
+        public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -8520,10 +8753,14 @@ public class ServiceModel
         public Observation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
         public Observation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
+        public ObservationStatistics getStatistics() { return Statistics; }
+        public Observation setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public Observation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public Observation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
+        public Observation setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public Observation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8613,6 +8850,41 @@ public class ServiceModel
         public ObservationMinimal setComment(String value) { this.Comment = value; return this; }
     }
 
+    public static class ObservationNestedInSpecimen
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public ObservedProperty ObservedProperty = null;
+        public LabInstruction LabInstruction = null;
+        public NumericResult NumericResult = null;
+        public DataClassificationType DataClassification = null;
+        public Instant ObservedTime = null;
+        public ResultStatus ResultStatus = null;
+        public CategoricalResult CategoricalResult = null;
+        public TaxonomicResult TaxonomicResult = null;
+
+        public String getId() { return Id; }
+        public ObservationNestedInSpecimen setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public ObservationNestedInSpecimen setCustomId(String value) { this.CustomId = value; return this; }
+        public ObservedProperty getObservedProperty() { return ObservedProperty; }
+        public ObservationNestedInSpecimen setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
+        public LabInstruction getLabInstruction() { return LabInstruction; }
+        public ObservationNestedInSpecimen setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
+        public NumericResult getNumericResult() { return NumericResult; }
+        public ObservationNestedInSpecimen setNumericResult(NumericResult value) { this.NumericResult = value; return this; }
+        public DataClassificationType getDataClassification() { return DataClassification; }
+        public ObservationNestedInSpecimen setDataClassification(DataClassificationType value) { this.DataClassification = value; return this; }
+        public Instant getObservedTime() { return ObservedTime; }
+        public ObservationNestedInSpecimen setObservedTime(Instant value) { this.ObservedTime = value; return this; }
+        public ResultStatus getResultStatus() { return ResultStatus; }
+        public ObservationNestedInSpecimen setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
+        public CategoricalResult getCategoricalResult() { return CategoricalResult; }
+        public ObservationNestedInSpecimen setCategoricalResult(CategoricalResult value) { this.CategoricalResult = value; return this; }
+        public TaxonomicResult getTaxonomicResult() { return TaxonomicResult; }
+        public ObservationNestedInSpecimen setTaxonomicResult(TaxonomicResult value) { this.TaxonomicResult = value; return this; }
+    }
+
     public static class ObservationStandard
     {
         public ObservedProperty ObservedProperty = null;
@@ -8631,6 +8903,41 @@ public class ServiceModel
         public ObservationStandard setRuleText(String value) { this.RuleText = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public ObservationStandard setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
+    public static class ObservationStatistics
+    {
+        public String SamplingLocationId = null;
+        public String ObservedPropertyId = null;
+        public Integer Count = null;
+        public Double Min = null;
+        public Double P25 = null;
+        public Double P5 = null;
+        public Double P50 = null;
+        public Double P75 = null;
+        public Double P95 = null;
+        public Double Max = null;
+
+        public String getSamplingLocationId() { return SamplingLocationId; }
+        public ObservationStatistics setSamplingLocationId(String value) { this.SamplingLocationId = value; return this; }
+        public String getObservedPropertyId() { return ObservedPropertyId; }
+        public ObservationStatistics setObservedPropertyId(String value) { this.ObservedPropertyId = value; return this; }
+        public Integer getCount() { return Count; }
+        public ObservationStatistics setCount(Integer value) { this.Count = value; return this; }
+        public Double getMin() { return Min; }
+        public ObservationStatistics setMin(Double value) { this.Min = value; return this; }
+        public Double getP25() { return P25; }
+        public ObservationStatistics setP25(Double value) { this.P25 = value; return this; }
+        public Double getP5() { return P5; }
+        public ObservationStatistics setP5(Double value) { this.P5 = value; return this; }
+        public Double getP50() { return P50; }
+        public ObservationStatistics setP50(Double value) { this.P50 = value; return this; }
+        public Double getP75() { return P75; }
+        public ObservationStatistics setP75(Double value) { this.P75 = value; return this; }
+        public Double getP95() { return P95; }
+        public ObservationStatistics setP95(Double value) { this.P95 = value; return this; }
+        public Double getMax() { return Max; }
+        public ObservationStatistics setMax(Double value) { this.Max = value; return this; }
     }
 
     public static class ObservedProperty
@@ -8831,6 +9138,29 @@ public class ServiceModel
         public Quantity setValue(Double value) { this.Value = value; return this; }
         public Unit getUnit() { return Unit; }
         public Quantity setUnit(Unit value) { this.Unit = value; return this; }
+    }
+
+    public static class ResultDetectionCondition
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public String Name = null;
+        public String Description = null;
+        public String SystemCode = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public ResultDetectionCondition setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public ResultDetectionCondition setCustomId(String value) { this.CustomId = value; return this; }
+        public String getName() { return Name; }
+        public ResultDetectionCondition setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public ResultDetectionCondition setDescription(String value) { this.Description = value; return this; }
+        public String getSystemCode() { return SystemCode; }
+        public ResultDetectionCondition setSystemCode(String value) { this.SystemCode = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public ResultDetectionCondition setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
 
     public static class ResultGrade
@@ -9435,6 +9765,20 @@ public class ServiceModel
         public SearchResultMedium setDomainObjects(List<Medium> value) { this.DomainObjects = value; return this; }
     }
 
+    public static class SearchResultNullMeasureQualifier implements IPaginatedResponse<NullMeasureQualifier>
+    {
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<NullMeasureQualifier> DomainObjects = null;
+
+        public Integer getTotalCount() { return TotalCount; }
+        public SearchResultNullMeasureQualifier setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public String getCursor() { return Cursor; }
+        public SearchResultNullMeasureQualifier setCursor(String value) { this.Cursor = value; return this; }
+        public List<NullMeasureQualifier> getDomainObjects() { return DomainObjects; }
+        public SearchResultNullMeasureQualifier setDomainObjects(List<NullMeasureQualifier> value) { this.DomainObjects = value; return this; }
+    }
+
     public static class SearchResultObservation implements IPaginatedResponse<Observation>
     {
         public Integer TotalCount = null;
@@ -9447,6 +9791,20 @@ public class ServiceModel
         public SearchResultObservation setCursor(String value) { this.Cursor = value; return this; }
         public List<Observation> getDomainObjects() { return DomainObjects; }
         public SearchResultObservation setDomainObjects(List<Observation> value) { this.DomainObjects = value; return this; }
+    }
+
+    public static class SearchResultObservationNestedInSpecimen implements IPaginatedResponse<ObservationNestedInSpecimen>
+    {
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ObservationNestedInSpecimen> DomainObjects = null;
+
+        public Integer getTotalCount() { return TotalCount; }
+        public SearchResultObservationNestedInSpecimen setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public String getCursor() { return Cursor; }
+        public SearchResultObservationNestedInSpecimen setCursor(String value) { this.Cursor = value; return this; }
+        public List<ObservationNestedInSpecimen> getDomainObjects() { return DomainObjects; }
+        public SearchResultObservationNestedInSpecimen setDomainObjects(List<ObservationNestedInSpecimen> value) { this.DomainObjects = value; return this; }
     }
 
     public static class SearchResultObservedProperty implements IPaginatedResponse<ObservedProperty>
@@ -9475,6 +9833,20 @@ public class ServiceModel
         public SearchResultProject setCursor(String value) { this.Cursor = value; return this; }
         public List<Project> getDomainObjects() { return DomainObjects; }
         public SearchResultProject setDomainObjects(List<Project> value) { this.DomainObjects = value; return this; }
+    }
+
+    public static class SearchResultResultDetectionCondition implements IPaginatedResponse<ResultDetectionCondition>
+    {
+        public Integer TotalCount = null;
+        public String Cursor = null;
+        public List<ResultDetectionCondition> DomainObjects = null;
+
+        public Integer getTotalCount() { return TotalCount; }
+        public SearchResultResultDetectionCondition setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public String getCursor() { return Cursor; }
+        public SearchResultResultDetectionCondition setCursor(String value) { this.Cursor = value; return this; }
+        public List<ResultDetectionCondition> getDomainObjects() { return DomainObjects; }
+        public SearchResultResultDetectionCondition setDomainObjects(List<ResultDetectionCondition> value) { this.DomainObjects = value; return this; }
     }
 
     public static class SearchResultResultGrade implements IPaginatedResponse<ResultGrade>
@@ -9749,6 +10121,9 @@ public class ServiceModel
         public Activity Activity = null;
         public SpecimenTemplate TemplateCreatedFrom = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public SpecimenViewStatusType Status = null;
+        public Integer NumberOfRequestedObservations = null;
+        public Integer NumberOfReceivedObservations = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -9775,6 +10150,12 @@ public class ServiceModel
         public Specimen setTemplateCreatedFrom(SpecimenTemplate value) { this.TemplateCreatedFrom = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public Specimen setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public SpecimenViewStatusType getStatus() { return Status; }
+        public Specimen setStatus(SpecimenViewStatusType value) { this.Status = value; return this; }
+        public Integer getNumberOfRequestedObservations() { return NumberOfRequestedObservations; }
+        public Specimen setNumberOfRequestedObservations(Integer value) { this.NumberOfRequestedObservations = value; return this; }
+        public Integer getNumberOfReceivedObservations() { return NumberOfReceivedObservations; }
+        public Specimen setNumberOfReceivedObservations(Integer value) { this.NumberOfReceivedObservations = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public Specimen setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -9851,6 +10232,9 @@ public class ServiceModel
         public Activity Activity = null;
         public SpecimenTemplate TemplateCreatedFrom = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
+        public SpecimenViewStatusType Status = null;
+        public Integer NumberOfRequestedObservations = null;
+        public Integer NumberOfReceivedObservations = null;
         public List<Observation> Observations = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -9878,6 +10262,12 @@ public class ServiceModel
         public SpecimenWithObservations setTemplateCreatedFrom(SpecimenTemplate value) { this.TemplateCreatedFrom = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public SpecimenWithObservations setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public SpecimenViewStatusType getStatus() { return Status; }
+        public SpecimenWithObservations setStatus(SpecimenViewStatusType value) { this.Status = value; return this; }
+        public Integer getNumberOfRequestedObservations() { return NumberOfRequestedObservations; }
+        public SpecimenWithObservations setNumberOfRequestedObservations(Integer value) { this.NumberOfRequestedObservations = value; return this; }
+        public Integer getNumberOfReceivedObservations() { return NumberOfReceivedObservations; }
+        public SpecimenWithObservations setNumberOfReceivedObservations(Integer value) { this.NumberOfReceivedObservations = value; return this; }
         public List<Observation> getObservations() { return Observations; }
         public SpecimenWithObservations setObservations(List<Observation> value) { this.Observations = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -10326,12 +10716,6 @@ public class ServiceModel
         DROP_DOWN_LIST
     }
 
-    public static enum DetectionConditionType
-    {
-        NOT_REPORTED,
-        NOT_DETECTED
-    }
-
     public static enum DeterminationType
     {
         ACTUAL,
@@ -10538,6 +10922,13 @@ public class ServiceModel
     {
         ALL,
         RANDOM
+    }
+
+    public static enum SpecimenViewStatusType
+    {
+        REQUESTED,
+        RECEIVED_SOME,
+        RECEIVED_ALL
     }
 
     public static enum SpreadsheetTemplateType
