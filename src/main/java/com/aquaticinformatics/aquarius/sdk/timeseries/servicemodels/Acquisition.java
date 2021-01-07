@@ -1,8 +1,8 @@
 /* Options:
-Instant: 2020-10-16 12:57:48
+Instant: 2021-01-07 14:15:18
 Version: 5.80
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: http://autoserver1/AQUARIUS/Acquisition/v2
+BaseUrl: http://aqts-pg/AQUARIUS/Acquisition/v2
 
 Package: com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels
 GlobalNamespace: Acquisition
@@ -34,7 +34,7 @@ public class Acquisition
         /**
         * Unique ID of the location of visits in the file
         */
-        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", IsRequired=true, ParameterType="path")
+        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", Format="guid", IsRequired=true, ParameterType="path")
         public String LocationUniqueId = null;
         
         public String getLocationUniqueId() { return LocationUniqueId; }
@@ -103,26 +103,32 @@ public class Acquisition
         /**
         * Unique ID of the location to add the report to
         */
-        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", IsRequired=true, ParameterType="path")
+        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", Format="guid", IsRequired=true, ParameterType="path")
         public String LocationUniqueId = null;
 
         /**
         * Unique IDs of source time-series displayed in report
         */
-        @ApiMember(DataType="Array<string>", Description="Unique IDs of source time-series displayed in report")
+        @ApiMember(DataType="array", Description="Unique IDs of source time-series displayed in report")
         public ArrayList<String> SourceTimeSeriesUniqueIds = null;
 
         /**
         * Time range of source data displayed in report
         */
-        @ApiMember(DataType="Interval", Description="Time range of source data displayed in report")
+        @ApiMember(DataType="string", Description="Time range of source data displayed in report", Format="interval")
         public Interval SourceTimeRange = null;
 
         /**
         * Time report was created
         */
-        @ApiMember(DataType="Instant", Description="Time report was created")
+        @ApiMember(DataType="string", Description="Time report was created", Format="date-time")
         public Instant CreatedTime = null;
+
+        /**
+        * Tags to be assigned to the report with optional values; an empty list means the report will have no tags assigned to it.
+        */
+        @ApiMember(DataType="array", Description="Tags to be assigned to the report with optional values; an empty list means the report will have no tags assigned to it.")
+        public ArrayList<ApplyTagRequest> Tags = null;
 
         /**
         * File
@@ -145,6 +151,8 @@ public class Acquisition
         public PostReportAttachment setSourceTimeRange(Interval value) { this.SourceTimeRange = value; return this; }
         public Instant getCreatedTime() { return CreatedTime; }
         public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
+        public ArrayList<ApplyTagRequest> getTags() { return Tags; }
+        public PostReportAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
         public IHttpFile getFile() { return File; }
         public PostReportAttachment setFile(IHttpFile value) { this.File = value; return this; }
         private static Object responseType = PostReportResponse.class;
@@ -157,7 +165,7 @@ public class Acquisition
         /**
         * Unique ID of report
         */
-        @ApiMember(DataType="string", Description="Unique ID of report", IsRequired=true, ParameterType="path")
+        @ApiMember(DataType="string", Description="Unique ID of report", Format="guid", IsRequired=true, ParameterType="path")
         public String ReportUniqueId = null;
         
         public String getReportUniqueId() { return ReportUniqueId; }
@@ -170,13 +178,13 @@ public class Acquisition
         /**
         * Unique ID of the location to add the attachment to
         */
-        @ApiMember(DataType="string", Description="Unique ID of the location to add the attachment to", IsRequired=true, ParameterType="path")
+        @ApiMember(DataType="string", Description="Unique ID of the location to add the attachment to", Format="guid", IsRequired=true, ParameterType="path")
         public String LocationUniqueId = null;
 
         /**
-        * If not specified, defaults to None
+        * Deprecated - use tags instead. If not specified, defaults to None
         */
-        @ApiMember(DataType="AttachmentCategory", Description="If not specified, defaults to None")
+        @ApiMember(DataType="string", Description="Deprecated - use tags instead. If not specified, defaults to None")
         public AttachmentCategory AttachmentCategory = null;
 
         /**
@@ -191,6 +199,12 @@ public class Acquisition
         @Ignore()
         @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
         public IHttpFile File = null;
+
+        /**
+        * Tags to be assigned to the attachment with optional values; an empty list means the attachment will have no tags assigned to it.
+        */
+        @ApiMember(DataType="array", Description="Tags to be assigned to the attachment with optional values; an empty list means the attachment will have no tags assigned to it.")
+        public ArrayList<ApplyTagRequest> Tags = null;
         
         public String getLocationUniqueId() { return LocationUniqueId; }
         public PostLocationAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
@@ -200,153 +214,9 @@ public class Acquisition
         public PostLocationAttachment setComments(String value) { this.Comments = value; return this; }
         public IHttpFile getFile() { return File; }
         public PostLocationAttachment setFile(IHttpFile value) { this.File = value; return this; }
+        public ArrayList<ApplyTagRequest> getTags() { return Tags; }
+        public PostLocationAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
         private static Object responseType = PostLocationAttachmentResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/timeseries/appendstatus/{AppendRequestIdentifier}", Verbs="GET")
-    public static class GetTimeSeriesAppendStatus implements IReturn<TimeSeriesAppendStatus>
-    {
-        /**
-        * Identifier returned from a previous append request
-        */
-        @ApiMember(Description="Identifier returned from a previous append request", IsRequired=true, ParameterType="path")
-        public String AppendRequestIdentifier = null;
-        
-        public String getAppendRequestIdentifier() { return AppendRequestIdentifier; }
-        public GetTimeSeriesAppendStatus setAppendRequestIdentifier(String value) { this.AppendRequestIdentifier = value; return this; }
-        private static Object responseType = TimeSeriesAppendStatus.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/timeseries/{UniqueId}/append", Verbs="POST")
-    public static class PostTimeSeriesAppend implements IReturn<AppendResponse>
-    {
-        /**
-        * The unique ID (from Publish API) of the time-series to receive points
-        */
-        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series to receive points", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-
-        /**
-        * Points to append (can be empty)
-        */
-        @ApiMember(DataType="Array<TimeSeriesPoint>", Description="Points to append (can be empty)")
-        public ArrayList<TimeSeriesPoint> Points = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public PostTimeSeriesAppend setUniqueId(String value) { this.UniqueId = value; return this; }
-        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
-        public PostTimeSeriesAppend setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
-        private static Object responseType = AppendResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/timeseries/{UniqueId}/overwriteappend", Verbs="POST")
-    public static class PostTimeSeriesOverwriteAppend implements IReturn<AppendResponse>
-    {
-        /**
-        * The unique ID (from Publish API) of the time-series to receive points
-        */
-        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series to receive points", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-
-        /**
-        * Points to append (can be empty). All points must lie within the time range
-        */
-        @ApiMember(DataType="Array<TimeSeriesPoint>", Description="Points to append (can be empty). All points must lie within the time range")
-        public ArrayList<TimeSeriesPoint> Points = null;
-
-        /**
-        * Time range to delete before appending points
-        */
-        @ApiMember(DataType="Interval", Description="Time range to delete before appending points", IsRequired=true)
-        public Interval TimeRange = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public PostTimeSeriesOverwriteAppend setUniqueId(String value) { this.UniqueId = value; return this; }
-        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
-        public PostTimeSeriesOverwriteAppend setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
-        public Interval getTimeRange() { return TimeRange; }
-        public PostTimeSeriesOverwriteAppend setTimeRange(Interval value) { this.TimeRange = value; return this; }
-        private static Object responseType = AppendResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/timeseries/{UniqueId}/reflected", Verbs="POST")
-    public static class PostReflectedTimeSeries implements IReturn<AppendResponse>
-    {
-        /**
-        * The unique ID (from Publish API) of the reflected time-series to receive points
-        */
-        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the reflected time-series to receive points", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-
-        /**
-        * Points to append (can be empty). All points must lie within the time range
-        */
-        @ApiMember(DataType="Array<TimeSeriesPoint>", Description="Points to append (can be empty). All points must lie within the time range")
-        public ArrayList<TimeSeriesPoint> Points = null;
-
-        /**
-        * Time range to update. Any existing points in the time range will be overwritten
-        */
-        @ApiMember(DataType="Interval", Description="Time range to update. Any existing points in the time range will be overwritten", IsRequired=true)
-        public Interval TimeRange = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public PostReflectedTimeSeries setUniqueId(String value) { this.UniqueId = value; return this; }
-        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
-        public PostReflectedTimeSeries setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
-        public Interval getTimeRange() { return TimeRange; }
-        public PostReflectedTimeSeries setTimeRange(Interval value) { this.TimeRange = value; return this; }
-        private static Object responseType = AppendResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/timeseries/{UniqueId}/metadata", Verbs="POST")
-    public static class PostTimeSeriesMetadata implements IReturn<PostTimeSeriesMetadataResponse>
-    {
-        /**
-        * The unique ID (from Publish API) of the time-series
-        */
-        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-
-        /**
-        * Notes to append
-        */
-        @ApiMember(DataType="Array<TimeSeriesNote>", Description="Notes to append", IsRequired=true)
-        public ArrayList<TimeSeriesNote> Notes = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public PostTimeSeriesMetadata setUniqueId(String value) { this.UniqueId = value; return this; }
-        public ArrayList<TimeSeriesNote> getNotes() { return Notes; }
-        public PostTimeSeriesMetadata setNotes(ArrayList<TimeSeriesNote> value) { this.Notes = value; return this; }
-        private static Object responseType = PostTimeSeriesMetadataResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/timeseries/{UniqueId}/metadata/notes", Verbs="DELETE")
-    public static class DeleteTimeSeriesNotes implements IReturn<DeleteTimeSeriesNotesResponse>
-    {
-        /**
-        * The unique ID (from Publish API) of the time-series
-        */
-        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series", IsRequired=true, ParameterType="path")
-        public String UniqueId = null;
-
-        /**
-        * Time range. Only appended notes that are fully contained within the time range will be deleted.
-        */
-        @ApiMember(DataType="Interval", Description="Time range. Only appended notes that are fully contained within the time range will be deleted.", IsRequired=true)
-        public Interval TimeRange = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public DeleteTimeSeriesNotes setUniqueId(String value) { this.UniqueId = value; return this; }
-        public Interval getTimeRange() { return TimeRange; }
-        public DeleteTimeSeriesNotes setTimeRange(Interval value) { this.TimeRange = value; return this; }
-        private static Object responseType = DeleteTimeSeriesNotesResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -401,18 +271,164 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
+    @Route(Path="/timeseries/appendstatus/{AppendRequestIdentifier}", Verbs="GET")
+    public static class GetTimeSeriesAppendStatus implements IReturn<TimeSeriesAppendStatus>
+    {
+        /**
+        * Identifier returned from a previous append request
+        */
+        @ApiMember(Description="Identifier returned from a previous append request", IsRequired=true, ParameterType="path")
+        public String AppendRequestIdentifier = null;
+        
+        public String getAppendRequestIdentifier() { return AppendRequestIdentifier; }
+        public GetTimeSeriesAppendStatus setAppendRequestIdentifier(String value) { this.AppendRequestIdentifier = value; return this; }
+        private static Object responseType = TimeSeriesAppendStatus.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/timeseries/{UniqueId}/append", Verbs="POST")
+    public static class PostTimeSeriesAppend implements IReturn<AppendResponse>
+    {
+        /**
+        * The unique ID (from Publish API) of the time-series to receive points
+        */
+        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series to receive points", Format="guid", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+
+        /**
+        * Points to append (can be empty)
+        */
+        @ApiMember(DataType="array", Description="Points to append (can be empty)")
+        public ArrayList<TimeSeriesPoint> Points = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public PostTimeSeriesAppend setUniqueId(String value) { this.UniqueId = value; return this; }
+        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
+        public PostTimeSeriesAppend setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
+        private static Object responseType = AppendResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/timeseries/{UniqueId}/overwriteappend", Verbs="POST")
+    public static class PostTimeSeriesOverwriteAppend implements IReturn<AppendResponse>
+    {
+        /**
+        * The unique ID (from Publish API) of the time-series to receive points
+        */
+        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series to receive points", Format="guid", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+
+        /**
+        * Points to append (can be empty). All points must lie within the time range
+        */
+        @ApiMember(DataType="array", Description="Points to append (can be empty). All points must lie within the time range")
+        public ArrayList<TimeSeriesPoint> Points = null;
+
+        /**
+        * Time range to delete before appending points
+        */
+        @ApiMember(DataType="string", Description="Time range to delete before appending points", Format="interval", IsRequired=true)
+        public Interval TimeRange = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public PostTimeSeriesOverwriteAppend setUniqueId(String value) { this.UniqueId = value; return this; }
+        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
+        public PostTimeSeriesOverwriteAppend setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
+        public Interval getTimeRange() { return TimeRange; }
+        public PostTimeSeriesOverwriteAppend setTimeRange(Interval value) { this.TimeRange = value; return this; }
+        private static Object responseType = AppendResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/timeseries/{UniqueId}/reflected", Verbs="POST")
+    public static class PostReflectedTimeSeries implements IReturn<AppendResponse>
+    {
+        /**
+        * The unique ID (from Publish API) of the reflected time-series to receive points
+        */
+        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the reflected time-series to receive points", Format="guid", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+
+        /**
+        * Points to append (can be empty). All points must lie within the time range
+        */
+        @ApiMember(DataType="array", Description="Points to append (can be empty). All points must lie within the time range")
+        public ArrayList<TimeSeriesPoint> Points = null;
+
+        /**
+        * Time range to update. Any existing points in the time range will be overwritten
+        */
+        @ApiMember(DataType="string", Description="Time range to update. Any existing points in the time range will be overwritten", Format="interval", IsRequired=true)
+        public Interval TimeRange = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public PostReflectedTimeSeries setUniqueId(String value) { this.UniqueId = value; return this; }
+        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
+        public PostReflectedTimeSeries setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
+        public Interval getTimeRange() { return TimeRange; }
+        public PostReflectedTimeSeries setTimeRange(Interval value) { this.TimeRange = value; return this; }
+        private static Object responseType = AppendResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/timeseries/{UniqueId}/metadata", Verbs="POST")
+    public static class PostTimeSeriesMetadata implements IReturn<PostTimeSeriesMetadataResponse>
+    {
+        /**
+        * The unique ID (from Publish API) of the time-series
+        */
+        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series", Format="guid", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+
+        /**
+        * Notes to append
+        */
+        @ApiMember(DataType="array", Description="Notes to append", IsRequired=true)
+        public ArrayList<TimeSeriesNote> Notes = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public PostTimeSeriesMetadata setUniqueId(String value) { this.UniqueId = value; return this; }
+        public ArrayList<TimeSeriesNote> getNotes() { return Notes; }
+        public PostTimeSeriesMetadata setNotes(ArrayList<TimeSeriesNote> value) { this.Notes = value; return this; }
+        private static Object responseType = PostTimeSeriesMetadataResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/timeseries/{UniqueId}/metadata/notes", Verbs="DELETE")
+    public static class DeleteTimeSeriesNotes implements IReturn<DeleteTimeSeriesNotesResponse>
+    {
+        /**
+        * The unique ID (from Publish API) of the time-series
+        */
+        @ApiMember(DataType="string", Description="The unique ID (from Publish API) of the time-series", Format="guid", IsRequired=true, ParameterType="path")
+        public String UniqueId = null;
+
+        /**
+        * Time range. Only appended notes that are fully contained within the time range will be deleted.
+        */
+        @ApiMember(DataType="string", Description="Time range. Only appended notes that are fully contained within the time range will be deleted.", Format="interval", IsRequired=true)
+        public Interval TimeRange = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public DeleteTimeSeriesNotes setUniqueId(String value) { this.UniqueId = value; return this; }
+        public Interval getTimeRange() { return TimeRange; }
+        public DeleteTimeSeriesNotes setTimeRange(Interval value) { this.TimeRange = value; return this; }
+        private static Object responseType = DeleteTimeSeriesNotesResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
     public static class PostVisitFileResponse
     {
         /**
         * Relative URIs of created or modified visits
         */
-        @ApiMember(DataType="Array<string>", Description="Relative URIs of created or modified visits")
+        @ApiMember(DataType="array", Description="Relative URIs of created or modified visits")
         public ArrayList<String> VisitUris = null;
 
         /**
         * Identifiers of created or modified visits
         */
-        @ApiMember(DataType="Array<string>", Description="Identifiers of created or modified visits")
+        @ApiMember(DataType="array", Description="Identifiers of created or modified visits")
         public ArrayList<String> VisitIdentifiers = null;
 
         /**
@@ -434,7 +450,7 @@ public class Acquisition
         /**
         * Unique ID of the created report
         */
-        @ApiMember(DataType="string", Description="Unique ID of the created report")
+        @ApiMember(DataType="string", Description="Unique ID of the created report", Format="guid")
         public String ReportUniqueId = null;
         
         public String getReportUniqueId() { return ReportUniqueId; }
@@ -452,7 +468,7 @@ public class Acquisition
         /**
         * Unique ID of the location
         */
-        @ApiMember(DataType="string", Description="Unique ID of the location")
+        @ApiMember(DataType="string", Description="Unique ID of the location", Format="guid")
         public String LocationUniqueId = null;
 
         /**
@@ -464,7 +480,7 @@ public class Acquisition
         /**
         * Attachment category
         */
-        @ApiMember(DataType="AttachmentCategory", Description="Attachment category")
+        @ApiMember(DataType="string", Description="Attachment category")
         public AttachmentCategory AttachmentCategory = null;
 
         /**
@@ -474,6 +490,11 @@ public class Acquisition
         public String Comments = null;
 
         public AttachmentType AttachmentType = null;
+        /**
+        * Tags applied to this attachment
+        */
+        @ApiMember(DataType="array", Description="Tags applied to this attachment")
+        public ArrayList<AppliedTag> Tags = null;
         
         public String getUrl() { return Url; }
         public PostLocationAttachmentResponse setUrl(String value) { this.Url = value; return this; }
@@ -487,6 +508,28 @@ public class Acquisition
         public PostLocationAttachmentResponse setComments(String value) { this.Comments = value; return this; }
         public AttachmentType getAttachmentType() { return AttachmentType; }
         public PostLocationAttachmentResponse setAttachmentType(AttachmentType value) { this.AttachmentType = value; return this; }
+        public ArrayList<AppliedTag> getTags() { return Tags; }
+        public PostLocationAttachmentResponse setTags(ArrayList<AppliedTag> value) { this.Tags = value; return this; }
+    }
+
+    public static class PublicKey
+    {
+        /**
+        * RSA key size in bits
+        */
+        @ApiMember(DataType="integer", Description="RSA key size in bits", Format="int32")
+        public Integer KeySize = null;
+
+        /**
+        * XML blob containing the RSA public key components
+        */
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
+        
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
     }
 
     public static class TimeSeriesAppendStatus
@@ -494,26 +537,26 @@ public class Acquisition
         /**
         * Unique ID of the time series
         */
-        @ApiMember(DataType="string", Description="Unique ID of the time series")
+        @ApiMember(DataType="string", Description="Unique ID of the time series", Format="guid")
         public String TimeSeriesUniqueId = null;
 
         public AppendStatusCode AppendStatus = null;
         /**
         * When AppendStatus=Completed: Version of the time series containing the appended points
         */
-        @ApiMember(DataType="Int64", Description="When AppendStatus=Completed: Version of the time series containing the appended points")
+        @ApiMember(DataType="integer", Description="When AppendStatus=Completed: Version of the time series containing the appended points", Format="int64")
         public Long AppendedVersion = null;
 
         /**
         * When AppendStatus=Completed: Number of points successfully appended
         */
-        @ApiMember(DataType="integer", Description="When AppendStatus=Completed: Number of points successfully appended")
+        @ApiMember(DataType="integer", Description="When AppendStatus=Completed: Number of points successfully appended", Format="int32")
         public Integer NumberOfPointsAppended = null;
 
         /**
         * When AppendStatus=Completed: Number of points successfully deleted
         */
-        @ApiMember(DataType="integer", Description="When AppendStatus=Completed: Number of points successfully deleted")
+        @ApiMember(DataType="integer", Description="When AppendStatus=Completed: Number of points successfully deleted", Format="int32")
         public Integer NumberOfPointsDeleted = null;
         
         public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
@@ -545,7 +588,7 @@ public class Acquisition
         /**
         * Notes created
         */
-        @ApiMember(DataType="integer", Description="Notes created")
+        @ApiMember(DataType="integer", Description="Notes created", Format="int32")
         public Integer NotesCreated = null;
         
         public Integer getNotesCreated() { return NotesCreated; }
@@ -557,31 +600,11 @@ public class Acquisition
         /**
         * Notes deleted
         */
-        @ApiMember(DataType="integer", Description="Notes deleted")
+        @ApiMember(DataType="integer", Description="Notes deleted", Format="int32")
         public Integer NotesDeleted = null;
         
         public Integer getNotesDeleted() { return NotesDeleted; }
         public DeleteTimeSeriesNotesResponse setNotesDeleted(Integer value) { this.NotesDeleted = value; return this; }
-    }
-
-    public static class PublicKey
-    {
-        /**
-        * RSA key size in bits
-        */
-        @ApiMember(DataType="integer", Description="RSA key size in bits")
-        public Integer KeySize = null;
-
-        /**
-        * XML blob containing the RSA public key components
-        */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
-        
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
     }
 
     public static class PostVisitFileBase implements IFileUploadRequest
@@ -617,13 +640,33 @@ public class Acquisition
         /**
         * Unique id
         */
-        @ApiMember(DataType="string", Description="Unique id")
+        @ApiMember(DataType="string", Description="Unique id", Format="guid")
         public String UniqueId = null;
         
         public String getName() { return Name; }
         public FieldDataPlugin setName(String value) { this.Name = value; return this; }
         public String getUniqueId() { return UniqueId; }
         public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
+    }
+
+    public static class ApplyTagRequest
+    {
+        /**
+        * UniqueId of the tag
+        */
+        @ApiMember(DataType="string", Description="UniqueId of the tag", Format="guid", IsRequired=true)
+        public String UniqueId = null;
+
+        /**
+        * Optional value of the tag
+        */
+        @ApiMember(Description="Optional value of the tag")
+        public String Value = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public ApplyTagRequest setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getValue() { return Value; }
+        public ApplyTagRequest setValue(String value) { this.Value = value; return this; }
     }
 
     public static enum AttachmentCategory
@@ -664,6 +707,34 @@ public class Acquisition
         FieldDataPlugin;
     }
 
+    public static class AppliedTag
+    {
+        /**
+        * UniqueId of the tag
+        */
+        @ApiMember(DataType="string", Description="UniqueId of the tag", Format="guid")
+        public String UniqueId = null;
+
+        /**
+        * Key of the tag
+        */
+        @ApiMember(Description="Key of the tag")
+        public String Key = null;
+
+        /**
+        * Value of the applied tag, if the tag's ValueType is PickList
+        */
+        @ApiMember(Description="Value of the applied tag, if the tag\'s ValueType is PickList")
+        public String Value = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public AppliedTag setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getKey() { return Key; }
+        public AppliedTag setKey(String value) { this.Key = value; return this; }
+        public String getValue() { return Value; }
+        public AppliedTag setValue(String value) { this.Value = value; return this; }
+    }
+
     public static enum AppendStatusCode
     {
         Pending,
@@ -676,13 +747,13 @@ public class Acquisition
         /**
         * ISO 8601 timestamp. Must not be specified if Type is 'Gap'.
         */
-        @ApiMember(DataType="Instant", Description="ISO 8601 timestamp. Must not be specified if Type is \'Gap\'.")
+        @ApiMember(DataType="string", Description="ISO 8601 timestamp. Must not be specified if Type is \'Gap\'.", Format="date-time")
         public Instant Time = null;
 
         /**
         * The value of the point. Null or empty to represent a NaN. Must not be specified if Type is 'Gap'.
         */
-        @ApiMember(DataType="double", Description="The value of the point. Null or empty to represent a NaN. Must not be specified if Type is \'Gap\'.")
+        @ApiMember(DataType="number", Description="The value of the point. Null or empty to represent a NaN. Must not be specified if Type is \'Gap\'.", Format="double")
         public Double Value = null;
 
         /**
@@ -694,13 +765,13 @@ public class Acquisition
         /**
         * Grade code
         */
-        @ApiMember(DataType="integer", Description="Grade code")
+        @ApiMember(DataType="integer", Description="Grade code", Format="int32")
         public Integer GradeCode = null;
 
         /**
         * Qualifier codes
         */
-        @ApiMember(DataType="Array<string>", Description="Qualifier codes")
+        @ApiMember(DataType="array", Description="Qualifier codes")
         public ArrayList<String> Qualifiers = null;
         
         public Instant getTime() { return Time; }
@@ -720,7 +791,7 @@ public class Acquisition
         /**
         * Time range of the note
         */
-        @ApiMember(DataType="Interval", Description="Time range of the note", IsRequired=true)
+        @ApiMember(DataType="string", Description="Time range of the note", Format="interval", IsRequired=true)
         public Interval TimeRange = null;
 
         /**
@@ -744,6 +815,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("20.3.84.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("20.4.70.0");
     }
 }
