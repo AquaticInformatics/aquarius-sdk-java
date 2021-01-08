@@ -70,15 +70,14 @@ sed -i.bak -e "s/public static interface IFileUploadRequest/public static interf
 sed -i.bak -e "s/public static interface \\(I[A-Za-z0-9]*\\) implements \\(I[A-Za-z0-9]*\\)/public static interface \1 extends \2/" "$TempFile"
 
 # Phase 2 - Map some NodaTime .NET struct datatypes (exported as Java strings) to more appropriate Java types.
-# We need to match regeular expressions across multiline statements, so switch to perl, using -0777 for "slurp the entire file as one record".
+# We need to match regular expressions across multiline statements, so switch to perl, using -0777 for "slurp the entire file as one record".
 # Relevant XKCD: https://xkcd.com/1171/
 
 unset typeMap
 declare -A typeMap
-typeMap["Interval"]="Interval"  # NodaTime.Interval maps to java.time.Interval
-typeMap["Duration"]="Duration"  # NodaTime.Duration maps to java.time.Duration
-typeMap["Instant"]="Instant"    # NodaTime.Instant  maps to java.time.Instant
-typeMap["Offset"]="Duration"    # NodaTime.Offset   maps to java.time.Duration
+typeMap["interval"]="Interval"  # NodaTime.Interval maps to java.time.Interval
+typeMap["duration"]="Duration"  # NodaTime.Duration maps to java.time.Duration
+typeMap["offset from UTC"]="Duration"    # NodaTime.Offset   maps to java.time.Duration
 
 cp "$TempFile" "$TempFile".map
 
@@ -89,7 +88,7 @@ for sourceType in ${!typeMap[@]}; do
   # \1 matches the @ApiMember line
   # \2 matches the subsequent "public" field prefix
   # \3 matches the field name
-  apiMemberRegex="\n([ \t]*\@ApiMember\(DataType=\"${sourceType}\".*)\n( *public )String (.*) = null;"
+  apiMemberRegex="\n([ \t]*\@ApiMember\(DataType=\"string\",.*Format=\"${sourceType}\".*)\n( *public )String (.*) = null;"
 
   # Build some # <FieldName> = <DestType> lines, which we will extract later in Phase 3
   perl -0777 -p -i.bak -e "s/$apiMemberRegex/\n# \3 = $destType/g" "$TempFile".map
