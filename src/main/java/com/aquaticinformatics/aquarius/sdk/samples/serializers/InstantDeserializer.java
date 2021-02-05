@@ -7,6 +7,7 @@ import com.google.gson.JsonParseException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.lang.reflect.Type;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 public class InstantDeserializer implements JsonDeserializer<Instant> {
@@ -40,6 +41,19 @@ public class InstantDeserializer implements JsonDeserializer<Instant> {
         if (text.equalsIgnoreCase(JsonMinValue))
             return MinValue;
 
-        return FORMATTER.parse(text, Instant::from);
+        if (text.length() > 0 && text.charAt(text.length()-1) == ']') {
+            text = text.substring(0, text.indexOf('['));
+        }
+
+        try {
+            return FORMATTER.parse(text, Instant::from);
+        }
+        catch(DateTimeParseException exception) {
+            // Workaround for AQS-760 quirks: 2020-12-01T-08:00
+            if (text.contains("T-") || text.contains("T+"))
+                return FORMATTER.parse(text.replace("T", "T00:00:00.000"), Instant::from);
+
+            throw exception;
+        }
     }
 }
