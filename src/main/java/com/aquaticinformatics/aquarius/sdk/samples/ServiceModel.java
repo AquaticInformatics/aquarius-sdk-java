@@ -1,6 +1,6 @@
-// Date: 2020-10-23T08:26:10.0650107-07:00
+// Date: 2021-02-16T09:46:43.2396447-08:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2020.05.3976)
+// Source: AQUARIUS Samples API (2020.06.4163)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2020.05.3976");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2020.06.4163");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -94,6 +94,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteAccessGroup setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/accessgroups/{id}/history", Verbs="GET")
+    public static class GetAccessGroupHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetAccessGroupHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/activities", Verbs="GET")
@@ -374,6 +385,17 @@ public class ServiceModel
         public DeleteActivity setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/activities/{id}/history", Verbs="GET")
+    public static class GetActivityHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetActivityHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/activities/{id}/replicate", Verbs="POST")
     public static class PostActivityReplicate implements IReturn<Activity>
     {
@@ -486,6 +508,17 @@ public class ServiceModel
         public DeleteActivityTemplate setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/activitytemplates/{id}/history", Verbs="GET")
+    public static class GetActivityTemplateHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetActivityTemplateHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/analysismethods", Verbs="GET")
     public static class GetAnalysisMethods implements IReturn<SearchResultAnalysisMethod>
     {
@@ -503,17 +536,15 @@ public class ServiceModel
     @Route(Path="/v1/analysismethods", Verbs="POST")
     public static class PostAnalysisMethod implements IReturn<AnalysisMethod>
     {
-        public List<ObservedProperty> ObservedProperties = null;
         public String Id = null;
         public String MethodId = null;
         public String Name = null;
         public String Context = null;
         public String Description = null;
+        public List<ObservedProperty> ObservedProperties = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public AuditAttributes AuditAttributes = null;
 
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PostAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public String getId() { return Id; }
         public PostAnalysisMethod setId(String value) { this.Id = value; return this; }
         public String getMethodId() { return MethodId; }
@@ -524,6 +555,8 @@ public class ServiceModel
         public PostAnalysisMethod setContext(String value) { this.Context = value; return this; }
         public String getDescription() { return Description; }
         public PostAnalysisMethod setDescription(String value) { this.Description = value; return this; }
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public PostAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public PostAnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -547,18 +580,16 @@ public class ServiceModel
     public static class PutAnalysisMethod implements IReturn<AnalysisMethod>
     {
         public String Id = null;
-        public List<ObservedProperty> ObservedProperties = null;
         public String MethodId = null;
         public String Name = null;
         public String Context = null;
         public String Description = null;
+        public List<ObservedProperty> ObservedProperties = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutAnalysisMethod setId(String value) { this.Id = value; return this; }
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PutAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public String getMethodId() { return MethodId; }
         public PutAnalysisMethod setMethodId(String value) { this.MethodId = value; return this; }
         public String getName() { return Name; }
@@ -567,6 +598,8 @@ public class ServiceModel
         public PutAnalysisMethod setContext(String value) { this.Context = value; return this; }
         public String getDescription() { return Description; }
         public PutAnalysisMethod setDescription(String value) { this.Description = value; return this; }
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public PutAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public PutAnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -582,6 +615,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteAnalysisMethod setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/analysismethods/{id}/history", Verbs="GET")
+    public static class GetAnalysisMethodHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetAnalysisMethodHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/analyticalgroups", Verbs="GET")
@@ -680,6 +724,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteAnalyticalGroup setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/analyticalgroups/{id}/history", Verbs="GET")
+    public static class GetAnalyticalGroupHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetAnalyticalGroupHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/attachments/{id}", Verbs="GET")
@@ -829,6 +884,17 @@ public class ServiceModel
         public DeleteCollectionMethod setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/collectionmethods/{id}/history", Verbs="GET")
+    public static class GetCollectionMethodHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetCollectionMethodHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/detectionconditions", Verbs="GET")
     public static class GetDetectionconditions implements IReturn<SearchResultResultDetectionCondition>
     {
@@ -906,6 +972,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteDetectioncondition setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/detectionconditions/{id}/history", Verbs="GET")
+    public static class GetDetectionconditionHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetDetectionconditionHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/extendedattributes", Verbs="GET")
@@ -1033,8 +1110,19 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @Route(Path="/v1/extendedattributes/{id}/history", Verbs="GET")
+    public static class GetExtendedAttributeHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetExtendedAttributeHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/fieldtrips", Verbs="GET")
-    public static class GetFieldTrips implements IReturn<SearchResultFieldTrip>
+    public static class GetFieldTrips implements IReturn<SearchResultFieldTripBasic>
     {
         public Integer Limit = null;
         public List<String> Search = null;
@@ -1043,7 +1131,7 @@ public class ServiceModel
         public GetFieldTrips setLimit(Integer value) { this.Limit = value; return this; }
         public List<String> getSearch() { return Search; }
         public GetFieldTrips setSearch(List<String> value) { this.Search = value; return this; }
-        private static Object responseType = SearchResultFieldTrip.class;
+        private static Object responseType = SearchResultFieldTripBasic.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -1052,20 +1140,18 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public List<FieldVisit> FieldVisits = null;
         public Instant StartTime = null;
         public Instant EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
+        public List<FieldVisit> FieldVisits = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostFieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PostFieldTrip setCustomId(String value) { this.CustomId = value; return this; }
-        public List<FieldVisit> getFieldVisits() { return FieldVisits; }
-        public PostFieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public Instant getStartTime() { return StartTime; }
         public PostFieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
@@ -1076,6 +1162,8 @@ public class ServiceModel
         public PostFieldTrip setNotes(String value) { this.Notes = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
         public PostFieldTrip setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public List<FieldVisit> getFieldVisits() { return FieldVisits; }
+        public PostFieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostFieldTrip setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = FieldTrip.class;
@@ -1098,20 +1186,18 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public List<FieldVisit> FieldVisits = null;
         public Instant StartTime = null;
         public Instant EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
+        public List<FieldVisit> FieldVisits = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutFieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutFieldTrip setCustomId(String value) { this.CustomId = value; return this; }
-        public List<FieldVisit> getFieldVisits() { return FieldVisits; }
-        public PutFieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public Instant getStartTime() { return StartTime; }
         public PutFieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
@@ -1122,6 +1208,8 @@ public class ServiceModel
         public PutFieldTrip setNotes(String value) { this.Notes = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
         public PutFieldTrip setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public List<FieldVisit> getFieldVisits() { return FieldVisits; }
+        public PutFieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutFieldTrip setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = FieldTrip.class;
@@ -1137,10 +1225,23 @@ public class ServiceModel
         public DeleteFieldTrip setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/fieldtrips/{id}/history", Verbs="GET")
+    public static class GetFieldTripHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetFieldTripHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @DataContract
     @Route(Path="/v1/fieldvisits", Verbs="GET")
-    public static class GetFieldVisits implements IReturn<SearchResultFieldVisitSimple>
+    public static class GetFieldVisits implements IReturn<SearchResultFieldVisitSimple>, IPaginatedRequest
     {
+        @DataMember(Name = "cursor")
+        public String Cursor = null;
         @DataMember(Name = "end-startTime")
         public Instant EndStartTime = null;
         @DataMember(Name = "fieldTripIds")
@@ -1157,9 +1258,15 @@ public class ServiceModel
         public List<String> SamplingLocationIds = null;
         @DataMember(Name = "scheduleIds")
         public List<String> ScheduleIds = null;
+        @DataMember(Name = "search")
+        public List<String> Search = null;
+        @DataMember(Name = "sort")
+        public String Sort = null;
         @DataMember(Name = "start-startTime")
         public Instant StartStartTime = null;
 
+        public String getCursor() { return Cursor; }
+        public GetFieldVisits setCursor(String value) { this.Cursor = value; return this; }
         public Instant getEndStartTime() { return EndStartTime; }
         public GetFieldVisits setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
         public List<String> getFieldTripIds() { return FieldTripIds; }
@@ -1176,6 +1283,10 @@ public class ServiceModel
         public GetFieldVisits setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
         public List<String> getScheduleIds() { return ScheduleIds; }
         public GetFieldVisits setScheduleIds(List<String> value) { this.ScheduleIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetFieldVisits setSearch(List<String> value) { this.Search = value; return this; }
+        public String getSort() { return Sort; }
+        public GetFieldVisits setSort(String value) { this.Sort = value; return this; }
         public Instant getStartStartTime() { return StartStartTime; }
         public GetFieldVisits setStartStartTime(Instant value) { this.StartStartTime = value; return this; }
         private static Object responseType = SearchResultFieldVisitSimple.class;
@@ -1239,6 +1350,8 @@ public class ServiceModel
     @Route(Path="/v1/fieldvisits", Verbs="DELETE")
     public static class DeleteFieldVisits implements IReturnVoid
     {
+        @DataMember(Name = "cursor")
+        public String Cursor = null;
         @DataMember(Name = "end-startTime")
         public Instant EndStartTime = null;
         @DataMember(Name = "fieldTripIds")
@@ -1255,9 +1368,15 @@ public class ServiceModel
         public List<String> SamplingLocationIds = null;
         @DataMember(Name = "scheduleIds")
         public List<String> ScheduleIds = null;
+        @DataMember(Name = "search")
+        public List<String> Search = null;
+        @DataMember(Name = "sort")
+        public String Sort = null;
         @DataMember(Name = "start-startTime")
         public Instant StartStartTime = null;
 
+        public String getCursor() { return Cursor; }
+        public DeleteFieldVisits setCursor(String value) { this.Cursor = value; return this; }
         public Instant getEndStartTime() { return EndStartTime; }
         public DeleteFieldVisits setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
         public List<String> getFieldTripIds() { return FieldTripIds; }
@@ -1274,6 +1393,10 @@ public class ServiceModel
         public DeleteFieldVisits setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
         public List<String> getScheduleIds() { return ScheduleIds; }
         public DeleteFieldVisits setScheduleIds(List<String> value) { this.ScheduleIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public DeleteFieldVisits setSearch(List<String> value) { this.Search = value; return this; }
+        public String getSort() { return Sort; }
+        public DeleteFieldVisits setSort(String value) { this.Sort = value; return this; }
         public Instant getStartStartTime() { return StartStartTime; }
         public DeleteFieldVisits setStartStartTime(Instant value) { this.StartStartTime = value; return this; }
     }
@@ -1440,6 +1563,17 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @Route(Path="/v1/fieldvisits/{id}/history", Verbs="GET")
+    public static class GetFieldVisitHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetFieldVisitHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/fieldvisits/{id}/statistics", Verbs="GET")
     public static class GetFieldVisitStatistics implements IReturn<FieldVisitStatistics>
     {
@@ -1542,6 +1676,17 @@ public class ServiceModel
         public DeleteFilter setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/filters/{id}/history", Verbs="GET")
+    public static class GetFilterHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetFilterHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/labanalysismethods", Verbs="GET")
     public static class GetLabAnalysisMethods implements IReturn<SearchResultAnalysisMethod>
     {
@@ -1559,17 +1704,15 @@ public class ServiceModel
     @Route(Path="/v1/labanalysismethods", Verbs="POST")
     public static class PostLabAnalysisMethod implements IReturn<AnalysisMethod>
     {
-        public List<ObservedProperty> ObservedProperties = null;
         public String Id = null;
         public String MethodId = null;
         public String Name = null;
         public String Context = null;
         public String Description = null;
+        public List<ObservedProperty> ObservedProperties = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public AuditAttributes AuditAttributes = null;
 
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PostLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public String getId() { return Id; }
         public PostLabAnalysisMethod setId(String value) { this.Id = value; return this; }
         public String getMethodId() { return MethodId; }
@@ -1580,6 +1723,8 @@ public class ServiceModel
         public PostLabAnalysisMethod setContext(String value) { this.Context = value; return this; }
         public String getDescription() { return Description; }
         public PostLabAnalysisMethod setDescription(String value) { this.Description = value; return this; }
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public PostLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public PostLabAnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -1603,18 +1748,16 @@ public class ServiceModel
     public static class PutLabAnalysisMethod implements IReturn<AnalysisMethod>
     {
         public String Id = null;
-        public List<ObservedProperty> ObservedProperties = null;
         public String MethodId = null;
         public String Name = null;
         public String Context = null;
         public String Description = null;
+        public List<ObservedProperty> ObservedProperties = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutLabAnalysisMethod setId(String value) { this.Id = value; return this; }
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PutLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public String getMethodId() { return MethodId; }
         public PutLabAnalysisMethod setMethodId(String value) { this.MethodId = value; return this; }
         public String getName() { return Name; }
@@ -1623,6 +1766,8 @@ public class ServiceModel
         public PutLabAnalysisMethod setContext(String value) { this.Context = value; return this; }
         public String getDescription() { return Description; }
         public PutLabAnalysisMethod setDescription(String value) { this.Description = value; return this; }
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public PutLabAnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public PutLabAnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -1638,6 +1783,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteLabAnalysisMethod setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/labanalysismethods/{id}/history", Verbs="GET")
+    public static class GetLabAnalysisMethodHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetLabAnalysisMethodHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/laboratories", Verbs="GET")
@@ -1735,6 +1891,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteLaboratory setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/laboratories/{id}/history", Verbs="GET")
+    public static class GetLaboratoryHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetLaboratoryHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/labreportimporthistoryevents", Verbs="GET")
@@ -1867,6 +2034,17 @@ public class ServiceModel
         public DeleteLabReport setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/labreports/{id}/history", Verbs="GET")
+    public static class GetLabReportHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetLabReportHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/mediums", Verbs="GET")
     public static class GetMediums implements IReturn<SearchResultMedium>
     {
@@ -1878,6 +2056,17 @@ public class ServiceModel
     public static class PutMediums implements IReturn<List<Medium>>
     {
         private static Object responseType = new TypeToken<List<Medium>>(){};
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/mediums/{id}/history", Verbs="GET")
+    public static class GetMediumHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetMediumHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -1954,6 +2143,17 @@ public class ServiceModel
         public DeleteNullMeasureQualifier setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/nullmeasurequalifiers/{id}/history", Verbs="GET")
+    public static class GetNullMeasureQualifierHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetNullMeasureQualifierHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @DataContract
     @Route(Path="/v1/observations", Verbs="GET")
     public static class GetObservations implements IReturn<SearchResultObservation>, IPaginatedRequest
@@ -2008,8 +2208,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -2095,8 +2301,14 @@ public class ServiceModel
         public GetObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetObservations setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetObservations setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -2157,7 +2369,7 @@ public class ServiceModel
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
-        public AnalysisMethod AnalysisMethod = null;
+        public AnalysisMethodSimple AnalysisMethod = null;
         public String Comment = null;
         public FieldVisit FieldVisit = null;
         public Device Device = null;
@@ -2210,8 +2422,8 @@ public class ServiceModel
         public PostObservation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
         public LabResultDetails getLabResultDetails() { return LabResultDetails; }
         public PostObservation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethod getAnalysisMethod() { return AnalysisMethod; }
-        public PostObservation setAnalysisMethod(AnalysisMethod value) { this.AnalysisMethod = value; return this; }
+        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
+        public PostObservation setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
         public String getComment() { return Comment; }
         public PostObservation setComment(String value) { this.Comment = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
@@ -2296,8 +2508,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -2383,8 +2601,14 @@ public class ServiceModel
         public DeleteObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public DeleteObservations setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public DeleteObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public DeleteObservations setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public DeleteObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public DeleteObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public DeleteObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -2454,7 +2678,7 @@ public class ServiceModel
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
-        public AnalysisMethod AnalysisMethod = null;
+        public AnalysisMethodSimple AnalysisMethod = null;
         public String Comment = null;
         public FieldVisit FieldVisit = null;
         public Device Device = null;
@@ -2507,8 +2731,8 @@ public class ServiceModel
         public PutObservation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
         public LabResultDetails getLabResultDetails() { return LabResultDetails; }
         public PutObservation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethod getAnalysisMethod() { return AnalysisMethod; }
-        public PutObservation setAnalysisMethod(AnalysisMethod value) { this.AnalysisMethod = value; return this; }
+        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
+        public PutObservation setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
         public String getComment() { return Comment; }
         public PutObservation setComment(String value) { this.Comment = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
@@ -2546,6 +2770,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteObservation setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/observations/{id}/history", Verbs="GET")
+    public static class GetObservationHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetObservationHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @DataContract
@@ -2602,8 +2837,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -2689,8 +2930,14 @@ public class ServiceModel
         public GetChartData setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetChartData setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetChartData setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetChartData setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetChartData setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetChartData setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetChartData setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -2783,8 +3030,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -2870,8 +3123,14 @@ public class ServiceModel
         public GetGroupedObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetGroupedObservations setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetGroupedObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetGroupedObservations setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetGroupedObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetGroupedObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetGroupedObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -2966,8 +3225,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -3055,8 +3320,14 @@ public class ServiceModel
         public PutBulkEditResultGrades setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public PutBulkEditResultGrades setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public PutBulkEditResultGrades setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public PutBulkEditResultGrades setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public PutBulkEditResultGrades setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public PutBulkEditResultGrades setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public PutBulkEditResultGrades setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -3272,6 +3543,17 @@ public class ServiceModel
         public DeleteObservedPropertyCategoricalValues setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/observedproperties/{id}/history", Verbs="GET")
+    public static class GetObservedPropertyHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetObservedPropertyHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/projects", Verbs="GET")
     public static class GetProjects implements IReturn<SearchResultProject>
     {
@@ -3381,6 +3663,17 @@ public class ServiceModel
         public DeleteProject setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/projects/{id}/history", Verbs="GET")
+    public static class GetProjectHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetProjectHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/resultgrades", Verbs="GET")
     public static class GetResultGrades implements IReturn<SearchResultResultGrade>
     {
@@ -3395,6 +3688,17 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @Route(Path="/v1/resultgrades/{id}/history", Verbs="GET")
+    public static class GetResultGradeHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetResultGradeHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/resultstatuses", Verbs="GET")
     public static class GetResultStatuses implements IReturn<SearchResultResultStatus>
     {
@@ -3406,6 +3710,17 @@ public class ServiceModel
     public static class PutResultStatuses implements IReturn<List<ResultStatus>>
     {
         private static Object responseType = new TypeToken<List<ResultStatus>>(){};
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/resultstatuses/{id}/history", Verbs="GET")
+    public static class GetResultStatuseHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetResultStatuseHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -3482,6 +3797,17 @@ public class ServiceModel
         public DeleteSamplingLocationGroup setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/samplinglocationgroups/{id}/history", Verbs="GET")
+    public static class GetSamplingLocationGroupHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSamplingLocationGroupHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/samplinglocationgrouptypes", Verbs="GET")
     public static class GetSamplinglocationgrouptypes implements IReturn<SearchResultLocationGroupType>
     {
@@ -3493,6 +3819,17 @@ public class ServiceModel
     public static class PutSamplinglocationgrouptypes implements IReturn<List<LocationGroupType>>
     {
         private static Object responseType = new TypeToken<List<LocationGroupType>>(){};
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/samplinglocationgrouptypes/{id}/history", Verbs="GET")
+    public static class GetSamplinglocationgrouptypeHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSamplinglocationgrouptypeHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -3712,6 +4049,17 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @Route(Path="/v1/samplinglocations/{id}/history", Verbs="GET")
+    public static class GetSamplingLocationHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSamplingLocationHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/samplinglocations/{id}/summary", Verbs="GET")
     public static class GetSamplingLocationSummary implements IReturn<SamplingLocationSummary>
     {
@@ -3734,6 +4082,17 @@ public class ServiceModel
     public static class PutSamplingLocationTypes implements IReturn<List<LocationType>>
     {
         private static Object responseType = new TypeToken<List<LocationType>>(){};
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/samplinglocationtypes/{id}/history", Verbs="GET")
+    public static class GetSamplingLocationTypeHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSamplingLocationTypeHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -3869,6 +4228,17 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @Route(Path="/v1/schedules/{id}/history", Verbs="GET")
+    public static class GetScheduleHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetScheduleHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/services/export/fieldsheets/{fieldVisitId}", Verbs="GET")
     public static class GetExportFieldSheet implements IReturnVoid
     {
@@ -3934,8 +4304,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -4023,8 +4399,14 @@ public class ServiceModel
         public GetExportObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetExportObservations setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetExportObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetExportObservations setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetExportObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetExportObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetExportObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -4651,6 +5033,17 @@ public class ServiceModel
         public DeleteSpecimen setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/specimens/{id}/history", Verbs="GET")
+    public static class GetSpecimenHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSpecimenHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/specimens/{id}/observations", Verbs="GET")
     public static class GetSpecimenObservations implements IReturn<SearchResultObservationNestedInSpecimen>
     {
@@ -4739,6 +5132,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteSpreadsheetTemplate setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/spreadsheettemplates/{id}/history", Verbs="GET")
+    public static class GetSpreadsheetTemplateHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetSpreadsheetTemplateHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/standards", Verbs="GET")
@@ -4844,6 +5248,17 @@ public class ServiceModel
         public DeleteStandard setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/standards/{id}/history", Verbs="GET")
+    public static class GetStandardHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetStandardHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/status", Verbs="GET")
     public static class GetStatus implements IReturn<Status>
     {
@@ -4918,6 +5333,17 @@ public class ServiceModel
         public DeleteTag setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/tags/{id}/history", Verbs="GET")
+    public static class GetTagHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetTagHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/taxonomylevels", Verbs="GET")
     public static class GetTaxonomyLevels implements IReturn<SearchResultTaxonomyLevel>
     {
@@ -4929,6 +5355,17 @@ public class ServiceModel
     public static class PutTaxonomyLevels implements IReturn<List<TaxonomyLevel>>
     {
         private static Object responseType = new TypeToken<List<TaxonomyLevel>>(){};
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/taxonomylevels/{id}/history", Verbs="GET")
+    public static class GetTaxonomyLevelHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetTaxonomyLevelHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -5051,6 +5488,17 @@ public class ServiceModel
         public DeleteTaxon setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/taxons/{id}/history", Verbs="GET")
+    public static class GetTaxonHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetTaxonHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/timezones", Verbs="GET")
     public static class GetTimeZones implements IReturn<SearchResultTimeZone>
     {
@@ -5138,6 +5586,17 @@ public class ServiceModel
         public DeleteUnitGroup setId(String value) { this.Id = value; return this; }
     }
 
+    @Route(Path="/v1/unitgroups/{id}/history", Verbs="GET")
+    public static class GetUnitGroupHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetUnitGroupHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
     @Route(Path="/v1/unitgroupwithunits", Verbs="GET")
     public static class GetUnitGroupWithUnits implements IReturn<SearchResultUnitGroupWithUnits>
     {
@@ -5219,6 +5678,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteUnitGroupWithUnit setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/unitgroupwithunits/{id}/history", Verbs="GET")
+    public static class GetUnitGroupWithUnitHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetUnitGroupWithUnitHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/units", Verbs="GET")
@@ -5311,6 +5781,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteUnit setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/units/{id}/history", Verbs="GET")
+    public static class GetUnitHistory implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetUnitHistory setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/users", Verbs="GET")
@@ -5510,8 +5991,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -5597,8 +6084,14 @@ public class ServiceModel
         public GetObservationsV2 setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetObservationsV2 setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetObservationsV2 setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetObservationsV2 setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetObservationsV2 setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetObservationsV2 setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetObservationsV2 setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -5659,7 +6152,7 @@ public class ServiceModel
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
-        public AnalysisMethod AnalysisMethod = null;
+        public AnalysisMethodSimple AnalysisMethod = null;
         public String Comment = null;
         public FieldVisit FieldVisit = null;
         public Device Device = null;
@@ -5712,8 +6205,8 @@ public class ServiceModel
         public PostObservationV2 setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
         public LabResultDetails getLabResultDetails() { return LabResultDetails; }
         public PostObservationV2 setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethod getAnalysisMethod() { return AnalysisMethod; }
-        public PostObservationV2 setAnalysisMethod(AnalysisMethod value) { this.AnalysisMethod = value; return this; }
+        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
+        public PostObservationV2 setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
         public String getComment() { return Comment; }
         public PostObservationV2 setComment(String value) { this.Comment = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
@@ -5798,8 +6291,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -5885,8 +6384,14 @@ public class ServiceModel
         public DeleteObservationsV2 setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public DeleteObservationsV2 setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public DeleteObservationsV2 setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public DeleteObservationsV2 setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public DeleteObservationsV2 setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public DeleteObservationsV2 setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public DeleteObservationsV2 setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -5956,7 +6461,7 @@ public class ServiceModel
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
-        public AnalysisMethod AnalysisMethod = null;
+        public AnalysisMethodSimple AnalysisMethod = null;
         public String Comment = null;
         public FieldVisit FieldVisit = null;
         public Device Device = null;
@@ -6009,8 +6514,8 @@ public class ServiceModel
         public PutObservationV2 setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
         public LabResultDetails getLabResultDetails() { return LabResultDetails; }
         public PutObservationV2 setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethod getAnalysisMethod() { return AnalysisMethod; }
-        public PutObservationV2 setAnalysisMethod(AnalysisMethod value) { this.AnalysisMethod = value; return this; }
+        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
+        public PutObservationV2 setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
         public String getComment() { return Comment; }
         public PutObservationV2 setComment(String value) { this.Comment = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
@@ -6048,6 +6553,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteObservationV2 setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v2/observations/{id}/history", Verbs="GET")
+    public static class GetObservationHistoryV2 implements IReturn<SearchResultAuditHistory>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetObservationHistoryV2 setId(String value) { this.Id = value; return this; }
+        private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @DataContract
@@ -6104,8 +6620,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -6191,8 +6713,14 @@ public class ServiceModel
         public GetChartDataV2 setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetChartDataV2 setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetChartDataV2 setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetChartDataV2 setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetChartDataV2 setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetChartDataV2 setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetChartDataV2 setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -6285,8 +6813,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -6372,8 +6906,14 @@ public class ServiceModel
         public GetGroupedObservationsV2 setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetGroupedObservationsV2 setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetGroupedObservationsV2 setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetGroupedObservationsV2 setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetGroupedObservationsV2 setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetGroupedObservationsV2 setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetGroupedObservationsV2 setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -6468,8 +7008,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -6557,8 +7103,14 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public PutBulkEditResultGradesV2 setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public PutBulkEditResultGradesV2 setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public PutBulkEditResultGradesV2 setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public PutBulkEditResultGradesV2 setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public PutBulkEditResultGradesV2 setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public PutBulkEditResultGradesV2 setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -6651,8 +7203,14 @@ public class ServiceModel
         public List<String> LabResultLaboratoryIds = null;
         @DataMember(Name = "limit")
         public Integer Limit = null;
+        @DataMember(Name = "max-numericResultValue")
+        public Double MaxNumericResultValue = null;
         @DataMember(Name = "media")
         public List<String> Media = null;
+        @DataMember(Name = "min-numericResultValue")
+        public Double MinNumericResultValue = null;
+        @DataMember(Name = "numericResultValue")
+        public Double NumericResultValue = null;
         @DataMember(Name = "observedPropertyIds")
         public List<String> ObservedPropertyIds = null;
         @DataMember(Name = "projectIds")
@@ -6740,8 +7298,14 @@ public class ServiceModel
         public GetObservationExportIIV2 setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
         public GetObservationExportIIV2 setLimit(Integer value) { this.Limit = value; return this; }
+        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
+        public GetObservationExportIIV2 setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
         public List<String> getMedia() { return Media; }
         public GetObservationExportIIV2 setMedia(List<String> value) { this.Media = value; return this; }
+        public Double getMinNumericResultValue() { return MinNumericResultValue; }
+        public GetObservationExportIIV2 setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
+        public Double getNumericResultValue() { return NumericResultValue; }
+        public GetObservationExportIIV2 setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetObservationExportIIV2 setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
         public List<String> getProjectIds() { return ProjectIds; }
@@ -7009,17 +7573,15 @@ public class ServiceModel
 
     public static class AnalysisMethod
     {
-        public List<ObservedProperty> ObservedProperties = null;
         public String Id = null;
         public String MethodId = null;
         public String Name = null;
         public String Context = null;
         public String Description = null;
+        public List<ObservedProperty> ObservedProperties = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public AuditAttributes AuditAttributes = null;
 
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public AnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public String getId() { return Id; }
         public AnalysisMethod setId(String value) { this.Id = value; return this; }
         public String getMethodId() { return MethodId; }
@@ -7030,6 +7592,8 @@ public class ServiceModel
         public AnalysisMethod setContext(String value) { this.Context = value; return this; }
         public String getDescription() { return Description; }
         public AnalysisMethod setDescription(String value) { this.Description = value; return this; }
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public AnalysisMethod setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
         public AnalysisMethod setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -7089,6 +7653,29 @@ public class ServiceModel
         public AnalysisMethodMinimal setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
         public AnalysisMethodMinimal setName(String value) { this.Name = value; return this; }
+    }
+
+    public static class AnalysisMethodSimple
+    {
+        public String Id = null;
+        public String MethodId = null;
+        public String Name = null;
+        public String Context = null;
+        public String Description = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public AnalysisMethodSimple setId(String value) { this.Id = value; return this; }
+        public String getMethodId() { return MethodId; }
+        public AnalysisMethodSimple setMethodId(String value) { this.MethodId = value; return this; }
+        public String getName() { return Name; }
+        public AnalysisMethodSimple setName(String value) { this.Name = value; return this; }
+        public String getContext() { return Context; }
+        public AnalysisMethodSimple setContext(String value) { this.Context = value; return this; }
+        public String getDescription() { return Description; }
+        public AnalysisMethodSimple setDescription(String value) { this.Description = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public AnalysisMethodSimple setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
 
     public static class AnalyticalGroup
@@ -7538,20 +8125,18 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public List<FieldVisit> FieldVisits = null;
         public Instant StartTime = null;
         public Instant EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
+        public List<FieldVisit> FieldVisits = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public FieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public FieldTrip setCustomId(String value) { this.CustomId = value; return this; }
-        public List<FieldVisit> getFieldVisits() { return FieldVisits; }
-        public FieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public Instant getStartTime() { return StartTime; }
         public FieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
         public Instant getEndTime() { return EndTime; }
@@ -7562,8 +8147,39 @@ public class ServiceModel
         public FieldTrip setNotes(String value) { this.Notes = value; return this; }
         public List<DomainObjectAttachment> getAttachments() { return Attachments; }
         public FieldTrip setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public List<FieldVisit> getFieldVisits() { return FieldVisits; }
+        public FieldTrip setFieldVisits(List<FieldVisit> value) { this.FieldVisits = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public FieldTrip setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
+    public static class FieldTripBasic
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public Instant StartTime = null;
+        public Instant EndTime = null;
+        public String Participants = null;
+        public String Notes = null;
+        public List<DomainObjectAttachment> Attachments = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public FieldTripBasic setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public FieldTripBasic setCustomId(String value) { this.CustomId = value; return this; }
+        public Instant getStartTime() { return StartTime; }
+        public FieldTripBasic setStartTime(Instant value) { this.StartTime = value; return this; }
+        public Instant getEndTime() { return EndTime; }
+        public FieldTripBasic setEndTime(Instant value) { this.EndTime = value; return this; }
+        public String getParticipants() { return Participants; }
+        public FieldTripBasic setParticipants(String value) { this.Participants = value; return this; }
+        public String getNotes() { return Notes; }
+        public FieldTripBasic setNotes(String value) { this.Notes = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public FieldTripBasic setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public FieldTripBasic setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
 
     public static class FieldTripSimple
@@ -7813,6 +8429,7 @@ public class ServiceModel
         public Object Item = null;
         public Object ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItem setFields(List<String> value) { this.Fields = value; return this; }
@@ -7830,6 +8447,8 @@ public class ServiceModel
         public ImportItem setExistingItem(Object value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItem setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItem setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemAnalysisMethod
@@ -7842,6 +8461,7 @@ public class ServiceModel
         public AnalysisMethod Item = null;
         public AnalysisMethod ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemAnalysisMethod setFields(List<String> value) { this.Fields = value; return this; }
@@ -7859,6 +8479,8 @@ public class ServiceModel
         public ImportItemAnalysisMethod setExistingItem(AnalysisMethod value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemAnalysisMethod setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemAnalysisMethod setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemObject
@@ -7871,6 +8493,7 @@ public class ServiceModel
         public Object Item = null;
         public Object ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemObject setFields(List<String> value) { this.Fields = value; return this; }
@@ -7888,6 +8511,8 @@ public class ServiceModel
         public ImportItemObject setExistingItem(Object value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemObject setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemObject setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemObservation
@@ -7900,6 +8525,7 @@ public class ServiceModel
         public Observation Item = null;
         public Observation ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemObservation setFields(List<String> value) { this.Fields = value; return this; }
@@ -7917,6 +8543,8 @@ public class ServiceModel
         public ImportItemObservation setExistingItem(Observation value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemObservation setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemObservation setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemObservedProperty
@@ -7929,6 +8557,7 @@ public class ServiceModel
         public ObservedProperty Item = null;
         public ObservedProperty ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemObservedProperty setFields(List<String> value) { this.Fields = value; return this; }
@@ -7946,6 +8575,8 @@ public class ServiceModel
         public ImportItemObservedProperty setExistingItem(ObservedProperty value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemObservedProperty setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemObservedProperty setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemSamplingLocation
@@ -7958,6 +8589,7 @@ public class ServiceModel
         public SamplingLocation Item = null;
         public SamplingLocation ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemSamplingLocation setFields(List<String> value) { this.Fields = value; return this; }
@@ -7975,6 +8607,8 @@ public class ServiceModel
         public ImportItemSamplingLocation setExistingItem(SamplingLocation value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemSamplingLocation setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemSamplingLocation setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemSpecimen
@@ -7987,6 +8621,7 @@ public class ServiceModel
         public Specimen Item = null;
         public Specimen ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemSpecimen setFields(List<String> value) { this.Fields = value; return this; }
@@ -8004,6 +8639,8 @@ public class ServiceModel
         public ImportItemSpecimen setExistingItem(Specimen value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemSpecimen setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemSpecimen setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportItemTaxon
@@ -8016,6 +8653,7 @@ public class ServiceModel
         public Taxon Item = null;
         public Taxon ExistingItem = null;
         public List<ImportChangeItem> ItemComparison = null;
+        public List<String> WarningMessages = null;
 
         public List<String> getFields() { return Fields; }
         public ImportItemTaxon setFields(List<String> value) { this.Fields = value; return this; }
@@ -8033,6 +8671,8 @@ public class ServiceModel
         public ImportItemTaxon setExistingItem(Taxon value) { this.ExistingItem = value; return this; }
         public List<ImportChangeItem> getItemComparison() { return ItemComparison; }
         public ImportItemTaxon setItemComparison(List<ImportChangeItem> value) { this.ItemComparison = value; return this; }
+        public List<String> getWarningMessages() { return WarningMessages; }
+        public ImportItemTaxon setWarningMessages(List<String> value) { this.WarningMessages = value; return this; }
     }
 
     public static class ImportProcessorTransactionStatusResponse
@@ -8641,6 +9281,9 @@ public class ServiceModel
         public Quantity MethodDetectionLevel = null;
         public Quantity LowerMethodReportingLimit = null;
         public NullMeasureQualifier NullMeasureQualifier = null;
+        public String RoundedValue = null;
+        public SourceRoundedValueType SourceRoundedValue = null;
+        public String RoundingSpecification = null;
         public AuditAttributes AuditAttributes = null;
 
         public Quantity getQuantity() { return Quantity; }
@@ -8657,6 +9300,12 @@ public class ServiceModel
         public NumericResult setLowerMethodReportingLimit(Quantity value) { this.LowerMethodReportingLimit = value; return this; }
         public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
         public NumericResult setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
+        public String getRoundedValue() { return RoundedValue; }
+        public NumericResult setRoundedValue(String value) { this.RoundedValue = value; return this; }
+        public SourceRoundedValueType getSourceRoundedValue() { return SourceRoundedValue; }
+        public NumericResult setSourceRoundedValue(SourceRoundedValueType value) { this.SourceRoundedValue = value; return this; }
+        public String getRoundingSpecification() { return RoundingSpecification; }
+        public NumericResult setRoundingSpecification(String value) { this.RoundingSpecification = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public NumericResult setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8682,7 +9331,7 @@ public class ServiceModel
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
-        public AnalysisMethod AnalysisMethod = null;
+        public AnalysisMethodSimple AnalysisMethod = null;
         public String Comment = null;
         public FieldVisit FieldVisit = null;
         public Device Device = null;
@@ -8735,8 +9384,8 @@ public class ServiceModel
         public Observation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
         public LabResultDetails getLabResultDetails() { return LabResultDetails; }
         public Observation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethod getAnalysisMethod() { return AnalysisMethod; }
-        public Observation setAnalysisMethod(AnalysisMethod value) { this.AnalysisMethod = value; return this; }
+        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
+        public Observation setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
         public String getComment() { return Comment; }
         public Observation setComment(String value) { this.Comment = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
@@ -9625,18 +10274,18 @@ public class ServiceModel
         public SearchResultExtendedAttributeListItem setDomainObjects(List<ExtendedAttributeListItem> value) { this.DomainObjects = value; return this; }
     }
 
-    public static class SearchResultFieldTrip implements IPaginatedResponse<FieldTrip>
+    public static class SearchResultFieldTripBasic implements IPaginatedResponse<FieldTripBasic>
     {
         public Integer TotalCount = null;
         public String Cursor = null;
-        public List<FieldTrip> DomainObjects = null;
+        public List<FieldTripBasic> DomainObjects = null;
 
         public Integer getTotalCount() { return TotalCount; }
-        public SearchResultFieldTrip setTotalCount(Integer value) { this.TotalCount = value; return this; }
+        public SearchResultFieldTripBasic setTotalCount(Integer value) { this.TotalCount = value; return this; }
         public String getCursor() { return Cursor; }
-        public SearchResultFieldTrip setCursor(String value) { this.Cursor = value; return this; }
-        public List<FieldTrip> getDomainObjects() { return DomainObjects; }
-        public SearchResultFieldTrip setDomainObjects(List<FieldTrip> value) { this.DomainObjects = value; return this; }
+        public SearchResultFieldTripBasic setCursor(String value) { this.Cursor = value; return this; }
+        public List<FieldTripBasic> getDomainObjects() { return DomainObjects; }
+        public SearchResultFieldTripBasic setDomainObjects(List<FieldTripBasic> value) { this.DomainObjects = value; return this; }
     }
 
     public static class SearchResultFieldVisitSimple implements IPaginatedResponse<FieldVisitSimple>
@@ -10922,6 +11571,13 @@ public class ServiceModel
     {
         ALL,
         RANDOM
+    }
+
+    public static enum SourceRoundedValueType
+    {
+        PROVIDED_BY_USER,
+        ROUNDING_SPECIFICATION,
+        SYSTEM_DEFAULT
     }
 
     public static enum SpecimenViewStatusType
