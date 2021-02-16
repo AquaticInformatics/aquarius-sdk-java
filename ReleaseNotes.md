@@ -4,6 +4,10 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 20.4.2
+
+- Updated the service models for the AQUARIUS Samples 2020.06 release.
+
 ### 20.4.1
 
 - Improved AQSamples timestamp deserialization edge-cases
