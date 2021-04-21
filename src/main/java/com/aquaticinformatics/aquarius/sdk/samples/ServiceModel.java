@@ -1,6 +1,6 @@
-// Date: 2021-02-16T09:46:43.2396447-08:00
+// Date: 2021-04-21T11:41:57.6402964-07:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2020.06.4163)
+// Source: AQUARIUS Samples API (2021.01.4241)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2020.06.4163");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2021.01.4241");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -1031,12 +1031,9 @@ public class ServiceModel
     public static class GetExtendedAttribute implements IReturn<ExtendedAttributeDefinition>
     {
         public String Id = null;
-        public Boolean Detail = null;
 
         public String getId() { return Id; }
         public GetExtendedAttribute setId(String value) { this.Id = value; return this; }
-        public Boolean getDetail() { return Detail; }
-        public GetExtendedAttribute setDetail(Boolean value) { this.Detail = value; return this; }
         private static Object responseType = ExtendedAttributeDefinition.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -1083,6 +1080,17 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public DeleteExtendedAttribute setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/extendedattributes/{id}/details", Verbs="GET")
+    public static class GetExtendedAttributeDetails implements IReturn<ExtendedAttributeDefinition>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetExtendedAttributeDetails setId(String value) { this.Id = value; return this; }
+        private static Object responseType = ExtendedAttributeDefinition.class;
+        public Object getResponseType() {{ return responseType; }}
     }
 
     @Route(Path="/v1/extendedattributes/{id}/dropdownlistitems", Verbs="GET")
@@ -4490,7 +4498,7 @@ public class ServiceModel
         public String Cursor = null;
         public Instant EndModificationTime = null;
         public List<String> FieldTripIds = null;
-        public String FieldVisitId = null;
+        public List<String> FieldVisitId = null;
         public List<String> LaboratoryIds = null;
         public Integer Limit = null;
         public List<String> ProjectIds = null;
@@ -4517,8 +4525,8 @@ public class ServiceModel
         public GetExportSpecimens setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public List<String> getFieldTripIds() { return FieldTripIds; }
         public GetExportSpecimens setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public GetExportSpecimens setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitId() { return FieldVisitId; }
+        public GetExportSpecimens setFieldVisitId(List<String> value) { this.FieldVisitId = value; return this; }
         public List<String> getLaboratoryIds() { return LaboratoryIds; }
         public GetExportSpecimens setLaboratoryIds(List<String> value) { this.LaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
@@ -4841,7 +4849,7 @@ public class ServiceModel
         public String Cursor = null;
         public Instant EndModificationTime = null;
         public List<String> FieldTripIds = null;
-        public String FieldVisitId = null;
+        public List<String> FieldVisitId = null;
         public List<String> LaboratoryIds = null;
         public Integer Limit = null;
         public List<String> ProjectIds = null;
@@ -4868,8 +4876,8 @@ public class ServiceModel
         public GetSpecimens setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public List<String> getFieldTripIds() { return FieldTripIds; }
         public GetSpecimens setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public GetSpecimens setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitId() { return FieldVisitId; }
+        public GetSpecimens setFieldVisitId(List<String> value) { this.FieldVisitId = value; return this; }
         public List<String> getLaboratoryIds() { return LaboratoryIds; }
         public GetSpecimens setLaboratoryIds(List<String> value) { this.LaboratoryIds = value; return this; }
         public Integer getLimit() { return Limit; }
