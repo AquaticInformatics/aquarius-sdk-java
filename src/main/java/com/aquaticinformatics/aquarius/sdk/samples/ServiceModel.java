@@ -1,6 +1,6 @@
-// Date: 2021-04-21T11:41:57.6402964-07:00
+// Date: 2021-07-19T12:37:06.2293772-07:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2021.01.4241)
+// Source: AQUARIUS Samples API (2021.03.4425)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2021.01.4241");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2021.03.4425");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -988,6 +988,22 @@ public class ServiceModel
     @Route(Path="/v1/extendedattributes", Verbs="GET")
     public static class GetExtendedAttributes implements IReturn<SearchResultExtendedAttributeDefinition>
     {
+        public AppliesToType AppliesToType = null;
+        public String CustomId = null;
+        public List<String> Ids = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
+
+        public AppliesToType getAppliesToType() { return AppliesToType; }
+        public GetExtendedAttributes setAppliesToType(AppliesToType value) { this.AppliesToType = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public GetExtendedAttributes setCustomId(String value) { this.CustomId = value; return this; }
+        public List<String> getIds() { return Ids; }
+        public GetExtendedAttributes setIds(List<String> value) { this.Ids = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetExtendedAttributes setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetExtendedAttributes setSearch(List<String> value) { this.Search = value; return this; }
         private static Object responseType = SearchResultExtendedAttributeDefinition.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -1097,9 +1113,15 @@ public class ServiceModel
     public static class GetExtendedAttributeDropdownlistitems implements IReturn<SearchResultExtendedAttributeListItem>
     {
         public String Id = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
 
         public String getId() { return Id; }
         public GetExtendedAttributeDropdownlistitems setId(String value) { this.Id = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetExtendedAttributeDropdownlistitems setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetExtendedAttributeDropdownlistitems setSearch(List<String> value) { this.Search = value; return this; }
         private static Object responseType = SearchResultExtendedAttributeListItem.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -2162,1216 +2184,6 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
-    @DataContract
-    @Route(Path="/v1/observations", Verbs="GET")
-    public static class GetObservations implements IReturn<SearchResultObservation>, IPaginatedRequest
-    {
-        @DataMember(Name = "activityCustomId")
-        public String ActivityCustomId = null;
-        @DataMember(Name = "activityIds")
-        public List<String> ActivityIds = null;
-        @DataMember(Name = "activityTypes")
-        public List<String> ActivityTypes = null;
-        @DataMember(Name = "analysisMethodIds")
-        public List<String> AnalysisMethodIds = null;
-        @DataMember(Name = "analyticalGroupIds")
-        public List<String> AnalyticalGroupIds = null;
-        @DataMember(Name = "collectionMethodIds")
-        public List<String> CollectionMethodIds = null;
-        @DataMember(Name = "cursor")
-        public String Cursor = null;
-        @DataMember(Name = "customId")
-        public String CustomId = null;
-        @DataMember(Name = "dataClassifications")
-        public List<String> DataClassifications = null;
-        @DataMember(Name = "depthUnitCustomId")
-        public String DepthUnitCustomId = null;
-        @DataMember(Name = "depthUnitId")
-        public String DepthUnitId = null;
-        @DataMember(Name = "depthValue")
-        public Double DepthValue = null;
-        @DataMember(Name = "detectionCondition")
-        public String DetectionCondition = null;
-        @DataMember(Name = "end-observedTime")
-        public Instant EndObservedTime = null;
-        @DataMember(Name = "end-resultTime")
-        public Instant EndResultTime = null;
-        @DataMember(Name = "endModificationTime")
-        public Instant EndModificationTime = null;
-        @DataMember(Name = "fieldResultType")
-        public FieldResultType FieldResultType = null;
-        @DataMember(Name = "fieldVisitId")
-        public String FieldVisitId = null;
-        @DataMember(Name = "filterId")
-        public String FilterId = null;
-        @DataMember(Name = "ids")
-        public List<String> Ids = null;
-        @DataMember(Name = "importHistoryEventId")
-        public String ImportHistoryEventId = null;
-        @DataMember(Name = "labReportIds")
-        public List<String> LabReportIds = null;
-        @DataMember(Name = "labResultLabAnalysisMethodIds")
-        public List<String> LabResultLabAnalysisMethodIds = null;
-        @DataMember(Name = "labResultLaboratoryIds")
-        public List<String> LabResultLaboratoryIds = null;
-        @DataMember(Name = "limit")
-        public Integer Limit = null;
-        @DataMember(Name = "max-numericResultValue")
-        public Double MaxNumericResultValue = null;
-        @DataMember(Name = "media")
-        public List<String> Media = null;
-        @DataMember(Name = "min-numericResultValue")
-        public Double MinNumericResultValue = null;
-        @DataMember(Name = "numericResultValue")
-        public Double NumericResultValue = null;
-        @DataMember(Name = "observedPropertyIds")
-        public List<String> ObservedPropertyIds = null;
-        @DataMember(Name = "projectIds")
-        public List<String> ProjectIds = null;
-        @DataMember(Name = "qualityControlTypes")
-        public List<String> QualityControlTypes = null;
-        @DataMember(Name = "resultGrades")
-        public List<String> ResultGrades = null;
-        @DataMember(Name = "resultStatuses")
-        public List<String> ResultStatuses = null;
-        @DataMember(Name = "sampleFraction")
-        public SampleFractionType SampleFraction = null;
-        @DataMember(Name = "samplingContextTagIds")
-        public List<String> SamplingContextTagIds = null;
-        @DataMember(Name = "samplingLocationGroupIds")
-        public List<String> SamplingLocationGroupIds = null;
-        @DataMember(Name = "samplingLocationIds")
-        public List<String> SamplingLocationIds = null;
-        @DataMember(Name = "search")
-        public List<String> Search = null;
-        @DataMember(Name = "sort")
-        public String Sort = null;
-        @DataMember(Name = "specimenIds")
-        public List<String> SpecimenIds = null;
-        @DataMember(Name = "specimenName")
-        public String SpecimenName = null;
-        @DataMember(Name = "start-observedTime")
-        public Instant StartObservedTime = null;
-        @DataMember(Name = "start-resultTime")
-        public Instant StartResultTime = null;
-        @DataMember(Name = "startModificationTime")
-        public Instant StartModificationTime = null;
-        @DataMember(Name = "taxonIds")
-        public List<String> TaxonIds = null;
-
-        public String getActivityCustomId() { return ActivityCustomId; }
-        public GetObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
-        public List<String> getActivityIds() { return ActivityIds; }
-        public GetObservations setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
-        public List<String> getActivityTypes() { return ActivityTypes; }
-        public GetObservations setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
-        public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
-        public GetObservations setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
-        public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
-        public GetObservations setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
-        public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
-        public GetObservations setCollectionMethodIds(List<String> value) { this.CollectionMethodIds = value; return this; }
-        public String getCursor() { return Cursor; }
-        public GetObservations setCursor(String value) { this.Cursor = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public GetObservations setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getDataClassifications() { return DataClassifications; }
-        public GetObservations setDataClassifications(List<String> value) { this.DataClassifications = value; return this; }
-        public String getDepthUnitCustomId() { return DepthUnitCustomId; }
-        public GetObservations setDepthUnitCustomId(String value) { this.DepthUnitCustomId = value; return this; }
-        public String getDepthUnitId() { return DepthUnitId; }
-        public GetObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
-        public Double getDepthValue() { return DepthValue; }
-        public GetObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public String getDetectionCondition() { return DetectionCondition; }
-        public GetObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
-        public Instant getEndObservedTime() { return EndObservedTime; }
-        public GetObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
-        public Instant getEndResultTime() { return EndResultTime; }
-        public GetObservations setEndResultTime(Instant value) { this.EndResultTime = value; return this; }
-        public Instant getEndModificationTime() { return EndModificationTime; }
-        public GetObservations setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
-        public FieldResultType getFieldResultType() { return FieldResultType; }
-        public GetObservations setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public GetObservations setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
-        public String getFilterId() { return FilterId; }
-        public GetObservations setFilterId(String value) { this.FilterId = value; return this; }
-        public List<String> getIds() { return Ids; }
-        public GetObservations setIds(List<String> value) { this.Ids = value; return this; }
-        public String getImportHistoryEventId() { return ImportHistoryEventId; }
-        public GetObservations setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
-        public List<String> getLabReportIds() { return LabReportIds; }
-        public GetObservations setLabReportIds(List<String> value) { this.LabReportIds = value; return this; }
-        public List<String> getLabResultLabAnalysisMethodIds() { return LabResultLabAnalysisMethodIds; }
-        public GetObservations setLabResultLabAnalysisMethodIds(List<String> value) { this.LabResultLabAnalysisMethodIds = value; return this; }
-        public List<String> getLabResultLaboratoryIds() { return LabResultLaboratoryIds; }
-        public GetObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
-        public Integer getLimit() { return Limit; }
-        public GetObservations setLimit(Integer value) { this.Limit = value; return this; }
-        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
-        public GetObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
-        public List<String> getMedia() { return Media; }
-        public GetObservations setMedia(List<String> value) { this.Media = value; return this; }
-        public Double getMinNumericResultValue() { return MinNumericResultValue; }
-        public GetObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
-        public Double getNumericResultValue() { return NumericResultValue; }
-        public GetObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
-        public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
-        public GetObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
-        public List<String> getProjectIds() { return ProjectIds; }
-        public GetObservations setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
-        public List<String> getQualityControlTypes() { return QualityControlTypes; }
-        public GetObservations setQualityControlTypes(List<String> value) { this.QualityControlTypes = value; return this; }
-        public List<String> getResultGrades() { return ResultGrades; }
-        public GetObservations setResultGrades(List<String> value) { this.ResultGrades = value; return this; }
-        public List<String> getResultStatuses() { return ResultStatuses; }
-        public GetObservations setResultStatuses(List<String> value) { this.ResultStatuses = value; return this; }
-        public SampleFractionType getSampleFraction() { return SampleFraction; }
-        public GetObservations setSampleFraction(SampleFractionType value) { this.SampleFraction = value; return this; }
-        public List<String> getSamplingContextTagIds() { return SamplingContextTagIds; }
-        public GetObservations setSamplingContextTagIds(List<String> value) { this.SamplingContextTagIds = value; return this; }
-        public List<String> getSamplingLocationGroupIds() { return SamplingLocationGroupIds; }
-        public GetObservations setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
-        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
-        public GetObservations setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
-        public List<String> getSearch() { return Search; }
-        public GetObservations setSearch(List<String> value) { this.Search = value; return this; }
-        public String getSort() { return Sort; }
-        public GetObservations setSort(String value) { this.Sort = value; return this; }
-        public List<String> getSpecimenIds() { return SpecimenIds; }
-        public GetObservations setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
-        public String getSpecimenName() { return SpecimenName; }
-        public GetObservations setSpecimenName(String value) { this.SpecimenName = value; return this; }
-        public Instant getStartObservedTime() { return StartObservedTime; }
-        public GetObservations setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
-        public Instant getStartResultTime() { return StartResultTime; }
-        public GetObservations setStartResultTime(Instant value) { this.StartResultTime = value; return this; }
-        public Instant getStartModificationTime() { return StartModificationTime; }
-        public GetObservations setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
-        public List<String> getTaxonIds() { return TaxonIds; }
-        public GetObservations setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
-        private static Object responseType = SearchResultObservation.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @Route(Path="/v1/observations", Verbs="POST")
-    public static class PostObservation implements IReturn<Observation>
-    {
-        public String Id = null;
-        public String CustomId = null;
-        public Activity Activity = null;
-        public CollectionMethod CollectionMethod = null;
-        public ObservedProperty ObservedProperty = null;
-        public Specimen Specimen = null;
-        public SamplingLocation SamplingLocation = null;
-        public NumericResult NumericResult = null;
-        public CategoricalResult CategoricalResult = null;
-        public TaxonomicResult TaxonomicResult = null;
-        public QualityControlType QualityControlType = null;
-        public DataClassificationType DataClassification = null;
-        public Medium Medium = null;
-        public String MediumSubdivision = null;
-        public Instant ObservedTime = null;
-        public Instant ResultTime = null;
-        public Quantity Depth = null;
-        public LabInstruction LabInstruction = null;
-        public LabResultDetails LabResultDetails = null;
-        public AnalysisMethodSimple AnalysisMethod = null;
-        public String Comment = null;
-        public FieldVisit FieldVisit = null;
-        public Device Device = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<RuleValidationDetails> ValidationWarnings = null;
-        public ResultGrade ResultGrade = null;
-        public ResultStatus ResultStatus = null;
-        public PlannedFieldResult PlannedFieldResult = null;
-        public ObservationStatistics Statistics = null;
-        public Taxon RelatedTaxon = null;
-        public List<ExtendedAttribute> ExtendedAttributes = null;
-        public NullMeasureQualifier NullMeasureQualifier = null;
-        public AuditAttributes AuditAttributes = null;
-
-        public String getId() { return Id; }
-        public PostObservation setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public PostObservation setCustomId(String value) { this.CustomId = value; return this; }
-        public Activity getActivity() { return Activity; }
-        public PostObservation setActivity(Activity value) { this.Activity = value; return this; }
-        public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PostObservation setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
-        public ObservedProperty getObservedProperty() { return ObservedProperty; }
-        public PostObservation setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
-        public Specimen getSpecimen() { return Specimen; }
-        public PostObservation setSpecimen(Specimen value) { this.Specimen = value; return this; }
-        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public PostObservation setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
-        public NumericResult getNumericResult() { return NumericResult; }
-        public PostObservation setNumericResult(NumericResult value) { this.NumericResult = value; return this; }
-        public CategoricalResult getCategoricalResult() { return CategoricalResult; }
-        public PostObservation setCategoricalResult(CategoricalResult value) { this.CategoricalResult = value; return this; }
-        public TaxonomicResult getTaxonomicResult() { return TaxonomicResult; }
-        public PostObservation setTaxonomicResult(TaxonomicResult value) { this.TaxonomicResult = value; return this; }
-        public QualityControlType getQualityControlType() { return QualityControlType; }
-        public PostObservation setQualityControlType(QualityControlType value) { this.QualityControlType = value; return this; }
-        public DataClassificationType getDataClassification() { return DataClassification; }
-        public PostObservation setDataClassification(DataClassificationType value) { this.DataClassification = value; return this; }
-        public Medium getMedium() { return Medium; }
-        public PostObservation setMedium(Medium value) { this.Medium = value; return this; }
-        public String getMediumSubdivision() { return MediumSubdivision; }
-        public PostObservation setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public PostObservation setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Instant getResultTime() { return ResultTime; }
-        public PostObservation setResultTime(Instant value) { this.ResultTime = value; return this; }
-        public Quantity getDepth() { return Depth; }
-        public PostObservation setDepth(Quantity value) { this.Depth = value; return this; }
-        public LabInstruction getLabInstruction() { return LabInstruction; }
-        public PostObservation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
-        public LabResultDetails getLabResultDetails() { return LabResultDetails; }
-        public PostObservation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
-        public PostObservation setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
-        public String getComment() { return Comment; }
-        public PostObservation setComment(String value) { this.Comment = value; return this; }
-        public FieldVisit getFieldVisit() { return FieldVisit; }
-        public PostObservation setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
-        public Device getDevice() { return Device; }
-        public PostObservation setDevice(Device value) { this.Device = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PostObservation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<RuleValidationDetails> getValidationWarnings() { return ValidationWarnings; }
-        public PostObservation setValidationWarnings(List<RuleValidationDetails> value) { this.ValidationWarnings = value; return this; }
-        public ResultGrade getResultGrade() { return ResultGrade; }
-        public PostObservation setResultGrade(ResultGrade value) { this.ResultGrade = value; return this; }
-        public ResultStatus getResultStatus() { return ResultStatus; }
-        public PostObservation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
-        public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
-        public PostObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
-        public ObservationStatistics getStatistics() { return Statistics; }
-        public PostObservation setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
-        public Taxon getRelatedTaxon() { return RelatedTaxon; }
-        public PostObservation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
-        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
-        public PostObservation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
-        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
-        public PostObservation setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
-        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PostObservation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
-        private static Object responseType = Observation.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @DataContract
-    @Route(Path="/v1/observations", Verbs="DELETE")
-    public static class DeleteObservations implements IReturnVoid
-    {
-        @DataMember(Name = "activityCustomId")
-        public String ActivityCustomId = null;
-        @DataMember(Name = "activityIds")
-        public List<String> ActivityIds = null;
-        @DataMember(Name = "activityTypes")
-        public List<String> ActivityTypes = null;
-        @DataMember(Name = "analysisMethodIds")
-        public List<String> AnalysisMethodIds = null;
-        @DataMember(Name = "analyticalGroupIds")
-        public List<String> AnalyticalGroupIds = null;
-        @DataMember(Name = "collectionMethodIds")
-        public List<String> CollectionMethodIds = null;
-        @DataMember(Name = "cursor")
-        public String Cursor = null;
-        @DataMember(Name = "customId")
-        public String CustomId = null;
-        @DataMember(Name = "dataClassifications")
-        public List<String> DataClassifications = null;
-        @DataMember(Name = "depthUnitCustomId")
-        public String DepthUnitCustomId = null;
-        @DataMember(Name = "depthUnitId")
-        public String DepthUnitId = null;
-        @DataMember(Name = "depthValue")
-        public Double DepthValue = null;
-        @DataMember(Name = "detectionCondition")
-        public String DetectionCondition = null;
-        @DataMember(Name = "end-observedTime")
-        public Instant EndObservedTime = null;
-        @DataMember(Name = "end-resultTime")
-        public Instant EndResultTime = null;
-        @DataMember(Name = "endModificationTime")
-        public Instant EndModificationTime = null;
-        @DataMember(Name = "fieldResultType")
-        public FieldResultType FieldResultType = null;
-        @DataMember(Name = "fieldVisitId")
-        public String FieldVisitId = null;
-        @DataMember(Name = "filterId")
-        public String FilterId = null;
-        @DataMember(Name = "ids")
-        public List<String> Ids = null;
-        @DataMember(Name = "importHistoryEventId")
-        public String ImportHistoryEventId = null;
-        @DataMember(Name = "labReportIds")
-        public List<String> LabReportIds = null;
-        @DataMember(Name = "labResultLabAnalysisMethodIds")
-        public List<String> LabResultLabAnalysisMethodIds = null;
-        @DataMember(Name = "labResultLaboratoryIds")
-        public List<String> LabResultLaboratoryIds = null;
-        @DataMember(Name = "limit")
-        public Integer Limit = null;
-        @DataMember(Name = "max-numericResultValue")
-        public Double MaxNumericResultValue = null;
-        @DataMember(Name = "media")
-        public List<String> Media = null;
-        @DataMember(Name = "min-numericResultValue")
-        public Double MinNumericResultValue = null;
-        @DataMember(Name = "numericResultValue")
-        public Double NumericResultValue = null;
-        @DataMember(Name = "observedPropertyIds")
-        public List<String> ObservedPropertyIds = null;
-        @DataMember(Name = "projectIds")
-        public List<String> ProjectIds = null;
-        @DataMember(Name = "qualityControlTypes")
-        public List<String> QualityControlTypes = null;
-        @DataMember(Name = "resultGrades")
-        public List<String> ResultGrades = null;
-        @DataMember(Name = "resultStatuses")
-        public List<String> ResultStatuses = null;
-        @DataMember(Name = "sampleFraction")
-        public SampleFractionType SampleFraction = null;
-        @DataMember(Name = "samplingContextTagIds")
-        public List<String> SamplingContextTagIds = null;
-        @DataMember(Name = "samplingLocationGroupIds")
-        public List<String> SamplingLocationGroupIds = null;
-        @DataMember(Name = "samplingLocationIds")
-        public List<String> SamplingLocationIds = null;
-        @DataMember(Name = "search")
-        public List<String> Search = null;
-        @DataMember(Name = "sort")
-        public String Sort = null;
-        @DataMember(Name = "specimenIds")
-        public List<String> SpecimenIds = null;
-        @DataMember(Name = "specimenName")
-        public String SpecimenName = null;
-        @DataMember(Name = "start-observedTime")
-        public Instant StartObservedTime = null;
-        @DataMember(Name = "start-resultTime")
-        public Instant StartResultTime = null;
-        @DataMember(Name = "startModificationTime")
-        public Instant StartModificationTime = null;
-        @DataMember(Name = "taxonIds")
-        public List<String> TaxonIds = null;
-
-        public String getActivityCustomId() { return ActivityCustomId; }
-        public DeleteObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
-        public List<String> getActivityIds() { return ActivityIds; }
-        public DeleteObservations setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
-        public List<String> getActivityTypes() { return ActivityTypes; }
-        public DeleteObservations setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
-        public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
-        public DeleteObservations setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
-        public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
-        public DeleteObservations setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
-        public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
-        public DeleteObservations setCollectionMethodIds(List<String> value) { this.CollectionMethodIds = value; return this; }
-        public String getCursor() { return Cursor; }
-        public DeleteObservations setCursor(String value) { this.Cursor = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public DeleteObservations setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getDataClassifications() { return DataClassifications; }
-        public DeleteObservations setDataClassifications(List<String> value) { this.DataClassifications = value; return this; }
-        public String getDepthUnitCustomId() { return DepthUnitCustomId; }
-        public DeleteObservations setDepthUnitCustomId(String value) { this.DepthUnitCustomId = value; return this; }
-        public String getDepthUnitId() { return DepthUnitId; }
-        public DeleteObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
-        public Double getDepthValue() { return DepthValue; }
-        public DeleteObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public String getDetectionCondition() { return DetectionCondition; }
-        public DeleteObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
-        public Instant getEndObservedTime() { return EndObservedTime; }
-        public DeleteObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
-        public Instant getEndResultTime() { return EndResultTime; }
-        public DeleteObservations setEndResultTime(Instant value) { this.EndResultTime = value; return this; }
-        public Instant getEndModificationTime() { return EndModificationTime; }
-        public DeleteObservations setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
-        public FieldResultType getFieldResultType() { return FieldResultType; }
-        public DeleteObservations setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public DeleteObservations setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
-        public String getFilterId() { return FilterId; }
-        public DeleteObservations setFilterId(String value) { this.FilterId = value; return this; }
-        public List<String> getIds() { return Ids; }
-        public DeleteObservations setIds(List<String> value) { this.Ids = value; return this; }
-        public String getImportHistoryEventId() { return ImportHistoryEventId; }
-        public DeleteObservations setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
-        public List<String> getLabReportIds() { return LabReportIds; }
-        public DeleteObservations setLabReportIds(List<String> value) { this.LabReportIds = value; return this; }
-        public List<String> getLabResultLabAnalysisMethodIds() { return LabResultLabAnalysisMethodIds; }
-        public DeleteObservations setLabResultLabAnalysisMethodIds(List<String> value) { this.LabResultLabAnalysisMethodIds = value; return this; }
-        public List<String> getLabResultLaboratoryIds() { return LabResultLaboratoryIds; }
-        public DeleteObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
-        public Integer getLimit() { return Limit; }
-        public DeleteObservations setLimit(Integer value) { this.Limit = value; return this; }
-        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
-        public DeleteObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
-        public List<String> getMedia() { return Media; }
-        public DeleteObservations setMedia(List<String> value) { this.Media = value; return this; }
-        public Double getMinNumericResultValue() { return MinNumericResultValue; }
-        public DeleteObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
-        public Double getNumericResultValue() { return NumericResultValue; }
-        public DeleteObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
-        public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
-        public DeleteObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
-        public List<String> getProjectIds() { return ProjectIds; }
-        public DeleteObservations setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
-        public List<String> getQualityControlTypes() { return QualityControlTypes; }
-        public DeleteObservations setQualityControlTypes(List<String> value) { this.QualityControlTypes = value; return this; }
-        public List<String> getResultGrades() { return ResultGrades; }
-        public DeleteObservations setResultGrades(List<String> value) { this.ResultGrades = value; return this; }
-        public List<String> getResultStatuses() { return ResultStatuses; }
-        public DeleteObservations setResultStatuses(List<String> value) { this.ResultStatuses = value; return this; }
-        public SampleFractionType getSampleFraction() { return SampleFraction; }
-        public DeleteObservations setSampleFraction(SampleFractionType value) { this.SampleFraction = value; return this; }
-        public List<String> getSamplingContextTagIds() { return SamplingContextTagIds; }
-        public DeleteObservations setSamplingContextTagIds(List<String> value) { this.SamplingContextTagIds = value; return this; }
-        public List<String> getSamplingLocationGroupIds() { return SamplingLocationGroupIds; }
-        public DeleteObservations setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
-        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
-        public DeleteObservations setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
-        public List<String> getSearch() { return Search; }
-        public DeleteObservations setSearch(List<String> value) { this.Search = value; return this; }
-        public String getSort() { return Sort; }
-        public DeleteObservations setSort(String value) { this.Sort = value; return this; }
-        public List<String> getSpecimenIds() { return SpecimenIds; }
-        public DeleteObservations setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
-        public String getSpecimenName() { return SpecimenName; }
-        public DeleteObservations setSpecimenName(String value) { this.SpecimenName = value; return this; }
-        public Instant getStartObservedTime() { return StartObservedTime; }
-        public DeleteObservations setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
-        public Instant getStartResultTime() { return StartResultTime; }
-        public DeleteObservations setStartResultTime(Instant value) { this.StartResultTime = value; return this; }
-        public Instant getStartModificationTime() { return StartModificationTime; }
-        public DeleteObservations setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
-        public List<String> getTaxonIds() { return TaxonIds; }
-        public DeleteObservations setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
-    }
-
-    @Route(Path="/v1/observations/{id}", Verbs="GET")
-    public static class GetObservation implements IReturn<Observation>
-    {
-        public String Id = null;
-
-        public String getId() { return Id; }
-        public GetObservation setId(String value) { this.Id = value; return this; }
-        private static Object responseType = Observation.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @Route(Path="/v1/observations/{id}", Verbs="PUT")
-    public static class PutObservation implements IReturn<Observation>
-    {
-        public String Id = null;
-        public String CustomId = null;
-        public Activity Activity = null;
-        public CollectionMethod CollectionMethod = null;
-        public ObservedProperty ObservedProperty = null;
-        public Specimen Specimen = null;
-        public SamplingLocation SamplingLocation = null;
-        public NumericResult NumericResult = null;
-        public CategoricalResult CategoricalResult = null;
-        public TaxonomicResult TaxonomicResult = null;
-        public QualityControlType QualityControlType = null;
-        public DataClassificationType DataClassification = null;
-        public Medium Medium = null;
-        public String MediumSubdivision = null;
-        public Instant ObservedTime = null;
-        public Instant ResultTime = null;
-        public Quantity Depth = null;
-        public LabInstruction LabInstruction = null;
-        public LabResultDetails LabResultDetails = null;
-        public AnalysisMethodSimple AnalysisMethod = null;
-        public String Comment = null;
-        public FieldVisit FieldVisit = null;
-        public Device Device = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<RuleValidationDetails> ValidationWarnings = null;
-        public ResultGrade ResultGrade = null;
-        public ResultStatus ResultStatus = null;
-        public PlannedFieldResult PlannedFieldResult = null;
-        public ObservationStatistics Statistics = null;
-        public Taxon RelatedTaxon = null;
-        public List<ExtendedAttribute> ExtendedAttributes = null;
-        public NullMeasureQualifier NullMeasureQualifier = null;
-        public AuditAttributes AuditAttributes = null;
-
-        public String getId() { return Id; }
-        public PutObservation setId(String value) { this.Id = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public PutObservation setCustomId(String value) { this.CustomId = value; return this; }
-        public Activity getActivity() { return Activity; }
-        public PutObservation setActivity(Activity value) { this.Activity = value; return this; }
-        public CollectionMethod getCollectionMethod() { return CollectionMethod; }
-        public PutObservation setCollectionMethod(CollectionMethod value) { this.CollectionMethod = value; return this; }
-        public ObservedProperty getObservedProperty() { return ObservedProperty; }
-        public PutObservation setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
-        public Specimen getSpecimen() { return Specimen; }
-        public PutObservation setSpecimen(Specimen value) { this.Specimen = value; return this; }
-        public SamplingLocation getSamplingLocation() { return SamplingLocation; }
-        public PutObservation setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
-        public NumericResult getNumericResult() { return NumericResult; }
-        public PutObservation setNumericResult(NumericResult value) { this.NumericResult = value; return this; }
-        public CategoricalResult getCategoricalResult() { return CategoricalResult; }
-        public PutObservation setCategoricalResult(CategoricalResult value) { this.CategoricalResult = value; return this; }
-        public TaxonomicResult getTaxonomicResult() { return TaxonomicResult; }
-        public PutObservation setTaxonomicResult(TaxonomicResult value) { this.TaxonomicResult = value; return this; }
-        public QualityControlType getQualityControlType() { return QualityControlType; }
-        public PutObservation setQualityControlType(QualityControlType value) { this.QualityControlType = value; return this; }
-        public DataClassificationType getDataClassification() { return DataClassification; }
-        public PutObservation setDataClassification(DataClassificationType value) { this.DataClassification = value; return this; }
-        public Medium getMedium() { return Medium; }
-        public PutObservation setMedium(Medium value) { this.Medium = value; return this; }
-        public String getMediumSubdivision() { return MediumSubdivision; }
-        public PutObservation setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public PutObservation setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Instant getResultTime() { return ResultTime; }
-        public PutObservation setResultTime(Instant value) { this.ResultTime = value; return this; }
-        public Quantity getDepth() { return Depth; }
-        public PutObservation setDepth(Quantity value) { this.Depth = value; return this; }
-        public LabInstruction getLabInstruction() { return LabInstruction; }
-        public PutObservation setLabInstruction(LabInstruction value) { this.LabInstruction = value; return this; }
-        public LabResultDetails getLabResultDetails() { return LabResultDetails; }
-        public PutObservation setLabResultDetails(LabResultDetails value) { this.LabResultDetails = value; return this; }
-        public AnalysisMethodSimple getAnalysisMethod() { return AnalysisMethod; }
-        public PutObservation setAnalysisMethod(AnalysisMethodSimple value) { this.AnalysisMethod = value; return this; }
-        public String getComment() { return Comment; }
-        public PutObservation setComment(String value) { this.Comment = value; return this; }
-        public FieldVisit getFieldVisit() { return FieldVisit; }
-        public PutObservation setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
-        public Device getDevice() { return Device; }
-        public PutObservation setDevice(Device value) { this.Device = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutObservation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<RuleValidationDetails> getValidationWarnings() { return ValidationWarnings; }
-        public PutObservation setValidationWarnings(List<RuleValidationDetails> value) { this.ValidationWarnings = value; return this; }
-        public ResultGrade getResultGrade() { return ResultGrade; }
-        public PutObservation setResultGrade(ResultGrade value) { this.ResultGrade = value; return this; }
-        public ResultStatus getResultStatus() { return ResultStatus; }
-        public PutObservation setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
-        public PlannedFieldResult getPlannedFieldResult() { return PlannedFieldResult; }
-        public PutObservation setPlannedFieldResult(PlannedFieldResult value) { this.PlannedFieldResult = value; return this; }
-        public ObservationStatistics getStatistics() { return Statistics; }
-        public PutObservation setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
-        public Taxon getRelatedTaxon() { return RelatedTaxon; }
-        public PutObservation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
-        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
-        public PutObservation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
-        public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
-        public PutObservation setNullMeasureQualifier(NullMeasureQualifier value) { this.NullMeasureQualifier = value; return this; }
-        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
-        public PutObservation setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
-        private static Object responseType = Observation.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @Route(Path="/v1/observations/{id}", Verbs="DELETE")
-    public static class DeleteObservation implements IReturnVoid
-    {
-        public String Id = null;
-
-        public String getId() { return Id; }
-        public DeleteObservation setId(String value) { this.Id = value; return this; }
-    }
-
-    @Route(Path="/v1/observations/{id}/history", Verbs="GET")
-    public static class GetObservationHistory implements IReturn<SearchResultAuditHistory>
-    {
-        public String Id = null;
-
-        public String getId() { return Id; }
-        public GetObservationHistory setId(String value) { this.Id = value; return this; }
-        private static Object responseType = SearchResultAuditHistory.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @DataContract
-    @Route(Path="/v1/observations/charts", Verbs="GET")
-    public static class GetChartData implements IReturn<MultiChartData>
-    {
-        @DataMember(Name = "activityCustomId")
-        public String ActivityCustomId = null;
-        @DataMember(Name = "activityIds")
-        public List<String> ActivityIds = null;
-        @DataMember(Name = "activityTypes")
-        public List<String> ActivityTypes = null;
-        @DataMember(Name = "analysisMethodIds")
-        public List<String> AnalysisMethodIds = null;
-        @DataMember(Name = "analyticalGroupIds")
-        public List<String> AnalyticalGroupIds = null;
-        @DataMember(Name = "collectionMethodIds")
-        public List<String> CollectionMethodIds = null;
-        @DataMember(Name = "cursor")
-        public String Cursor = null;
-        @DataMember(Name = "customId")
-        public String CustomId = null;
-        @DataMember(Name = "dataClassifications")
-        public List<String> DataClassifications = null;
-        @DataMember(Name = "depthUnitCustomId")
-        public String DepthUnitCustomId = null;
-        @DataMember(Name = "depthUnitId")
-        public String DepthUnitId = null;
-        @DataMember(Name = "depthValue")
-        public Double DepthValue = null;
-        @DataMember(Name = "detectionCondition")
-        public String DetectionCondition = null;
-        @DataMember(Name = "end-observedTime")
-        public Instant EndObservedTime = null;
-        @DataMember(Name = "end-resultTime")
-        public Instant EndResultTime = null;
-        @DataMember(Name = "endModificationTime")
-        public Instant EndModificationTime = null;
-        @DataMember(Name = "fieldResultType")
-        public FieldResultType FieldResultType = null;
-        @DataMember(Name = "fieldVisitId")
-        public String FieldVisitId = null;
-        @DataMember(Name = "filterId")
-        public String FilterId = null;
-        @DataMember(Name = "ids")
-        public List<String> Ids = null;
-        @DataMember(Name = "importHistoryEventId")
-        public String ImportHistoryEventId = null;
-        @DataMember(Name = "labReportIds")
-        public List<String> LabReportIds = null;
-        @DataMember(Name = "labResultLabAnalysisMethodIds")
-        public List<String> LabResultLabAnalysisMethodIds = null;
-        @DataMember(Name = "labResultLaboratoryIds")
-        public List<String> LabResultLaboratoryIds = null;
-        @DataMember(Name = "limit")
-        public Integer Limit = null;
-        @DataMember(Name = "max-numericResultValue")
-        public Double MaxNumericResultValue = null;
-        @DataMember(Name = "media")
-        public List<String> Media = null;
-        @DataMember(Name = "min-numericResultValue")
-        public Double MinNumericResultValue = null;
-        @DataMember(Name = "numericResultValue")
-        public Double NumericResultValue = null;
-        @DataMember(Name = "observedPropertyIds")
-        public List<String> ObservedPropertyIds = null;
-        @DataMember(Name = "projectIds")
-        public List<String> ProjectIds = null;
-        @DataMember(Name = "qualityControlTypes")
-        public List<String> QualityControlTypes = null;
-        @DataMember(Name = "resultGrades")
-        public List<String> ResultGrades = null;
-        @DataMember(Name = "resultStatuses")
-        public List<String> ResultStatuses = null;
-        @DataMember(Name = "sampleFraction")
-        public SampleFractionType SampleFraction = null;
-        @DataMember(Name = "samplingContextTagIds")
-        public List<String> SamplingContextTagIds = null;
-        @DataMember(Name = "samplingLocationGroupIds")
-        public List<String> SamplingLocationGroupIds = null;
-        @DataMember(Name = "samplingLocationIds")
-        public List<String> SamplingLocationIds = null;
-        @DataMember(Name = "search")
-        public List<String> Search = null;
-        @DataMember(Name = "sort")
-        public String Sort = null;
-        @DataMember(Name = "specimenIds")
-        public List<String> SpecimenIds = null;
-        @DataMember(Name = "specimenName")
-        public String SpecimenName = null;
-        @DataMember(Name = "start-observedTime")
-        public Instant StartObservedTime = null;
-        @DataMember(Name = "start-resultTime")
-        public Instant StartResultTime = null;
-        @DataMember(Name = "startModificationTime")
-        public Instant StartModificationTime = null;
-        @DataMember(Name = "taxonIds")
-        public List<String> TaxonIds = null;
-
-        public String getActivityCustomId() { return ActivityCustomId; }
-        public GetChartData setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
-        public List<String> getActivityIds() { return ActivityIds; }
-        public GetChartData setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
-        public List<String> getActivityTypes() { return ActivityTypes; }
-        public GetChartData setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
-        public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
-        public GetChartData setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
-        public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
-        public GetChartData setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
-        public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
-        public GetChartData setCollectionMethodIds(List<String> value) { this.CollectionMethodIds = value; return this; }
-        public String getCursor() { return Cursor; }
-        public GetChartData setCursor(String value) { this.Cursor = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public GetChartData setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getDataClassifications() { return DataClassifications; }
-        public GetChartData setDataClassifications(List<String> value) { this.DataClassifications = value; return this; }
-        public String getDepthUnitCustomId() { return DepthUnitCustomId; }
-        public GetChartData setDepthUnitCustomId(String value) { this.DepthUnitCustomId = value; return this; }
-        public String getDepthUnitId() { return DepthUnitId; }
-        public GetChartData setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
-        public Double getDepthValue() { return DepthValue; }
-        public GetChartData setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public String getDetectionCondition() { return DetectionCondition; }
-        public GetChartData setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
-        public Instant getEndObservedTime() { return EndObservedTime; }
-        public GetChartData setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
-        public Instant getEndResultTime() { return EndResultTime; }
-        public GetChartData setEndResultTime(Instant value) { this.EndResultTime = value; return this; }
-        public Instant getEndModificationTime() { return EndModificationTime; }
-        public GetChartData setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
-        public FieldResultType getFieldResultType() { return FieldResultType; }
-        public GetChartData setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public GetChartData setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
-        public String getFilterId() { return FilterId; }
-        public GetChartData setFilterId(String value) { this.FilterId = value; return this; }
-        public List<String> getIds() { return Ids; }
-        public GetChartData setIds(List<String> value) { this.Ids = value; return this; }
-        public String getImportHistoryEventId() { return ImportHistoryEventId; }
-        public GetChartData setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
-        public List<String> getLabReportIds() { return LabReportIds; }
-        public GetChartData setLabReportIds(List<String> value) { this.LabReportIds = value; return this; }
-        public List<String> getLabResultLabAnalysisMethodIds() { return LabResultLabAnalysisMethodIds; }
-        public GetChartData setLabResultLabAnalysisMethodIds(List<String> value) { this.LabResultLabAnalysisMethodIds = value; return this; }
-        public List<String> getLabResultLaboratoryIds() { return LabResultLaboratoryIds; }
-        public GetChartData setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
-        public Integer getLimit() { return Limit; }
-        public GetChartData setLimit(Integer value) { this.Limit = value; return this; }
-        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
-        public GetChartData setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
-        public List<String> getMedia() { return Media; }
-        public GetChartData setMedia(List<String> value) { this.Media = value; return this; }
-        public Double getMinNumericResultValue() { return MinNumericResultValue; }
-        public GetChartData setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
-        public Double getNumericResultValue() { return NumericResultValue; }
-        public GetChartData setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
-        public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
-        public GetChartData setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
-        public List<String> getProjectIds() { return ProjectIds; }
-        public GetChartData setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
-        public List<String> getQualityControlTypes() { return QualityControlTypes; }
-        public GetChartData setQualityControlTypes(List<String> value) { this.QualityControlTypes = value; return this; }
-        public List<String> getResultGrades() { return ResultGrades; }
-        public GetChartData setResultGrades(List<String> value) { this.ResultGrades = value; return this; }
-        public List<String> getResultStatuses() { return ResultStatuses; }
-        public GetChartData setResultStatuses(List<String> value) { this.ResultStatuses = value; return this; }
-        public SampleFractionType getSampleFraction() { return SampleFraction; }
-        public GetChartData setSampleFraction(SampleFractionType value) { this.SampleFraction = value; return this; }
-        public List<String> getSamplingContextTagIds() { return SamplingContextTagIds; }
-        public GetChartData setSamplingContextTagIds(List<String> value) { this.SamplingContextTagIds = value; return this; }
-        public List<String> getSamplingLocationGroupIds() { return SamplingLocationGroupIds; }
-        public GetChartData setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
-        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
-        public GetChartData setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
-        public List<String> getSearch() { return Search; }
-        public GetChartData setSearch(List<String> value) { this.Search = value; return this; }
-        public String getSort() { return Sort; }
-        public GetChartData setSort(String value) { this.Sort = value; return this; }
-        public List<String> getSpecimenIds() { return SpecimenIds; }
-        public GetChartData setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
-        public String getSpecimenName() { return SpecimenName; }
-        public GetChartData setSpecimenName(String value) { this.SpecimenName = value; return this; }
-        public Instant getStartObservedTime() { return StartObservedTime; }
-        public GetChartData setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
-        public Instant getStartResultTime() { return StartResultTime; }
-        public GetChartData setStartResultTime(Instant value) { this.StartResultTime = value; return this; }
-        public Instant getStartModificationTime() { return StartModificationTime; }
-        public GetChartData setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
-        public List<String> getTaxonIds() { return TaxonIds; }
-        public GetChartData setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
-        private static Object responseType = MultiChartData.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @DataContract
-    @Route(Path="/v1/observations/geographic", Verbs="GET")
-    public static class GetGroupedObservations implements IReturn<SearchResultLocationObservationsGroup>, IPaginatedRequest
-    {
-        @DataMember(Name = "activityCustomId")
-        public String ActivityCustomId = null;
-        @DataMember(Name = "activityIds")
-        public List<String> ActivityIds = null;
-        @DataMember(Name = "activityTypes")
-        public List<String> ActivityTypes = null;
-        @DataMember(Name = "analysisMethodIds")
-        public List<String> AnalysisMethodIds = null;
-        @DataMember(Name = "analyticalGroupIds")
-        public List<String> AnalyticalGroupIds = null;
-        @DataMember(Name = "collectionMethodIds")
-        public List<String> CollectionMethodIds = null;
-        @DataMember(Name = "cursor")
-        public String Cursor = null;
-        @DataMember(Name = "customId")
-        public String CustomId = null;
-        @DataMember(Name = "dataClassifications")
-        public List<String> DataClassifications = null;
-        @DataMember(Name = "depthUnitCustomId")
-        public String DepthUnitCustomId = null;
-        @DataMember(Name = "depthUnitId")
-        public String DepthUnitId = null;
-        @DataMember(Name = "depthValue")
-        public Double DepthValue = null;
-        @DataMember(Name = "detectionCondition")
-        public String DetectionCondition = null;
-        @DataMember(Name = "end-observedTime")
-        public Instant EndObservedTime = null;
-        @DataMember(Name = "end-resultTime")
-        public Instant EndResultTime = null;
-        @DataMember(Name = "endModificationTime")
-        public Instant EndModificationTime = null;
-        @DataMember(Name = "fieldResultType")
-        public FieldResultType FieldResultType = null;
-        @DataMember(Name = "fieldVisitId")
-        public String FieldVisitId = null;
-        @DataMember(Name = "filterId")
-        public String FilterId = null;
-        @DataMember(Name = "ids")
-        public List<String> Ids = null;
-        @DataMember(Name = "importHistoryEventId")
-        public String ImportHistoryEventId = null;
-        @DataMember(Name = "labReportIds")
-        public List<String> LabReportIds = null;
-        @DataMember(Name = "labResultLabAnalysisMethodIds")
-        public List<String> LabResultLabAnalysisMethodIds = null;
-        @DataMember(Name = "labResultLaboratoryIds")
-        public List<String> LabResultLaboratoryIds = null;
-        @DataMember(Name = "limit")
-        public Integer Limit = null;
-        @DataMember(Name = "max-numericResultValue")
-        public Double MaxNumericResultValue = null;
-        @DataMember(Name = "media")
-        public List<String> Media = null;
-        @DataMember(Name = "min-numericResultValue")
-        public Double MinNumericResultValue = null;
-        @DataMember(Name = "numericResultValue")
-        public Double NumericResultValue = null;
-        @DataMember(Name = "observedPropertyIds")
-        public List<String> ObservedPropertyIds = null;
-        @DataMember(Name = "projectIds")
-        public List<String> ProjectIds = null;
-        @DataMember(Name = "qualityControlTypes")
-        public List<String> QualityControlTypes = null;
-        @DataMember(Name = "resultGrades")
-        public List<String> ResultGrades = null;
-        @DataMember(Name = "resultStatuses")
-        public List<String> ResultStatuses = null;
-        @DataMember(Name = "sampleFraction")
-        public SampleFractionType SampleFraction = null;
-        @DataMember(Name = "samplingContextTagIds")
-        public List<String> SamplingContextTagIds = null;
-        @DataMember(Name = "samplingLocationGroupIds")
-        public List<String> SamplingLocationGroupIds = null;
-        @DataMember(Name = "samplingLocationIds")
-        public List<String> SamplingLocationIds = null;
-        @DataMember(Name = "search")
-        public List<String> Search = null;
-        @DataMember(Name = "sort")
-        public String Sort = null;
-        @DataMember(Name = "specimenIds")
-        public List<String> SpecimenIds = null;
-        @DataMember(Name = "specimenName")
-        public String SpecimenName = null;
-        @DataMember(Name = "start-observedTime")
-        public Instant StartObservedTime = null;
-        @DataMember(Name = "start-resultTime")
-        public Instant StartResultTime = null;
-        @DataMember(Name = "startModificationTime")
-        public Instant StartModificationTime = null;
-        @DataMember(Name = "taxonIds")
-        public List<String> TaxonIds = null;
-
-        public String getActivityCustomId() { return ActivityCustomId; }
-        public GetGroupedObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
-        public List<String> getActivityIds() { return ActivityIds; }
-        public GetGroupedObservations setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
-        public List<String> getActivityTypes() { return ActivityTypes; }
-        public GetGroupedObservations setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
-        public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
-        public GetGroupedObservations setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
-        public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
-        public GetGroupedObservations setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
-        public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
-        public GetGroupedObservations setCollectionMethodIds(List<String> value) { this.CollectionMethodIds = value; return this; }
-        public String getCursor() { return Cursor; }
-        public GetGroupedObservations setCursor(String value) { this.Cursor = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public GetGroupedObservations setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getDataClassifications() { return DataClassifications; }
-        public GetGroupedObservations setDataClassifications(List<String> value) { this.DataClassifications = value; return this; }
-        public String getDepthUnitCustomId() { return DepthUnitCustomId; }
-        public GetGroupedObservations setDepthUnitCustomId(String value) { this.DepthUnitCustomId = value; return this; }
-        public String getDepthUnitId() { return DepthUnitId; }
-        public GetGroupedObservations setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
-        public Double getDepthValue() { return DepthValue; }
-        public GetGroupedObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public String getDetectionCondition() { return DetectionCondition; }
-        public GetGroupedObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
-        public Instant getEndObservedTime() { return EndObservedTime; }
-        public GetGroupedObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
-        public Instant getEndResultTime() { return EndResultTime; }
-        public GetGroupedObservations setEndResultTime(Instant value) { this.EndResultTime = value; return this; }
-        public Instant getEndModificationTime() { return EndModificationTime; }
-        public GetGroupedObservations setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
-        public FieldResultType getFieldResultType() { return FieldResultType; }
-        public GetGroupedObservations setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public GetGroupedObservations setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
-        public String getFilterId() { return FilterId; }
-        public GetGroupedObservations setFilterId(String value) { this.FilterId = value; return this; }
-        public List<String> getIds() { return Ids; }
-        public GetGroupedObservations setIds(List<String> value) { this.Ids = value; return this; }
-        public String getImportHistoryEventId() { return ImportHistoryEventId; }
-        public GetGroupedObservations setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
-        public List<String> getLabReportIds() { return LabReportIds; }
-        public GetGroupedObservations setLabReportIds(List<String> value) { this.LabReportIds = value; return this; }
-        public List<String> getLabResultLabAnalysisMethodIds() { return LabResultLabAnalysisMethodIds; }
-        public GetGroupedObservations setLabResultLabAnalysisMethodIds(List<String> value) { this.LabResultLabAnalysisMethodIds = value; return this; }
-        public List<String> getLabResultLaboratoryIds() { return LabResultLaboratoryIds; }
-        public GetGroupedObservations setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
-        public Integer getLimit() { return Limit; }
-        public GetGroupedObservations setLimit(Integer value) { this.Limit = value; return this; }
-        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
-        public GetGroupedObservations setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
-        public List<String> getMedia() { return Media; }
-        public GetGroupedObservations setMedia(List<String> value) { this.Media = value; return this; }
-        public Double getMinNumericResultValue() { return MinNumericResultValue; }
-        public GetGroupedObservations setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
-        public Double getNumericResultValue() { return NumericResultValue; }
-        public GetGroupedObservations setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
-        public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
-        public GetGroupedObservations setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
-        public List<String> getProjectIds() { return ProjectIds; }
-        public GetGroupedObservations setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
-        public List<String> getQualityControlTypes() { return QualityControlTypes; }
-        public GetGroupedObservations setQualityControlTypes(List<String> value) { this.QualityControlTypes = value; return this; }
-        public List<String> getResultGrades() { return ResultGrades; }
-        public GetGroupedObservations setResultGrades(List<String> value) { this.ResultGrades = value; return this; }
-        public List<String> getResultStatuses() { return ResultStatuses; }
-        public GetGroupedObservations setResultStatuses(List<String> value) { this.ResultStatuses = value; return this; }
-        public SampleFractionType getSampleFraction() { return SampleFraction; }
-        public GetGroupedObservations setSampleFraction(SampleFractionType value) { this.SampleFraction = value; return this; }
-        public List<String> getSamplingContextTagIds() { return SamplingContextTagIds; }
-        public GetGroupedObservations setSamplingContextTagIds(List<String> value) { this.SamplingContextTagIds = value; return this; }
-        public List<String> getSamplingLocationGroupIds() { return SamplingLocationGroupIds; }
-        public GetGroupedObservations setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
-        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
-        public GetGroupedObservations setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
-        public List<String> getSearch() { return Search; }
-        public GetGroupedObservations setSearch(List<String> value) { this.Search = value; return this; }
-        public String getSort() { return Sort; }
-        public GetGroupedObservations setSort(String value) { this.Sort = value; return this; }
-        public List<String> getSpecimenIds() { return SpecimenIds; }
-        public GetGroupedObservations setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
-        public String getSpecimenName() { return SpecimenName; }
-        public GetGroupedObservations setSpecimenName(String value) { this.SpecimenName = value; return this; }
-        public Instant getStartObservedTime() { return StartObservedTime; }
-        public GetGroupedObservations setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
-        public Instant getStartResultTime() { return StartResultTime; }
-        public GetGroupedObservations setStartResultTime(Instant value) { this.StartResultTime = value; return this; }
-        public Instant getStartModificationTime() { return StartModificationTime; }
-        public GetGroupedObservations setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
-        public List<String> getTaxonIds() { return TaxonIds; }
-        public GetGroupedObservations setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
-        private static Object responseType = SearchResultLocationObservationsGroup.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @DataContract
-    @Route(Path="/v1/observations/resultgrades", Verbs="PUT")
-    public static class PutBulkEditResultGrades implements IReturnVoid
-    {
-        @DataMember(Name = "targetResultGrade")
-        public String TargetResultGrade = null;
-        @DataMember(Name = "activityCustomId")
-        public String ActivityCustomId = null;
-        @DataMember(Name = "activityIds")
-        public List<String> ActivityIds = null;
-        @DataMember(Name = "activityTypes")
-        public List<String> ActivityTypes = null;
-        @DataMember(Name = "analysisMethodIds")
-        public List<String> AnalysisMethodIds = null;
-        @DataMember(Name = "analyticalGroupIds")
-        public List<String> AnalyticalGroupIds = null;
-        @DataMember(Name = "collectionMethodIds")
-        public List<String> CollectionMethodIds = null;
-        @DataMember(Name = "cursor")
-        public String Cursor = null;
-        @DataMember(Name = "customId")
-        public String CustomId = null;
-        @DataMember(Name = "dataClassifications")
-        public List<String> DataClassifications = null;
-        @DataMember(Name = "depthUnitCustomId")
-        public String DepthUnitCustomId = null;
-        @DataMember(Name = "depthUnitId")
-        public String DepthUnitId = null;
-        @DataMember(Name = "depthValue")
-        public Double DepthValue = null;
-        @DataMember(Name = "detectionCondition")
-        public String DetectionCondition = null;
-        @DataMember(Name = "end-observedTime")
-        public Instant EndObservedTime = null;
-        @DataMember(Name = "end-resultTime")
-        public Instant EndResultTime = null;
-        @DataMember(Name = "endModificationTime")
-        public Instant EndModificationTime = null;
-        @DataMember(Name = "fieldResultType")
-        public FieldResultType FieldResultType = null;
-        @DataMember(Name = "fieldVisitId")
-        public String FieldVisitId = null;
-        @DataMember(Name = "filterId")
-        public String FilterId = null;
-        @DataMember(Name = "ids")
-        public List<String> Ids = null;
-        @DataMember(Name = "importHistoryEventId")
-        public String ImportHistoryEventId = null;
-        @DataMember(Name = "labReportIds")
-        public List<String> LabReportIds = null;
-        @DataMember(Name = "labResultLabAnalysisMethodIds")
-        public List<String> LabResultLabAnalysisMethodIds = null;
-        @DataMember(Name = "labResultLaboratoryIds")
-        public List<String> LabResultLaboratoryIds = null;
-        @DataMember(Name = "limit")
-        public Integer Limit = null;
-        @DataMember(Name = "max-numericResultValue")
-        public Double MaxNumericResultValue = null;
-        @DataMember(Name = "media")
-        public List<String> Media = null;
-        @DataMember(Name = "min-numericResultValue")
-        public Double MinNumericResultValue = null;
-        @DataMember(Name = "numericResultValue")
-        public Double NumericResultValue = null;
-        @DataMember(Name = "observedPropertyIds")
-        public List<String> ObservedPropertyIds = null;
-        @DataMember(Name = "projectIds")
-        public List<String> ProjectIds = null;
-        @DataMember(Name = "qualityControlTypes")
-        public List<String> QualityControlTypes = null;
-        @DataMember(Name = "resultGrades")
-        public List<String> ResultGrades = null;
-        @DataMember(Name = "resultStatuses")
-        public List<String> ResultStatuses = null;
-        @DataMember(Name = "sampleFraction")
-        public SampleFractionType SampleFraction = null;
-        @DataMember(Name = "samplingContextTagIds")
-        public List<String> SamplingContextTagIds = null;
-        @DataMember(Name = "samplingLocationGroupIds")
-        public List<String> SamplingLocationGroupIds = null;
-        @DataMember(Name = "samplingLocationIds")
-        public List<String> SamplingLocationIds = null;
-        @DataMember(Name = "search")
-        public List<String> Search = null;
-        @DataMember(Name = "sort")
-        public String Sort = null;
-        @DataMember(Name = "specimenIds")
-        public List<String> SpecimenIds = null;
-        @DataMember(Name = "specimenName")
-        public String SpecimenName = null;
-        @DataMember(Name = "start-observedTime")
-        public Instant StartObservedTime = null;
-        @DataMember(Name = "start-resultTime")
-        public Instant StartResultTime = null;
-        @DataMember(Name = "startModificationTime")
-        public Instant StartModificationTime = null;
-        @DataMember(Name = "taxonIds")
-        public List<String> TaxonIds = null;
-
-        public String getTargetResultGrade() { return TargetResultGrade; }
-        public PutBulkEditResultGrades setTargetResultGrade(String value) { this.TargetResultGrade = value; return this; }
-        public String getActivityCustomId() { return ActivityCustomId; }
-        public PutBulkEditResultGrades setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
-        public List<String> getActivityIds() { return ActivityIds; }
-        public PutBulkEditResultGrades setActivityIds(List<String> value) { this.ActivityIds = value; return this; }
-        public List<String> getActivityTypes() { return ActivityTypes; }
-        public PutBulkEditResultGrades setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
-        public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
-        public PutBulkEditResultGrades setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
-        public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
-        public PutBulkEditResultGrades setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
-        public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
-        public PutBulkEditResultGrades setCollectionMethodIds(List<String> value) { this.CollectionMethodIds = value; return this; }
-        public String getCursor() { return Cursor; }
-        public PutBulkEditResultGrades setCursor(String value) { this.Cursor = value; return this; }
-        public String getCustomId() { return CustomId; }
-        public PutBulkEditResultGrades setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getDataClassifications() { return DataClassifications; }
-        public PutBulkEditResultGrades setDataClassifications(List<String> value) { this.DataClassifications = value; return this; }
-        public String getDepthUnitCustomId() { return DepthUnitCustomId; }
-        public PutBulkEditResultGrades setDepthUnitCustomId(String value) { this.DepthUnitCustomId = value; return this; }
-        public String getDepthUnitId() { return DepthUnitId; }
-        public PutBulkEditResultGrades setDepthUnitId(String value) { this.DepthUnitId = value; return this; }
-        public Double getDepthValue() { return DepthValue; }
-        public PutBulkEditResultGrades setDepthValue(Double value) { this.DepthValue = value; return this; }
-        public String getDetectionCondition() { return DetectionCondition; }
-        public PutBulkEditResultGrades setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
-        public Instant getEndObservedTime() { return EndObservedTime; }
-        public PutBulkEditResultGrades setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
-        public Instant getEndResultTime() { return EndResultTime; }
-        public PutBulkEditResultGrades setEndResultTime(Instant value) { this.EndResultTime = value; return this; }
-        public Instant getEndModificationTime() { return EndModificationTime; }
-        public PutBulkEditResultGrades setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
-        public FieldResultType getFieldResultType() { return FieldResultType; }
-        public PutBulkEditResultGrades setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
-        public String getFieldVisitId() { return FieldVisitId; }
-        public PutBulkEditResultGrades setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
-        public String getFilterId() { return FilterId; }
-        public PutBulkEditResultGrades setFilterId(String value) { this.FilterId = value; return this; }
-        public List<String> getIds() { return Ids; }
-        public PutBulkEditResultGrades setIds(List<String> value) { this.Ids = value; return this; }
-        public String getImportHistoryEventId() { return ImportHistoryEventId; }
-        public PutBulkEditResultGrades setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
-        public List<String> getLabReportIds() { return LabReportIds; }
-        public PutBulkEditResultGrades setLabReportIds(List<String> value) { this.LabReportIds = value; return this; }
-        public List<String> getLabResultLabAnalysisMethodIds() { return LabResultLabAnalysisMethodIds; }
-        public PutBulkEditResultGrades setLabResultLabAnalysisMethodIds(List<String> value) { this.LabResultLabAnalysisMethodIds = value; return this; }
-        public List<String> getLabResultLaboratoryIds() { return LabResultLaboratoryIds; }
-        public PutBulkEditResultGrades setLabResultLaboratoryIds(List<String> value) { this.LabResultLaboratoryIds = value; return this; }
-        public Integer getLimit() { return Limit; }
-        public PutBulkEditResultGrades setLimit(Integer value) { this.Limit = value; return this; }
-        public Double getMaxNumericResultValue() { return MaxNumericResultValue; }
-        public PutBulkEditResultGrades setMaxNumericResultValue(Double value) { this.MaxNumericResultValue = value; return this; }
-        public List<String> getMedia() { return Media; }
-        public PutBulkEditResultGrades setMedia(List<String> value) { this.Media = value; return this; }
-        public Double getMinNumericResultValue() { return MinNumericResultValue; }
-        public PutBulkEditResultGrades setMinNumericResultValue(Double value) { this.MinNumericResultValue = value; return this; }
-        public Double getNumericResultValue() { return NumericResultValue; }
-        public PutBulkEditResultGrades setNumericResultValue(Double value) { this.NumericResultValue = value; return this; }
-        public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
-        public PutBulkEditResultGrades setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
-        public List<String> getProjectIds() { return ProjectIds; }
-        public PutBulkEditResultGrades setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
-        public List<String> getQualityControlTypes() { return QualityControlTypes; }
-        public PutBulkEditResultGrades setQualityControlTypes(List<String> value) { this.QualityControlTypes = value; return this; }
-        public List<String> getResultGrades() { return ResultGrades; }
-        public PutBulkEditResultGrades setResultGrades(List<String> value) { this.ResultGrades = value; return this; }
-        public List<String> getResultStatuses() { return ResultStatuses; }
-        public PutBulkEditResultGrades setResultStatuses(List<String> value) { this.ResultStatuses = value; return this; }
-        public SampleFractionType getSampleFraction() { return SampleFraction; }
-        public PutBulkEditResultGrades setSampleFraction(SampleFractionType value) { this.SampleFraction = value; return this; }
-        public List<String> getSamplingContextTagIds() { return SamplingContextTagIds; }
-        public PutBulkEditResultGrades setSamplingContextTagIds(List<String> value) { this.SamplingContextTagIds = value; return this; }
-        public List<String> getSamplingLocationGroupIds() { return SamplingLocationGroupIds; }
-        public PutBulkEditResultGrades setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
-        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
-        public PutBulkEditResultGrades setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
-        public List<String> getSearch() { return Search; }
-        public PutBulkEditResultGrades setSearch(List<String> value) { this.Search = value; return this; }
-        public String getSort() { return Sort; }
-        public PutBulkEditResultGrades setSort(String value) { this.Sort = value; return this; }
-        public List<String> getSpecimenIds() { return SpecimenIds; }
-        public PutBulkEditResultGrades setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
-        public String getSpecimenName() { return SpecimenName; }
-        public PutBulkEditResultGrades setSpecimenName(String value) { this.SpecimenName = value; return this; }
-        public Instant getStartObservedTime() { return StartObservedTime; }
-        public PutBulkEditResultGrades setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
-        public Instant getStartResultTime() { return StartResultTime; }
-        public PutBulkEditResultGrades setStartResultTime(Instant value) { this.StartResultTime = value; return this; }
-        public Instant getStartModificationTime() { return StartModificationTime; }
-        public PutBulkEditResultGrades setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
-        public List<String> getTaxonIds() { return TaxonIds; }
-        public PutBulkEditResultGrades setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
-    }
-
     @Route(Path="/v1/observedproperties", Verbs="GET")
     public static class GetObservedProperties implements IReturn<SearchResultObservedProperty>
     {
@@ -4261,7 +3073,7 @@ public class ServiceModel
     public static class GetExportObservations implements IReturnVoid
     {
         @DataMember(Name = "format")
-        public FormatType Format = null;
+        public GetExportObservationsFormatType Format = null;
         @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
         @DataMember(Name = "activityIds")
@@ -4270,6 +3082,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -4355,8 +3169,8 @@ public class ServiceModel
         @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
-        public FormatType getFormat() { return Format; }
-        public GetExportObservations setFormat(FormatType value) { this.Format = value; return this; }
+        public GetExportObservationsFormatType getFormat() { return Format; }
+        public GetExportObservations setFormat(GetExportObservationsFormatType value) { this.Format = value; return this; }
         public String getActivityCustomId() { return ActivityCustomId; }
         public GetExportObservations setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
         public List<String> getActivityIds() { return ActivityIds; }
@@ -4365,6 +3179,8 @@ public class ServiceModel
         public GetExportObservations setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public GetExportObservations setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public GetExportObservations setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public GetExportObservations setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -4633,40 +3449,6 @@ public class ServiceModel
         public PostImportLabReportDataDryRun setCreateMissingObjects(Boolean value) { this.CreateMissingObjects = value; return this; }
         public Boolean getUpdateExistingResults() { return UpdateExistingResults; }
         public PostImportLabReportDataDryRun setUpdateExistingResults(Boolean value) { this.UpdateExistingResults = value; return this; }
-        private static Object responseType = ObservationImportSummary.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @Route(Path="/v1/services/import/observations", Verbs="POST")
-    public static class PostImportObservations implements IReturn<ObservationImportSummary>
-    {
-        public String FileType = null;
-        public String TimeZoneOffset = null;
-        public Boolean LinkFieldVisitsForNewObservations = null;
-
-        public String getFileType() { return FileType; }
-        public PostImportObservations setFileType(String value) { this.FileType = value; return this; }
-        public String getTimeZoneOffset() { return TimeZoneOffset; }
-        public PostImportObservations setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
-        public Boolean getLinkFieldVisitsForNewObservations() { return LinkFieldVisitsForNewObservations; }
-        public PostImportObservations setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
-        private static Object responseType = ObservationImportSummary.class;
-        public Object getResponseType() {{ return responseType; }}
-    }
-
-    @Route(Path="/v1/services/import/observations/dryrun", Verbs="POST")
-    public static class PostImportObservationsDryRun implements IReturn<ObservationImportSummary>
-    {
-        public String FileType = null;
-        public String TimeZoneOffset = null;
-        public Boolean LinkFieldVisitsForNewObservations = null;
-
-        public String getFileType() { return FileType; }
-        public PostImportObservationsDryRun setFileType(String value) { this.FileType = value; return this; }
-        public String getTimeZoneOffset() { return TimeZoneOffset; }
-        public PostImportObservationsDryRun setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
-        public Boolean getLinkFieldVisitsForNewObservations() { return LinkFieldVisitsForNewObservations; }
-        public PostImportObservationsDryRun setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
         private static Object responseType = ObservationImportSummary.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -5957,6 +4739,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -6050,6 +4834,8 @@ public class ServiceModel
         public GetObservationsV2 setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public GetObservationsV2 setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public GetObservationsV2 setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public GetObservationsV2 setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -6257,6 +5043,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -6350,6 +5138,8 @@ public class ServiceModel
         public DeleteObservationsV2 setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public DeleteObservationsV2 setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public DeleteObservationsV2 setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public DeleteObservationsV2 setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -6586,6 +5376,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -6679,6 +5471,8 @@ public class ServiceModel
         public GetChartDataV2 setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public GetChartDataV2 setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public GetChartDataV2 setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public GetChartDataV2 setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -6779,6 +5573,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -6872,6 +5668,8 @@ public class ServiceModel
         public GetGroupedObservationsV2 setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public GetGroupedObservationsV2 setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public GetGroupedObservationsV2 setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public GetGroupedObservationsV2 setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -6974,6 +5772,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -7069,6 +5869,8 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public PutBulkEditResultGradesV2 setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public PutBulkEditResultGradesV2 setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public PutBulkEditResultGradesV2 setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -7160,7 +5962,7 @@ public class ServiceModel
     public static class GetObservationExportIIV2 implements IReturnVoid
     {
         @DataMember(Name = "format")
-        public FormatType Format = null;
+        public GetObservationExportIIFormatType Format = null;
         @DataMember(Name = "activityCustomId")
         public String ActivityCustomId = null;
         @DataMember(Name = "activityIds")
@@ -7169,6 +5971,8 @@ public class ServiceModel
         public List<String> ActivityTypes = null;
         @DataMember(Name = "analysisMethodIds")
         public List<String> AnalysisMethodIds = null;
+        @DataMember(Name = "analysisMethodSimpleIds")
+        public List<String> AnalysisMethodSimpleIds = null;
         @DataMember(Name = "analyticalGroupIds")
         public List<String> AnalyticalGroupIds = null;
         @DataMember(Name = "collectionMethodIds")
@@ -7254,8 +6058,8 @@ public class ServiceModel
         @DataMember(Name = "taxonIds")
         public List<String> TaxonIds = null;
 
-        public FormatType getFormat() { return Format; }
-        public GetObservationExportIIV2 setFormat(FormatType value) { this.Format = value; return this; }
+        public GetObservationExportIIFormatType getFormat() { return Format; }
+        public GetObservationExportIIV2 setFormat(GetObservationExportIIFormatType value) { this.Format = value; return this; }
         public String getActivityCustomId() { return ActivityCustomId; }
         public GetObservationExportIIV2 setActivityCustomId(String value) { this.ActivityCustomId = value; return this; }
         public List<String> getActivityIds() { return ActivityIds; }
@@ -7264,6 +6068,8 @@ public class ServiceModel
         public GetObservationExportIIV2 setActivityTypes(List<String> value) { this.ActivityTypes = value; return this; }
         public List<String> getAnalysisMethodIds() { return AnalysisMethodIds; }
         public GetObservationExportIIV2 setAnalysisMethodIds(List<String> value) { this.AnalysisMethodIds = value; return this; }
+        public List<String> getAnalysisMethodSimpleIds() { return AnalysisMethodSimpleIds; }
+        public GetObservationExportIIV2 setAnalysisMethodSimpleIds(List<String> value) { this.AnalysisMethodSimpleIds = value; return this; }
         public List<String> getAnalyticalGroupIds() { return AnalyticalGroupIds; }
         public GetObservationExportIIV2 setAnalyticalGroupIds(List<String> value) { this.AnalyticalGroupIds = value; return this; }
         public List<String> getCollectionMethodIds() { return CollectionMethodIds; }
@@ -11388,12 +10194,16 @@ public class ServiceModel
         MEASUREMENT
     }
 
-    public static enum FormatType
+    public static enum GetExportObservationsFormatType
     {
-        CSV,
         WQX,
         CROSSTAB_CSV,
         XSLX
+    }
+
+    public static enum GetObservationExportIIFormatType
+    {
+        CSV
     }
 
     public static enum GetUnitGroupsSystemCodeType
