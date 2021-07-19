@@ -25,12 +25,12 @@ OutputPath=$4
 
 [ ! -z "$EndPointName" ] || show_usage "No namespace! Specify a namespace for the generated code"
 [ ! -z "$EndPoint" ] || show_usage "No endpoint! Specify a relative URL for the endpoint to inspect"
-[ ! -z "$ServerName" ] || ServerName=localhost
+[ ! -z "$ServerName" ] || ServerName=http://localhost
 [ ! -z "$OutputPath" ] || OutputPath=.
 
 mkdir -p "$OutputPath" || exit_abort "Can't create OutputPath=$OutputPath"
 echo "Determining AQUARIUS Server version ..."
-ApiVersionJson=`curl -s http://$ServerName/AQUARIUS/apps/v1/version` || exit_abort "Can't determine AQUARIUS server version of $ServerName"
+ApiVersionJson=`curl -s $ServerName/AQUARIUS/apps/v1/version` || exit_abort "Can't determine AQUARIUS server version of $ServerName"
 ApiVersion=`echo "$ApiVersionJson" | sed -e "s/{\"ApiVersion\":\"//" -e "s/\"}//"`
 
 echo "Generating $OutputFile ..."
@@ -40,7 +40,7 @@ TempFile=t.t
 rm -f "$TempFile" "$TempFile".*
 
 # Ask the ServiceStack endpoint to generate the annotated Java DTOs
-curl -s -o "$TempFile" "http://$ServerName/AQUARIUS/$EndPoint/types/java?Package=com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels&GlobalNamespace=$EndPointName&AddServiceStackTypes=false&TreatTypesAsStrings=Guid&DefaultImports=java.time.*,java.util.*,net.servicestack.client.*,com.aquaticinformatics.aquarius.sdk.AquariusServerVersion" || exit_abort "Can't read endpoint"
+curl -s -o "$TempFile" "$ServerName/AQUARIUS/$EndPoint/types/java?Package=com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels&GlobalNamespace=$EndPointName&AddServiceStackTypes=false&TreatTypesAsStrings=Guid&DefaultImports=java.time.*,java.util.*,net.servicestack.client.*,com.aquaticinformatics.aquarius.sdk.AquariusServerVersion" || exit_abort "Can't read endpoint"
 
 # Now we need to work around some of the limitations of the ServiceStack code generators.
 # All of this 3-phase regex madness could be eliminated if the ServiceStack code generator supported an "Aliases" dictionary
