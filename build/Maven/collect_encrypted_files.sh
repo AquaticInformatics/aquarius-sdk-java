@@ -24,8 +24,8 @@ SecretPassphrase=$1
 [ -f "$SecureFile" ] || exit_abort "Can't find $SecureFile. Try 'https://www.appveyor.com/docs/how-to/secure-files/'"
 [ ! -z "$SecretPassphrase" ] || show_usage "Specify a passphrase to use for encrypting the files"
 
-# gpg --export -a "Open Source Aquatics (OpenSource-AI) <opensource@aquaticinformatics.com>" > OpenSourceAquatics.public.gpg.asc || exit_abort "Can't export public key"
-# gpg --export-secret-key -a "Open Source Aquatics (OpenSource-AI) <opensource@aquaticinformatics.com>" > OpenSourceAquatics.secret.gpg.asc || exit_abort "Can't export private key"
+gpg --export -a "Open Source Aquatics (OpenSource-AI) <opensource@aquaticinformatics.com>" > OpenSourceAquatics.public.gpg.asc || exit_abort "Can't export public key"
+gpg --export-secret-key -a "Open Source Aquatics (OpenSource-AI) <opensource@aquaticinformatics.com>" > OpenSourceAquatics.secret.gpg.asc || exit_abort "Can't export private key"
 echo Encrypting OpenSourceAquatics.secret.gpg.asc
 $SecureFile -encrypt OpenSourceAquatics.secret.gpg.asc -secret "$SecretPassphrase" || exit_abort "Can't encrypt secret key"
 echo Encrypting OpenSourceAquatics.public.gpg.asc
