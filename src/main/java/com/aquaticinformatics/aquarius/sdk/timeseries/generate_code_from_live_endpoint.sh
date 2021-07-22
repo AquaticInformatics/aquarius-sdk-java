@@ -81,6 +81,7 @@ sed -i.bak -e "s/public static interface \\(I[A-Za-z0-9]*\\) implements \\(I[A-Z
 
 unset typeMap
 declare -A typeMap
+typeMap["date-time"]="Instant"  # Any remaining date-time types also map to java.time.Instant
 typeMap["interval"]="Interval"  # NodaTime.Interval maps to java.time.Interval
 typeMap["duration"]="Duration"  # NodaTime.Duration maps to java.time.Duration
 typeMap["offset from UTC"]="Duration"    # NodaTime.Offset   maps to java.time.Duration
