@@ -4,7 +4,7 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
-### 21.3.0
+### 21.3.1
 - Updated the service models for the AQUARIUS Time-Series 2021.3 release.
 
 ### 21.2.1
