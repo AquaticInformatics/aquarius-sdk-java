@@ -1,6 +1,6 @@
-// Date: 2021-07-19T12:37:06.2293772-07:00
+// Date: 2022-01-06T12:45:53.0532120-08:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2021.03.4425)
+// Source: AQUARIUS Samples API (2021.08.9990)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2021.03.4425");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2021.08.9990");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -163,10 +163,9 @@ public class ServiceModel
         public ActivityType Type = null;
         public String Id = null;
         public String CustomId = null;
-        public String ReplicateSourceActivityId = null;
         public String SourceActivityId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Comment = null;
         public String LoggerFileName = null;
         public Device Device = null;
@@ -179,7 +178,6 @@ public class ServiceModel
         public List<SamplingContextTag> SamplingContextTags = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Boolean Refreshed = null;
-        public Boolean Blank = null;
         public AuditAttributes AuditAttributes = null;
 
         public ActivityType getType() { return Type; }
@@ -188,14 +186,12 @@ public class ServiceModel
         public PostActivity setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PostActivity setCustomId(String value) { this.CustomId = value; return this; }
-        public String getReplicateSourceActivityId() { return ReplicateSourceActivityId; }
-        public PostActivity setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
         public String getSourceActivityId() { return SourceActivityId; }
         public PostActivity setSourceActivityId(String value) { this.SourceActivityId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PostActivity setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PostActivity setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PostActivity setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PostActivity setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getComment() { return Comment; }
         public PostActivity setComment(String value) { this.Comment = value; return this; }
         public String getLoggerFileName() { return LoggerFileName; }
@@ -220,8 +216,6 @@ public class ServiceModel
         public PostActivity setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Boolean getRefreshed() { return Refreshed; }
         public PostActivity setRefreshed(Boolean value) { this.Refreshed = value; return this; }
-        public Boolean getBlank() { return Blank; }
-        public PostActivity setBlank(Boolean value) { this.Blank = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Activity.class;
@@ -297,10 +291,9 @@ public class ServiceModel
         public Boolean Detail = null;
         public ActivityWithDetailsType Type = null;
         public String CustomId = null;
-        public String ReplicateSourceActivityId = null;
         public String SourceActivityId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Comment = null;
         public String LoggerFileName = null;
         public Device Device = null;
@@ -317,7 +310,6 @@ public class ServiceModel
         public List<SpecimenNestedInActivity> Specimens = null;
         public List<ObservationMinimal> Observations = null;
         public Boolean Refreshed = null;
-        public Boolean Blank = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -328,14 +320,12 @@ public class ServiceModel
         public PutActivity setType(ActivityWithDetailsType value) { this.Type = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutActivity setCustomId(String value) { this.CustomId = value; return this; }
-        public String getReplicateSourceActivityId() { return ReplicateSourceActivityId; }
-        public PutActivity setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
         public String getSourceActivityId() { return SourceActivityId; }
         public PutActivity setSourceActivityId(String value) { this.SourceActivityId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PutActivity setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PutActivity setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PutActivity setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PutActivity setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getComment() { return Comment; }
         public PutActivity setComment(String value) { this.Comment = value; return this; }
         public String getLoggerFileName() { return LoggerFileName; }
@@ -368,8 +358,6 @@ public class ServiceModel
         public PutActivity setObservations(List<ObservationMinimal> value) { this.Observations = value; return this; }
         public Boolean getRefreshed() { return Refreshed; }
         public PutActivity setRefreshed(Boolean value) { this.Refreshed = value; return this; }
-        public Boolean getBlank() { return Blank; }
-        public PutActivity setBlank(Boolean value) { this.Blank = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = ActivityWithDetails.class;
@@ -756,7 +744,7 @@ public class ServiceModel
         public String ContentType = null;
         public String Comment = null;
         public Integer FileSize = null;
-        public Instant DateTaken = null;
+        public OffsetDateTime DateTaken = null;
         public String Latitude = null;
         public String Longitude = null;
         public String Resolution = null;
@@ -772,8 +760,8 @@ public class ServiceModel
         public PutAttachment setComment(String value) { this.Comment = value; return this; }
         public Integer getFileSize() { return FileSize; }
         public PutAttachment setFileSize(Integer value) { this.FileSize = value; return this; }
-        public Instant getDateTaken() { return DateTaken; }
-        public PutAttachment setDateTaken(Instant value) { this.DateTaken = value; return this; }
+        public OffsetDateTime getDateTaken() { return DateTaken; }
+        public PutAttachment setDateTaken(OffsetDateTime value) { this.DateTaken = value; return this; }
         public String getLatitude() { return Latitude; }
         public PutAttachment setLatitude(String value) { this.Latitude = value; return this; }
         public String getLongitude() { return Longitude; }
@@ -1170,8 +1158,8 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
@@ -1182,10 +1170,10 @@ public class ServiceModel
         public PostFieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PostFieldTrip setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PostFieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PostFieldTrip setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PostFieldTrip setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PostFieldTrip setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public PostFieldTrip setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -1216,8 +1204,8 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
@@ -1228,10 +1216,10 @@ public class ServiceModel
         public PutFieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutFieldTrip setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PutFieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PutFieldTrip setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PutFieldTrip setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PutFieldTrip setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public PutFieldTrip setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -1286,6 +1274,8 @@ public class ServiceModel
         public List<String> ProjectIds = null;
         @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "samplingPlanIds")
+        public List<String> SamplingPlanIds = null;
         @DataMember(Name = "scheduleIds")
         public List<String> ScheduleIds = null;
         @DataMember(Name = "search")
@@ -1311,6 +1301,8 @@ public class ServiceModel
         public GetFieldVisits setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
         public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
         public GetFieldVisits setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
+        public List<String> getSamplingPlanIds() { return SamplingPlanIds; }
+        public GetFieldVisits setSamplingPlanIds(List<String> value) { this.SamplingPlanIds = value; return this; }
         public List<String> getScheduleIds() { return ScheduleIds; }
         public GetFieldVisits setScheduleIds(List<String> value) { this.ScheduleIds = value; return this; }
         public List<String> getSearch() { return Search; }
@@ -1327,8 +1319,8 @@ public class ServiceModel
     public static class PostFieldVisit implements IReturn<FieldVisit>
     {
         public String Id = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public FieldTripSimple FieldTrip = null;
@@ -1340,14 +1332,15 @@ public class ServiceModel
         public List<DomainObjectAttachment> Attachments = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Schedule Schedule = null;
+        public SamplingPlan SamplingPlan = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PostFieldVisit setId(String value) { this.Id = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PostFieldVisit setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PostFieldVisit setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PostFieldVisit setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PostFieldVisit setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public PostFieldVisit setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -1370,6 +1363,8 @@ public class ServiceModel
         public PostFieldVisit setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Schedule getSchedule() { return Schedule; }
         public PostFieldVisit setSchedule(Schedule value) { this.Schedule = value; return this; }
+        public SamplingPlan getSamplingPlan() { return SamplingPlan; }
+        public PostFieldVisit setSamplingPlan(SamplingPlan value) { this.SamplingPlan = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostFieldVisit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = FieldVisit.class;
@@ -1396,6 +1391,8 @@ public class ServiceModel
         public List<String> ProjectIds = null;
         @DataMember(Name = "samplingLocationIds")
         public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "samplingPlanIds")
+        public List<String> SamplingPlanIds = null;
         @DataMember(Name = "scheduleIds")
         public List<String> ScheduleIds = null;
         @DataMember(Name = "search")
@@ -1421,6 +1418,8 @@ public class ServiceModel
         public DeleteFieldVisits setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
         public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
         public DeleteFieldVisits setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
+        public List<String> getSamplingPlanIds() { return SamplingPlanIds; }
+        public DeleteFieldVisits setSamplingPlanIds(List<String> value) { this.SamplingPlanIds = value; return this; }
         public List<String> getScheduleIds() { return ScheduleIds; }
         public DeleteFieldVisits setScheduleIds(List<String> value) { this.ScheduleIds = value; return this; }
         public List<String> getSearch() { return Search; }
@@ -1460,8 +1459,8 @@ public class ServiceModel
     public static class PutFieldVisit implements IReturn<FieldVisit>
     {
         public String Id = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public FieldTripSimple FieldTrip = null;
@@ -1473,14 +1472,15 @@ public class ServiceModel
         public List<DomainObjectAttachment> Attachments = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Schedule Schedule = null;
+        public SamplingPlan SamplingPlan = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutFieldVisit setId(String value) { this.Id = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PutFieldVisit setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PutFieldVisit setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PutFieldVisit setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PutFieldVisit setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public PutFieldVisit setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -1503,6 +1503,8 @@ public class ServiceModel
         public PutFieldVisit setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Schedule getSchedule() { return Schedule; }
         public PutFieldVisit setSchedule(Schedule value) { this.Schedule = value; return this; }
+        public SamplingPlan getSamplingPlan() { return SamplingPlan; }
+        public PutFieldVisit setSamplingPlan(SamplingPlan value) { this.SamplingPlan = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutFieldVisit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = FieldVisit.class;
@@ -1627,8 +1629,8 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public List<ObservedProperty> ObservedProperties = null;
         public List<SamplingLocation> SamplingLocations = null;
         public String Description = null;
@@ -1638,10 +1640,10 @@ public class ServiceModel
         public PostFilter setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PostFilter setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PostFilter setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PostFilter setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PostFilter setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PostFilter setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
         public PostFilter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
@@ -1670,8 +1672,8 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public List<ObservedProperty> ObservedProperties = null;
         public List<SamplingLocation> SamplingLocations = null;
         public String Description = null;
@@ -1681,10 +1683,10 @@ public class ServiceModel
         public PutFilter setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutFilter setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PutFilter setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PutFilter setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PutFilter setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PutFilter setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
         public PutFilter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
@@ -1979,7 +1981,7 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant DateReceived = null;
+        public OffsetDateTime DateReceived = null;
         public String CaseNarrative = null;
         public String QcSummary = null;
         public Laboratory Laboratory = null;
@@ -1991,8 +1993,8 @@ public class ServiceModel
         public PostLabReport setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PostLabReport setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getDateReceived() { return DateReceived; }
-        public PostLabReport setDateReceived(Instant value) { this.DateReceived = value; return this; }
+        public OffsetDateTime getDateReceived() { return DateReceived; }
+        public PostLabReport setDateReceived(OffsetDateTime value) { this.DateReceived = value; return this; }
         public String getCaseNarrative() { return CaseNarrative; }
         public PostLabReport setCaseNarrative(String value) { this.CaseNarrative = value; return this; }
         public String getQcSummary() { return QcSummary; }
@@ -2025,7 +2027,7 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant DateReceived = null;
+        public OffsetDateTime DateReceived = null;
         public String CaseNarrative = null;
         public String QcSummary = null;
         public Laboratory Laboratory = null;
@@ -2037,8 +2039,8 @@ public class ServiceModel
         public PutLabReport setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutLabReport setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getDateReceived() { return DateReceived; }
-        public PutLabReport setDateReceived(Instant value) { this.DateReceived = value; return this; }
+        public OffsetDateTime getDateReceived() { return DateReceived; }
+        public PutLabReport setDateReceived(OffsetDateTime value) { this.DateReceived = value; return this; }
         public String getCaseNarrative() { return CaseNarrative; }
         public PutLabReport setCaseNarrative(String value) { this.CaseNarrative = value; return this; }
         public String getQcSummary() { return QcSummary; }
@@ -2392,8 +2394,8 @@ public class ServiceModel
         public String ScopeStatement = null;
         public Boolean Approved = null;
         public String ApprovalAgency = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -2412,10 +2414,10 @@ public class ServiceModel
         public PostProject setApproved(Boolean value) { this.Approved = value; return this; }
         public String getApprovalAgency() { return ApprovalAgency; }
         public PostProject setApprovalAgency(String value) { this.ApprovalAgency = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PostProject setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PostProject setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PostProject setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PostProject setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostProject setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Project.class;
@@ -2444,8 +2446,8 @@ public class ServiceModel
         public String ScopeStatement = null;
         public Boolean Approved = null;
         public String ApprovalAgency = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -2464,10 +2466,10 @@ public class ServiceModel
         public PutProject setApproved(Boolean value) { this.Approved = value; return this; }
         public String getApprovalAgency() { return ApprovalAgency; }
         public PutProject setApprovalAgency(String value) { this.ApprovalAgency = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public PutProject setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PutProject setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public PutProject setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public PutProject setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutProject setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = Project.class;
@@ -2928,15 +2930,15 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartDate = null;
-        public Instant EndDate = null;
+        public OffsetDateTime StartDate = null;
+        public OffsetDateTime EndDate = null;
         public RecurrenceType RecurrenceType = null;
         public RecurrenceDayWeeklyType RecurrenceDayWeekly = null;
         public RecurrenceDayMonthlyType RecurrenceDayMonthly = null;
         public SamplingLocationGroup SamplingLocationGroup = null;
         public SamplingLocationGroupSelectionType SamplingLocationGroupSelectionType = null;
         public Integer SamplingLocationGroupSelectionTypeRandomCount = null;
-        public Instant LastGenerationDate = null;
+        public OffsetDateTime LastGenerationDate = null;
         public List<SchedulePlannedActivity> SchedulePlannedActivities = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -2944,10 +2946,10 @@ public class ServiceModel
         public PostSchedule setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PostSchedule setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartDate() { return StartDate; }
-        public PostSchedule setStartDate(Instant value) { this.StartDate = value; return this; }
-        public Instant getEndDate() { return EndDate; }
-        public PostSchedule setEndDate(Instant value) { this.EndDate = value; return this; }
+        public OffsetDateTime getStartDate() { return StartDate; }
+        public PostSchedule setStartDate(OffsetDateTime value) { this.StartDate = value; return this; }
+        public OffsetDateTime getEndDate() { return EndDate; }
+        public PostSchedule setEndDate(OffsetDateTime value) { this.EndDate = value; return this; }
         public RecurrenceType getRecurrenceType() { return RecurrenceType; }
         public PostSchedule setRecurrenceType(RecurrenceType value) { this.RecurrenceType = value; return this; }
         public RecurrenceDayWeeklyType getRecurrenceDayWeekly() { return RecurrenceDayWeekly; }
@@ -2960,8 +2962,8 @@ public class ServiceModel
         public PostSchedule setSamplingLocationGroupSelectionType(SamplingLocationGroupSelectionType value) { this.SamplingLocationGroupSelectionType = value; return this; }
         public Integer getSamplingLocationGroupSelectionTypeRandomCount() { return SamplingLocationGroupSelectionTypeRandomCount; }
         public PostSchedule setSamplingLocationGroupSelectionTypeRandomCount(Integer value) { this.SamplingLocationGroupSelectionTypeRandomCount = value; return this; }
-        public Instant getLastGenerationDate() { return LastGenerationDate; }
-        public PostSchedule setLastGenerationDate(Instant value) { this.LastGenerationDate = value; return this; }
+        public OffsetDateTime getLastGenerationDate() { return LastGenerationDate; }
+        public PostSchedule setLastGenerationDate(OffsetDateTime value) { this.LastGenerationDate = value; return this; }
         public List<SchedulePlannedActivity> getSchedulePlannedActivities() { return SchedulePlannedActivities; }
         public PostSchedule setSchedulePlannedActivities(List<SchedulePlannedActivity> value) { this.SchedulePlannedActivities = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -2986,15 +2988,15 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartDate = null;
-        public Instant EndDate = null;
+        public OffsetDateTime StartDate = null;
+        public OffsetDateTime EndDate = null;
         public RecurrenceType RecurrenceType = null;
         public RecurrenceDayWeeklyType RecurrenceDayWeekly = null;
         public RecurrenceDayMonthlyType RecurrenceDayMonthly = null;
         public SamplingLocationGroup SamplingLocationGroup = null;
         public SamplingLocationGroupSelectionType SamplingLocationGroupSelectionType = null;
         public Integer SamplingLocationGroupSelectionTypeRandomCount = null;
-        public Instant LastGenerationDate = null;
+        public OffsetDateTime LastGenerationDate = null;
         public List<SchedulePlannedActivity> SchedulePlannedActivities = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -3002,10 +3004,10 @@ public class ServiceModel
         public PutSchedule setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutSchedule setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartDate() { return StartDate; }
-        public PutSchedule setStartDate(Instant value) { this.StartDate = value; return this; }
-        public Instant getEndDate() { return EndDate; }
-        public PutSchedule setEndDate(Instant value) { this.EndDate = value; return this; }
+        public OffsetDateTime getStartDate() { return StartDate; }
+        public PutSchedule setStartDate(OffsetDateTime value) { this.StartDate = value; return this; }
+        public OffsetDateTime getEndDate() { return EndDate; }
+        public PutSchedule setEndDate(OffsetDateTime value) { this.EndDate = value; return this; }
         public RecurrenceType getRecurrenceType() { return RecurrenceType; }
         public PutSchedule setRecurrenceType(RecurrenceType value) { this.RecurrenceType = value; return this; }
         public RecurrenceDayWeeklyType getRecurrenceDayWeekly() { return RecurrenceDayWeekly; }
@@ -3018,8 +3020,8 @@ public class ServiceModel
         public PutSchedule setSamplingLocationGroupSelectionType(SamplingLocationGroupSelectionType value) { this.SamplingLocationGroupSelectionType = value; return this; }
         public Integer getSamplingLocationGroupSelectionTypeRandomCount() { return SamplingLocationGroupSelectionTypeRandomCount; }
         public PutSchedule setSamplingLocationGroupSelectionTypeRandomCount(Integer value) { this.SamplingLocationGroupSelectionTypeRandomCount = value; return this; }
-        public Instant getLastGenerationDate() { return LastGenerationDate; }
-        public PutSchedule setLastGenerationDate(Instant value) { this.LastGenerationDate = value; return this; }
+        public OffsetDateTime getLastGenerationDate() { return LastGenerationDate; }
+        public PutSchedule setLastGenerationDate(OffsetDateTime value) { this.LastGenerationDate = value; return this; }
         public List<SchedulePlannedActivity> getSchedulePlannedActivities() { return SchedulePlannedActivities; }
         public PutSchedule setSchedulePlannedActivities(List<SchedulePlannedActivity> value) { this.SchedulePlannedActivities = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -4597,7 +4599,6 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public UserProfile UserProfile = null;
-        public String ProviderId = null;
         public String Email = null;
         public UserType UserType = null;
         public List<String> Roles = null;
@@ -4609,8 +4610,6 @@ public class ServiceModel
         public PostUser setCustomId(String value) { this.CustomId = value; return this; }
         public UserProfile getUserProfile() { return UserProfile; }
         public PostUser setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
-        public String getProviderId() { return ProviderId; }
-        public PostUser setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
         public PostUser setEmail(String value) { this.Email = value; return this; }
         public UserType getUserType() { return UserType; }
@@ -4640,7 +4639,6 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public UserProfile UserProfile = null;
-        public String ProviderId = null;
         public String Email = null;
         public UserType UserType = null;
         public List<String> Roles = null;
@@ -4652,8 +4650,6 @@ public class ServiceModel
         public PutUser setCustomId(String value) { this.CustomId = value; return this; }
         public UserProfile getUserProfile() { return UserProfile; }
         public PutUser setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
-        public String getProviderId() { return ProviderId; }
-        public PutUser setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
         public PutUser setEmail(String value) { this.Email = value; return this; }
         public UserType getUserType() { return UserType; }
@@ -4941,8 +4937,8 @@ public class ServiceModel
         public DataClassificationType DataClassification = null;
         public Medium Medium = null;
         public String MediumSubdivision = null;
-        public Instant ObservedTime = null;
-        public Instant ResultTime = null;
+        public OffsetDateTime ObservedTime = null;
+        public OffsetDateTime ResultTime = null;
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
@@ -4989,10 +4985,10 @@ public class ServiceModel
         public PostObservationV2 setMedium(Medium value) { this.Medium = value; return this; }
         public String getMediumSubdivision() { return MediumSubdivision; }
         public PostObservationV2 setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public PostObservationV2 setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Instant getResultTime() { return ResultTime; }
-        public PostObservationV2 setResultTime(Instant value) { this.ResultTime = value; return this; }
+        public OffsetDateTime getObservedTime() { return ObservedTime; }
+        public PostObservationV2 setObservedTime(OffsetDateTime value) { this.ObservedTime = value; return this; }
+        public OffsetDateTime getResultTime() { return ResultTime; }
+        public PostObservationV2 setResultTime(OffsetDateTime value) { this.ResultTime = value; return this; }
         public Quantity getDepth() { return Depth; }
         public PostObservationV2 setDepth(Quantity value) { this.Depth = value; return this; }
         public LabInstruction getLabInstruction() { return LabInstruction; }
@@ -5254,8 +5250,8 @@ public class ServiceModel
         public DataClassificationType DataClassification = null;
         public Medium Medium = null;
         public String MediumSubdivision = null;
-        public Instant ObservedTime = null;
-        public Instant ResultTime = null;
+        public OffsetDateTime ObservedTime = null;
+        public OffsetDateTime ResultTime = null;
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
@@ -5302,10 +5298,10 @@ public class ServiceModel
         public PutObservationV2 setMedium(Medium value) { this.Medium = value; return this; }
         public String getMediumSubdivision() { return MediumSubdivision; }
         public PutObservationV2 setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public PutObservationV2 setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Instant getResultTime() { return ResultTime; }
-        public PutObservationV2 setResultTime(Instant value) { this.ResultTime = value; return this; }
+        public OffsetDateTime getObservedTime() { return ObservedTime; }
+        public PutObservationV2 setObservedTime(OffsetDateTime value) { this.ObservedTime = value; return this; }
+        public OffsetDateTime getResultTime() { return ResultTime; }
+        public PutObservationV2 setResultTime(OffsetDateTime value) { this.ResultTime = value; return this; }
         public Quantity getDepth() { return Depth; }
         public PutObservationV2 setDepth(Quantity value) { this.Depth = value; return this; }
         public LabInstruction getLabInstruction() { return LabInstruction; }
@@ -6156,6 +6152,91 @@ public class ServiceModel
         public GetObservationExportIIV2 setTaxonIds(List<String> value) { this.TaxonIds = value; return this; }
     }
 
+    @Route(Path="/v2/users", Verbs="GET")
+    public static class GetUsersV2 implements IReturn<SearchResultUser>
+    {
+        private static Object responseType = SearchResultUser.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v2/users", Verbs="POST")
+    public static class PostUserV2 implements IReturn<User>
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public UserProfile UserProfile = null;
+        public String Email = null;
+        public UserType UserType = null;
+        public List<String> Roles = null;
+        public List<String> AccessGroups = null;
+
+        public String getId() { return Id; }
+        public PostUserV2 setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PostUserV2 setCustomId(String value) { this.CustomId = value; return this; }
+        public UserProfile getUserProfile() { return UserProfile; }
+        public PostUserV2 setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
+        public String getEmail() { return Email; }
+        public PostUserV2 setEmail(String value) { this.Email = value; return this; }
+        public UserType getUserType() { return UserType; }
+        public PostUserV2 setUserType(UserType value) { this.UserType = value; return this; }
+        public List<String> getRoles() { return Roles; }
+        public PostUserV2 setRoles(List<String> value) { this.Roles = value; return this; }
+        public List<String> getAccessGroups() { return AccessGroups; }
+        public PostUserV2 setAccessGroups(List<String> value) { this.AccessGroups = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v2/users/{id}", Verbs="GET")
+    public static class GetUserV2 implements IReturn<User>
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetUserV2 setId(String value) { this.Id = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v2/users/{id}", Verbs="PUT")
+    public static class PutUserV2 implements IReturn<User>
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public UserProfile UserProfile = null;
+        public String Email = null;
+        public UserType UserType = null;
+        public List<String> Roles = null;
+        public List<String> AccessGroups = null;
+
+        public String getId() { return Id; }
+        public PutUserV2 setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public PutUserV2 setCustomId(String value) { this.CustomId = value; return this; }
+        public UserProfile getUserProfile() { return UserProfile; }
+        public PutUserV2 setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
+        public String getEmail() { return Email; }
+        public PutUserV2 setEmail(String value) { this.Email = value; return this; }
+        public UserType getUserType() { return UserType; }
+        public PutUserV2 setUserType(UserType value) { this.UserType = value; return this; }
+        public List<String> getRoles() { return Roles; }
+        public PutUserV2 setRoles(List<String> value) { this.Roles = value; return this; }
+        public List<String> getAccessGroups() { return AccessGroups; }
+        public PutUserV2 setAccessGroups(List<String> value) { this.AccessGroups = value; return this; }
+        private static Object responseType = User.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v2/users/{id}", Verbs="DELETE")
+    public static class DeleteUserV2 implements IReturnVoid
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public DeleteUserV2 setId(String value) { this.Id = value; return this; }
+    }
+
     public static class AccessGroup
     {
         public String Id = null;
@@ -6184,10 +6265,9 @@ public class ServiceModel
         public ActivityType Type = null;
         public String Id = null;
         public String CustomId = null;
-        public String ReplicateSourceActivityId = null;
         public String SourceActivityId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Comment = null;
         public String LoggerFileName = null;
         public Device Device = null;
@@ -6200,7 +6280,6 @@ public class ServiceModel
         public List<SamplingContextTag> SamplingContextTags = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Boolean Refreshed = null;
-        public Boolean Blank = null;
         public AuditAttributes AuditAttributes = null;
 
         public ActivityType getType() { return Type; }
@@ -6209,14 +6288,12 @@ public class ServiceModel
         public Activity setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public Activity setCustomId(String value) { this.CustomId = value; return this; }
-        public String getReplicateSourceActivityId() { return ReplicateSourceActivityId; }
-        public Activity setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
         public String getSourceActivityId() { return SourceActivityId; }
         public Activity setSourceActivityId(String value) { this.SourceActivityId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public Activity setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public Activity setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public Activity setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public Activity setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getComment() { return Comment; }
         public Activity setComment(String value) { this.Comment = value; return this; }
         public String getLoggerFileName() { return LoggerFileName; }
@@ -6241,8 +6318,6 @@ public class ServiceModel
         public Activity setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Boolean getRefreshed() { return Refreshed; }
         public Activity setRefreshed(Boolean value) { this.Refreshed = value; return this; }
-        public Boolean getBlank() { return Blank; }
-        public Activity setBlank(Boolean value) { this.Blank = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public Activity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -6284,10 +6359,9 @@ public class ServiceModel
         public ActivityWithDetailsType Type = null;
         public String Id = null;
         public String CustomId = null;
-        public String ReplicateSourceActivityId = null;
         public String SourceActivityId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Comment = null;
         public String LoggerFileName = null;
         public Device Device = null;
@@ -6304,7 +6378,6 @@ public class ServiceModel
         public List<SpecimenNestedInActivity> Specimens = null;
         public List<ObservationMinimal> Observations = null;
         public Boolean Refreshed = null;
-        public Boolean Blank = null;
         public AuditAttributes AuditAttributes = null;
 
         public ActivityWithDetailsType getType() { return Type; }
@@ -6313,14 +6386,12 @@ public class ServiceModel
         public ActivityWithDetails setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public ActivityWithDetails setCustomId(String value) { this.CustomId = value; return this; }
-        public String getReplicateSourceActivityId() { return ReplicateSourceActivityId; }
-        public ActivityWithDetails setReplicateSourceActivityId(String value) { this.ReplicateSourceActivityId = value; return this; }
         public String getSourceActivityId() { return SourceActivityId; }
         public ActivityWithDetails setSourceActivityId(String value) { this.SourceActivityId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public ActivityWithDetails setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public ActivityWithDetails setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public ActivityWithDetails setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public ActivityWithDetails setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getComment() { return Comment; }
         public ActivityWithDetails setComment(String value) { this.Comment = value; return this; }
         public String getLoggerFileName() { return LoggerFileName; }
@@ -6353,8 +6424,6 @@ public class ServiceModel
         public ActivityWithDetails setObservations(List<ObservationMinimal> value) { this.Observations = value; return this; }
         public Boolean getRefreshed() { return Refreshed; }
         public ActivityWithDetails setRefreshed(Boolean value) { this.Refreshed = value; return this; }
-        public Boolean getBlank() { return Blank; }
-        public ActivityWithDetails setBlank(Boolean value) { this.Blank = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public ActivityWithDetails setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -6565,7 +6634,7 @@ public class ServiceModel
         public String ContentType = null;
         public String Comment = null;
         public Integer FileSize = null;
-        public Instant DateTaken = null;
+        public OffsetDateTime DateTaken = null;
         public String Latitude = null;
         public String Longitude = null;
         public String Resolution = null;
@@ -6581,8 +6650,8 @@ public class ServiceModel
         public Attachment setComment(String value) { this.Comment = value; return this; }
         public Integer getFileSize() { return FileSize; }
         public Attachment setFileSize(Integer value) { this.FileSize = value; return this; }
-        public Instant getDateTaken() { return DateTaken; }
-        public Attachment setDateTaken(Instant value) { this.DateTaken = value; return this; }
+        public OffsetDateTime getDateTaken() { return DateTaken; }
+        public Attachment setDateTaken(OffsetDateTime value) { this.DateTaken = value; return this; }
         public String getLatitude() { return Latitude; }
         public Attachment setLatitude(String value) { this.Latitude = value; return this; }
         public String getLongitude() { return Longitude; }
@@ -6600,7 +6669,7 @@ public class ServiceModel
         public String ContentType = null;
         public String Comment = null;
         public Integer FileSize = null;
-        public Instant DateTaken = null;
+        public OffsetDateTime DateTaken = null;
         public String Latitude = null;
         public String Longitude = null;
         public String Resolution = null;
@@ -6617,8 +6686,8 @@ public class ServiceModel
         public AttachmentRepresentation setComment(String value) { this.Comment = value; return this; }
         public Integer getFileSize() { return FileSize; }
         public AttachmentRepresentation setFileSize(Integer value) { this.FileSize = value; return this; }
-        public Instant getDateTaken() { return DateTaken; }
-        public AttachmentRepresentation setDateTaken(Instant value) { this.DateTaken = value; return this; }
+        public OffsetDateTime getDateTaken() { return DateTaken; }
+        public AttachmentRepresentation setDateTaken(OffsetDateTime value) { this.DateTaken = value; return this; }
         public String getLatitude() { return Latitude; }
         public AttachmentRepresentation setLatitude(String value) { this.Latitude = value; return this; }
         public String getLongitude() { return Longitude; }
@@ -6634,37 +6703,37 @@ public class ServiceModel
     public static class AuditAttributes
     {
         public String CreationUserProfileId = null;
-        public Instant CreationTime = null;
+        public OffsetDateTime CreationTime = null;
         public String ModificationUserProfileId = null;
-        public Instant ModificationTime = null;
+        public OffsetDateTime ModificationTime = null;
 
         public String getCreationUserProfileId() { return CreationUserProfileId; }
         public AuditAttributes setCreationUserProfileId(String value) { this.CreationUserProfileId = value; return this; }
-        public Instant getCreationTime() { return CreationTime; }
-        public AuditAttributes setCreationTime(Instant value) { this.CreationTime = value; return this; }
+        public OffsetDateTime getCreationTime() { return CreationTime; }
+        public AuditAttributes setCreationTime(OffsetDateTime value) { this.CreationTime = value; return this; }
         public String getModificationUserProfileId() { return ModificationUserProfileId; }
         public AuditAttributes setModificationUserProfileId(String value) { this.ModificationUserProfileId = value; return this; }
-        public Instant getModificationTime() { return ModificationTime; }
-        public AuditAttributes setModificationTime(Instant value) { this.ModificationTime = value; return this; }
+        public OffsetDateTime getModificationTime() { return ModificationTime; }
+        public AuditAttributes setModificationTime(OffsetDateTime value) { this.ModificationTime = value; return this; }
     }
 
     public static class AuditAttributesFull
     {
         public String CreationUserProfileId = null;
-        public Instant CreationTime = null;
+        public OffsetDateTime CreationTime = null;
         public String ModificationUserProfileId = null;
-        public Instant ModificationTime = null;
+        public OffsetDateTime ModificationTime = null;
         public UserProfile CreationUserProfile = null;
         public UserProfile ModificationUserProfile = null;
 
         public String getCreationUserProfileId() { return CreationUserProfileId; }
         public AuditAttributesFull setCreationUserProfileId(String value) { this.CreationUserProfileId = value; return this; }
-        public Instant getCreationTime() { return CreationTime; }
-        public AuditAttributesFull setCreationTime(Instant value) { this.CreationTime = value; return this; }
+        public OffsetDateTime getCreationTime() { return CreationTime; }
+        public AuditAttributesFull setCreationTime(OffsetDateTime value) { this.CreationTime = value; return this; }
         public String getModificationUserProfileId() { return ModificationUserProfileId; }
         public AuditAttributesFull setModificationUserProfileId(String value) { this.ModificationUserProfileId = value; return this; }
-        public Instant getModificationTime() { return ModificationTime; }
-        public AuditAttributesFull setModificationTime(Instant value) { this.ModificationTime = value; return this; }
+        public OffsetDateTime getModificationTime() { return ModificationTime; }
+        public AuditAttributesFull setModificationTime(OffsetDateTime value) { this.ModificationTime = value; return this; }
         public UserProfile getCreationUserProfile() { return CreationUserProfile; }
         public AuditAttributesFull setCreationUserProfile(UserProfile value) { this.CreationUserProfile = value; return this; }
         public UserProfile getModificationUserProfile() { return ModificationUserProfile; }
@@ -6693,13 +6762,13 @@ public class ServiceModel
 
     public static class AuditHistory
     {
-        public Instant ModificationTime = null;
+        public OffsetDateTime ModificationTime = null;
         public UserProfile UserProfile = null;
         public OperationType Operation = null;
         public List<AuditChange> AuditChanges = null;
 
-        public Instant getModificationTime() { return ModificationTime; }
-        public AuditHistory setModificationTime(Instant value) { this.ModificationTime = value; return this; }
+        public OffsetDateTime getModificationTime() { return ModificationTime; }
+        public AuditHistory setModificationTime(OffsetDateTime value) { this.ModificationTime = value; return this; }
         public UserProfile getUserProfile() { return UserProfile; }
         public AuditHistory setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
         public OperationType getOperation() { return Operation; }
@@ -6763,7 +6832,7 @@ public class ServiceModel
     {
         public Double Value = null;
         public String ObservationId = null;
-        public Instant ObservedTime = null;
+        public OffsetDateTime ObservedTime = null;
         public String NumericResultUnitCustomId = null;
         public Double MdlValue = null;
         public String MdlValueUnitCustomId = null;
@@ -6775,8 +6844,8 @@ public class ServiceModel
         public ChartDataPoint setValue(Double value) { this.Value = value; return this; }
         public String getObservationId() { return ObservationId; }
         public ChartDataPoint setObservationId(String value) { this.ObservationId = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public ChartDataPoint setObservedTime(Instant value) { this.ObservedTime = value; return this; }
+        public OffsetDateTime getObservedTime() { return ObservedTime; }
+        public ChartDataPoint setObservedTime(OffsetDateTime value) { this.ObservedTime = value; return this; }
         public String getNumericResultUnitCustomId() { return NumericResultUnitCustomId; }
         public ChartDataPoint setNumericResultUnitCustomId(String value) { this.NumericResultUnitCustomId = value; return this; }
         public Double getMdlValue() { return MdlValue; }
@@ -6939,8 +7008,8 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
@@ -6951,10 +7020,10 @@ public class ServiceModel
         public FieldTrip setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public FieldTrip setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public FieldTrip setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public FieldTrip setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public FieldTrip setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public FieldTrip setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public FieldTrip setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -6971,8 +7040,8 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public List<DomainObjectAttachment> Attachments = null;
@@ -6982,10 +7051,10 @@ public class ServiceModel
         public FieldTripBasic setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public FieldTripBasic setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public FieldTripBasic setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public FieldTripBasic setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public FieldTripBasic setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public FieldTripBasic setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public FieldTripBasic setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -7010,8 +7079,8 @@ public class ServiceModel
     public static class FieldVisit
     {
         public String Id = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public FieldTripSimple FieldTrip = null;
@@ -7023,14 +7092,15 @@ public class ServiceModel
         public List<DomainObjectAttachment> Attachments = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Schedule Schedule = null;
+        public SamplingPlan SamplingPlan = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public FieldVisit setId(String value) { this.Id = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public FieldVisit setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public FieldVisit setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public FieldVisit setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public FieldVisit setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public FieldVisit setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -7053,6 +7123,8 @@ public class ServiceModel
         public FieldVisit setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Schedule getSchedule() { return Schedule; }
         public FieldVisit setSchedule(Schedule value) { this.Schedule = value; return this; }
+        public SamplingPlan getSamplingPlan() { return SamplingPlan; }
+        public FieldVisit setSamplingPlan(SamplingPlan value) { this.SamplingPlan = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public FieldVisit setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -7060,8 +7132,8 @@ public class ServiceModel
     public static class FieldVisitSimple
     {
         public String Id = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public String Participants = null;
         public String Notes = null;
         public FieldTripSimple FieldTrip = null;
@@ -7071,10 +7143,10 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public FieldVisitSimple setId(String value) { this.Id = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public FieldVisitSimple setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public FieldVisitSimple setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public FieldVisitSimple setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public FieldVisitSimple setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public String getParticipants() { return Participants; }
         public FieldVisitSimple setParticipants(String value) { this.Participants = value; return this; }
         public String getNotes() { return Notes; }
@@ -7113,22 +7185,22 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
+        public OffsetDateTime StartTime = null;
 
         public String getId() { return Id; }
         public FieldVisitSummaryRepresentation setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public FieldVisitSummaryRepresentation setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public FieldVisitSummaryRepresentation setStartTime(Instant value) { this.StartTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public FieldVisitSummaryRepresentation setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
     }
 
     public static class Filter
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public List<ObservedProperty> ObservedProperties = null;
         public List<SamplingLocation> SamplingLocations = null;
         public String Description = null;
@@ -7138,10 +7210,10 @@ public class ServiceModel
         public Filter setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public Filter setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public Filter setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public Filter setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public Filter setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public Filter setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
         public Filter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
         public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
@@ -7188,7 +7260,7 @@ public class ServiceModel
     {
         public String Id = null;
         public ImportType ImportType = null;
-        public Instant ImportTime = null;
+        public OffsetDateTime ImportTime = null;
         public String FileName = null;
         public String TimeZoneOffset = null;
         public UserProfile ImportedBy = null;
@@ -7198,8 +7270,8 @@ public class ServiceModel
         public ImportHistoryEvent setId(String value) { this.Id = value; return this; }
         public ImportType getImportType() { return ImportType; }
         public ImportHistoryEvent setImportType(ImportType value) { this.ImportType = value; return this; }
-        public Instant getImportTime() { return ImportTime; }
-        public ImportHistoryEvent setImportTime(Instant value) { this.ImportTime = value; return this; }
+        public OffsetDateTime getImportTime() { return ImportTime; }
+        public ImportHistoryEvent setImportTime(OffsetDateTime value) { this.ImportTime = value; return this; }
         public String getFileName() { return FileName; }
         public ImportHistoryEvent setFileName(String value) { this.FileName = value; return this; }
         public String getTimeZoneOffset() { return TimeZoneOffset; }
@@ -7214,7 +7286,7 @@ public class ServiceModel
     {
         public String Id = null;
         public ImportType ImportType = null;
-        public Instant ImportTime = null;
+        public OffsetDateTime ImportTime = null;
         public String FileName = null;
         public String TimeZoneOffset = null;
         public UserProfile ImportedBy = null;
@@ -7223,8 +7295,8 @@ public class ServiceModel
         public ImportHistoryEventSimple setId(String value) { this.Id = value; return this; }
         public ImportType getImportType() { return ImportType; }
         public ImportHistoryEventSimple setImportType(ImportType value) { this.ImportType = value; return this; }
-        public Instant getImportTime() { return ImportTime; }
-        public ImportHistoryEventSimple setImportTime(Instant value) { this.ImportTime = value; return this; }
+        public OffsetDateTime getImportTime() { return ImportTime; }
+        public ImportHistoryEventSimple setImportTime(OffsetDateTime value) { this.ImportTime = value; return this; }
         public String getFileName() { return FileName; }
         public ImportHistoryEventSimple setFileName(String value) { this.FileName = value; return this; }
         public String getTimeZoneOffset() { return TimeZoneOffset; }
@@ -7814,7 +7886,7 @@ public class ServiceModel
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant DateReceived = null;
+        public OffsetDateTime DateReceived = null;
         public String CaseNarrative = null;
         public String QcSummary = null;
         public Laboratory Laboratory = null;
@@ -7826,8 +7898,8 @@ public class ServiceModel
         public LabReport setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public LabReport setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getDateReceived() { return DateReceived; }
-        public LabReport setDateReceived(Instant value) { this.DateReceived = value; return this; }
+        public OffsetDateTime getDateReceived() { return DateReceived; }
+        public LabReport setDateReceived(OffsetDateTime value) { this.DateReceived = value; return this; }
         public String getCaseNarrative() { return CaseNarrative; }
         public LabReport setCaseNarrative(String value) { this.CaseNarrative = value; return this; }
         public String getQcSummary() { return QcSummary; }
@@ -7859,10 +7931,10 @@ public class ServiceModel
         public Laboratory Laboratory = null;
         public String PreparationMethod = null;
         public String DilutionFactor = null;
-        public Instant DateReceived = null;
+        public OffsetDateTime DateReceived = null;
         public String AnalysisComment = null;
         public String QualityFlag = null;
-        public Instant DatePrepared = null;
+        public OffsetDateTime DatePrepared = null;
         public LabReport LabReport = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -7874,14 +7946,14 @@ public class ServiceModel
         public LabResultDetails setPreparationMethod(String value) { this.PreparationMethod = value; return this; }
         public String getDilutionFactor() { return DilutionFactor; }
         public LabResultDetails setDilutionFactor(String value) { this.DilutionFactor = value; return this; }
-        public Instant getDateReceived() { return DateReceived; }
-        public LabResultDetails setDateReceived(Instant value) { this.DateReceived = value; return this; }
+        public OffsetDateTime getDateReceived() { return DateReceived; }
+        public LabResultDetails setDateReceived(OffsetDateTime value) { this.DateReceived = value; return this; }
         public String getAnalysisComment() { return AnalysisComment; }
         public LabResultDetails setAnalysisComment(String value) { this.AnalysisComment = value; return this; }
         public String getQualityFlag() { return QualityFlag; }
         public LabResultDetails setQualityFlag(String value) { this.QualityFlag = value; return this; }
-        public Instant getDatePrepared() { return DatePrepared; }
-        public LabResultDetails setDatePrepared(Instant value) { this.DatePrepared = value; return this; }
+        public OffsetDateTime getDatePrepared() { return DatePrepared; }
+        public LabResultDetails setDatePrepared(OffsetDateTime value) { this.DatePrepared = value; return this; }
         public LabReport getLabReport() { return LabReport; }
         public LabResultDetails setLabReport(LabReport value) { this.LabReport = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -8140,8 +8212,8 @@ public class ServiceModel
         public DataClassificationType DataClassification = null;
         public Medium Medium = null;
         public String MediumSubdivision = null;
-        public Instant ObservedTime = null;
-        public Instant ResultTime = null;
+        public OffsetDateTime ObservedTime = null;
+        public OffsetDateTime ResultTime = null;
         public Quantity Depth = null;
         public LabInstruction LabInstruction = null;
         public LabResultDetails LabResultDetails = null;
@@ -8188,10 +8260,10 @@ public class ServiceModel
         public Observation setMedium(Medium value) { this.Medium = value; return this; }
         public String getMediumSubdivision() { return MediumSubdivision; }
         public Observation setMediumSubdivision(String value) { this.MediumSubdivision = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public Observation setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Instant getResultTime() { return ResultTime; }
-        public Observation setResultTime(Instant value) { this.ResultTime = value; return this; }
+        public OffsetDateTime getObservedTime() { return ObservedTime; }
+        public Observation setObservedTime(OffsetDateTime value) { this.ObservedTime = value; return this; }
+        public OffsetDateTime getResultTime() { return ResultTime; }
+        public Observation setResultTime(OffsetDateTime value) { this.ResultTime = value; return this; }
         public Quantity getDepth() { return Depth; }
         public Observation setDepth(Quantity value) { this.Depth = value; return this; }
         public LabInstruction getLabInstruction() { return LabInstruction; }
@@ -8276,8 +8348,8 @@ public class ServiceModel
     {
         public String Id = null;
         public ObservedProperty ObservedProperty = null;
-        public Instant ObservedTime = null;
-        public Instant ResultTime = null;
+        public OffsetDateTime ObservedTime = null;
+        public OffsetDateTime ResultTime = null;
         public SpecimenNestedInActivity Specimen = null;
         public NumericResult NumericResult = null;
         public CategoricalResult CategoricalResult = null;
@@ -8291,10 +8363,10 @@ public class ServiceModel
         public ObservationMinimal setId(String value) { this.Id = value; return this; }
         public ObservedProperty getObservedProperty() { return ObservedProperty; }
         public ObservationMinimal setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public ObservationMinimal setObservedTime(Instant value) { this.ObservedTime = value; return this; }
-        public Instant getResultTime() { return ResultTime; }
-        public ObservationMinimal setResultTime(Instant value) { this.ResultTime = value; return this; }
+        public OffsetDateTime getObservedTime() { return ObservedTime; }
+        public ObservationMinimal setObservedTime(OffsetDateTime value) { this.ObservedTime = value; return this; }
+        public OffsetDateTime getResultTime() { return ResultTime; }
+        public ObservationMinimal setResultTime(OffsetDateTime value) { this.ResultTime = value; return this; }
         public SpecimenNestedInActivity getSpecimen() { return Specimen; }
         public ObservationMinimal setSpecimen(SpecimenNestedInActivity value) { this.Specimen = value; return this; }
         public NumericResult getNumericResult() { return NumericResult; }
@@ -8321,7 +8393,7 @@ public class ServiceModel
         public LabInstruction LabInstruction = null;
         public NumericResult NumericResult = null;
         public DataClassificationType DataClassification = null;
-        public Instant ObservedTime = null;
+        public OffsetDateTime ObservedTime = null;
         public ResultStatus ResultStatus = null;
         public CategoricalResult CategoricalResult = null;
         public TaxonomicResult TaxonomicResult = null;
@@ -8338,8 +8410,8 @@ public class ServiceModel
         public ObservationNestedInSpecimen setNumericResult(NumericResult value) { this.NumericResult = value; return this; }
         public DataClassificationType getDataClassification() { return DataClassification; }
         public ObservationNestedInSpecimen setDataClassification(DataClassificationType value) { this.DataClassification = value; return this; }
-        public Instant getObservedTime() { return ObservedTime; }
-        public ObservationNestedInSpecimen setObservedTime(Instant value) { this.ObservedTime = value; return this; }
+        public OffsetDateTime getObservedTime() { return ObservedTime; }
+        public ObservationNestedInSpecimen setObservedTime(OffsetDateTime value) { this.ObservedTime = value; return this; }
         public ResultStatus getResultStatus() { return ResultStatus; }
         public ObservationNestedInSpecimen setResultStatus(ResultStatus value) { this.ResultStatus = value; return this; }
         public CategoricalResult getCategoricalResult() { return CategoricalResult; }
@@ -8550,8 +8622,8 @@ public class ServiceModel
         public String ScopeStatement = null;
         public Boolean Approved = null;
         public String ApprovalAgency = null;
-        public Instant StartTime = null;
-        public Instant EndTime = null;
+        public OffsetDateTime StartTime = null;
+        public OffsetDateTime EndTime = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
@@ -8570,10 +8642,10 @@ public class ServiceModel
         public Project setApproved(Boolean value) { this.Approved = value; return this; }
         public String getApprovalAgency() { return ApprovalAgency; }
         public Project setApprovalAgency(String value) { this.ApprovalAgency = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public Project setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public Project setEndTime(Instant value) { this.EndTime = value; return this; }
+        public OffsetDateTime getStartTime() { return StartTime; }
+        public Project setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
+        public OffsetDateTime getEndTime() { return EndTime; }
+        public Project setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public Project setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8856,19 +8928,94 @@ public class ServiceModel
         public SamplingLocationSummary setLatestFieldVisit(FieldVisitSummaryRepresentation value) { this.LatestFieldVisit = value; return this; }
     }
 
+    public static class SamplingPlan
+    {
+        public String Id = null;
+        public String CustomId = null;
+        public OffsetDateTime StartDate = null;
+        public OffsetDateTime EndDate = null;
+        public SamplingLocationGroup SamplingLocationGroup = null;
+        public SamplingLocationGroupSelectionType SamplingLocationGroupSelectionType = null;
+        public Integer SamplingLocationGroupSelectionTypeRandomCount = null;
+        public OffsetDateTime LastGenerationDate = null;
+        public List<SamplingPlanPlannedActivity> PlannedActivities = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public SamplingPlan setId(String value) { this.Id = value; return this; }
+        public String getCustomId() { return CustomId; }
+        public SamplingPlan setCustomId(String value) { this.CustomId = value; return this; }
+        public OffsetDateTime getStartDate() { return StartDate; }
+        public SamplingPlan setStartDate(OffsetDateTime value) { this.StartDate = value; return this; }
+        public OffsetDateTime getEndDate() { return EndDate; }
+        public SamplingPlan setEndDate(OffsetDateTime value) { this.EndDate = value; return this; }
+        public SamplingLocationGroup getSamplingLocationGroup() { return SamplingLocationGroup; }
+        public SamplingPlan setSamplingLocationGroup(SamplingLocationGroup value) { this.SamplingLocationGroup = value; return this; }
+        public SamplingLocationGroupSelectionType getSamplingLocationGroupSelectionType() { return SamplingLocationGroupSelectionType; }
+        public SamplingPlan setSamplingLocationGroupSelectionType(SamplingLocationGroupSelectionType value) { this.SamplingLocationGroupSelectionType = value; return this; }
+        public Integer getSamplingLocationGroupSelectionTypeRandomCount() { return SamplingLocationGroupSelectionTypeRandomCount; }
+        public SamplingPlan setSamplingLocationGroupSelectionTypeRandomCount(Integer value) { this.SamplingLocationGroupSelectionTypeRandomCount = value; return this; }
+        public OffsetDateTime getLastGenerationDate() { return LastGenerationDate; }
+        public SamplingPlan setLastGenerationDate(OffsetDateTime value) { this.LastGenerationDate = value; return this; }
+        public List<SamplingPlanPlannedActivity> getPlannedActivities() { return PlannedActivities; }
+        public SamplingPlan setPlannedActivities(List<SamplingPlanPlannedActivity> value) { this.PlannedActivities = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public SamplingPlan setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
+    public static class SamplingPlanPlannedActivity
+    {
+        public String Id = null;
+        public ActivityTemplate ActivityTemplate = null;
+        public String Instruction = null;
+        public ActivityType ActivityType = null;
+        public SamplingPlanPlannedActivityRecurrence Recurrence = null;
+        public AuditAttributes AuditAttributes = null;
+
+        public String getId() { return Id; }
+        public SamplingPlanPlannedActivity setId(String value) { this.Id = value; return this; }
+        public ActivityTemplate getActivityTemplate() { return ActivityTemplate; }
+        public SamplingPlanPlannedActivity setActivityTemplate(ActivityTemplate value) { this.ActivityTemplate = value; return this; }
+        public String getInstruction() { return Instruction; }
+        public SamplingPlanPlannedActivity setInstruction(String value) { this.Instruction = value; return this; }
+        public ActivityType getActivityType() { return ActivityType; }
+        public SamplingPlanPlannedActivity setActivityType(ActivityType value) { this.ActivityType = value; return this; }
+        public SamplingPlanPlannedActivityRecurrence getRecurrence() { return Recurrence; }
+        public SamplingPlanPlannedActivity setRecurrence(SamplingPlanPlannedActivityRecurrence value) { this.Recurrence = value; return this; }
+        public AuditAttributes getAuditAttributes() { return AuditAttributes; }
+        public SamplingPlanPlannedActivity setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
+    }
+
+    public static class SamplingPlanPlannedActivityRecurrence
+    {
+        public RecurrenceFrequencyType RecurrenceFrequency = null;
+        public DayOfWeekType DayOfWeek = null;
+        public List<String> MonthsOfYear = null;
+        public TemporalExpressionType TemporalExpression = null;
+
+        public RecurrenceFrequencyType getRecurrenceFrequency() { return RecurrenceFrequency; }
+        public SamplingPlanPlannedActivityRecurrence setRecurrenceFrequency(RecurrenceFrequencyType value) { this.RecurrenceFrequency = value; return this; }
+        public DayOfWeekType getDayOfWeek() { return DayOfWeek; }
+        public SamplingPlanPlannedActivityRecurrence setDayOfWeek(DayOfWeekType value) { this.DayOfWeek = value; return this; }
+        public List<String> getMonthsOfYear() { return MonthsOfYear; }
+        public SamplingPlanPlannedActivityRecurrence setMonthsOfYear(List<String> value) { this.MonthsOfYear = value; return this; }
+        public TemporalExpressionType getTemporalExpression() { return TemporalExpression; }
+        public SamplingPlanPlannedActivityRecurrence setTemporalExpression(TemporalExpressionType value) { this.TemporalExpression = value; return this; }
+    }
+
     public static class Schedule
     {
         public String Id = null;
         public String CustomId = null;
-        public Instant StartDate = null;
-        public Instant EndDate = null;
+        public OffsetDateTime StartDate = null;
+        public OffsetDateTime EndDate = null;
         public RecurrenceType RecurrenceType = null;
         public RecurrenceDayWeeklyType RecurrenceDayWeekly = null;
         public RecurrenceDayMonthlyType RecurrenceDayMonthly = null;
         public SamplingLocationGroup SamplingLocationGroup = null;
         public SamplingLocationGroupSelectionType SamplingLocationGroupSelectionType = null;
         public Integer SamplingLocationGroupSelectionTypeRandomCount = null;
-        public Instant LastGenerationDate = null;
+        public OffsetDateTime LastGenerationDate = null;
         public List<SchedulePlannedActivity> SchedulePlannedActivities = null;
         public AuditAttributes AuditAttributes = null;
 
@@ -8876,10 +9023,10 @@ public class ServiceModel
         public Schedule setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
         public Schedule setCustomId(String value) { this.CustomId = value; return this; }
-        public Instant getStartDate() { return StartDate; }
-        public Schedule setStartDate(Instant value) { this.StartDate = value; return this; }
-        public Instant getEndDate() { return EndDate; }
-        public Schedule setEndDate(Instant value) { this.EndDate = value; return this; }
+        public OffsetDateTime getStartDate() { return StartDate; }
+        public Schedule setStartDate(OffsetDateTime value) { this.StartDate = value; return this; }
+        public OffsetDateTime getEndDate() { return EndDate; }
+        public Schedule setEndDate(OffsetDateTime value) { this.EndDate = value; return this; }
         public RecurrenceType getRecurrenceType() { return RecurrenceType; }
         public Schedule setRecurrenceType(RecurrenceType value) { this.RecurrenceType = value; return this; }
         public RecurrenceDayWeeklyType getRecurrenceDayWeekly() { return RecurrenceDayWeekly; }
@@ -8892,8 +9039,8 @@ public class ServiceModel
         public Schedule setSamplingLocationGroupSelectionType(SamplingLocationGroupSelectionType value) { this.SamplingLocationGroupSelectionType = value; return this; }
         public Integer getSamplingLocationGroupSelectionTypeRandomCount() { return SamplingLocationGroupSelectionTypeRandomCount; }
         public Schedule setSamplingLocationGroupSelectionTypeRandomCount(Integer value) { this.SamplingLocationGroupSelectionTypeRandomCount = value; return this; }
-        public Instant getLastGenerationDate() { return LastGenerationDate; }
-        public Schedule setLastGenerationDate(Instant value) { this.LastGenerationDate = value; return this; }
+        public OffsetDateTime getLastGenerationDate() { return LastGenerationDate; }
+        public Schedule setLastGenerationDate(OffsetDateTime value) { this.LastGenerationDate = value; return this; }
         public List<SchedulePlannedActivity> getSchedulePlannedActivities() { return SchedulePlannedActivities; }
         public Schedule setSchedulePlannedActivities(List<SchedulePlannedActivity> value) { this.SchedulePlannedActivities = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -10031,7 +10178,6 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public UserProfile UserProfile = null;
-        public String ProviderId = null;
         public String Email = null;
         public UserType UserType = null;
         public List<String> Roles = null;
@@ -10043,8 +10189,6 @@ public class ServiceModel
         public User setCustomId(String value) { this.CustomId = value; return this; }
         public UserProfile getUserProfile() { return UserProfile; }
         public User setUserProfile(UserProfile value) { this.UserProfile = value; return this; }
-        public String getProviderId() { return ProviderId; }
-        public User setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
         public User setEmail(String value) { this.Email = value; return this; }
         public UserType getUserType() { return UserType; }
@@ -10058,7 +10202,6 @@ public class ServiceModel
     public static class UserProfile
     {
         public String Id = null;
-        public String ProviderId = null;
         public String Email = null;
         public String FirstName = null;
         public String LastName = null;
@@ -10068,8 +10211,6 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public UserProfile setId(String value) { this.Id = value; return this; }
-        public String getProviderId() { return ProviderId; }
-        public UserProfile setProviderId(String value) { this.ProviderId = value; return this; }
         public String getEmail() { return Email; }
         public UserProfile setEmail(String value) { this.Email = value; return this; }
         public String getFirstName() { return FirstName; }
@@ -10091,6 +10232,7 @@ public class ServiceModel
         REPLICATE,
         BLANK,
         SPIKE,
+        OTHER_QC,
         FIELD_SURVEY,
         INDEX_CALCULATION,
         NONE
@@ -10103,6 +10245,7 @@ public class ServiceModel
         REPLICATE,
         BLANK,
         SPIKE,
+        OTHER_QC,
         FIELD_SURVEY,
         INDEX_CALCULATION,
         NONE
@@ -10115,6 +10258,7 @@ public class ServiceModel
         REPLICATE,
         BLANK,
         SPIKE,
+        OTHER_QC,
         FIELD_SURVEY,
         INDEX_CALCULATION,
         NONE
@@ -10177,6 +10321,17 @@ public class ServiceModel
         TEXT,
         NUMBER,
         DROP_DOWN_LIST
+    }
+
+    public static enum DayOfWeekType
+    {
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY,
+        SUNDAY
     }
 
     public static enum DeterminationType
@@ -10292,6 +10447,7 @@ public class ServiceModel
         REPLICATE,
         BLANK,
         SPIKE,
+        OTHER_QC,
         FIELD_SURVEY,
         INDEX_CALCULATION,
         NONE
@@ -10334,7 +10490,8 @@ public class ServiceModel
         NORMAL,
         REPLICATE,
         BLANK,
-        SPIKE
+        SPIKE,
+        OTHER_QC
     }
 
     public static enum RecurrenceDayMonthlyType
@@ -10354,9 +10511,17 @@ public class ServiceModel
         SUNDAY
     }
 
+    public static enum RecurrenceFrequencyType
+    {
+        WEEKLY,
+        BI_WEEKLY,
+        MONTHLY
+    }
+
     public static enum RecurrenceType
     {
         WEEKLY,
+        BI_WEEKLY,
         MONTHLY
     }
 
@@ -10411,6 +10576,17 @@ public class ServiceModel
         OBSERVATION_EXPORT
     }
 
+    public static enum TemporalExpressionType
+    {
+        FIRST_WEEK_OF_MONTH,
+        SECOND_WEEK_OF_MONTH,
+        THIRD_WEEK_OF_MONTH,
+        FORTH_WEEK_OF_MONTH,
+        LAST_WEEK_OF_MONTH,
+        FIRST_DAY_OF_MONTH,
+        LAST_DAY_OF_MONTH
+    }
+
     public static enum UnitGroupSystemCodeType
     {
         LENGTH
@@ -10424,6 +10600,7 @@ public class ServiceModel
     public static enum UserType
     {
         INTERNAL,
-        EXTERNAL
+        EXTERNAL,
+        SYSTEM
     }
 }
