@@ -42,6 +42,8 @@ public class InstantDeserializerTest {
                 new Object[]{"Xmas 2016 UTC", "2016-12-25T00:00:00.123Z", Instant.parse("2016-12-25T00:00:00.123Z")},
                 new Object[]{"Xmas 2016 UTC - 3 fractional second digits", "2016-12-25T00:00:00.123Z", Instant.parse("2016-12-25T00:00:00.123Z")},
                 new Object[]{"Xmas 2017 PST", "2017-12-25T00:00:00.123-07:00", Instant.parse("2017-12-25T07:00:00.123Z")},
+                new Object[]{"Xmas 2017 with aggressively negative UTC offset", "2017-12-25T00:00:00.123-17:00", Instant.parse("2017-12-25T17:00:00.123Z")},
+                new Object[]{"Xmas 2015 with aggressively positive UTC offset", "2015-12-25T00:00:00.123+18:00", Instant.parse("2015-12-24T06:00:00.123Z")},
                 new Object[]{"MaxConcreteValue", InstantDeserializer.JsonMaxConcreteValue, InstantDeserializer.MaxConcreteValue},
                 new Object[]{"MinConcreteValue", InstantDeserializer.JsonMinConcreteValue, InstantDeserializer.MinConcreteValue},
                 new Object[]{"MaxValue", InstantDeserializer.JsonMaxValue, InstantDeserializer.MaxValue},
