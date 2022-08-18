@@ -1,6 +1,6 @@
-// Date: 2022-01-06T12:45:53.0532120-08:00
+// Date: 2022-08-18T14:29:39.0766565-07:00
 // Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2021.08.9990)
+// Source: AQUARIUS Samples API (2022.06.5160)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2021.08.9990");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2022.06.5160");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -398,8 +398,14 @@ public class ServiceModel
     @Route(Path="/v1/activitytemplates", Verbs="GET")
     public static class GetActivityTemplates implements IReturn<SearchResultActivityTemplate>
     {
+        public Integer Limit = null;
+        public List<String> Search = null;
         public List<String> Type = null;
 
+        public Integer getLimit() { return Limit; }
+        public GetActivityTemplates setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetActivityTemplates setSearch(List<String> value) { this.Search = value; return this; }
         public List<String> getType() { return Type; }
         public GetActivityTemplates setType(List<String> value) { this.Type = value; return this; }
         private static Object responseType = SearchResultActivityTemplate.class;
@@ -511,12 +517,18 @@ public class ServiceModel
     public static class GetAnalysisMethods implements IReturn<SearchResultAnalysisMethod>
     {
         public String Context = null;
+        public Integer Limit = null;
         public List<String> ObservedPropertyIds = null;
+        public List<String> Search = null;
 
         public String getContext() { return Context; }
         public GetAnalysisMethods setContext(String value) { this.Context = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetAnalysisMethods setLimit(Integer value) { this.Limit = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetAnalysisMethods setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetAnalysisMethods setSearch(List<String> value) { this.Search = value; return this; }
         private static Object responseType = SearchResultAnalysisMethod.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -620,12 +632,18 @@ public class ServiceModel
     public static class GetAnalyticalGroups implements IReturn<SearchResultAnalyticalGroup>
     {
         public List<String> AnalyticalGroupTypes = null;
+        public Integer Limit = null;
         public List<String> ObservedPropertyIds = null;
+        public List<String> Search = null;
 
         public List<String> getAnalyticalGroupTypes() { return AnalyticalGroupTypes; }
         public GetAnalyticalGroups setAnalyticalGroupTypes(List<String> value) { this.AnalyticalGroupTypes = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetAnalyticalGroups setLimit(Integer value) { this.Limit = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetAnalyticalGroups setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetAnalyticalGroups setSearch(List<String> value) { this.Search = value; return this; }
         private static Object responseType = SearchResultAnalyticalGroup.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -1723,12 +1741,18 @@ public class ServiceModel
     public static class GetLabAnalysisMethods implements IReturn<SearchResultAnalysisMethod>
     {
         public String Context = null;
+        public Integer Limit = null;
         public List<String> ObservedPropertyIds = null;
+        public List<String> Search = null;
 
         public String getContext() { return Context; }
         public GetLabAnalysisMethods setContext(String value) { this.Context = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetLabAnalysisMethods setLimit(Integer value) { this.Limit = value; return this; }
         public List<String> getObservedPropertyIds() { return ObservedPropertyIds; }
         public GetLabAnalysisMethods setObservedPropertyIds(List<String> value) { this.ObservedPropertyIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetLabAnalysisMethods setSearch(List<String> value) { this.Search = value; return this; }
         private static Object responseType = SearchResultAnalysisMethod.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -3104,6 +3128,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -3162,6 +3188,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -3201,6 +3229,8 @@ public class ServiceModel
         public GetExportObservations setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public GetExportObservations setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public GetExportObservations setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetExportObservations setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -3259,6 +3289,8 @@ public class ServiceModel
         public GetExportObservations setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public GetExportObservations setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public GetExportObservations setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public GetExportObservations setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -3322,6 +3354,7 @@ public class ServiceModel
         public List<String> ProjectIds = null;
         public List<String> SamplingLocationGroupIds = null;
         public List<String> SamplingLocationIds = null;
+        public List<String> SamplingPlanIds = null;
         public List<String> Search = null;
         public String Sort = null;
         public List<String> SpecimenStatuses = null;
@@ -3355,6 +3388,8 @@ public class ServiceModel
         public GetExportSpecimens setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
         public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
         public GetExportSpecimens setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
+        public List<String> getSamplingPlanIds() { return SamplingPlanIds; }
+        public GetExportSpecimens setSamplingPlanIds(List<String> value) { this.SamplingPlanIds = value; return this; }
         public List<String> getSearch() { return Search; }
         public GetExportSpecimens setSearch(List<String> value) { this.Search = value; return this; }
         public String getSort() { return Sort; }
@@ -3639,6 +3674,7 @@ public class ServiceModel
         public List<String> ProjectIds = null;
         public List<String> SamplingLocationGroupIds = null;
         public List<String> SamplingLocationIds = null;
+        public List<String> SamplingPlanIds = null;
         public List<String> Search = null;
         public String Sort = null;
         public List<String> SpecimenStatuses = null;
@@ -3672,6 +3708,8 @@ public class ServiceModel
         public GetSpecimens setSamplingLocationGroupIds(List<String> value) { this.SamplingLocationGroupIds = value; return this; }
         public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
         public GetSpecimens setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
+        public List<String> getSamplingPlanIds() { return SamplingPlanIds; }
+        public GetSpecimens setSamplingPlanIds(List<String> value) { this.SamplingPlanIds = value; return this; }
         public List<String> getSearch() { return Search; }
         public GetSpecimens setSearch(List<String> value) { this.Search = value; return this; }
         public String getSort() { return Sort; }
@@ -4164,10 +4202,16 @@ public class ServiceModel
     @Route(Path="/v1/taxons", Verbs="GET")
     public static class GetTaxons implements IReturn<SearchResultTaxon>
     {
+        public Integer Limit = null;
         public String ScientificName = null;
+        public List<String> Search = null;
 
+        public Integer getLimit() { return Limit; }
+        public GetTaxons setLimit(Integer value) { this.Limit = value; return this; }
         public String getScientificName() { return ScientificName; }
         public GetTaxons setScientificName(String value) { this.ScientificName = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetTaxons setSearch(List<String> value) { this.Search = value; return this; }
         private static Object responseType = SearchResultTaxon.class;
         public Object getResponseType() {{ return responseType; }}
     }
@@ -4302,10 +4346,16 @@ public class ServiceModel
     public static class GetUnitGroups implements IReturn<SearchResultUnitGroup>
     {
         public String CustomId = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
         public GetUnitGroupsSystemCodeType SystemCode = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnitGroups setCustomId(String value) { this.CustomId = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetUnitGroups setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetUnitGroups setSearch(List<String> value) { this.Search = value; return this; }
         public GetUnitGroupsSystemCodeType getSystemCode() { return SystemCode; }
         public GetUnitGroups setSystemCode(GetUnitGroupsSystemCodeType value) { this.SystemCode = value; return this; }
         private static Object responseType = SearchResultUnitGroup.class;
@@ -4393,10 +4443,16 @@ public class ServiceModel
     public static class GetUnitGroupWithUnits implements IReturn<SearchResultUnitGroupWithUnits>
     {
         public String CustomId = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
         public GetUnitGroupWithUnitsSystemCodeType SystemCode = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnitGroupWithUnits setCustomId(String value) { this.CustomId = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetUnitGroupWithUnits setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetUnitGroupWithUnits setSearch(List<String> value) { this.Search = value; return this; }
         public GetUnitGroupWithUnitsSystemCodeType getSystemCode() { return SystemCode; }
         public GetUnitGroupWithUnits setSystemCode(GetUnitGroupWithUnitsSystemCodeType value) { this.SystemCode = value; return this; }
         private static Object responseType = SearchResultUnitGroupWithUnits.class;
@@ -4755,6 +4811,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -4813,6 +4871,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -4850,6 +4910,8 @@ public class ServiceModel
         public GetObservationsV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public GetObservationsV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public GetObservationsV2 setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetObservationsV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -4908,6 +4970,8 @@ public class ServiceModel
         public GetObservationsV2 setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public GetObservationsV2 setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public GetObservationsV2 setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public GetObservationsV2 setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -4953,6 +5017,7 @@ public class ServiceModel
         public PlannedFieldResult PlannedFieldResult = null;
         public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
+        public OffsetDateTime LastReindexTime = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
@@ -5017,6 +5082,8 @@ public class ServiceModel
         public PostObservationV2 setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public PostObservationV2 setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
+        public OffsetDateTime getLastReindexTime() { return LastReindexTime; }
+        public PostObservationV2 setLastReindexTime(OffsetDateTime value) { this.LastReindexTime = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PostObservationV2 setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
@@ -5059,6 +5126,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5117,6 +5186,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -5154,6 +5225,8 @@ public class ServiceModel
         public DeleteObservationsV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public DeleteObservationsV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public DeleteObservationsV2 setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public DeleteObservationsV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -5212,6 +5285,8 @@ public class ServiceModel
         public DeleteObservationsV2 setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public DeleteObservationsV2 setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public DeleteObservationsV2 setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public DeleteObservationsV2 setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -5266,6 +5341,7 @@ public class ServiceModel
         public PlannedFieldResult PlannedFieldResult = null;
         public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
+        public OffsetDateTime LastReindexTime = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
@@ -5330,6 +5406,8 @@ public class ServiceModel
         public PutObservationV2 setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public PutObservationV2 setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
+        public OffsetDateTime getLastReindexTime() { return LastReindexTime; }
+        public PutObservationV2 setLastReindexTime(OffsetDateTime value) { this.LastReindexTime = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PutObservationV2 setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
@@ -5392,6 +5470,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5450,6 +5530,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -5487,6 +5569,8 @@ public class ServiceModel
         public GetChartDataV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public GetChartDataV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public GetChartDataV2 setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetChartDataV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -5545,6 +5629,8 @@ public class ServiceModel
         public GetChartDataV2 setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public GetChartDataV2 setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public GetChartDataV2 setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public GetChartDataV2 setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -5589,6 +5675,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5647,6 +5735,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -5684,6 +5774,8 @@ public class ServiceModel
         public GetGroupedObservationsV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public GetGroupedObservationsV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public GetGroupedObservationsV2 setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetGroupedObservationsV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -5742,6 +5834,8 @@ public class ServiceModel
         public GetGroupedObservationsV2 setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public GetGroupedObservationsV2 setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public GetGroupedObservationsV2 setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public GetGroupedObservationsV2 setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -5788,6 +5882,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -5846,6 +5942,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -5885,6 +5983,8 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public PutBulkEditResultGradesV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public PutBulkEditResultGradesV2 setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public PutBulkEditResultGradesV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -5943,6 +6043,8 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public PutBulkEditResultGradesV2 setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public PutBulkEditResultGradesV2 setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public PutBulkEditResultGradesV2 setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -5987,6 +6089,8 @@ public class ServiceModel
         public Double DepthValue = null;
         @DataMember(Name = "detectionCondition")
         public String DetectionCondition = null;
+        @DataMember(Name = "end-lastReindexTime")
+        public Instant EndLastReindexTime = null;
         @DataMember(Name = "end-observedTime")
         public Instant EndObservedTime = null;
         @DataMember(Name = "end-resultTime")
@@ -6045,6 +6149,8 @@ public class ServiceModel
         public List<String> SpecimenIds = null;
         @DataMember(Name = "specimenName")
         public String SpecimenName = null;
+        @DataMember(Name = "start-lastReindexTime")
+        public Instant StartLastReindexTime = null;
         @DataMember(Name = "start-observedTime")
         public Instant StartObservedTime = null;
         @DataMember(Name = "start-resultTime")
@@ -6084,6 +6190,8 @@ public class ServiceModel
         public GetObservationExportIIV2 setDepthValue(Double value) { this.DepthValue = value; return this; }
         public String getDetectionCondition() { return DetectionCondition; }
         public GetObservationExportIIV2 setDetectionCondition(String value) { this.DetectionCondition = value; return this; }
+        public Instant getEndLastReindexTime() { return EndLastReindexTime; }
+        public GetObservationExportIIV2 setEndLastReindexTime(Instant value) { this.EndLastReindexTime = value; return this; }
         public Instant getEndObservedTime() { return EndObservedTime; }
         public GetObservationExportIIV2 setEndObservedTime(Instant value) { this.EndObservedTime = value; return this; }
         public Instant getEndResultTime() { return EndResultTime; }
@@ -6142,6 +6250,8 @@ public class ServiceModel
         public GetObservationExportIIV2 setSpecimenIds(List<String> value) { this.SpecimenIds = value; return this; }
         public String getSpecimenName() { return SpecimenName; }
         public GetObservationExportIIV2 setSpecimenName(String value) { this.SpecimenName = value; return this; }
+        public Instant getStartLastReindexTime() { return StartLastReindexTime; }
+        public GetObservationExportIIV2 setStartLastReindexTime(Instant value) { this.StartLastReindexTime = value; return this; }
         public Instant getStartObservedTime() { return StartObservedTime; }
         public GetObservationExportIIV2 setStartObservedTime(Instant value) { this.StartObservedTime = value; return this; }
         public Instant getStartResultTime() { return StartResultTime; }
@@ -8228,6 +8338,7 @@ public class ServiceModel
         public PlannedFieldResult PlannedFieldResult = null;
         public ObservationStatistics Statistics = null;
         public Taxon RelatedTaxon = null;
+        public OffsetDateTime LastReindexTime = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public NullMeasureQualifier NullMeasureQualifier = null;
         public AuditAttributes AuditAttributes = null;
@@ -8292,6 +8403,8 @@ public class ServiceModel
         public Observation setStatistics(ObservationStatistics value) { this.Statistics = value; return this; }
         public Taxon getRelatedTaxon() { return RelatedTaxon; }
         public Observation setRelatedTaxon(Taxon value) { this.RelatedTaxon = value; return this; }
+        public OffsetDateTime getLastReindexTime() { return LastReindexTime; }
+        public Observation setLastReindexTime(OffsetDateTime value) { this.LastReindexTime = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public Observation setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public NullMeasureQualifier getNullMeasureQualifier() { return NullMeasureQualifier; }
@@ -10578,11 +10691,11 @@ public class ServiceModel
 
     public static enum TemporalExpressionType
     {
-        FIRST_WEEK_OF_MONTH,
-        SECOND_WEEK_OF_MONTH,
-        THIRD_WEEK_OF_MONTH,
-        FORTH_WEEK_OF_MONTH,
-        LAST_WEEK_OF_MONTH,
+        FIRST,
+        SECOND,
+        THIRD,
+        FOURTH,
+        LAST,
         FIRST_DAY_OF_MONTH,
         LAST_DAY_OF_MONTH
     }

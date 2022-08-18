@@ -4,6 +4,14 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 22.2.0
+- Updated the service models for the AQUARIUS Time-Series 2022.2 release.
+- Updated the service models for the AQUARIUS Samples 2022.06 release.
+
+### 22.1.0
+- Updated the service models for the AQUARIUS Time-Series 2022.1 release.
+- Updated the service models for the AQUARIUS Samples 2022.03 release.
+
 ### 21.4.0
 - Updated the service models for the AQUARIUS Time-Series 2021.4 release.
 - Updated the service models for the AQUARIUS Samples 2021.08 release.
