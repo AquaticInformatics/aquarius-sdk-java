@@ -17,7 +17,7 @@ public class SdkServiceClientTest {
 
     @Test
     public void removeUnescapedQuotesTest() {
-        SdkServiceClient client = SdkServiceClient.Create("", "", null, null);
+        SdkServiceClient client = SdkServiceClient.Create("https://localhost", "", null, null);
         String case_1 = "\"Test\"";
         String expected_1 = "Test";
         String case_2 = "\\\"Test\\\"";
