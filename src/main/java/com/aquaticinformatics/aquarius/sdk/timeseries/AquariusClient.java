@@ -42,6 +42,14 @@ public class AquariusClient implements AutoCloseable {
         return client;
     }
 
+    public static AquariusClient createConnectedClient(String hostname, String accessToken) {
+        AquariusClient client = new AquariusClient(hostname);
+
+        client.connect(accessToken);
+
+        return client;
+    }
+
     private final Map<Object,Type> _typeAdapters;
     private final IFieldNamer _fieldNamer;
 
@@ -109,6 +117,12 @@ public class AquariusClient implements AutoCloseable {
         Provisioning.setAuthenticationToken(sessionToken);
         Publish.setAuthenticationToken(sessionToken);
         Acquisition.setAuthenticationToken(sessionToken);
+    }
+
+    private void connect(AquariusClient this, String accessToken) {
+        this.Acquisition.setBearerToken(accessToken);
+        this.Provisioning.setBearerToken(accessToken);
+        this.Publish.setBearerToken(accessToken);
     }
 
     private String getEncryptedPassword(String plaintextPassword) {
