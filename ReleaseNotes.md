@@ -4,6 +4,9 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 25.1.0
+- Updated the service models for the AQUARIUS Time-Series 2025.1 Update 1 (2025.1.172) release.
+
 ### 23.2.0
 - Updated the service models for the AQUARIUS Time-Series 2023.2 release.
 - Added support for authenticating with AQUARIUS Time-Series using an existing OpenID Connect Access token
