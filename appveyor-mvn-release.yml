@@ -25,6 +25,7 @@ environment:
   SEC_KEY_FILE_GPG: $(USERPROFILE)\OpenSourceAquatics.secret.gpg.asc
   VERSION_INFO_PATH: src\main\java\com\aquaticinformatics\aquarius\sdk\helpers\SdkServiceClient.java
   VERSION_INFO_TARGET: <<VERSION_PLACEHOLDER>>
+  IS_DEBUG: false
   
   GITHUB_AUTH_TOKEN:
     secure: a+daW6wCxNjiC19/k6jLSgweptfO1hx8779M6wDFPaEA/Hg14D6jVqMBw/mO27Sq
@@ -81,6 +82,10 @@ install:
 build: off
 
 build_script:
+  - ps: |
+      if ($env:IS_DEBUG -eq $true) {
+        Start-Sleep -Seconds 1800
+      }
   - ps: (Get-Content "$env:VERSION_INFO_PATH").replace("$env:VERSION_INFO_TARGET", "$env:APPVEYOR_BUILD_VERSION") | Set-Content "$env:VERSION_INFO_PATH"
   - mvn -B site site:stage deploy -P release -Drevision=%APPVEYOR_BUILD_VERSION%
 
