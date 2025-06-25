@@ -38,16 +38,16 @@ environment:
 
   # Salts for the four files
   secret_gpg_salt:
-    secure: yq6M5dkg9P+cWMtxImifnCaEHldP+cOTDck36ZlhAfzi/DNim+qBcTSWxqe5f+01o/MabPIgYCSmovMtq3pIrQ==
+    secure: N9gziyRZ6NqfJgiGswcfGgjL/SG3jI1GKsWK4Fg++mkYlBnF0RfWhj2LVM9fpa2lmuDqCeq565//XLCKlGFqzg==
 
   public_gpg_salt:
-    secure: O5dxhKa5BSEFJAYTik1ks3ySa7+hvlpCm3ynpM2EuCBw3L7m0jHjQIz+8DEJqqW8XLdJOIGyPaPT1ltsANjoSQ==
+    secure: rV8LXNikjKy9mDMm5YQHtwPupfLzlyhe1D3tKqBS/xFk/U7bNs5Qrf0ny0cD5Sz6II8VrG7MBuadkO/3XGufvg==
 
   settings_security_salt:
-    secure: sySHgw4ePSGy2G+bGt3doynMPHsuYzh6lFa3HO1b4eoZoDXT3XOJ8LOEMrlVerht6JiYUnTfVIfol30RbZLxgw==
+    secure: eZe67HFT8xVW7DDKpwSe67AM4TOFJVRdxG5I1iHpfOTBF3ZWnP0abNIby76uGaKiQJeWlDw7b1OfEl2+klXHPg==
 
   settings_salt:
-    secure: v/x5zagMZMs+vt9WUq4vc8Jh8t3unAjSIalDixq32cFbQG3Qg49P7kuiGG6EtzLrPyc/yrTONwiEPZAAOe2VhA==
+    secure: XOe2jr+TkZbKpcWUkhn9tAlQiXbR47vid+9GuNsiAbfkUfN2J0JntYOVvjQmiESdrknTVnaIiRKhaCcua614/g==
 
 
 install:
