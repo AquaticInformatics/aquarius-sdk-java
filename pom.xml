@@ -1,18 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
-  <packaging>jar</packaging>
   <version>${revision}</version>
+  <packaging>jar</packaging>
 
   <name>aquarius-sdk-java</name>
   <description>The Java SDK for the AQUARIUS Platform</description>
   <url>https://github.com/AquaticInformatics/aquarius-sdk-java</url>
 
+  <organization>
+    <name>Aquatic Informatics Inc.</name>
+    <url>https://aquaticinformatics.com/</url>
+  </organization>
+
   <issueManagement>
-    <url>https://github.com/AquaticInformatics/aquarius-sdk-java/issues</url>
     <system>GitHub Issues</system>
+    <url>https://github.com/AquaticInformatics/aquarius-sdk-java/issues</url>
   </issueManagement>
 
   <licenses>
@@ -23,9 +29,9 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/AquaticInformatics/aquarius-sdk-java</url>
     <connection>scm:git:git://github.com/AquaticInformatics/aquarius-sdk-java.git</connection>
     <developerConnection>scm:git:git@github.com:AquaticInformatics/aquarius-sdk-java.git</developerConnection>
+    <url>https://github.com/AquaticInformatics/aquarius-sdk-java</url>
   </scm>
 
   <developers>
@@ -37,29 +43,21 @@
     </developer>
   </developers>
 
+  <properties>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <revision>1.0.0-SNAPSHOT</revision>
+  </properties>
+
   <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
     <!-- We aren't publishing anything to a GitHub Pages site yet -->
     <site>
       <id>sites</id>
       <name>aquarius-sdk-java Site</name>
-      <url>http://AquaticInformatics.github.io/aquarius-sdk-java/</url>
+      <url>https://AquaticInformatics.github.io/aquarius-sdk-java/</url>
     </site>
   </distributionManagement>
 
-  <properties>
-    <java.version>1.8</java.version>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <revision>1.0.0-SNAPSHOT</revision>
-  </properties>
-	
   <dependencies>
     <dependency>
       <groupId>net.servicestack</groupId>
@@ -92,6 +90,7 @@
   
   <build>
     <plugins>
+      <!-- Compile source with javac -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -101,19 +100,36 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
+
+      <!-- Supply project site documentation -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.9</version>
+        <version>3.9.0</version>
       </plugin>
+
+      <!-- Bundles source, dependencies, modules, and site documentation into single assembly-->
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.7.1</version>
         <configuration>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
         </configuration>
       </plugin>
+
+      <!-- Central Publisher Portal service  -->
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.8.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <centralBaseUrl>https://central.sontatype.com</centralBaseUrl>
+          <publishingServerId>central</publishingServerId>
+        </configuration>
+        </plugin>
     </plugins>
   </build>
 
@@ -137,34 +153,26 @@
                 </goals>
                 <configuration>
                   <useAgent>false</useAgent>
+                  <passphraseServerId>gpg.passphrase</passphraseServerId>
                 </configuration>
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.7</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
         </plugins>
       </build>
     </profile>
+    
     <!-- Build and Release to Maven Central -->
     <!-- Publish Site to GitHub -->
     <profile>
       <id>release</id>
       <build>
         <plugins>
+          <!-- Binds jar archive creation to lifecycle -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
-            <version>2.2.1</version>
+            <version>3.3.1</version>
             <executions>
               <execution>
                 <id>attach-sources</id>
@@ -174,10 +182,12 @@
               </execution>
             </executions>
           </plugin>
+          
+          <!-- Generates docs and packages for distribution -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.9.1</version>
+            <version>3.11.2</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -187,6 +197,7 @@
               </execution>
             </executions>
           </plugin>
+          
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
@@ -200,24 +211,13 @@
                 </goals>
                 <configuration>
                   <useAgent>false</useAgent>
+                  <passphraseServerId>gpg.passphrase</passphraseServerId>
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.7</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-  
 </project>
