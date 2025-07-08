@@ -6,7 +6,7 @@ The SDK is built on AppVeyor and deployed to the Maven Central repositories.
 
 The AppVeyor build jobs perform all the code signing and deployment to the Maven repositories.
 
-There are GPG key signatures and OSSRH account credentials stored in encrypted formats in the `build\Maven` subfolder.
+There are GPG key signatures and Central Publisher Portal service account credentials stored in encrypted formats in the `build\Maven` subfolder.
 Only authorized developers can update and change these credentials.
 
 ## AppVeyor projects
