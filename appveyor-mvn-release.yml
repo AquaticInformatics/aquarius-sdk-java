@@ -87,7 +87,7 @@ build_script:
         Start-Sleep -Seconds 1800
       }
   - ps: (Get-Content "$env:VERSION_INFO_PATH").replace("$env:VERSION_INFO_TARGET", "$env:APPVEYOR_BUILD_VERSION") | Set-Content "$env:VERSION_INFO_PATH"
-  - mvn -B site site:stage deploy -P release -Drevision=%APPVEYOR_BUILD_VERSION%
+  - mvn -B site site:stage deploy -P release
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
