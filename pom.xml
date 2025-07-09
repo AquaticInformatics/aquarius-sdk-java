@@ -4,7 +4,7 @@
   
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
-  <version>${revision}</version>
+  <version>25.1.0</version>
   <packaging>jar</packaging>
 
   <name>aquarius-sdk-java</name>
@@ -46,7 +46,6 @@
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <revision>1.0.0-SNAPSHOT</revision>
   </properties>
 
   <distributionManagement>
@@ -126,7 +125,7 @@
         <version>0.8.0</version>
         <extensions>true</extensions>
         <configuration>
-          <centralBaseUrl>https://central.sontatype.com</centralBaseUrl>
+          <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
           <publishingServerId>central</publishingServerId>
         </configuration>
         </plugin>
