@@ -4,7 +4,7 @@
   
   <groupId>com.aquaticinformatics</groupId>
   <artifactId>aquarius.sdk</artifactId>
-  <version>25.1.0</version>
+  <version>25.2.0</version>
   <packaging>jar</packaging>
 
   <name>aquarius-sdk-java</name>
