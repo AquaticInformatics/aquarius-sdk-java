@@ -1,8 +1,8 @@
 /* Options:
-Instant: 2025-06-23 09:43:32
+Instant: 2025-07-14 21:22:52
 Version: 6.02
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: https://prev-release-1.dev.aquariusdev.net/AQUARIUS/Acquisition/v2
+BaseUrl: https://develop-aqts-pg.dev.aquariusdev.net/AQUARIUS/Acquisition/v2
 
 Package: com.aquaticinformatics.aquarius.sdk.timeseries.servicemodels
 GlobalNamespace: Acquisition
@@ -27,6 +27,57 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
+
+    @Route(Path="/session/keepalive", Verbs="GET")
+    public static class GetKeepAlive implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session", Verbs="POST")
+    public static class PostSession implements IReturn<String>
+    {
+        /**
+        * Username
+        */
+        @ApiMember(Description="Username")
+        public String Username = null;
+
+        /**
+        * Encrypted password
+        */
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Optional locale. Defaults to English
+        */
+        @ApiMember(Description="Optional locale. Defaults to English")
+        public String Locale = null;
+        
+        public String getUsername() { return Username; }
+        public PostSession setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public PostSession setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session", Verbs="DELETE")
+    public static class DeleteSession implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session/publickey", Verbs="GET")
+    public static class GetPublicKey implements IReturn<PublicKey>
+    {
+        
+        private static Object responseType = PublicKey.class;
+        public Object getResponseType() { return responseType; }
+    }
 
     @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
     public static class PostReportAttachment implements IReturn<PostReportResponse>, IFileUploadRequest
@@ -167,6 +218,57 @@ public class Acquisition
         public PostLocationAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
         private static Object responseType = PostLocationAttachmentResponse.class;
         public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFileToLocation extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Unique ID of the location of visits in the file
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", Format="guid", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostVisitFileToLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/{VisitIdentifier}/upload/plugins", Verbs="POST")
+    public static class PostVisitFileToVisit extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Identifier of the existing visit to add the file's content to
+        */
+        @ApiMember(Description="Identifier of the existing visit to add the file's content to", IsRequired=true, ParameterType="path")
+        public String VisitIdentifier = null;
+        
+        public String getVisitIdentifier() { return VisitIdentifier; }
+        public PostVisitFileToVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFile extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/{VisitIdentifier}", Verbs="DELETE")
+    public static class DeleteVisit implements IReturnVoid
+    {
+        /**
+        * Identifier of the existing visit to delete
+        */
+        @ApiMember(Description="Identifier of the existing visit to delete", IsRequired=true, ParameterType="path")
+        public String VisitIdentifier = null;
+        
+        public String getVisitIdentifier() { return VisitIdentifier; }
+        public DeleteVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
     }
 
     @Route(Path="/timeseries/appendstatus/{AppendRequestIdentifier}", Verbs="GET")
@@ -352,106 +454,24 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
-    public static class PostVisitFileToLocation extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    public static class PublicKey
     {
         /**
-        * Unique ID of the location of visits in the file
+        * RSA key size in bits
         */
-        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", Format="guid", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostVisitFileToLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/visits/{VisitIdentifier}/upload/plugins", Verbs="POST")
-    public static class PostVisitFileToVisit extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
-    {
-        /**
-        * Identifier of the existing visit to add the file's content to
-        */
-        @ApiMember(Description="Identifier of the existing visit to add the file's content to", IsRequired=true, ParameterType="path")
-        public String VisitIdentifier = null;
-        
-        public String getVisitIdentifier() { return VisitIdentifier; }
-        public PostVisitFileToVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/visits/upload/plugins", Verbs="POST")
-    public static class PostVisitFile extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
-    {
-        
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/visits/{VisitIdentifier}", Verbs="DELETE")
-    public static class DeleteVisit implements IReturnVoid
-    {
-        /**
-        * Identifier of the existing visit to delete
-        */
-        @ApiMember(Description="Identifier of the existing visit to delete", IsRequired=true, ParameterType="path")
-        public String VisitIdentifier = null;
-        
-        public String getVisitIdentifier() { return VisitIdentifier; }
-        public DeleteVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
-    }
-
-    @Route(Path="/session/keepalive", Verbs="GET")
-    public static class GetKeepAlive implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session", Verbs="POST")
-    public static class PostSession implements IReturn<String>
-    {
-        /**
-        * Username
-        */
-        @ApiMember(Description="Username")
-        public String Username = null;
+        @ApiMember(DataType="integer", Description="RSA key size in bits", Format="int32")
+        public Integer KeySize = null;
 
         /**
-        * Encrypted password
+        * XML blob containing the RSA public key components
         */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Optional locale. Defaults to English
-        */
-        @ApiMember(Description="Optional locale. Defaults to English")
-        public String Locale = null;
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
         
-        public String getUsername() { return Username; }
-        public PostSession setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public PostSession setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/session", Verbs="DELETE")
-    public static class DeleteSession implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session/publickey", Verbs="GET")
-    public static class GetPublicKey implements IReturn<PublicKey>
-    {
-        
-        private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
     }
 
     public static class PostReportResponse
@@ -529,6 +549,34 @@ public class Acquisition
         public PostLocationAttachmentResponse setTags(ArrayList<AppliedTag> value) { this.Tags = value; return this; }
     }
 
+    public static class PostVisitFileResponse
+    {
+        /**
+        * Relative URIs of created or modified visits
+        */
+        @ApiMember(DataType="array", Description="Relative URIs of created or modified visits")
+        public ArrayList<String> VisitUris = null;
+
+        /**
+        * Identifiers of created or modified visits
+        */
+        @ApiMember(DataType="array", Description="Identifiers of created or modified visits")
+        public ArrayList<String> VisitIdentifiers = null;
+
+        /**
+        * Registered field data plug-in that processed the file
+        */
+        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
+        public FieldDataPlugin HandledByPlugin = null;
+        
+        public ArrayList<String> getVisitUris() { return VisitUris; }
+        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
+        public ArrayList<String> getVisitIdentifiers() { return VisitIdentifiers; }
+        public PostVisitFileResponse setVisitIdentifiers(ArrayList<String> value) { this.VisitIdentifiers = value; return this; }
+        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
+        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
+    }
+
     public static class TimeSeriesAppendStatus
     {
         /**
@@ -604,54 +652,6 @@ public class Acquisition
         public DeleteTimeSeriesNotesResponse setNotesDeleted(Integer value) { this.NotesDeleted = value; return this; }
     }
 
-    public static class PostVisitFileResponse
-    {
-        /**
-        * Relative URIs of created or modified visits
-        */
-        @ApiMember(DataType="array", Description="Relative URIs of created or modified visits")
-        public ArrayList<String> VisitUris = null;
-
-        /**
-        * Identifiers of created or modified visits
-        */
-        @ApiMember(DataType="array", Description="Identifiers of created or modified visits")
-        public ArrayList<String> VisitIdentifiers = null;
-
-        /**
-        * Registered field data plug-in that processed the file
-        */
-        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
-        public FieldDataPlugin HandledByPlugin = null;
-        
-        public ArrayList<String> getVisitUris() { return VisitUris; }
-        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
-        public ArrayList<String> getVisitIdentifiers() { return VisitIdentifiers; }
-        public PostVisitFileResponse setVisitIdentifiers(ArrayList<String> value) { this.VisitIdentifiers = value; return this; }
-        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
-        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
-    }
-
-    public static class PublicKey
-    {
-        /**
-        * RSA key size in bits
-        */
-        @ApiMember(DataType="integer", Description="RSA key size in bits", Format="int32")
-        public Integer KeySize = null;
-
-        /**
-        * XML blob containing the RSA public key components
-        */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
-        
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
-    }
-
     public static class ApplyTagRequest
     {
         /**
@@ -693,6 +693,19 @@ public class Acquisition
         Inspection,
         InventoryControl,
         LevelSurvey;
+    }
+
+    public static class PostVisitFileBase implements IFileUploadRequest
+    {
+        /**
+        * File
+        */
+        @Ignore()
+        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
+        public IHttpFile File = null;
+        
+        public IHttpFile getFile() { return File; }
+        public PostVisitFileBase setFile(IHttpFile value) { this.File = value; return this; }
     }
 
     public static class TimeSeriesPoint
@@ -759,19 +772,6 @@ public class Acquisition
         public TimeSeriesNote setNoteText(String value) { this.NoteText = value; return this; }
     }
 
-    public static class PostVisitFileBase implements IFileUploadRequest
-    {
-        /**
-        * File
-        */
-        @Ignore()
-        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
-        public IHttpFile File = null;
-        
-        public IHttpFile getFile() { return File; }
-        public PostVisitFileBase setFile(IHttpFile value) { this.File = value; return this; }
-    }
-
     public static enum AttachmentType
     {
         Binary,
@@ -824,13 +824,6 @@ public class Acquisition
         public AppliedTag setValue(String value) { this.Value = value; return this; }
     }
 
-    public static enum AppendStatusCode
-    {
-        Pending,
-        Completed,
-        Failed;
-    }
-
     public static class FieldDataPlugin
     {
         /**
@@ -851,6 +844,13 @@ public class Acquisition
         public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
+    public static enum AppendStatusCode
+    {
+        Pending,
+        Completed,
+        Failed;
+    }
+
     public static enum PointType
     {
         Unknown,
@@ -860,6 +860,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("25.1.172.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("25.2.81.0");
     }
 }
