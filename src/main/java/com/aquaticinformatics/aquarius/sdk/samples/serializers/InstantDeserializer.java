@@ -46,14 +46,17 @@ public class InstantDeserializer implements JsonDeserializer<Instant> {
         }
 
         try {
+            // Workaround for AQS-760 quirks: 2020-12-01T-08:00 || 2020-12-01T
+            if (text.contains("T-") || text.contains("T+") || text.matches(".*T$"))
+                text = text.replace("T", "T00:00:00.000");
+            // Workaround for quirks: 2020-12-01T00:00:00.000
+            if(!text.matches(".*([+-]\\d{2}:?\\d{2}|Z)$"))
+                text = text+"Z";
             return FORMATTER.parse(text, Instant::from);
         }
         catch(DateTimeParseException exception) {
-            // Workaround for AQS-760 quirks: 2020-12-01T-08:00
-            if (text.contains("T-") || text.contains("T+"))
-                return FORMATTER.parse(text.replace("T", "T00:00:00.000"), Instant::from);
-
-            throw exception;
+//          System.out.printf("DateTimeParseException Error: %s\n", exception.getMessage());
+            throw(exception);
         }
     }
 }
