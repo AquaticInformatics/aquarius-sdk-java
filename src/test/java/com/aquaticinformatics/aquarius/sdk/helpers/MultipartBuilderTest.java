@@ -25,15 +25,15 @@ public class MultipartBuilderTest{
 
     private Object[] multiPartBuilderTests() {
         return new Object[]{
-                new Object[]{"file name with csv", "file.csv","text/csv"},
-                new Object[]{"application name with json", "file.json" , "application/json"},
-                new Object[]{"application name with xml", "file.xml" , "application/xml"}
+                    new Object[]{"A CSV file", "file.csv","text/csv"},
+                new Object[]{"A JSON file", "file.json" , "application/json"},
+                new Object[]{"A XML file", "file.xml" , "application/xml"}
         };
     }
 
     @Test
     @Parameters(method = "multiPartBuilderTests")
-    public void infer_withFileName_MimeTypeAsExpected(String reason, String fileName, String expected) {
+    public void inferMimeTypeFromFilename_supportedFileTypes_ReturnsExpectedMimeType(String reason, String fileName, String expected) {
         String actual = multipartBuilder.inferMimeTypeFromFilename(fileName);
 
         assertEquals(reason, expected, actual);
