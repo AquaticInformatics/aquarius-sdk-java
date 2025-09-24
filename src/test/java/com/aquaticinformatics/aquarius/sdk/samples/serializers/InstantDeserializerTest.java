@@ -53,7 +53,7 @@ public class InstantDeserializerTest {
                 new Object[]{"Missing time component assumes midnight (Sydney)", "2020-12-01T+10:00", Instant.parse("2020-11-30T14:00:00.000Z")},
                 new Object[]{"Missing offset component assumes UTC", "2020-12-01T00:00:00.000", Instant.parse("2020-12-01T00:00:00.000Z")},
                 new Object[]{"Missing both offset and time component assumes midnight and UTC", "2000-07-15T", Instant.parse("2000-07-15T00:00:00.000Z")},
-
+                new Object[]{"Missing time component and offset is UTC assumes midnight", "2000-07-15TZ", Instant.parse("2000-07-15T00:00:00.000Z")},
         };
     }
 

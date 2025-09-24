@@ -53,8 +53,8 @@ public class OffsetDateTimeDeserializer implements JsonDeserializer<OffsetDateTi
         }
 
         try {
-            // Workaround for AQS-760 quirks: 2020-12-01T-08:00 || 2020-12-01T
-            if (text.contains("T-") || text.contains("T+") || text.matches(".*T$"))
+            // Workaround for AQS-760 quirks: 2020-12-01T-08:00 || 2020-12-01TZ || 2020-12-01T
+            if (text.contains("T-") || text.contains("T+") || text.contains("TZ") || text.matches(".*T$"))
                 text = text.replace("T", "T00:00:00.000");
             // Workaround for quirks: 2020-12-01T00:00:00.000
             if(!text.matches(".*([+-]\\d{2}:?\\d{2}|Z)$"))

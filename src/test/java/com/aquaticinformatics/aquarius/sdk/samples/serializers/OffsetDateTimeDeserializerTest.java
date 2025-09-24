@@ -11,6 +11,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 
 import static org.junit.Assert.assertEquals;
@@ -54,6 +55,7 @@ public class OffsetDateTimeDeserializerTest {
                 new Object[]{"Missing time component assumes midnight (Sydney)", "2020-12-01T+10:00", OffsetDateTime.parse("2020-12-01T00:00:00.000+10:00")},
                 new Object[]{"Missing offset component assumes UTC", "2020-12-01T00:00:00.000", OffsetDateTime.parse("2020-12-01T00:00:00.000Z")},
                 new Object[]{"Missing both offset and time component assumes midnight and UTC", "2000-07-15T", OffsetDateTime.parse("2000-07-15T00:00:00.000Z")},
+                new Object[]{"Missing time component and offset is UTC assumes midnight", "2000-07-15TZ", OffsetDateTime.parse("2000-07-15T00:00:00.000Z")},
                 new Object[]{"Missing time and timezone in datum code", "2000-07-15T[PST]", OffsetDateTime.parse("2000-07-15T00:00:00.000Z")},
                 // not sure of the expected behaviour but logic adds UTC if offset time is not present
 
