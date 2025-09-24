@@ -31,19 +31,19 @@ public class RoundTripSerializationTest {
 
         private Object[] validOffsetDateTimeTests() {
             return new Object[]{
-                    new Object[]{"Xmas 2015 AEST", ZonedDateTime.parse("2015-12-25T00:00:00+10:00").toOffsetDateTime(), "2015-12-25T00:00:00.000+10:00"},
-                    new Object[]{"Xmas 2016 UTC", OffsetDateTime.parse("2016-12-25T00:00:00Z"), "2016-12-25T00:00:00.000Z"},
-                    new Object[]{"Xmas 2017 PST", ZonedDateTime.parse("2017-12-25T00:00:00-07:00").toOffsetDateTime(), "2017-12-25T00:00:00.000-07:00"},
-                    new Object[]{"MaxConcreteValue", OffsetDateTimeDeserializer.MaxConcreteValue, OffsetDateTimeDeserializer.JsonMaxConcreteValue},
-                    new Object[]{"MinConcreteValue", OffsetDateTimeDeserializer.MinConcreteValue, OffsetDateTimeDeserializer.JsonMinConcreteValue},
-                    new Object[]{"MaxValue", OffsetDateTimeDeserializer.MaxValue, OffsetDateTimeDeserializer.JsonMaxValue},
-                    new Object[]{"MinValue", OffsetDateTimeDeserializer.MinValue, OffsetDateTimeDeserializer.JsonMinValue},
+                    new Object[]{"Xmas 2015 AEST", ZonedDateTime.parse("2015-12-25T00:00:00+10:00").toOffsetDateTime()},
+                    new Object[]{"Xmas 2016 UTC", OffsetDateTime.parse("2016-12-25T00:00:00Z")},
+                    new Object[]{"Xmas 2017 PST", ZonedDateTime.parse("2017-12-25T00:00:00-07:00").toOffsetDateTime()},
+                    new Object[]{"MaxConcreteValue", OffsetDateTimeDeserializer.MaxConcreteValue},
+                    new Object[]{"MinConcreteValue", OffsetDateTimeDeserializer.MinConcreteValue},
+                    new Object[]{"MaxValue", OffsetDateTimeDeserializer.MaxValue},
+                    new Object[]{"MinValue", OffsetDateTimeDeserializer.MinValue},
             };
         }
 
         @Test
         @Parameters(method = "validOffsetDateTimeTests")
-        public void roundTrip_WithValidOffsetDateTime_ConvertsAsExpected(String reason, OffsetDateTime offsetDateTime, String expected){
+        public void roundTrip_WithValidOffsetDateTime_ConvertsAsExpected(String reason, OffsetDateTime offsetDateTime){
 
             String formatted = OffsetDateTimeSerializer.format(offsetDateTime);
 
