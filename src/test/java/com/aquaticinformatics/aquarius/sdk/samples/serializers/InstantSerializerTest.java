@@ -31,7 +31,7 @@ public class InstantSerializerTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void format_WithNullInstant_Throws(){
+    public void format_WithNullInstant_Throws() {
         thrown.expect(NullPointerException.class);
 
         InstantSerializer.format(null);
@@ -57,7 +57,7 @@ public class InstantSerializerTest {
 
     @Test
     @Parameters(method = "validInstantTests")
-    public void format_WithValidInstant_ConvertsAsExpected(String reason, Instant instant, String expected){
+    public void format_WithValidInstant_ConvertsAsExpected(String reason, Instant instant, String expected) {
 
         String actual = InstantSerializer.format(instant);
 
@@ -66,7 +66,7 @@ public class InstantSerializerTest {
 
     @Test
     @Parameters(method = "validInstantTests")
-    public void toJson_WithValidInstant_ConvertsAsExpected(String reason, Instant instant, String expected){
+    public void toJson_WithValidInstant_ConvertsAsExpected(String reason, Instant instant, String expected) {
 
         String expectedJson = "\"" + expected + "\"";
         String actual = gson.toJson(instant);

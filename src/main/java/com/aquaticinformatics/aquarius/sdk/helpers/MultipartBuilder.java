@@ -54,7 +54,7 @@ public class MultipartBuilder {
         }
     }
 
-    private String inferMimeTypeFromFilename(String fileName) {
+    protected String inferMimeTypeFromFilename(String fileName) {
         return Tika.detect(fileName);
     }
 

@@ -6,6 +6,7 @@ Not all changes will be listed, but you can always [compare by version tags](htt
 
 ### 25.3.0
 - Fixed vulnerability by upgrading Apache Tika.
+- Updated service models for the AQUARIUS Samples 2025.10 release.
 
 ### 25.2.0
 - Updated service models for the AQUARIUS Time-Series 2025.2 release.

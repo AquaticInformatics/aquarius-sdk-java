@@ -6,6 +6,8 @@ import com.aquaticinformatics.aquarius.sdk.helpers.IFieldNamer;
 import com.aquaticinformatics.aquarius.sdk.helpers.SdkServiceClient;
 import com.aquaticinformatics.aquarius.sdk.samples.serializers.InstantDeserializer;
 import com.aquaticinformatics.aquarius.sdk.samples.serializers.InstantSerializer;
+import com.aquaticinformatics.aquarius.sdk.samples.serializers.OffsetDateTimeDeserializer;
+import com.aquaticinformatics.aquarius.sdk.samples.serializers.OffsetDateTimeSerializer;
 import net.servicestack.client.IReturn;
 import net.servicestack.client.Route;
 import net.servicestack.client.Utils;
@@ -13,6 +15,7 @@ import net.servicestack.client.Utils;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -41,6 +44,8 @@ public class SamplesClient implements AutoCloseable {
         _typeAdapters = new HashMap<Object,Type>();
         _typeAdapters.put(new InstantDeserializer(), Instant.class);
         _typeAdapters.put(new InstantSerializer(), Instant.class);
+        _typeAdapters.put(new OffsetDateTimeSerializer(), OffsetDateTime.class);
+        _typeAdapters.put(new OffsetDateTimeDeserializer(), OffsetDateTime.class);
 
         _fieldNamer = new FieldNamer();
 
