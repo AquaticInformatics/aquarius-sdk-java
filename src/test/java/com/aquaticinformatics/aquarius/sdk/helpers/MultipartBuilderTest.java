@@ -9,25 +9,25 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
-
-
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
-public class MultipartBuilderTest{
+public class MultipartBuilderTest {
     private MultipartBuilder multipartBuilder;
+
     @Before
     public void forEachTest() {
         multipartBuilder = new MultipartBuilder();
     }
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     private Object[] multiPartBuilderTests() {
         return new Object[]{
-                    new Object[]{"A CSV file", "file.csv","text/csv"},
-                new Object[]{"A JSON file", "file.json" , "application/json"},
-                new Object[]{"A XML file", "file.xml" , "application/xml"}
+                new Object[]{"A CSV file", "file.csv", "text/csv"},
+                new Object[]{"A JSON file", "file.json", "application/json"},
+                new Object[]{"A XML file", "file.xml", "application/xml"}
         };
     }
 

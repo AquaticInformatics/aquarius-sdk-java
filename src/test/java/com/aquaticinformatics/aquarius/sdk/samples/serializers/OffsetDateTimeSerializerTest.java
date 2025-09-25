@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
@@ -32,7 +31,7 @@ public class OffsetDateTimeSerializerTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void format_WithNullInstant_Throws(){
+    public void format_WithNullInstant_Throws() {
         thrown.expect(NullPointerException.class);
 
         OffsetDateTimeSerializer.format(null);
@@ -58,7 +57,7 @@ public class OffsetDateTimeSerializerTest {
 
     @Test
     @Parameters(method = "validOffsetDateTimeTests")
-    public void format_WithValidOffsetDateTime_ConvertsAsExpected(String reason, OffsetDateTime offsetDateTime, String expected){
+    public void format_WithValidOffsetDateTime_ConvertsAsExpected(String reason, OffsetDateTime offsetDateTime, String expected) {
 
         String actual = OffsetDateTimeSerializer.format(offsetDateTime);
 
@@ -67,7 +66,7 @@ public class OffsetDateTimeSerializerTest {
 
     @Test
     @Parameters(method = "validOffsetDateTimeTests")
-    public void toJson_WithValidOffsetDateTime_ConvertsAsExpected(String reason, OffsetDateTime offsetDateTime, String expected){
+    public void toJson_WithValidOffsetDateTime_ConvertsAsExpected(String reason, OffsetDateTime offsetDateTime, String expected) {
 
         String expectedJson = "\"" + expected + "\"";
         String actual = gson.toJson(offsetDateTime);

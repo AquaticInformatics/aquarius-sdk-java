@@ -30,7 +30,7 @@ public class InstantDeserializerTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void parse_WithNullText_Throws(){
+    public void parse_WithNullText_Throws() {
         thrown.expect(NullPointerException.class);
 
         InstantDeserializer.parse(null);
@@ -59,7 +59,7 @@ public class InstantDeserializerTest {
 
     @Test
     @Parameters(method = "validInstantTests")
-    public void parse_WithValidInstant_ConvertsAsExpected(String reason, String instantText, Instant expected){
+    public void parse_WithValidInstant_ConvertsAsExpected(String reason, String instantText, Instant expected) {
 
         Instant actual = InstantDeserializer.parse(instantText);
 
@@ -68,7 +68,7 @@ public class InstantDeserializerTest {
 
     @Test
     @Parameters(method = "validInstantTests")
-    public void fromJson_WithValidInstant_ConvertsAsExpected(String reason, String instantText, Instant expected){
+    public void fromJson_WithValidInstant_ConvertsAsExpected(String reason, String instantText, Instant expected) {
 
         String json = "\"" + instantText + "\"";
 

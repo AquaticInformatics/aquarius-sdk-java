@@ -10,8 +10,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
-
-import java.time.Instant;
 import java.time.OffsetDateTime;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +17,8 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JUnitParamsRunner.class)
 public class OffsetDateTimeDeserializerTest {
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
     private Gson gson;
 
     @Before
@@ -28,11 +28,8 @@ public class OffsetDateTimeDeserializerTest {
                 .create();
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
-    public void parse_WithNullText_Throws(){
+    public void parse_WithNullText_Throws() {
         thrown.expect(NullPointerException.class);
 
         OffsetDateTimeDeserializer.parse(null);
@@ -64,7 +61,7 @@ public class OffsetDateTimeDeserializerTest {
 
     @Test
     @Parameters(method = "validOffsetDateTimeTests")
-    public void parse_WithValidOffsetDateTime_ConvertsAsExpected(String reason, String offsetDateTimeText, OffsetDateTime expected){
+    public void parse_WithValidOffsetDateTime_ConvertsAsExpected(String reason, String offsetDateTimeText, OffsetDateTime expected) {
 
         OffsetDateTime actual = OffsetDateTimeDeserializer.parse(offsetDateTimeText);
 
@@ -73,7 +70,7 @@ public class OffsetDateTimeDeserializerTest {
 
     @Test
     @Parameters(method = "validOffsetDateTimeTests")
-    public void fromJson_WithValidOffsetDateTime_ConvertsAsExpected(String reason, String offsetDateTimeText, OffsetDateTime expected){
+    public void fromJson_WithValidOffsetDateTime_ConvertsAsExpected(String reason, String offsetDateTimeText, OffsetDateTime expected) {
 
         String json = "\"" + offsetDateTimeText + "\"";
 

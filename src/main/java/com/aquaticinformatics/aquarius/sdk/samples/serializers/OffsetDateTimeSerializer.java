@@ -13,11 +13,6 @@ public class OffsetDateTimeSerializer implements JsonSerializer<OffsetDateTime> 
 
     public static final DateTimeFormatter FORMATTER = OffsetDateTimeDeserializer.FORMATTER;
 
-    @Override
-    public JsonElement serialize(OffsetDateTime offsetDateTime, Type type, JsonSerializationContext context) {
-        return new JsonPrimitive(format(offsetDateTime));
-    }
-
     public static String format(OffsetDateTime offsetDateTime) {
         if (offsetDateTime.isAfter(OffsetDateTimeDeserializer.MaxConcreteValue))
             return OffsetDateTimeDeserializer.JsonMaxValue;
@@ -26,5 +21,10 @@ public class OffsetDateTimeSerializer implements JsonSerializer<OffsetDateTime> 
             return OffsetDateTimeDeserializer.JsonMinValue;
 
         return FORMATTER.format(offsetDateTime);
+    }
+
+    @Override
+    public JsonElement serialize(OffsetDateTime offsetDateTime, Type type, JsonSerializationContext context) {
+        return new JsonPrimitive(format(offsetDateTime));
     }
 }
