@@ -108,6 +108,13 @@
         <version>3.9.0</version>
       </plugin>
 
+      <!-- Set version to avoid out-of-date default (3.3) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.21.0</version>
+      </plugin>
+
       <!-- Bundles source, dependencies, modules, and site documentation into single assembly-->
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
