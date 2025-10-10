@@ -28,7 +28,7 @@ install:
   - gpg --version
 
 build_script:
-  - mvn -B clean install  -Dsamples.client=$env:SAMPLES_CLIENT -Dsamples.token=$env:SAMPLES_TOKEN
+  - mvn -B clean install
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
