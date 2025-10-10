@@ -16,7 +16,7 @@ public class SamplesClientTest {
     @Before
     public void forEachTest() {
         try {
-            SamplesClient client = SamplesClient.createConnectedClient("https://yourdomain.aqsamples.com", "yourtoken");
+            client = SamplesClient.createConnectedClient(System.getProperty("samples.client"), System.getProperty("samples.token"));
             System.out.printf("Connected to %s (%s)\n", client.Api.getEndpointUrl(), client.ServerVersion.toString());
         } catch (Exception error) {
             System.out.printf("Connection Error: %s\n", error.getMessage());
@@ -35,7 +35,7 @@ public class SamplesClientTest {
             ServiceModel.SearchResultActivity searchResultActivity = client.Api.get(new ServiceModel.GetActivities());
             System.out.printf("Found %d activities\n", searchResultActivity.TotalCount);
         } catch (Exception e) {
-            System.out.printf("ERROR: %s\n%s\n", e.getMessage(), e.toString());
+            System.out.printf("ERROR: %s\n%s\n", e.getMessage(), e);
         }
     }
 
@@ -46,7 +46,7 @@ public class SamplesClientTest {
             ServiceModel.SearchResultLaboratory searchResultLaboratory = client.Api.get(new ServiceModel.GetLaboratories());
             System.out.printf("Found %d laboratories\n", searchResultLaboratory.TotalCount);
         } catch (Exception e) {
-            System.out.printf("ERROR: %s\n%s\n", e.getMessage(), e.toString());
+            System.out.printf("ERROR: %s\n%s\n", e.getMessage(), e);
         }
     }
 
