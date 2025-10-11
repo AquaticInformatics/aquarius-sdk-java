@@ -30,24 +30,14 @@ public class SamplesClientTest {
 
     @Test
     public void GetActivities_ConnectedClient_ReturnsSearchResultActivities() {
-
-        try {
-            ServiceModel.SearchResultActivity searchResultActivity = client.Api.get(new ServiceModel.GetActivities());
-            System.out.printf("Found %d activities\n", searchResultActivity.TotalCount);
-        } catch (Exception e) {
-            System.out.printf("ERROR: %s\n%s\n", e.getMessage(), e);
-        }
+        ServiceModel.SearchResultActivity searchResultActivity = client.Api.get(new ServiceModel.GetActivities());
+        System.out.printf("Found %d activities\n", searchResultActivity.TotalCount);
     }
 
     @Test
     public void GetLabs_ConnectedClient_ReturnsSearchResultLaboratory() {
-
-        try {
-            ServiceModel.SearchResultLaboratory searchResultLaboratory = client.Api.get(new ServiceModel.GetLaboratories());
-            System.out.printf("Found %d laboratories\n", searchResultLaboratory.TotalCount);
-        } catch (Exception e) {
-            System.out.printf("ERROR: %s\n%s\n", e.getMessage(), e);
-        }
+        ServiceModel.SearchResultLaboratory searchResultLaboratory = client.Api.get(new ServiceModel.GetLaboratories());
+        System.out.printf("Found %d laboratories\n", searchResultLaboratory.TotalCount);
     }
 
 }
