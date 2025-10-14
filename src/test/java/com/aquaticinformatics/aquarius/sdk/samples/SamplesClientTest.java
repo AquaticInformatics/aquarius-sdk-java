@@ -16,7 +16,7 @@ public class SamplesClientTest {
     @Before
     public void forEachTest() {
         try {
-            SamplesClient client = SamplesClient.createConnectedClient("https://yourdomain.aqsamples.com", "yourtoken");
+            client = SamplesClient.createConnectedClient(System.getenv("SAMPLES_CLIENT"), System.getenv("SAMPLES_TOKEN"));
             System.out.printf("Connected to %s (%s)\n", client.Api.getEndpointUrl(), client.ServerVersion.toString());
         } catch (Exception error) {
             System.out.printf("Connection Error: %s\n", error.getMessage());
