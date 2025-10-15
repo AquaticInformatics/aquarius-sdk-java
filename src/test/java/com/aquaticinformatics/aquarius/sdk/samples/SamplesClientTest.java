@@ -2,12 +2,12 @@ package com.aquaticinformatics.aquarius.sdk.samples;
 
 
 import junitparams.JUnitParamsRunner;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-
 
 @RunWith(JUnitParamsRunner.class)
 public class SamplesClientTest {
@@ -31,12 +31,14 @@ public class SamplesClientTest {
     @Test
     public void GetActivities_ConnectedClient_ReturnsSearchResultActivities() {
         ServiceModel.SearchResultActivity searchResultActivity = client.Api.get(new ServiceModel.GetActivities());
+        Assert.assertTrue(searchResultActivity.TotalCount > 0);
         System.out.printf("Found %d activities\n", searchResultActivity.TotalCount);
     }
 
     @Test
     public void GetLabs_ConnectedClient_ReturnsSearchResultLaboratory() {
         ServiceModel.SearchResultLaboratory searchResultLaboratory = client.Api.get(new ServiceModel.GetLaboratories());
+        Assert.assertTrue(searchResultLaboratory.TotalCount > 0);
         System.out.printf("Found %d laboratories\n", searchResultLaboratory.TotalCount);
     }
 
