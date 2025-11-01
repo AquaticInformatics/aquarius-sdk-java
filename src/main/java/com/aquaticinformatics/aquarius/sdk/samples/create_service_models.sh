@@ -18,12 +18,13 @@ show_usage() {
 	exit_abort "$@"
 }
 
-Generator=../../../../../../../../../aquarius-sdk-net/src/SamplesServiceModelGenerator/bin/Release/net6.0/SamplesServiceModelGenerator.dll
+GeneratorProjectPath=../../../../../../../../../aquarius-sdk-net/src/SamplesServiceModelGenerator/SamplesServiceModelGenerator.csproj
+Generator=../../../../../../../../../aquarius-sdk-net/src/SamplesServiceModelGenerator/bin/Release/net8.0/SamplesServiceModelGenerator.dll
 
 ServerName=$1
 OutputPath=$2
 
-[ -f "$Generator" ] || exit_abort "Can't find $Generator. You'll need to build it first."
+[ -f "$Generator" ]    || dotnet build "$GeneratorProjectPath" -c Release || exit_abort "Can't find or build SamplesServiceModelGenerator.dll"
 [ ! -z "$ServerName" ] || ServerName=https://demo.aqsamples.com
 [ ! -z "$OutputPath" ] || OutputPath=./ServiceModel.java
 
