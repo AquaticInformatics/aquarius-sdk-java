@@ -1,5 +1,5 @@
 /* Options:
-Instant: 2025-10-22 04:08:49
+Instant: 2025-11-03 21:17:05
 Version: 6.02
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://develop-1.dev.aquariusdev.net/AQUARIUS/Acquisition/v2
@@ -860,6 +860,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("25.3.106.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("25.4.10.0");
     }
 }
