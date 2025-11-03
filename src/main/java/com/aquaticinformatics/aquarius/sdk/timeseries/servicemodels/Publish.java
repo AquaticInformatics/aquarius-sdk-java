@@ -1,5 +1,5 @@
 /* Options:
-Instant: 2025-10-22 04:08:43
+Instant: 2025-11-03 01:56:55
 Version: 6.02
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://develop-1.dev.aquariusdev.net/AQUARIUS/Publish/v2
@@ -27,353 +27,6 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Publish
 {
-
-    @Route(Path="/session/keepalive", Verbs="GET")
-    public static class GetKeepAlive implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session", Verbs="POST")
-    public static class PostSession implements IReturn<String>
-    {
-        /**
-        * Username
-        */
-        @ApiMember(Description="Username")
-        public String Username = null;
-
-        /**
-        * Encrypted password
-        */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Optional locale. Defaults to English
-        */
-        @ApiMember(Description="Optional locale. Defaults to English")
-        public String Locale = null;
-        
-        public String getUsername() { return Username; }
-        public PostSession setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public PostSession setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/session", Verbs="DELETE")
-    public static class DeleteSession implements IReturnVoid
-    {
-        
-    }
-
-    @Route(Path="/session/publickey", Verbs="GET")
-    public static class GetPublicKey implements IReturn<PublicKey>
-    {
-        
-        private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetRatingCurveList", Verbs="GET")
-    public static class RatingCurveListServiceRequest implements IReturn<RatingCurveListServiceResponse>
-    {
-        /**
-        * Rating model identifier
-        */
-        @ApiMember(Description="Rating model identifier", IsRequired=true)
-        public String RatingModelIdentifier = null;
-
-        /**
-        * Forces the response time values to a specific UTC offset. Defaults to the location UTC offset
-        */
-        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the location UTC offset", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * Filter results to curves with a Period.StartTime at or after the QueryFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to curves with a Period.StartTime at or after the QueryFrom time", Format="date-time")
-        public Instant QueryFrom = null;
-
-        /**
-        * Filter results to curves with a Period.EndTime at or before the QueryTo time
-        */
-        @ApiMember(DataType="string", Description="Filter results to curves with a Period.EndTime at or before the QueryTo time", Format="date-time")
-        public Instant QueryTo = null;
-        
-        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
-        public RatingCurveListServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public RatingCurveListServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public RatingCurveListServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public RatingCurveListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        private static Object responseType = RatingCurveListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetLocationData", Verbs="GET")
-    public static class LocationDataServiceRequest implements IReturn<LocationDataServiceResponse>
-    {
-        /**
-        * Location identifier
-        */
-        @ApiMember(Description="Location identifier", IsRequired=true)
-        public String LocationIdentifier = null;
-
-        /**
-        * True if location attachments should be included in the results
-        */
-        @ApiMember(DataType="boolean", Description="True if location attachments should be included in the results")
-        public Boolean IncludeLocationAttachments = null;
-
-        /**
-        * True if location notes should be excluded from the results
-        */
-        @ApiMember(DataType="boolean", Description="True if location notes should be excluded from the results")
-        public Boolean ExcludeLocationNotes = null;
-        
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public LocationDataServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public Boolean isIncludeLocationAttachments() { return IncludeLocationAttachments; }
-        public LocationDataServiceRequest setIncludeLocationAttachments(Boolean value) { this.IncludeLocationAttachments = value; return this; }
-        public Boolean isExcludeLocationNotes() { return ExcludeLocationNotes; }
-        public LocationDataServiceRequest setExcludeLocationNotes(Boolean value) { this.ExcludeLocationNotes = value; return this; }
-        private static Object responseType = LocationDataServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetLocationNotes", Verbs="GET")
-    public static class LocationNotesServiceRequest implements IReturn<LocationNotesServiceResponse>
-    {
-        /**
-        * Location identifier
-        */
-        @ApiMember(Description="Location identifier", IsRequired=true)
-        public String LocationIdentifier = null;
-
-        /**
-        * Filter results to items at or after the QueryFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
-        public Instant QueryFrom = null;
-
-        /**
-        * Filter results to items at or before the QueryTo time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
-        public Instant QueryTo = null;
-        
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public LocationNotesServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public LocationNotesServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public LocationNotesServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        private static Object responseType = LocationNotesServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetGradeList", Verbs="GET")
-    public static class GradeListServiceRequest implements IReturn<GradeListServiceResponse>
-    {
-        
-        private static Object responseType = GradeListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetReportList", Verbs="GET")
-    public static class ReportListServiceRequest implements IReturn<ReportListServiceResponse>
-    {
-        /**
-        * Filter results to given location unique ID
-        */
-        @ApiMember(DataType="string", Description="Filter results to given location unique ID", Format="guid")
-        public String LocationUniqueId = null;
-
-        /**
-        * Filter results to given source time series unique IDs
-        */
-        @ApiMember(DataType="array", Description="Filter results to given source time series unique IDs")
-        public ArrayList<String> TimeSeriesUniqueIds = null;
-
-        /**
-        * Filter results to the given user unique ID
-        */
-        @ApiMember(DataType="string", Description="Filter results to the given user unique ID", Format="guid")
-        public String UserUniqueId = null;
-
-        /**
-        * Filter results to the given report title
-        */
-        @ApiMember(Description="Filter results to the given report title")
-        public String ReportTitle = null;
-
-        /**
-        * Filter results to given report unique IDs
-        */
-        @ApiMember(DataType="array", Description="Filter results to given report unique IDs")
-        public ArrayList<String> ReportUniqueIds = null;
-
-        /**
-        * Filter results to items created at or after the CreatedFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items created at or after the CreatedFrom time", Format="date-time")
-        public Instant CreatedFrom = null;
-
-        /**
-        * Filter results to items matching all tags by key (supports *partialname* pattern)
-        */
-        @ApiMember(DataType="array", Description="Filter results to items matching all tags by key (supports *partialname* pattern)")
-        public ArrayList<String> TagKeys = null;
-
-        /**
-        * Filter results to items matching all tags by value (supports *partialname* pattern)
-        */
-        @ApiMember(DataType="array", Description="Filter results to items matching all tags by value (supports *partialname* pattern)")
-        public ArrayList<String> TagValues = null;
-
-        /**
-        * Limit the number of results items, after all filtering and ordering
-        */
-        @ApiMember(DataType="integer", Description="Limit the number of results items, after all filtering and ordering", Format="int32")
-        public Integer MaxResults = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public ReportListServiceRequest setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public ArrayList<String> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
-        public ReportListServiceRequest setTimeSeriesUniqueIds(ArrayList<String> value) { this.TimeSeriesUniqueIds = value; return this; }
-        public String getUserUniqueId() { return UserUniqueId; }
-        public ReportListServiceRequest setUserUniqueId(String value) { this.UserUniqueId = value; return this; }
-        public String getReportTitle() { return ReportTitle; }
-        public ReportListServiceRequest setReportTitle(String value) { this.ReportTitle = value; return this; }
-        public ArrayList<String> getReportUniqueIds() { return ReportUniqueIds; }
-        public ReportListServiceRequest setReportUniqueIds(ArrayList<String> value) { this.ReportUniqueIds = value; return this; }
-        public Instant getCreatedFrom() { return CreatedFrom; }
-        public ReportListServiceRequest setCreatedFrom(Instant value) { this.CreatedFrom = value; return this; }
-        public ArrayList<String> getTagKeys() { return TagKeys; }
-        public ReportListServiceRequest setTagKeys(ArrayList<String> value) { this.TagKeys = value; return this; }
-        public ArrayList<String> getTagValues() { return TagValues; }
-        public ReportListServiceRequest setTagValues(ArrayList<String> value) { this.TagValues = value; return this; }
-        public Integer getMaxResults() { return MaxResults; }
-        public ReportListServiceRequest setMaxResults(Integer value) { this.MaxResults = value; return this; }
-        private static Object responseType = ReportListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetExpandedStageTable", Verbs="GET")
-    public static class ExpandedStageTableServiceRequest implements IReturn<ExpandedStageTableServiceResponse>
-    {
-        /**
-        * The unique ID of the time series
-        */
-        @ApiMember(DataType="string", Description="The unique ID of the time series", Format="guid", IsRequired=true)
-        public String TimeSeriesUniqueId = null;
-
-        /**
-        * Table step size increment. Defaults to 0.01
-        */
-        @ApiMember(DataType="number", Description="Table step size increment. Defaults to 0.01", Format="double")
-        public Double StepSize = null;
-
-        /**
-        * Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset
-        */
-        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * Table starting value
-        */
-        @ApiMember(DataType="number", Description="Table starting value", Format="double", IsRequired=true)
-        public Double StartValue = null;
-
-        /**
-        * Table ending value
-        */
-        @ApiMember(DataType="number", Description="Table ending value", Format="double", IsRequired=true)
-        public Double EndValue = null;
-        
-        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
-        public ExpandedStageTableServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
-        public Double getStepSize() { return StepSize; }
-        public ExpandedStageTableServiceRequest setStepSize(Double value) { this.StepSize = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public ExpandedStageTableServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public Double getStartValue() { return StartValue; }
-        public ExpandedStageTableServiceRequest setStartValue(Double value) { this.StartValue = value; return this; }
-        public Double getEndValue() { return EndValue; }
-        public ExpandedStageTableServiceRequest setEndValue(Double value) { this.EndValue = value; return this; }
-        private static Object responseType = ExpandedStageTableServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetUnitList", Verbs="GET")
-    public static class UnitListServiceRequest implements IReturn<UnitListServiceResponse>
-    {
-        /**
-        * Filter results to the given Unit Group
-        */
-        @ApiMember(Description="Filter results to the given Unit Group")
-        public String GroupIdentifier = null;
-        
-        public String getGroupIdentifier() { return GroupIdentifier; }
-        public UnitListServiceRequest setGroupIdentifier(String value) { this.GroupIdentifier = value; return this; }
-        private static Object responseType = UnitListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetAuthToken", Verbs="GET")
-    public static class GetAuthTokenServiceRequest implements IReturn<String>
-    {
-        /**
-        * Username
-        */
-        @ApiMember(Description="Username")
-        public String Username = null;
-
-        /**
-        * Encrypted password
-        */
-        @ApiMember(Description="Encrypted password")
-        public String EncryptedPassword = null;
-
-        /**
-        * Locale
-        */
-        @ApiMember(Description="Locale")
-        public String Locale = null;
-        
-        public String getUsername() { return Username; }
-        public GetAuthTokenServiceRequest setUsername(String value) { this.Username = value; return this; }
-        public String getEncryptedPassword() { return EncryptedPassword; }
-        public GetAuthTokenServiceRequest setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
-        public String getLocale() { return Locale; }
-        public GetAuthTokenServiceRequest setLocale(String value) { this.Locale = value; return this; }
-        private static Object responseType = String.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetTagList", Verbs="GET")
-    public static class TagListServiceRequest implements IReturn<TagListServiceResponse>
-    {
-        /**
-        * If set, return only tags with specified applicability, selected from: AppliesToLocations, AppliesToLocationNotes, AppliesToSensorsGauges, AppliesToAttachments, AppliesToReports
-        */
-        @ApiMember(AllowMultiple=true, DataType="array", Description="If set, return only tags with specified applicability, selected from: AppliesToLocations, AppliesToLocationNotes, AppliesToSensorsGauges, AppliesToAttachments, AppliesToReports")
-        public ArrayList<TagApplicability> Applicability = null;
-        
-        public ArrayList<TagApplicability> getApplicability() { return Applicability; }
-        public TagListServiceRequest setApplicability(ArrayList<TagApplicability> value) { this.Applicability = value; return this; }
-        private static Object responseType = TagListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
 
     @Route(Path="/GetRatingModelEffectiveShifts", Verbs="GET")
     public static class RatingModelEffectiveShiftsServiceRequest implements IReturn<RatingModelEffectiveShiftsServiceResponse>
@@ -445,433 +98,26 @@ public class Publish
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetRatingModelDescriptionList", Verbs="GET")
-    public static class RatingModelDescriptionListServiceRequest implements IReturn<RatingModelDescriptionListServiceResponse>
+    @Route(Path="/GetTimeSeriesDescriptionListByUniqueId", Verbs="GET,POST")
+    public static class TimeSeriesDescriptionListByUniqueIdServiceRequest implements IReturn<TimeSeriesDescriptionListByUniqueIdServiceResponse>
     {
         /**
-        * Filter results to the given location
+        * A collection of time series unique IDs to query. Limited to roughly 60 items for a GET request; use POST to avoid this limit.
         */
-        @ApiMember(Description="Filter results to the given location")
-        public String LocationIdentifier = null;
-
-        /**
-        * Filter results to items matching the Publish value
-        */
-        @ApiMember(DataType="boolean", Description="Filter results to items matching the Publish value")
-        public Boolean Publish = null;
-
-        /**
-        * Filter results to items maching the InputParameter identifier
-        */
-        @ApiMember(Description="Filter results to items maching the InputParameter identifier")
-        public String InputParameter = null;
-
-        /**
-        * Filter results to items maching the OutputParameter identifier
-        */
-        @ApiMember(Description="Filter results to items maching the OutputParameter identifier")
-        public String OutputParameter = null;
-
-        /**
-        * Filter results to items modified at or after the ChangesSinceToken time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items modified at or after the ChangesSinceToken time", Format="date-time")
-        public Instant ChangesSinceToken = null;
+        @ApiMember(DataType="array", Description="A collection of time series unique IDs to query. Limited to roughly 60 items for a GET request; use POST to avoid this limit.")
+        public ArrayList<String> TimeSeriesUniqueIds = null;
         
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public RatingModelDescriptionListServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public RatingModelDescriptionListServiceRequest setPublish(Boolean value) { this.Publish = value; return this; }
-        public String getInputParameter() { return InputParameter; }
-        public RatingModelDescriptionListServiceRequest setInputParameter(String value) { this.InputParameter = value; return this; }
-        public String getOutputParameter() { return OutputParameter; }
-        public RatingModelDescriptionListServiceRequest setOutputParameter(String value) { this.OutputParameter = value; return this; }
-        public Instant getChangesSinceToken() { return ChangesSinceToken; }
-        public RatingModelDescriptionListServiceRequest setChangesSinceToken(Instant value) { this.ChangesSinceToken = value; return this; }
-        private static Object responseType = RatingModelDescriptionListServiceResponse.class;
+        public ArrayList<String> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
+        public TimeSeriesDescriptionListByUniqueIdServiceRequest setTimeSeriesUniqueIds(ArrayList<String> value) { this.TimeSeriesUniqueIds = value; return this; }
+        private static Object responseType = TimeSeriesDescriptionListByUniqueIdServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetDownchainProcessorListByRatingModel", Verbs="GET")
-    public static class DownchainProcessorListByRatingModelServiceRequest implements IReturn<ProcessorListServiceResponse>
-    {
-        /**
-        * Rating model identifier
-        */
-        @ApiMember(Description="Rating model identifier", IsRequired=true)
-        public String RatingModelIdentifier = null;
-
-        /**
-        * Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time", Format="date-time")
-        public Instant QueryFrom = null;
-
-        /**
-        * Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time", Format="date-time")
-        public Instant QueryTo = null;
-        
-        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
-        public DownchainProcessorListByRatingModelServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public DownchainProcessorListByRatingModelServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public DownchainProcessorListByRatingModelServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        private static Object responseType = ProcessorListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetDownchainProcessorListByTimeSeries", Verbs="GET")
-    public static class DownchainProcessorListByTimeSeriesServiceRequest implements IReturn<ProcessorListServiceResponse>
-    {
-        /**
-        * Unique ID of the time series
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the time series", Format="guid", IsRequired=true)
-        public String TimeSeriesUniqueId = null;
-
-        /**
-        * Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time", Format="date-time")
-        public Instant QueryFrom = null;
-
-        /**
-        * Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time", Format="date-time")
-        public Instant QueryTo = null;
-        
-        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
-        public DownchainProcessorListByTimeSeriesServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public DownchainProcessorListByTimeSeriesServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public DownchainProcessorListByTimeSeriesServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        private static Object responseType = ProcessorListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetTimeSeriesUniqueIdList", Verbs="GET")
-    public static class TimeSeriesUniqueIdListServiceRequest implements IReturn<TimeSeriesUniqueIdListServiceResponse>
-    {
-        /**
-        * Filter results to items modified at or after the ChangesSinceToken time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items modified at or after the ChangesSinceToken time", Format="date-time")
-        public Instant ChangesSinceToken = null;
-
-        /**
-        * Filter results to a specific change event type: 'Data' or 'Attribute'
-        */
-        @ApiMember(Description="Filter results to a specific change event type: 'Data' or 'Attribute'")
-        public String ChangeEventType = null;
-
-        /**
-        * Filter results to the given location
-        */
-        @ApiMember(Description="Filter results to the given location")
-        public String LocationIdentifier = null;
-
-        /**
-        * Filter results to items maching the Parameter identifier
-        */
-        @ApiMember(Description="Filter results to items maching the Parameter identifier")
-        public String Parameter = null;
-
-        /**
-        * Filter results to items matching the Publish value
-        */
-        @ApiMember(DataType="boolean", Description="Filter results to items matching the Publish value")
-        public Boolean Publish = null;
-
-        /**
-        * Filter results to items matching the computation identifier
-        */
-        @ApiMember(Description="Filter results to items matching the computation identifier")
-        public String ComputationIdentifier = null;
-
-        /**
-        * Filter results to items matching the computation period identifier
-        */
-        @ApiMember(Description="Filter results to items matching the computation period identifier")
-        public String ComputationPeriodIdentifier = null;
-
-        /**
-        * Filter results to items matching the given extended attribute values
-        */
-        @ApiMember(DataType="array", Description="Filter results to items matching the given extended attribute values")
-        public ArrayList<ExtendedAttributeFilter> ExtendedFilters = null;
-        
-        public Instant getChangesSinceToken() { return ChangesSinceToken; }
-        public TimeSeriesUniqueIdListServiceRequest setChangesSinceToken(Instant value) { this.ChangesSinceToken = value; return this; }
-        public String getChangeEventType() { return ChangeEventType; }
-        public TimeSeriesUniqueIdListServiceRequest setChangeEventType(String value) { this.ChangeEventType = value; return this; }
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public TimeSeriesUniqueIdListServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public String getParameter() { return Parameter; }
-        public TimeSeriesUniqueIdListServiceRequest setParameter(String value) { this.Parameter = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public TimeSeriesUniqueIdListServiceRequest setPublish(Boolean value) { this.Publish = value; return this; }
-        public String getComputationIdentifier() { return ComputationIdentifier; }
-        public TimeSeriesUniqueIdListServiceRequest setComputationIdentifier(String value) { this.ComputationIdentifier = value; return this; }
-        public String getComputationPeriodIdentifier() { return ComputationPeriodIdentifier; }
-        public TimeSeriesUniqueIdListServiceRequest setComputationPeriodIdentifier(String value) { this.ComputationPeriodIdentifier = value; return this; }
-        public ArrayList<ExtendedAttributeFilter> getExtendedFilters() { return ExtendedFilters; }
-        public TimeSeriesUniqueIdListServiceRequest setExtendedFilters(ArrayList<ExtendedAttributeFilter> value) { this.ExtendedFilters = value; return this; }
-        private static Object responseType = TimeSeriesUniqueIdListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetApprovalsTransactionList", Verbs="GET")
-    public static class TimeSeriesApprovalsTransactionListServiceRequest implements IReturn<TimeSeriesApprovalsTransactionListServiceResponse>
-    {
-        /**
-        * The unique ID of the time series
-        */
-        @ApiMember(DataType="string", Description="The unique ID of the time series", Format="guid", IsRequired=true)
-        public String TimeSeriesUniqueId = null;
-
-        /**
-        * Filter results to items with a StartTime at or after the QueryFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with a StartTime at or after the QueryFrom time", Format="date-time")
-        public Instant QueryFrom = null;
-
-        /**
-        * Filter results to items with an EndTime at or before the QueryTo time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with an EndTime at or before the QueryTo time", Format="date-time")
-        public Instant QueryTo = null;
-        
-        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
-        public TimeSeriesApprovalsTransactionListServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public TimeSeriesApprovalsTransactionListServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public TimeSeriesApprovalsTransactionListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        private static Object responseType = TimeSeriesApprovalsTransactionListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetTimeSeriesDescriptionList", Verbs="GET")
-    public static class TimeSeriesDescriptionServiceRequest implements IReturn<TimeSeriesDescriptionListServiceResponse>
-    {
-        /**
-        * Filter results to the given location
-        */
-        @ApiMember(Description="Filter results to the given location")
-        public String LocationIdentifier = null;
-
-        /**
-        * Filter results to items matching the parameter identifier
-        */
-        @ApiMember(Description="Filter results to items matching the parameter identifier")
-        public String Parameter = null;
-
-        /**
-        * Filter results to items matching the Publish value
-        */
-        @ApiMember(DataType="boolean", Description="Filter results to items matching the Publish value")
-        public Boolean Publish = null;
-
-        /**
-        * Filter results to items matching the computation identifier
-        */
-        @ApiMember(Description="Filter results to items matching the computation identifier")
-        public String ComputationIdentifier = null;
-
-        /**
-        * Filter results to items matching the computation period identifier
-        */
-        @ApiMember(Description="Filter results to items matching the computation period identifier")
-        public String ComputationPeriodIdentifier = null;
-
-        /**
-        * Filter results to items matching the given extended attribute values
-        */
-        @ApiMember(DataType="array", Description="Filter results to items matching the given extended attribute values")
-        public ArrayList<ExtendedAttributeFilter> ExtendedFilters = null;
-        
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public TimeSeriesDescriptionServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public String getParameter() { return Parameter; }
-        public TimeSeriesDescriptionServiceRequest setParameter(String value) { this.Parameter = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public TimeSeriesDescriptionServiceRequest setPublish(Boolean value) { this.Publish = value; return this; }
-        public String getComputationIdentifier() { return ComputationIdentifier; }
-        public TimeSeriesDescriptionServiceRequest setComputationIdentifier(String value) { this.ComputationIdentifier = value; return this; }
-        public String getComputationPeriodIdentifier() { return ComputationPeriodIdentifier; }
-        public TimeSeriesDescriptionServiceRequest setComputationPeriodIdentifier(String value) { this.ComputationPeriodIdentifier = value; return this; }
-        public ArrayList<ExtendedAttributeFilter> getExtendedFilters() { return ExtendedFilters; }
-        public TimeSeriesDescriptionServiceRequest setExtendedFilters(ArrayList<ExtendedAttributeFilter> value) { this.ExtendedFilters = value; return this; }
-        private static Object responseType = TimeSeriesDescriptionListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetRatingModelInputValues", Verbs="GET")
-    public static class RatingModelInputValuesServiceRequest implements IReturn<RatingModelInputValuesServiceResponse>
-    {
-        /**
-        * Rating model identifier
-        */
-        @ApiMember(Description="Rating model identifier", IsRequired=true)
-        public String RatingModelIdentifier = null;
-
-        /**
-        * Output values
-        */
-        @ApiMember(DataType="array", Description="Output values", IsRequired=true)
-        public ArrayList<Double> OutputValues = null;
-
-        /**
-        * Effective time of the calculation. Defaults to the current time if not specified
-        */
-        @ApiMember(DataType="string", Description="Effective time of the calculation. Defaults to the current time if not specified", Format="date-time")
-        public Instant EffectiveTime = null;
-        
-        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
-        public RatingModelInputValuesServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
-        public ArrayList<Double> getOutputValues() { return OutputValues; }
-        public RatingModelInputValuesServiceRequest setOutputValues(ArrayList<Double> value) { this.OutputValues = value; return this; }
-        public Instant getEffectiveTime() { return EffectiveTime; }
-        public RatingModelInputValuesServiceRequest setEffectiveTime(Instant value) { this.EffectiveTime = value; return this; }
-        private static Object responseType = RatingModelInputValuesServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetParameterList", Verbs="GET")
-    public static class ParameterListServiceRequest implements IReturn<ParameterListServiceResponse>
+    @Route(Path="/GetApprovalList", Verbs="GET")
+    public static class ApprovalListServiceRequest implements IReturn<ApprovalListServiceResponse>
     {
         
-        private static Object responseType = ParameterListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetMetadataChangeTransactionList", Verbs="GET")
-    public static class MetadataChangeTransactionListServiceRequest implements IReturn<MetadataChangeTransactionListServiceResponse>
-    {
-        /**
-        * The unique ID of the time series
-        */
-        @ApiMember(DataType="string", Description="The unique ID of the time series", Format="guid", IsRequired=true)
-        public String TimeSeriesUniqueId = null;
-
-        /**
-        * Filter results to items with a StartTime at or after the QueryFrom time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with a StartTime at or after the QueryFrom time", Format="date-time")
-        public Instant QueryFrom = null;
-
-        /**
-        * Filter results to items with an EndTime at or before the QueryTo time
-        */
-        @ApiMember(DataType="string", Description="Filter results to items with an EndTime at or before the QueryTo time", Format="date-time")
-        public Instant QueryTo = null;
-        
-        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
-        public MetadataChangeTransactionListServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public MetadataChangeTransactionListServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public MetadataChangeTransactionListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        private static Object responseType = MetadataChangeTransactionListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetEffectiveRatingCurve", Verbs="GET")
-    public static class EffectiveRatingCurveServiceRequest implements IReturn<EffectiveRatingCurveServiceResponse>
-    {
-        /**
-        * Rating model identifier
-        */
-        @ApiMember(Description="Rating model identifier", IsRequired=true)
-        public String RatingModelIdentifier = null;
-
-        /**
-        * Table step size increment. Defaults to 0.01
-        */
-        @ApiMember(DataType="number", Description="Table step size increment. Defaults to 0.01", Format="double")
-        public Double StepSize = null;
-
-        /**
-        * Forces the response time values to a specific UTC offset. Defaults to the location UTC offset
-        */
-        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the location UTC offset", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * Table start value. Required for equation-based ratings. Defaults to minimum table value for table-based ratings
-        */
-        @ApiMember(DataType="number", Description="Table start value. Required for equation-based ratings. Defaults to minimum table value for table-based ratings", Format="double")
-        public Double StartValue = null;
-
-        /**
-        * Table end value. Required for equation-based ratings. Defaults to maximum table value for table-based ratings
-        */
-        @ApiMember(DataType="number", Description="Table end value. Required for equation-based ratings. Defaults to maximum table value for table-based ratings", Format="double")
-        public Double EndValue = null;
-
-        /**
-        * Effective time of the calculation. Defaults to the current time if not specified
-        */
-        @ApiMember(DataType="string", Description="Effective time of the calculation. Defaults to the current time if not specified", Format="date-time")
-        public Instant EffectiveTime = null;
-        
-        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
-        public EffectiveRatingCurveServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
-        public Double getStepSize() { return StepSize; }
-        public EffectiveRatingCurveServiceRequest setStepSize(Double value) { this.StepSize = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public EffectiveRatingCurveServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public Double getStartValue() { return StartValue; }
-        public EffectiveRatingCurveServiceRequest setStartValue(Double value) { this.StartValue = value; return this; }
-        public Double getEndValue() { return EndValue; }
-        public EffectiveRatingCurveServiceRequest setEndValue(Double value) { this.EndValue = value; return this; }
-        public Instant getEffectiveTime() { return EffectiveTime; }
-        public EffectiveRatingCurveServiceRequest setEffectiveTime(Instant value) { this.EffectiveTime = value; return this; }
-        private static Object responseType = EffectiveRatingCurveServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetTrendLineAnalysis", Verbs="POST")
-    public static class TrendLineAnalysisServiceRequest implements IReturn<TrendLineAnalysisServiceResponse>
-    {
-        /**
-        * Type of regression analysis
-        */
-        @ApiMember(DataType="string", Description="Type of regression analysis", IsRequired=true)
-        public TrendLineAnalysisType Type = null;
-
-        /**
-        * Start Time
-        */
-        @ApiMember(DataType="string", Description="Start Time", Format="date-time", IsRequired=true)
-        public Instant QueryFrom = null;
-
-        /**
-        * End Time
-        */
-        @ApiMember(DataType="string", Description="End Time", Format="date-time", IsRequired=true)
-        public Instant QueryTo = null;
-
-        /**
-        * List of data points to perform analysis on. Requires a minimum of three points, and points sorted by timestamp in ascending order. Must not contain any duplicate times.
-        */
-        @ApiMember(DataType="array", Description="List of data points to perform analysis on. Requires a minimum of three points, and points sorted by timestamp in ascending order. Must not contain any duplicate times.", IsRequired=true)
-        public ArrayList<TimeSeriesPoint> Points = null;
-        
-        public TrendLineAnalysisType getType() { return Type; }
-        public TrendLineAnalysisServiceRequest setType(TrendLineAnalysisType value) { this.Type = value; return this; }
-        public Instant getQueryFrom() { return QueryFrom; }
-        public TrendLineAnalysisServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
-        public Instant getQueryTo() { return QueryTo; }
-        public TrendLineAnalysisServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
-        public TrendLineAnalysisServiceRequest setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
-        private static Object responseType = TrendLineAnalysisServiceResponse.class;
+        private static Object responseType = ApprovalListServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -903,6 +149,130 @@ public class Publish
         public Instant getQueryTo() { return QueryTo; }
         public CorrectionListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
         private static Object responseType = CorrectionListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetUnitList", Verbs="GET")
+    public static class UnitListServiceRequest implements IReturn<UnitListServiceResponse>
+    {
+        /**
+        * Filter results to the given Unit Group
+        */
+        @ApiMember(Description="Filter results to the given Unit Group")
+        public String GroupIdentifier = null;
+        
+        public String getGroupIdentifier() { return GroupIdentifier; }
+        public UnitListServiceRequest setGroupIdentifier(String value) { this.GroupIdentifier = value; return this; }
+        private static Object responseType = UnitListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetExpandedStageTable", Verbs="GET")
+    public static class ExpandedStageTableServiceRequest implements IReturn<ExpandedStageTableServiceResponse>
+    {
+        /**
+        * The unique ID of the time series
+        */
+        @ApiMember(DataType="string", Description="The unique ID of the time series", Format="guid", IsRequired=true)
+        public String TimeSeriesUniqueId = null;
+
+        /**
+        * Table step size increment. Defaults to 0.01
+        */
+        @ApiMember(DataType="number", Description="Table step size increment. Defaults to 0.01", Format="double")
+        public Double StepSize = null;
+
+        /**
+        * Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset
+        */
+        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * Table starting value
+        */
+        @ApiMember(DataType="number", Description="Table starting value", Format="double", IsRequired=true)
+        public Double StartValue = null;
+
+        /**
+        * Table ending value
+        */
+        @ApiMember(DataType="number", Description="Table ending value", Format="double", IsRequired=true)
+        public Double EndValue = null;
+        
+        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
+        public ExpandedStageTableServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
+        public Double getStepSize() { return StepSize; }
+        public ExpandedStageTableServiceRequest setStepSize(Double value) { this.StepSize = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public ExpandedStageTableServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public Double getStartValue() { return StartValue; }
+        public ExpandedStageTableServiceRequest setStartValue(Double value) { this.StartValue = value; return this; }
+        public Double getEndValue() { return EndValue; }
+        public ExpandedStageTableServiceRequest setEndValue(Double value) { this.EndValue = value; return this; }
+        private static Object responseType = ExpandedStageTableServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetLocationData", Verbs="GET")
+    public static class LocationDataServiceRequest implements IReturn<LocationDataServiceResponse>
+    {
+        /**
+        * Location identifier
+        */
+        @ApiMember(Description="Location identifier", IsRequired=true)
+        public String LocationIdentifier = null;
+
+        /**
+        * True if location attachments should be included in the results
+        */
+        @ApiMember(DataType="boolean", Description="True if location attachments should be included in the results")
+        public Boolean IncludeLocationAttachments = null;
+
+        /**
+        * True if location notes should be excluded from the results
+        */
+        @ApiMember(DataType="boolean", Description="True if location notes should be excluded from the results")
+        public Boolean ExcludeLocationNotes = null;
+        
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public LocationDataServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public Boolean isIncludeLocationAttachments() { return IncludeLocationAttachments; }
+        public LocationDataServiceRequest setIncludeLocationAttachments(Boolean value) { this.IncludeLocationAttachments = value; return this; }
+        public Boolean isExcludeLocationNotes() { return ExcludeLocationNotes; }
+        public LocationDataServiceRequest setExcludeLocationNotes(Boolean value) { this.ExcludeLocationNotes = value; return this; }
+        private static Object responseType = LocationDataServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetLocationNotes", Verbs="GET")
+    public static class LocationNotesServiceRequest implements IReturn<LocationNotesServiceResponse>
+    {
+        /**
+        * Location identifier
+        */
+        @ApiMember(Description="Location identifier", IsRequired=true)
+        public String LocationIdentifier = null;
+
+        /**
+        * Filter results to items at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        public Instant QueryFrom = null;
+
+        /**
+        * Filter results to items at or before the QueryTo time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        public Instant QueryTo = null;
+        
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public LocationNotesServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public LocationNotesServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public LocationNotesServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        private static Object responseType = LocationNotesServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -984,84 +354,6 @@ public class Publish
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetRatingModelOutputValues", Verbs="GET")
-    public static class RatingModelOutputValuesServiceRequest implements IReturn<RatingModelOutputValuesServiceResponse>
-    {
-        /**
-        * Rating model identifier
-        */
-        @ApiMember(Description="Rating model identifier", IsRequired=true)
-        public String RatingModelIdentifier = null;
-
-        /**
-        * Input values
-        */
-        @ApiMember(DataType="array", Description="Input values", IsRequired=true)
-        public ArrayList<Double> InputValues = null;
-
-        /**
-        * Effective time of the calculation. Defaults to the current time if not specified
-        */
-        @ApiMember(DataType="string", Description="Effective time of the calculation. Defaults to the current time if not specified", Format="date-time")
-        public Instant EffectiveTime = null;
-
-        /**
-        * Set to false to disable rating curve shifts, otherwise true
-        */
-        @ApiMember(DataType="boolean", Description="Set to false to disable rating curve shifts, otherwise true")
-        public Boolean ApplyShifts = null;
-        
-        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
-        public RatingModelOutputValuesServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
-        public ArrayList<Double> getInputValues() { return InputValues; }
-        public RatingModelOutputValuesServiceRequest setInputValues(ArrayList<Double> value) { this.InputValues = value; return this; }
-        public Instant getEffectiveTime() { return EffectiveTime; }
-        public RatingModelOutputValuesServiceRequest setEffectiveTime(Instant value) { this.EffectiveTime = value; return this; }
-        public Boolean isApplyShifts() { return ApplyShifts; }
-        public RatingModelOutputValuesServiceRequest setApplyShifts(Boolean value) { this.ApplyShifts = value; return this; }
-        private static Object responseType = RatingModelOutputValuesServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetSensorsAndGauges", Verbs="GET,POST")
-    public static class SensorsAndGaugesServiceRequest implements IReturn<SensorsAndGaugesServiceResponse>
-    {
-        /**
-        * Filter results to sensors and gauges for this location
-        */
-        @ApiMember(Description="Filter results to sensors and gauges for this location")
-        public String LocationIdentifier = null;
-
-        /**
-        * Filter results to sensors and gauges for these locations. Limited to roughly 60 items for a GET request; use POST to avoid this limit.
-        */
-        @ApiMember(DataType="array", Description="Filter results to sensors and gauges for these locations. Limited to roughly 60 items for a GET request; use POST to avoid this limit.")
-        public ArrayList<String> LocationUniqueIds = null;
-
-        /**
-        * Filter results to sensors and gauges matching all tags by key (supports *partialname* pattern)
-        */
-        @ApiMember(DataType="array", Description="Filter results to sensors and gauges matching all tags by key (supports *partialname* pattern)")
-        public ArrayList<String> TagKeys = null;
-
-        /**
-        * Filter results to sensors and gauges matching all tags by value (supports *partialname* pattern)
-        */
-        @ApiMember(DataType="array", Description="Filter results to sensors and gauges matching all tags by value (supports *partialname* pattern)")
-        public ArrayList<String> TagValues = null;
-        
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public SensorsAndGaugesServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public ArrayList<String> getLocationUniqueIds() { return LocationUniqueIds; }
-        public SensorsAndGaugesServiceRequest setLocationUniqueIds(ArrayList<String> value) { this.LocationUniqueIds = value; return this; }
-        public ArrayList<String> getTagKeys() { return TagKeys; }
-        public SensorsAndGaugesServiceRequest setTagKeys(ArrayList<String> value) { this.TagKeys = value; return this; }
-        public ArrayList<String> getTagValues() { return TagValues; }
-        public SensorsAndGaugesServiceRequest setTagValues(ArrayList<String> value) { this.TagValues = value; return this; }
-        private static Object responseType = SensorsAndGaugesServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
     @Route(Path="/GetLocationDescriptionList", Verbs="GET")
     public static class LocationDescriptionListServiceRequest implements IReturn<LocationDescriptionListServiceResponse>
     {
@@ -1138,6 +430,336 @@ public class Publish
         public Instant getChangesSinceToken() { return ChangesSinceToken; }
         public LocationDescriptionListServiceRequest setChangesSinceToken(Instant value) { this.ChangesSinceToken = value; return this; }
         private static Object responseType = LocationDescriptionListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetQualifierList", Verbs="GET")
+    public static class QualifierListServiceRequest implements IReturn<QualifierListServiceResponse>
+    {
+        
+        private static Object responseType = QualifierListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetTimeSeriesRawData", Verbs="GET")
+    public static class TimeSeriesDataRawServiceRequest implements IReturn<TimeSeriesDataServiceResponse>
+    {
+        /**
+        * The unique ID of the time series
+        */
+        @ApiMember(DataType="string", Description="The unique ID of the time series", Format="guid", IsRequired=true)
+        public String TimeSeriesUniqueId = null;
+
+        /**
+        * Filter results to items at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        public Instant QueryFrom = null;
+
+        /**
+        * Filter results to items at or before the QueryTo time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        public Instant QueryTo = null;
+
+        /**
+        * Sets the level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'
+        */
+        @ApiMember(Description="Sets the level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'")
+        public String GetParts = null;
+
+        /**
+        * The unit identifier for points. Defaults to the time series unit
+        */
+        @ApiMember(Description="The unit identifier for points. Defaults to the time series unit")
+        public String Unit = null;
+
+        /**
+        * Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset
+        */
+        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * True if data values should have rounding rules applied
+        */
+        @ApiMember(DataType="boolean", Description="True if data values should have rounding rules applied")
+        public Boolean ApplyRounding = null;
+        
+        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
+        public TimeSeriesDataRawServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public TimeSeriesDataRawServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public TimeSeriesDataRawServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        public String getGetParts() { return GetParts; }
+        public TimeSeriesDataRawServiceRequest setGetParts(String value) { this.GetParts = value; return this; }
+        public String getUnit() { return Unit; }
+        public TimeSeriesDataRawServiceRequest setUnit(String value) { this.Unit = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public TimeSeriesDataRawServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public Boolean isApplyRounding() { return ApplyRounding; }
+        public TimeSeriesDataRawServiceRequest setApplyRounding(Boolean value) { this.ApplyRounding = value; return this; }
+        private static Object responseType = TimeSeriesDataServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetTimeSeriesCorrectedData", Verbs="GET")
+    public static class TimeSeriesDataCorrectedServiceRequest implements IReturn<TimeSeriesDataServiceResponse>
+    {
+        /**
+        * The unique ID of the time series
+        */
+        @ApiMember(DataType="string", Description="The unique ID of the time series", Format="guid", IsRequired=true)
+        public String TimeSeriesUniqueId = null;
+
+        /**
+        * Filter results to items at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        public Instant QueryFrom = null;
+
+        /**
+        * Filter results to items at or before the QueryTo time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        public Instant QueryTo = null;
+
+        /**
+        * The level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'
+        */
+        @ApiMember(Description="The level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'")
+        public String GetParts = null;
+
+        /**
+        * The unit identifier for points. Defaults to the time series unit
+        */
+        @ApiMember(Description="The unit identifier for points. Defaults to the time series unit")
+        public String Unit = null;
+
+        /**
+        * Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset
+        */
+        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * True if data values should have rounding rules applied
+        */
+        @ApiMember(DataType="boolean", Description="True if data values should have rounding rules applied")
+        public Boolean ApplyRounding = null;
+
+        /**
+        * Defaults to false. See the API reference guide for details
+        */
+        @ApiMember(DataType="boolean", Description="Defaults to false. See the API reference guide for details")
+        public Boolean ReturnFullCoverage = null;
+
+        /**
+        * True if the point results should include gap markers
+        */
+        @ApiMember(DataType="boolean", Description="True if the point results should include gap markers")
+        public Boolean IncludeGapMarkers = null;
+        
+        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
+        public TimeSeriesDataCorrectedServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public TimeSeriesDataCorrectedServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public TimeSeriesDataCorrectedServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        public String getGetParts() { return GetParts; }
+        public TimeSeriesDataCorrectedServiceRequest setGetParts(String value) { this.GetParts = value; return this; }
+        public String getUnit() { return Unit; }
+        public TimeSeriesDataCorrectedServiceRequest setUnit(String value) { this.Unit = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public TimeSeriesDataCorrectedServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public Boolean isApplyRounding() { return ApplyRounding; }
+        public TimeSeriesDataCorrectedServiceRequest setApplyRounding(Boolean value) { this.ApplyRounding = value; return this; }
+        public Boolean isReturnFullCoverage() { return ReturnFullCoverage; }
+        public TimeSeriesDataCorrectedServiceRequest setReturnFullCoverage(Boolean value) { this.ReturnFullCoverage = value; return this; }
+        public Boolean isIncludeGapMarkers() { return IncludeGapMarkers; }
+        public TimeSeriesDataCorrectedServiceRequest setIncludeGapMarkers(Boolean value) { this.IncludeGapMarkers = value; return this; }
+        private static Object responseType = TimeSeriesDataServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetTimeSeriesData", Verbs="GET")
+    public static class TimeAlignedDataServiceRequest implements IReturn<TimeAlignedDataServiceResponse>
+    {
+        /**
+        * The unique IDs of the time-series to retrieve
+        */
+        @ApiMember(DataType="array", Description="The unique IDs of the time-series to retrieve", IsRequired=true)
+        public ArrayList<String> TimeSeriesUniqueIds = null;
+
+        /**
+        * The unit identifiers for points. Defaults to the time-series unit
+        */
+        @ApiMember(DataType="array", Description="The unit identifiers for points. Defaults to the time-series unit")
+        public ArrayList<String> TimeSeriesOutputUnitIds = null;
+
+        /**
+        * Filter results to items at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        public Instant QueryFrom = null;
+
+        /**
+        * Filter results to items at or before the QueryTo time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        public Instant QueryTo = null;
+
+        /**
+        * Forces the response time values to a specific UTC offset. Defaults to the UTC offset of the first time-series
+        */
+        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the UTC offset of the first time-series", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * True if data values should have rounding rules applied
+        */
+        @ApiMember(DataType="boolean", Description="True if data values should have rounding rules applied")
+        public Boolean ApplyRounding = null;
+
+        /**
+        * True if the point results should include gap markers
+        */
+        @ApiMember(DataType="boolean", Description="True if the point results should include gap markers")
+        public Boolean IncludeGapMarkers = null;
+        
+        public ArrayList<String> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
+        public TimeAlignedDataServiceRequest setTimeSeriesUniqueIds(ArrayList<String> value) { this.TimeSeriesUniqueIds = value; return this; }
+        public ArrayList<String> getTimeSeriesOutputUnitIds() { return TimeSeriesOutputUnitIds; }
+        public TimeAlignedDataServiceRequest setTimeSeriesOutputUnitIds(ArrayList<String> value) { this.TimeSeriesOutputUnitIds = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public TimeAlignedDataServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public TimeAlignedDataServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public TimeAlignedDataServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public Boolean isApplyRounding() { return ApplyRounding; }
+        public TimeAlignedDataServiceRequest setApplyRounding(Boolean value) { this.ApplyRounding = value; return this; }
+        public Boolean isIncludeGapMarkers() { return IncludeGapMarkers; }
+        public TimeAlignedDataServiceRequest setIncludeGapMarkers(Boolean value) { this.IncludeGapMarkers = value; return this; }
+        private static Object responseType = TimeAlignedDataServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetMonitoringMethodList", Verbs="GET")
+    public static class MonitoringMethodListServiceRequest implements IReturn<MonitoringMethodListServiceResponse>
+    {
+        
+        private static Object responseType = MonitoringMethodListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetSensorsAndGauges", Verbs="GET,POST")
+    public static class SensorsAndGaugesServiceRequest implements IReturn<SensorsAndGaugesServiceResponse>
+    {
+        /**
+        * Filter results to sensors and gauges for this location
+        */
+        @ApiMember(Description="Filter results to sensors and gauges for this location")
+        public String LocationIdentifier = null;
+
+        /**
+        * Filter results to sensors and gauges for these locations. Limited to roughly 60 items for a GET request; use POST to avoid this limit.
+        */
+        @ApiMember(DataType="array", Description="Filter results to sensors and gauges for these locations. Limited to roughly 60 items for a GET request; use POST to avoid this limit.")
+        public ArrayList<String> LocationUniqueIds = null;
+
+        /**
+        * Filter results to sensors and gauges matching all tags by key (supports *partialname* pattern)
+        */
+        @ApiMember(DataType="array", Description="Filter results to sensors and gauges matching all tags by key (supports *partialname* pattern)")
+        public ArrayList<String> TagKeys = null;
+
+        /**
+        * Filter results to sensors and gauges matching all tags by value (supports *partialname* pattern)
+        */
+        @ApiMember(DataType="array", Description="Filter results to sensors and gauges matching all tags by value (supports *partialname* pattern)")
+        public ArrayList<String> TagValues = null;
+        
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public SensorsAndGaugesServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public ArrayList<String> getLocationUniqueIds() { return LocationUniqueIds; }
+        public SensorsAndGaugesServiceRequest setLocationUniqueIds(ArrayList<String> value) { this.LocationUniqueIds = value; return this; }
+        public ArrayList<String> getTagKeys() { return TagKeys; }
+        public SensorsAndGaugesServiceRequest setTagKeys(ArrayList<String> value) { this.TagKeys = value; return this; }
+        public ArrayList<String> getTagValues() { return TagValues; }
+        public SensorsAndGaugesServiceRequest setTagValues(ArrayList<String> value) { this.TagValues = value; return this; }
+        private static Object responseType = SensorsAndGaugesServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetParameterList", Verbs="GET")
+    public static class ParameterListServiceRequest implements IReturn<ParameterListServiceResponse>
+    {
+        
+        private static Object responseType = ParameterListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetAuthToken", Verbs="GET")
+    public static class GetAuthTokenServiceRequest implements IReturn<String>
+    {
+        /**
+        * Username
+        */
+        @ApiMember(Description="Username")
+        public String Username = null;
+
+        /**
+        * Encrypted password
+        */
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Locale
+        */
+        @ApiMember(Description="Locale")
+        public String Locale = null;
+        
+        public String getUsername() { return Username; }
+        public GetAuthTokenServiceRequest setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public GetAuthTokenServiceRequest setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public GetAuthTokenServiceRequest setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetRatingModelInputValues", Verbs="GET")
+    public static class RatingModelInputValuesServiceRequest implements IReturn<RatingModelInputValuesServiceResponse>
+    {
+        /**
+        * Rating model identifier
+        */
+        @ApiMember(Description="Rating model identifier", IsRequired=true)
+        public String RatingModelIdentifier = null;
+
+        /**
+        * Output values
+        */
+        @ApiMember(DataType="array", Description="Output values", IsRequired=true)
+        public ArrayList<Double> OutputValues = null;
+
+        /**
+        * Effective time of the calculation. Defaults to the current time if not specified
+        */
+        @ApiMember(DataType="string", Description="Effective time of the calculation. Defaults to the current time if not specified", Format="date-time")
+        public Instant EffectiveTime = null;
+        
+        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
+        public RatingModelInputValuesServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
+        public ArrayList<Double> getOutputValues() { return OutputValues; }
+        public RatingModelInputValuesServiceRequest setOutputValues(ArrayList<Double> value) { this.OutputValues = value; return this; }
+        public Instant getEffectiveTime() { return EffectiveTime; }
+        public RatingModelInputValuesServiceRequest setEffectiveTime(Instant value) { this.EffectiveTime = value; return this; }
+        private static Object responseType = RatingModelInputValuesServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -1378,8 +1000,8 @@ public class Publish
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetTimeSeriesRawData", Verbs="GET")
-    public static class TimeSeriesDataRawServiceRequest implements IReturn<TimeSeriesDataServiceResponse>
+    @Route(Path="/GetApprovalsTransactionList", Verbs="GET")
+    public static class TimeSeriesApprovalsTransactionListServiceRequest implements IReturn<TimeSeriesApprovalsTransactionListServiceResponse>
     {
         /**
         * The unique ID of the time series
@@ -1388,61 +1010,29 @@ public class Publish
         public String TimeSeriesUniqueId = null;
 
         /**
-        * Filter results to items at or after the QueryFrom time
+        * Filter results to items with a StartTime at or after the QueryFrom time
         */
-        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        @ApiMember(DataType="string", Description="Filter results to items with a StartTime at or after the QueryFrom time", Format="date-time")
         public Instant QueryFrom = null;
 
         /**
-        * Filter results to items at or before the QueryTo time
+        * Filter results to items with an EndTime at or before the QueryTo time
         */
-        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        @ApiMember(DataType="string", Description="Filter results to items with an EndTime at or before the QueryTo time", Format="date-time")
         public Instant QueryTo = null;
-
-        /**
-        * Sets the level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'
-        */
-        @ApiMember(Description="Sets the level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'")
-        public String GetParts = null;
-
-        /**
-        * The unit identifier for points. Defaults to the time series unit
-        */
-        @ApiMember(Description="The unit identifier for points. Defaults to the time series unit")
-        public String Unit = null;
-
-        /**
-        * Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset
-        */
-        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * True if data values should have rounding rules applied
-        */
-        @ApiMember(DataType="boolean", Description="True if data values should have rounding rules applied")
-        public Boolean ApplyRounding = null;
         
         public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
-        public TimeSeriesDataRawServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
+        public TimeSeriesApprovalsTransactionListServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
         public Instant getQueryFrom() { return QueryFrom; }
-        public TimeSeriesDataRawServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public TimeSeriesApprovalsTransactionListServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
         public Instant getQueryTo() { return QueryTo; }
-        public TimeSeriesDataRawServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        public String getGetParts() { return GetParts; }
-        public TimeSeriesDataRawServiceRequest setGetParts(String value) { this.GetParts = value; return this; }
-        public String getUnit() { return Unit; }
-        public TimeSeriesDataRawServiceRequest setUnit(String value) { this.Unit = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public TimeSeriesDataRawServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public Boolean isApplyRounding() { return ApplyRounding; }
-        public TimeSeriesDataRawServiceRequest setApplyRounding(Boolean value) { this.ApplyRounding = value; return this; }
-        private static Object responseType = TimeSeriesDataServiceResponse.class;
+        public TimeSeriesApprovalsTransactionListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        private static Object responseType = TimeSeriesApprovalsTransactionListServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetTimeSeriesCorrectedData", Verbs="GET")
-    public static class TimeSeriesDataCorrectedServiceRequest implements IReturn<TimeSeriesDataServiceResponse>
+    @Route(Path="/GetMetadataChangeTransactionList", Verbs="GET")
+    public static class MetadataChangeTransactionListServiceRequest implements IReturn<MetadataChangeTransactionListServiceResponse>
     {
         /**
         * The unique ID of the time series
@@ -1451,135 +1041,102 @@ public class Publish
         public String TimeSeriesUniqueId = null;
 
         /**
-        * Filter results to items at or after the QueryFrom time
+        * Filter results to items with a StartTime at or after the QueryFrom time
         */
-        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        @ApiMember(DataType="string", Description="Filter results to items with a StartTime at or after the QueryFrom time", Format="date-time")
         public Instant QueryFrom = null;
 
         /**
-        * Filter results to items at or before the QueryTo time
+        * Filter results to items with an EndTime at or before the QueryTo time
         */
-        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        @ApiMember(DataType="string", Description="Filter results to items with an EndTime at or before the QueryTo time", Format="date-time")
         public Instant QueryTo = null;
-
-        /**
-        * The level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'
-        */
-        @ApiMember(Description="The level of time series detail to report. One of 'All', 'PointsOnly', or 'MetadataOnly'. Defaults to 'All'")
-        public String GetParts = null;
-
-        /**
-        * The unit identifier for points. Defaults to the time series unit
-        */
-        @ApiMember(Description="The unit identifier for points. Defaults to the time series unit")
-        public String Unit = null;
-
-        /**
-        * Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset
-        */
-        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the time series UTC offset", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * True if data values should have rounding rules applied
-        */
-        @ApiMember(DataType="boolean", Description="True if data values should have rounding rules applied")
-        public Boolean ApplyRounding = null;
-
-        /**
-        * Defaults to false. See the API reference guide for details
-        */
-        @ApiMember(DataType="boolean", Description="Defaults to false. See the API reference guide for details")
-        public Boolean ReturnFullCoverage = null;
-
-        /**
-        * True if the point results should include gap markers
-        */
-        @ApiMember(DataType="boolean", Description="True if the point results should include gap markers")
-        public Boolean IncludeGapMarkers = null;
         
         public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
-        public TimeSeriesDataCorrectedServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
+        public MetadataChangeTransactionListServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
         public Instant getQueryFrom() { return QueryFrom; }
-        public TimeSeriesDataCorrectedServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public MetadataChangeTransactionListServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
         public Instant getQueryTo() { return QueryTo; }
-        public TimeSeriesDataCorrectedServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        public String getGetParts() { return GetParts; }
-        public TimeSeriesDataCorrectedServiceRequest setGetParts(String value) { this.GetParts = value; return this; }
-        public String getUnit() { return Unit; }
-        public TimeSeriesDataCorrectedServiceRequest setUnit(String value) { this.Unit = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public TimeSeriesDataCorrectedServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public Boolean isApplyRounding() { return ApplyRounding; }
-        public TimeSeriesDataCorrectedServiceRequest setApplyRounding(Boolean value) { this.ApplyRounding = value; return this; }
-        public Boolean isReturnFullCoverage() { return ReturnFullCoverage; }
-        public TimeSeriesDataCorrectedServiceRequest setReturnFullCoverage(Boolean value) { this.ReturnFullCoverage = value; return this; }
-        public Boolean isIncludeGapMarkers() { return IncludeGapMarkers; }
-        public TimeSeriesDataCorrectedServiceRequest setIncludeGapMarkers(Boolean value) { this.IncludeGapMarkers = value; return this; }
-        private static Object responseType = TimeSeriesDataServiceResponse.class;
+        public MetadataChangeTransactionListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        private static Object responseType = MetadataChangeTransactionListServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetTimeSeriesData", Verbs="GET")
-    public static class TimeAlignedDataServiceRequest implements IReturn<TimeAlignedDataServiceResponse>
+    @Route(Path="/GetRatingModelDescriptionList", Verbs="GET")
+    public static class RatingModelDescriptionListServiceRequest implements IReturn<RatingModelDescriptionListServiceResponse>
     {
         /**
-        * The unique IDs of the time-series to retrieve
+        * Filter results to the given location
         */
-        @ApiMember(DataType="array", Description="The unique IDs of the time-series to retrieve", IsRequired=true)
-        public ArrayList<String> TimeSeriesUniqueIds = null;
+        @ApiMember(Description="Filter results to the given location")
+        public String LocationIdentifier = null;
 
         /**
-        * The unit identifiers for points. Defaults to the time-series unit
+        * Filter results to items matching the Publish value
         */
-        @ApiMember(DataType="array", Description="The unit identifiers for points. Defaults to the time-series unit")
-        public ArrayList<String> TimeSeriesOutputUnitIds = null;
+        @ApiMember(DataType="boolean", Description="Filter results to items matching the Publish value")
+        public Boolean Publish = null;
 
         /**
-        * Filter results to items at or after the QueryFrom time
+        * Filter results to items maching the InputParameter identifier
         */
-        @ApiMember(DataType="string", Description="Filter results to items at or after the QueryFrom time", Format="date-time")
+        @ApiMember(Description="Filter results to items maching the InputParameter identifier")
+        public String InputParameter = null;
+
+        /**
+        * Filter results to items maching the OutputParameter identifier
+        */
+        @ApiMember(Description="Filter results to items maching the OutputParameter identifier")
+        public String OutputParameter = null;
+
+        /**
+        * Filter results to items modified at or after the ChangesSinceToken time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items modified at or after the ChangesSinceToken time", Format="date-time")
+        public Instant ChangesSinceToken = null;
+        
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public RatingModelDescriptionListServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public RatingModelDescriptionListServiceRequest setPublish(Boolean value) { this.Publish = value; return this; }
+        public String getInputParameter() { return InputParameter; }
+        public RatingModelDescriptionListServiceRequest setInputParameter(String value) { this.InputParameter = value; return this; }
+        public String getOutputParameter() { return OutputParameter; }
+        public RatingModelDescriptionListServiceRequest setOutputParameter(String value) { this.OutputParameter = value; return this; }
+        public Instant getChangesSinceToken() { return ChangesSinceToken; }
+        public RatingModelDescriptionListServiceRequest setChangesSinceToken(Instant value) { this.ChangesSinceToken = value; return this; }
+        private static Object responseType = RatingModelDescriptionListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetDownchainProcessorListByRatingModel", Verbs="GET")
+    public static class DownchainProcessorListByRatingModelServiceRequest implements IReturn<ProcessorListServiceResponse>
+    {
+        /**
+        * Rating model identifier
+        */
+        @ApiMember(Description="Rating model identifier", IsRequired=true)
+        public String RatingModelIdentifier = null;
+
+        /**
+        * Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time", Format="date-time")
         public Instant QueryFrom = null;
 
         /**
-        * Filter results to items at or before the QueryTo time
+        * Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time
         */
-        @ApiMember(DataType="string", Description="Filter results to items at or before the QueryTo time", Format="date-time")
+        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time", Format="date-time")
         public Instant QueryTo = null;
-
-        /**
-        * Forces the response time values to a specific UTC offset. Defaults to the UTC offset of the first time-series
-        */
-        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the UTC offset of the first time-series", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * True if data values should have rounding rules applied
-        */
-        @ApiMember(DataType="boolean", Description="True if data values should have rounding rules applied")
-        public Boolean ApplyRounding = null;
-
-        /**
-        * True if the point results should include gap markers
-        */
-        @ApiMember(DataType="boolean", Description="True if the point results should include gap markers")
-        public Boolean IncludeGapMarkers = null;
         
-        public ArrayList<String> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
-        public TimeAlignedDataServiceRequest setTimeSeriesUniqueIds(ArrayList<String> value) { this.TimeSeriesUniqueIds = value; return this; }
-        public ArrayList<String> getTimeSeriesOutputUnitIds() { return TimeSeriesOutputUnitIds; }
-        public TimeAlignedDataServiceRequest setTimeSeriesOutputUnitIds(ArrayList<String> value) { this.TimeSeriesOutputUnitIds = value; return this; }
+        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
+        public DownchainProcessorListByRatingModelServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
         public Instant getQueryFrom() { return QueryFrom; }
-        public TimeAlignedDataServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public DownchainProcessorListByRatingModelServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
         public Instant getQueryTo() { return QueryTo; }
-        public TimeAlignedDataServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public TimeAlignedDataServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public Boolean isApplyRounding() { return ApplyRounding; }
-        public TimeAlignedDataServiceRequest setApplyRounding(Boolean value) { this.ApplyRounding = value; return this; }
-        public Boolean isIncludeGapMarkers() { return IncludeGapMarkers; }
-        public TimeAlignedDataServiceRequest setIncludeGapMarkers(Boolean value) { this.IncludeGapMarkers = value; return this; }
-        private static Object responseType = TimeAlignedDataServiceResponse.class;
+        public DownchainProcessorListByRatingModelServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        private static Object responseType = ProcessorListServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -1614,11 +1171,430 @@ public class Publish
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetQualifierList", Verbs="GET")
-    public static class QualifierListServiceRequest implements IReturn<QualifierListServiceResponse>
+    @Route(Path="/GetTrendLineAnalysis", Verbs="POST")
+    public static class TrendLineAnalysisServiceRequest implements IReturn<TrendLineAnalysisServiceResponse>
+    {
+        /**
+        * Type of regression analysis
+        */
+        @ApiMember(DataType="string", Description="Type of regression analysis", IsRequired=true)
+        public TrendLineAnalysisType Type = null;
+
+        /**
+        * Start Time
+        */
+        @ApiMember(DataType="string", Description="Start Time", Format="date-time", IsRequired=true)
+        public Instant QueryFrom = null;
+
+        /**
+        * End Time
+        */
+        @ApiMember(DataType="string", Description="End Time", Format="date-time", IsRequired=true)
+        public Instant QueryTo = null;
+
+        /**
+        * List of data points to perform analysis on. Requires a minimum of three points, and points sorted by timestamp in ascending order. Must not contain any duplicate times.
+        */
+        @ApiMember(DataType="array", Description="List of data points to perform analysis on. Requires a minimum of three points, and points sorted by timestamp in ascending order. Must not contain any duplicate times.", IsRequired=true)
+        public ArrayList<TimeSeriesPoint> Points = null;
+        
+        public TrendLineAnalysisType getType() { return Type; }
+        public TrendLineAnalysisServiceRequest setType(TrendLineAnalysisType value) { this.Type = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public TrendLineAnalysisServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public TrendLineAnalysisServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        public ArrayList<TimeSeriesPoint> getPoints() { return Points; }
+        public TrendLineAnalysisServiceRequest setPoints(ArrayList<TimeSeriesPoint> value) { this.Points = value; return this; }
+        private static Object responseType = TrendLineAnalysisServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetTimeSeriesUniqueIdList", Verbs="GET")
+    public static class TimeSeriesUniqueIdListServiceRequest implements IReturn<TimeSeriesUniqueIdListServiceResponse>
+    {
+        /**
+        * Filter results to items modified at or after the ChangesSinceToken time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items modified at or after the ChangesSinceToken time", Format="date-time")
+        public Instant ChangesSinceToken = null;
+
+        /**
+        * Filter results to a specific change event type: 'Data' or 'Attribute'
+        */
+        @ApiMember(Description="Filter results to a specific change event type: 'Data' or 'Attribute'")
+        public String ChangeEventType = null;
+
+        /**
+        * Filter results to the given location
+        */
+        @ApiMember(Description="Filter results to the given location")
+        public String LocationIdentifier = null;
+
+        /**
+        * Filter results to items maching the Parameter identifier
+        */
+        @ApiMember(Description="Filter results to items maching the Parameter identifier")
+        public String Parameter = null;
+
+        /**
+        * Filter results to items matching the Publish value
+        */
+        @ApiMember(DataType="boolean", Description="Filter results to items matching the Publish value")
+        public Boolean Publish = null;
+
+        /**
+        * Filter results to items matching the computation identifier
+        */
+        @ApiMember(Description="Filter results to items matching the computation identifier")
+        public String ComputationIdentifier = null;
+
+        /**
+        * Filter results to items matching the computation period identifier
+        */
+        @ApiMember(Description="Filter results to items matching the computation period identifier")
+        public String ComputationPeriodIdentifier = null;
+
+        /**
+        * Filter results to items matching the given extended attribute values
+        */
+        @ApiMember(DataType="array", Description="Filter results to items matching the given extended attribute values")
+        public ArrayList<ExtendedAttributeFilter> ExtendedFilters = null;
+        
+        public Instant getChangesSinceToken() { return ChangesSinceToken; }
+        public TimeSeriesUniqueIdListServiceRequest setChangesSinceToken(Instant value) { this.ChangesSinceToken = value; return this; }
+        public String getChangeEventType() { return ChangeEventType; }
+        public TimeSeriesUniqueIdListServiceRequest setChangeEventType(String value) { this.ChangeEventType = value; return this; }
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public TimeSeriesUniqueIdListServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public String getParameter() { return Parameter; }
+        public TimeSeriesUniqueIdListServiceRequest setParameter(String value) { this.Parameter = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public TimeSeriesUniqueIdListServiceRequest setPublish(Boolean value) { this.Publish = value; return this; }
+        public String getComputationIdentifier() { return ComputationIdentifier; }
+        public TimeSeriesUniqueIdListServiceRequest setComputationIdentifier(String value) { this.ComputationIdentifier = value; return this; }
+        public String getComputationPeriodIdentifier() { return ComputationPeriodIdentifier; }
+        public TimeSeriesUniqueIdListServiceRequest setComputationPeriodIdentifier(String value) { this.ComputationPeriodIdentifier = value; return this; }
+        public ArrayList<ExtendedAttributeFilter> getExtendedFilters() { return ExtendedFilters; }
+        public TimeSeriesUniqueIdListServiceRequest setExtendedFilters(ArrayList<ExtendedAttributeFilter> value) { this.ExtendedFilters = value; return this; }
+        private static Object responseType = TimeSeriesUniqueIdListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetRatingModelOutputValues", Verbs="GET")
+    public static class RatingModelOutputValuesServiceRequest implements IReturn<RatingModelOutputValuesServiceResponse>
+    {
+        /**
+        * Rating model identifier
+        */
+        @ApiMember(Description="Rating model identifier", IsRequired=true)
+        public String RatingModelIdentifier = null;
+
+        /**
+        * Input values
+        */
+        @ApiMember(DataType="array", Description="Input values", IsRequired=true)
+        public ArrayList<Double> InputValues = null;
+
+        /**
+        * Effective time of the calculation. Defaults to the current time if not specified
+        */
+        @ApiMember(DataType="string", Description="Effective time of the calculation. Defaults to the current time if not specified", Format="date-time")
+        public Instant EffectiveTime = null;
+
+        /**
+        * Set to false to disable rating curve shifts, otherwise true
+        */
+        @ApiMember(DataType="boolean", Description="Set to false to disable rating curve shifts, otherwise true")
+        public Boolean ApplyShifts = null;
+        
+        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
+        public RatingModelOutputValuesServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
+        public ArrayList<Double> getInputValues() { return InputValues; }
+        public RatingModelOutputValuesServiceRequest setInputValues(ArrayList<Double> value) { this.InputValues = value; return this; }
+        public Instant getEffectiveTime() { return EffectiveTime; }
+        public RatingModelOutputValuesServiceRequest setEffectiveTime(Instant value) { this.EffectiveTime = value; return this; }
+        public Boolean isApplyShifts() { return ApplyShifts; }
+        public RatingModelOutputValuesServiceRequest setApplyShifts(Boolean value) { this.ApplyShifts = value; return this; }
+        private static Object responseType = RatingModelOutputValuesServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetRatingCurveList", Verbs="GET")
+    public static class RatingCurveListServiceRequest implements IReturn<RatingCurveListServiceResponse>
+    {
+        /**
+        * Rating model identifier
+        */
+        @ApiMember(Description="Rating model identifier", IsRequired=true)
+        public String RatingModelIdentifier = null;
+
+        /**
+        * Forces the response time values to a specific UTC offset. Defaults to the location UTC offset
+        */
+        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the location UTC offset", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * Filter results to curves with a Period.StartTime at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to curves with a Period.StartTime at or after the QueryFrom time", Format="date-time")
+        public Instant QueryFrom = null;
+
+        /**
+        * Filter results to curves with a Period.EndTime at or before the QueryTo time
+        */
+        @ApiMember(DataType="string", Description="Filter results to curves with a Period.EndTime at or before the QueryTo time", Format="date-time")
+        public Instant QueryTo = null;
+        
+        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
+        public RatingCurveListServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public RatingCurveListServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public RatingCurveListServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public RatingCurveListServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        private static Object responseType = RatingCurveListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetTagList", Verbs="GET")
+    public static class TagListServiceRequest implements IReturn<TagListServiceResponse>
+    {
+        /**
+        * If set, return only tags with specified applicability, selected from: AppliesToLocations, AppliesToLocationNotes, AppliesToSensorsGauges, AppliesToAttachments, AppliesToReports
+        */
+        @ApiMember(AllowMultiple=true, DataType="array", Description="If set, return only tags with specified applicability, selected from: AppliesToLocations, AppliesToLocationNotes, AppliesToSensorsGauges, AppliesToAttachments, AppliesToReports")
+        public ArrayList<TagApplicability> Applicability = null;
+        
+        public ArrayList<TagApplicability> getApplicability() { return Applicability; }
+        public TagListServiceRequest setApplicability(ArrayList<TagApplicability> value) { this.Applicability = value; return this; }
+        private static Object responseType = TagListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetDownchainProcessorListByTimeSeries", Verbs="GET")
+    public static class DownchainProcessorListByTimeSeriesServiceRequest implements IReturn<ProcessorListServiceResponse>
+    {
+        /**
+        * Unique ID of the time series
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the time series", Format="guid", IsRequired=true)
+        public String TimeSeriesUniqueId = null;
+
+        /**
+        * Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.StartTime at or after the QueryFrom time", Format="date-time")
+        public Instant QueryFrom = null;
+
+        /**
+        * Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items with a ProcessorPeriod.EndTime at or before the QueryTo time", Format="date-time")
+        public Instant QueryTo = null;
+        
+        public String getTimeSeriesUniqueId() { return TimeSeriesUniqueId; }
+        public DownchainProcessorListByTimeSeriesServiceRequest setTimeSeriesUniqueId(String value) { this.TimeSeriesUniqueId = value; return this; }
+        public Instant getQueryFrom() { return QueryFrom; }
+        public DownchainProcessorListByTimeSeriesServiceRequest setQueryFrom(Instant value) { this.QueryFrom = value; return this; }
+        public Instant getQueryTo() { return QueryTo; }
+        public DownchainProcessorListByTimeSeriesServiceRequest setQueryTo(Instant value) { this.QueryTo = value; return this; }
+        private static Object responseType = ProcessorListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session/keepalive", Verbs="GET")
+    public static class GetKeepAlive implements IReturnVoid
     {
         
-        private static Object responseType = QualifierListServiceResponse.class;
+    }
+
+    @Route(Path="/session", Verbs="POST")
+    public static class PostSession implements IReturn<String>
+    {
+        /**
+        * Username
+        */
+        @ApiMember(Description="Username")
+        public String Username = null;
+
+        /**
+        * Encrypted password
+        */
+        @ApiMember(Description="Encrypted password")
+        public String EncryptedPassword = null;
+
+        /**
+        * Optional locale. Defaults to English
+        */
+        @ApiMember(Description="Optional locale. Defaults to English")
+        public String Locale = null;
+        
+        public String getUsername() { return Username; }
+        public PostSession setUsername(String value) { this.Username = value; return this; }
+        public String getEncryptedPassword() { return EncryptedPassword; }
+        public PostSession setEncryptedPassword(String value) { this.EncryptedPassword = value; return this; }
+        public String getLocale() { return Locale; }
+        public PostSession setLocale(String value) { this.Locale = value; return this; }
+        private static Object responseType = String.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/session", Verbs="DELETE")
+    public static class DeleteSession implements IReturnVoid
+    {
+        
+    }
+
+    @Route(Path="/session/publickey", Verbs="GET")
+    public static class GetPublicKey implements IReturn<PublicKey>
+    {
+        
+        private static Object responseType = PublicKey.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetEffectiveRatingCurve", Verbs="GET")
+    public static class EffectiveRatingCurveServiceRequest implements IReturn<EffectiveRatingCurveServiceResponse>
+    {
+        /**
+        * Rating model identifier
+        */
+        @ApiMember(Description="Rating model identifier", IsRequired=true)
+        public String RatingModelIdentifier = null;
+
+        /**
+        * Table step size increment. Defaults to 0.01
+        */
+        @ApiMember(DataType="number", Description="Table step size increment. Defaults to 0.01", Format="double")
+        public Double StepSize = null;
+
+        /**
+        * Forces the response time values to a specific UTC offset. Defaults to the location UTC offset
+        */
+        @ApiMember(DataType="number", Description="Forces the response time values to a specific UTC offset. Defaults to the location UTC offset", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * Table start value. Required for equation-based ratings. Defaults to minimum table value for table-based ratings
+        */
+        @ApiMember(DataType="number", Description="Table start value. Required for equation-based ratings. Defaults to minimum table value for table-based ratings", Format="double")
+        public Double StartValue = null;
+
+        /**
+        * Table end value. Required for equation-based ratings. Defaults to maximum table value for table-based ratings
+        */
+        @ApiMember(DataType="number", Description="Table end value. Required for equation-based ratings. Defaults to maximum table value for table-based ratings", Format="double")
+        public Double EndValue = null;
+
+        /**
+        * Effective time of the calculation. Defaults to the current time if not specified
+        */
+        @ApiMember(DataType="string", Description="Effective time of the calculation. Defaults to the current time if not specified", Format="date-time")
+        public Instant EffectiveTime = null;
+        
+        public String getRatingModelIdentifier() { return RatingModelIdentifier; }
+        public EffectiveRatingCurveServiceRequest setRatingModelIdentifier(String value) { this.RatingModelIdentifier = value; return this; }
+        public Double getStepSize() { return StepSize; }
+        public EffectiveRatingCurveServiceRequest setStepSize(Double value) { this.StepSize = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public EffectiveRatingCurveServiceRequest setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public Double getStartValue() { return StartValue; }
+        public EffectiveRatingCurveServiceRequest setStartValue(Double value) { this.StartValue = value; return this; }
+        public Double getEndValue() { return EndValue; }
+        public EffectiveRatingCurveServiceRequest setEndValue(Double value) { this.EndValue = value; return this; }
+        public Instant getEffectiveTime() { return EffectiveTime; }
+        public EffectiveRatingCurveServiceRequest setEffectiveTime(Instant value) { this.EffectiveTime = value; return this; }
+        private static Object responseType = EffectiveRatingCurveServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetGradeList", Verbs="GET")
+    public static class GradeListServiceRequest implements IReturn<GradeListServiceResponse>
+    {
+        
+        private static Object responseType = GradeListServiceResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/GetReportList", Verbs="GET")
+    public static class ReportListServiceRequest implements IReturn<ReportListServiceResponse>
+    {
+        /**
+        * Filter results to given location unique ID
+        */
+        @ApiMember(DataType="string", Description="Filter results to given location unique ID", Format="guid")
+        public String LocationUniqueId = null;
+
+        /**
+        * Filter results to given source time series unique IDs
+        */
+        @ApiMember(DataType="array", Description="Filter results to given source time series unique IDs")
+        public ArrayList<String> TimeSeriesUniqueIds = null;
+
+        /**
+        * Filter results to the given user unique ID
+        */
+        @ApiMember(DataType="string", Description="Filter results to the given user unique ID", Format="guid")
+        public String UserUniqueId = null;
+
+        /**
+        * Filter results to the given report title
+        */
+        @ApiMember(Description="Filter results to the given report title")
+        public String ReportTitle = null;
+
+        /**
+        * Filter results to given report unique IDs
+        */
+        @ApiMember(DataType="array", Description="Filter results to given report unique IDs")
+        public ArrayList<String> ReportUniqueIds = null;
+
+        /**
+        * Filter results to items created at or after the CreatedFrom time
+        */
+        @ApiMember(DataType="string", Description="Filter results to items created at or after the CreatedFrom time", Format="date-time")
+        public Instant CreatedFrom = null;
+
+        /**
+        * Filter results to items matching all tags by key (supports *partialname* pattern)
+        */
+        @ApiMember(DataType="array", Description="Filter results to items matching all tags by key (supports *partialname* pattern)")
+        public ArrayList<String> TagKeys = null;
+
+        /**
+        * Filter results to items matching all tags by value (supports *partialname* pattern)
+        */
+        @ApiMember(DataType="array", Description="Filter results to items matching all tags by value (supports *partialname* pattern)")
+        public ArrayList<String> TagValues = null;
+
+        /**
+        * Limit the number of results items, after all filtering and ordering
+        */
+        @ApiMember(DataType="integer", Description="Limit the number of results items, after all filtering and ordering", Format="int32")
+        public Integer MaxResults = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public ReportListServiceRequest setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public ArrayList<String> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
+        public ReportListServiceRequest setTimeSeriesUniqueIds(ArrayList<String> value) { this.TimeSeriesUniqueIds = value; return this; }
+        public String getUserUniqueId() { return UserUniqueId; }
+        public ReportListServiceRequest setUserUniqueId(String value) { this.UserUniqueId = value; return this; }
+        public String getReportTitle() { return ReportTitle; }
+        public ReportListServiceRequest setReportTitle(String value) { this.ReportTitle = value; return this; }
+        public ArrayList<String> getReportUniqueIds() { return ReportUniqueIds; }
+        public ReportListServiceRequest setReportUniqueIds(ArrayList<String> value) { this.ReportUniqueIds = value; return this; }
+        public Instant getCreatedFrom() { return CreatedFrom; }
+        public ReportListServiceRequest setCreatedFrom(Instant value) { this.CreatedFrom = value; return this; }
+        public ArrayList<String> getTagKeys() { return TagKeys; }
+        public ReportListServiceRequest setTagKeys(ArrayList<String> value) { this.TagKeys = value; return this; }
+        public ArrayList<String> getTagValues() { return TagValues; }
+        public ReportListServiceRequest setTagValues(ArrayList<String> value) { this.TagValues = value; return this; }
+        public Integer getMaxResults() { return MaxResults; }
+        public ReportListServiceRequest setMaxResults(Integer value) { this.MaxResults = value; return this; }
+        private static Object responseType = ReportListServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -1669,75 +1645,159 @@ public class Publish
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetTimeSeriesDescriptionListByUniqueId", Verbs="GET,POST")
-    public static class TimeSeriesDescriptionListByUniqueIdServiceRequest implements IReturn<TimeSeriesDescriptionListByUniqueIdServiceResponse>
+    @Route(Path="/GetTimeSeriesDescriptionList", Verbs="GET")
+    public static class TimeSeriesDescriptionServiceRequest implements IReturn<TimeSeriesDescriptionListServiceResponse>
     {
         /**
-        * A collection of time series unique IDs to query. Limited to roughly 60 items for a GET request; use POST to avoid this limit.
+        * Filter results to the given location
         */
-        @ApiMember(DataType="array", Description="A collection of time series unique IDs to query. Limited to roughly 60 items for a GET request; use POST to avoid this limit.")
-        public ArrayList<String> TimeSeriesUniqueIds = null;
+        @ApiMember(Description="Filter results to the given location")
+        public String LocationIdentifier = null;
+
+        /**
+        * Filter results to items matching the parameter identifier
+        */
+        @ApiMember(Description="Filter results to items matching the parameter identifier")
+        public String Parameter = null;
+
+        /**
+        * Filter results to items matching the Publish value
+        */
+        @ApiMember(DataType="boolean", Description="Filter results to items matching the Publish value")
+        public Boolean Publish = null;
+
+        /**
+        * Filter results to items matching the computation identifier
+        */
+        @ApiMember(Description="Filter results to items matching the computation identifier")
+        public String ComputationIdentifier = null;
+
+        /**
+        * Filter results to items matching the computation period identifier
+        */
+        @ApiMember(Description="Filter results to items matching the computation period identifier")
+        public String ComputationPeriodIdentifier = null;
+
+        /**
+        * Filter results to items matching the given extended attribute values
+        */
+        @ApiMember(DataType="array", Description="Filter results to items matching the given extended attribute values")
+        public ArrayList<ExtendedAttributeFilter> ExtendedFilters = null;
         
-        public ArrayList<String> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
-        public TimeSeriesDescriptionListByUniqueIdServiceRequest setTimeSeriesUniqueIds(ArrayList<String> value) { this.TimeSeriesUniqueIds = value; return this; }
-        private static Object responseType = TimeSeriesDescriptionListByUniqueIdServiceResponse.class;
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public TimeSeriesDescriptionServiceRequest setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public String getParameter() { return Parameter; }
+        public TimeSeriesDescriptionServiceRequest setParameter(String value) { this.Parameter = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public TimeSeriesDescriptionServiceRequest setPublish(Boolean value) { this.Publish = value; return this; }
+        public String getComputationIdentifier() { return ComputationIdentifier; }
+        public TimeSeriesDescriptionServiceRequest setComputationIdentifier(String value) { this.ComputationIdentifier = value; return this; }
+        public String getComputationPeriodIdentifier() { return ComputationPeriodIdentifier; }
+        public TimeSeriesDescriptionServiceRequest setComputationPeriodIdentifier(String value) { this.ComputationPeriodIdentifier = value; return this; }
+        public ArrayList<ExtendedAttributeFilter> getExtendedFilters() { return ExtendedFilters; }
+        public TimeSeriesDescriptionServiceRequest setExtendedFilters(ArrayList<ExtendedAttributeFilter> value) { this.ExtendedFilters = value; return this; }
+        private static Object responseType = TimeSeriesDescriptionListServiceResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
-    @Route(Path="/GetMonitoringMethodList", Verbs="GET")
-    public static class MonitoringMethodListServiceRequest implements IReturn<MonitoringMethodListServiceResponse>
-    {
-        
-        private static Object responseType = MonitoringMethodListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/GetApprovalList", Verbs="GET")
-    public static class ApprovalListServiceRequest implements IReturn<ApprovalListServiceResponse>
-    {
-        
-        private static Object responseType = ApprovalListServiceResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    public static class PublicKey
+    public static class RatingModelEffectiveShiftsServiceResponse extends PublishServiceResponse
     {
         /**
-        * RSA key size in bits
+        * Effective shifts
         */
-        @ApiMember(DataType="integer", Description="RSA key size in bits", Format="int32")
-        public Integer KeySize = null;
-
-        /**
-        * XML blob containing the RSA public key components
-        */
-        @ApiMember(Description="XML blob containing the RSA public key components")
-        public String Xml = null;
+        @ApiMember(DataType="array", Description="Effective shifts")
+        public ArrayList<EffectiveShift> EffectiveShifts = null;
         
-        public Integer getKeySize() { return KeySize; }
-        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
-        public String getXml() { return Xml; }
-        public PublicKey setXml(String value) { this.Xml = value; return this; }
+        public ArrayList<EffectiveShift> getEffectiveShifts() { return EffectiveShifts; }
+        public RatingModelEffectiveShiftsServiceResponse setEffectiveShifts(ArrayList<EffectiveShift> value) { this.EffectiveShifts = value; return this; }
     }
 
-    public static class RatingCurveListServiceResponse extends PublishServiceResponse
+    public static class RatingModelEffectiveShiftsByStageValuesServiceResponse extends PublishServiceResponse
     {
         /**
-        * Rating curves
+        * Timestamp
         */
-        @ApiMember(DataType="array", Description="Rating curves")
-        public List<RatingCurve> RatingCurves = null;
+        @ApiMember(DataType="string", Description="Timestamp", Format="date-time")
+        public Instant Timestamp = null;
 
+        /**
+        * Effective shift values
+        */
+        @ApiMember(DataType="array", Description="Effective shift values")
+        public ArrayList<Double> EffectiveShiftValues = null;
+        
+        public Instant getTimestamp() { return Timestamp; }
+        public RatingModelEffectiveShiftsByStageValuesServiceResponse setTimestamp(Instant value) { this.Timestamp = value; return this; }
+        public ArrayList<Double> getEffectiveShiftValues() { return EffectiveShiftValues; }
+        public RatingModelEffectiveShiftsByStageValuesServiceResponse setEffectiveShiftValues(ArrayList<Double> value) { this.EffectiveShiftValues = value; return this; }
+    }
+
+    public static class TimeSeriesDescriptionListByUniqueIdServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Time series descriptions
+        */
+        @ApiMember(DataType="array", Description="Time series descriptions")
+        public ArrayList<TimeSeriesDescription> TimeSeriesDescriptions = null;
+        
+        public ArrayList<TimeSeriesDescription> getTimeSeriesDescriptions() { return TimeSeriesDescriptions; }
+        public TimeSeriesDescriptionListByUniqueIdServiceResponse setTimeSeriesDescriptions(ArrayList<TimeSeriesDescription> value) { this.TimeSeriesDescriptions = value; return this; }
+    }
+
+    public static class ApprovalListServiceResponse extends PublishServiceResponse
+    {
         /**
         * Approvals
         */
         @ApiMember(DataType="array", Description="Approvals")
-        public List<Approval> Approvals = null;
+        public ArrayList<ApprovalMetadata> Approvals = null;
         
-        public List<RatingCurve> getRatingCurves() { return RatingCurves; }
-        public RatingCurveListServiceResponse setRatingCurves(List<RatingCurve> value) { this.RatingCurves = value; return this; }
-        public List<Approval> getApprovals() { return Approvals; }
-        public RatingCurveListServiceResponse setApprovals(List<Approval> value) { this.Approvals = value; return this; }
+        public ArrayList<ApprovalMetadata> getApprovals() { return Approvals; }
+        public ApprovalListServiceResponse setApprovals(ArrayList<ApprovalMetadata> value) { this.Approvals = value; return this; }
+    }
+
+    public static class CorrectionListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Corrections
+        */
+        @ApiMember(DataType="array", Description="Corrections")
+        public ArrayList<Correction> Corrections = null;
+        
+        public ArrayList<Correction> getCorrections() { return Corrections; }
+        public CorrectionListServiceResponse setCorrections(ArrayList<Correction> value) { this.Corrections = value; return this; }
+    }
+
+    public static class UnitListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Units
+        */
+        @ApiMember(DataType="array", Description="Units")
+        public ArrayList<UnitMetadata> Units = null;
+        
+        public ArrayList<UnitMetadata> getUnits() { return Units; }
+        public UnitListServiceResponse setUnits(ArrayList<UnitMetadata> value) { this.Units = value; return this; }
+    }
+
+    public static class ExpandedStageTableServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Expanded stage table
+        */
+        @ApiMember(DataType="array", Description="Expanded stage table")
+        public ArrayList<StagePoint> ExpandedStageTable = null;
+
+        /**
+        * Corrections
+        */
+        @ApiMember(DataType="array", Description="Corrections")
+        public ArrayList<Correction> Corrections = null;
+        
+        public ArrayList<StagePoint> getExpandedStageTable() { return ExpandedStageTable; }
+        public ExpandedStageTableServiceResponse setExpandedStageTable(ArrayList<StagePoint> value) { this.ExpandedStageTable = value; return this; }
+        public ArrayList<Correction> getCorrections() { return Corrections; }
+        public ExpandedStageTableServiceResponse setCorrections(ArrayList<Correction> value) { this.Corrections = value; return this; }
     }
 
     public static class LocationDataServiceResponse extends PublishServiceResponse
@@ -1940,262 +2000,6 @@ public class Publish
         public LocationNotesServiceResponse setLocationNotes(ArrayList<LocationNote> value) { this.LocationNotes = value; return this; }
     }
 
-    public static class GradeListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Grades
-        */
-        @ApiMember(DataType="array", Description="Grades")
-        public ArrayList<GradeMetadata> Grades = null;
-        
-        public ArrayList<GradeMetadata> getGrades() { return Grades; }
-        public GradeListServiceResponse setGrades(ArrayList<GradeMetadata> value) { this.Grades = value; return this; }
-    }
-
-    public static class ReportListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Reports
-        */
-        @ApiMember(DataType="array", Description="Reports")
-        public ArrayList<Report> Reports = null;
-        
-        public ArrayList<Report> getReports() { return Reports; }
-        public ReportListServiceResponse setReports(ArrayList<Report> value) { this.Reports = value; return this; }
-    }
-
-    public static class ExpandedStageTableServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Expanded stage table
-        */
-        @ApiMember(DataType="array", Description="Expanded stage table")
-        public ArrayList<StagePoint> ExpandedStageTable = null;
-
-        /**
-        * Corrections
-        */
-        @ApiMember(DataType="array", Description="Corrections")
-        public ArrayList<Correction> Corrections = null;
-        
-        public ArrayList<StagePoint> getExpandedStageTable() { return ExpandedStageTable; }
-        public ExpandedStageTableServiceResponse setExpandedStageTable(ArrayList<StagePoint> value) { this.ExpandedStageTable = value; return this; }
-        public ArrayList<Correction> getCorrections() { return Corrections; }
-        public ExpandedStageTableServiceResponse setCorrections(ArrayList<Correction> value) { this.Corrections = value; return this; }
-    }
-
-    public static class UnitListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Units
-        */
-        @ApiMember(DataType="array", Description="Units")
-        public ArrayList<UnitMetadata> Units = null;
-        
-        public ArrayList<UnitMetadata> getUnits() { return Units; }
-        public UnitListServiceResponse setUnits(ArrayList<UnitMetadata> value) { this.Units = value; return this; }
-    }
-
-    public static class TagListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Tags
-        */
-        @ApiMember(DataType="array", Description="Tags")
-        public ArrayList<TagDefinition> Tags = null;
-        
-        public ArrayList<TagDefinition> getTags() { return Tags; }
-        public TagListServiceResponse setTags(ArrayList<TagDefinition> value) { this.Tags = value; return this; }
-    }
-
-    public static class RatingModelEffectiveShiftsServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Effective shifts
-        */
-        @ApiMember(DataType="array", Description="Effective shifts")
-        public ArrayList<EffectiveShift> EffectiveShifts = null;
-        
-        public ArrayList<EffectiveShift> getEffectiveShifts() { return EffectiveShifts; }
-        public RatingModelEffectiveShiftsServiceResponse setEffectiveShifts(ArrayList<EffectiveShift> value) { this.EffectiveShifts = value; return this; }
-    }
-
-    public static class RatingModelEffectiveShiftsByStageValuesServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Timestamp
-        */
-        @ApiMember(DataType="string", Description="Timestamp", Format="date-time")
-        public Instant Timestamp = null;
-
-        /**
-        * Effective shift values
-        */
-        @ApiMember(DataType="array", Description="Effective shift values")
-        public ArrayList<Double> EffectiveShiftValues = null;
-        
-        public Instant getTimestamp() { return Timestamp; }
-        public RatingModelEffectiveShiftsByStageValuesServiceResponse setTimestamp(Instant value) { this.Timestamp = value; return this; }
-        public ArrayList<Double> getEffectiveShiftValues() { return EffectiveShiftValues; }
-        public RatingModelEffectiveShiftsByStageValuesServiceResponse setEffectiveShiftValues(ArrayList<Double> value) { this.EffectiveShiftValues = value; return this; }
-    }
-
-    public static class RatingModelDescriptionListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Rating model descriptions
-        */
-        @ApiMember(DataType="array", Description="Rating model descriptions")
-        public List<RatingModelDescription> RatingModelDescriptions = null;
-
-        /**
-        * Next token
-        */
-        @ApiMember(DataType="string", Description="Next token", Format="date-time")
-        public Instant NextToken = null;
-        
-        public List<RatingModelDescription> getRatingModelDescriptions() { return RatingModelDescriptions; }
-        public RatingModelDescriptionListServiceResponse setRatingModelDescriptions(List<RatingModelDescription> value) { this.RatingModelDescriptions = value; return this; }
-        public Instant getNextToken() { return NextToken; }
-        public RatingModelDescriptionListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
-    }
-
-    public static class ProcessorListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Processors
-        */
-        @ApiMember(DataType="array", Description="Processors")
-        public ArrayList<Processor> Processors = null;
-        
-        public ArrayList<Processor> getProcessors() { return Processors; }
-        public ProcessorListServiceResponse setProcessors(ArrayList<Processor> value) { this.Processors = value; return this; }
-    }
-
-    public static class TimeSeriesUniqueIdListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Token expired
-        */
-        @ApiMember(DataType="boolean", Description="Token expired")
-        public Boolean TokenExpired = null;
-
-        /**
-        * Next token
-        */
-        @ApiMember(DataType="string", Description="Next token", Format="date-time")
-        public Instant NextToken = null;
-
-        /**
-        * Time series unique ids
-        */
-        @ApiMember(DataType="array", Description="Time series unique ids")
-        public ArrayList<TimeSeriesUniqueIds> TimeSeriesUniqueIds = null;
-        
-        public Boolean isTokenExpired() { return TokenExpired; }
-        public TimeSeriesUniqueIdListServiceResponse setTokenExpired(Boolean value) { this.TokenExpired = value; return this; }
-        public Instant getNextToken() { return NextToken; }
-        public TimeSeriesUniqueIdListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
-        public ArrayList<TimeSeriesUniqueIds> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
-        public TimeSeriesUniqueIdListServiceResponse setTimeSeriesUniqueIds(ArrayList<TimeSeriesUniqueIds> value) { this.TimeSeriesUniqueIds = value; return this; }
-    }
-
-    public static class TimeSeriesApprovalsTransactionListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Approvals transactions
-        */
-        @ApiMember(DataType="array", Description="Approvals transactions")
-        public List<ApprovalsTransaction> ApprovalsTransactions = null;
-        
-        public List<ApprovalsTransaction> getApprovalsTransactions() { return ApprovalsTransactions; }
-        public TimeSeriesApprovalsTransactionListServiceResponse setApprovalsTransactions(List<ApprovalsTransaction> value) { this.ApprovalsTransactions = value; return this; }
-    }
-
-    public static class TimeSeriesDescriptionListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Time series descriptions
-        */
-        @ApiMember(DataType="array", Description="Time series descriptions")
-        public ArrayList<TimeSeriesDescription> TimeSeriesDescriptions = null;
-        
-        public ArrayList<TimeSeriesDescription> getTimeSeriesDescriptions() { return TimeSeriesDescriptions; }
-        public TimeSeriesDescriptionListServiceResponse setTimeSeriesDescriptions(ArrayList<TimeSeriesDescription> value) { this.TimeSeriesDescriptions = value; return this; }
-    }
-
-    public static class RatingModelInputValuesServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Input values
-        */
-        @ApiMember(DataType="array", Description="Input values")
-        public ArrayList<Double> InputValues = null;
-        
-        public ArrayList<Double> getInputValues() { return InputValues; }
-        public RatingModelInputValuesServiceResponse setInputValues(ArrayList<Double> value) { this.InputValues = value; return this; }
-    }
-
-    public static class ParameterListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Parameters
-        */
-        @ApiMember(DataType="array", Description="Parameters")
-        public ArrayList<ParameterMetadata> Parameters = null;
-        
-        public ArrayList<ParameterMetadata> getParameters() { return Parameters; }
-        public ParameterListServiceResponse setParameters(ArrayList<ParameterMetadata> value) { this.Parameters = value; return this; }
-    }
-
-    public static class MetadataChangeTransactionListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Metadata change transactions
-        */
-        @ApiMember(DataType="array", Description="Metadata change transactions")
-        public List<MetadataChangeTransaction> MetadataChangeTransactions = null;
-        
-        public List<MetadataChangeTransaction> getMetadataChangeTransactions() { return MetadataChangeTransactions; }
-        public MetadataChangeTransactionListServiceResponse setMetadataChangeTransactions(List<MetadataChangeTransaction> value) { this.MetadataChangeTransactions = value; return this; }
-    }
-
-    public static class EffectiveRatingCurveServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Expanded rating curve
-        */
-        @ApiMember(DataType="ExpandedRatingCurve", Description="Expanded rating curve")
-        public ExpandedRatingCurve ExpandedRatingCurve = null;
-        
-        public ExpandedRatingCurve getExpandedRatingCurve() { return ExpandedRatingCurve; }
-        public EffectiveRatingCurveServiceResponse setExpandedRatingCurve(ExpandedRatingCurve value) { this.ExpandedRatingCurve = value; return this; }
-    }
-
-    public static class TrendLineAnalysisServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Trend line analysis
-        */
-        @ApiMember(DataType="TrendLineAnalysis", Description="Trend line analysis")
-        public TrendLineAnalysis TrendLineAnalysis = null;
-        
-        public TrendLineAnalysis getTrendLineAnalysis() { return TrendLineAnalysis; }
-        public TrendLineAnalysisServiceResponse setTrendLineAnalysis(TrendLineAnalysis value) { this.TrendLineAnalysis = value; return this; }
-    }
-
-    public static class CorrectionListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Corrections
-        */
-        @ApiMember(DataType="array", Description="Corrections")
-        public ArrayList<Correction> Corrections = null;
-        
-        public ArrayList<Correction> getCorrections() { return Corrections; }
-        public CorrectionListServiceResponse setCorrections(ArrayList<Correction> value) { this.Corrections = value; return this; }
-    }
-
     public static class RoundServiceResponse extends PublishServiceResponse
     {
         /**
@@ -2206,30 +2010,6 @@ public class Publish
         
         public ArrayList<String> getData() { return Data; }
         public RoundServiceResponse setData(ArrayList<String> value) { this.Data = value; return this; }
-    }
-
-    public static class RatingModelOutputValuesServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Output values
-        */
-        @ApiMember(DataType="array", Description="Output values")
-        public ArrayList<Double> OutputValues = null;
-        
-        public ArrayList<Double> getOutputValues() { return OutputValues; }
-        public RatingModelOutputValuesServiceResponse setOutputValues(ArrayList<Double> value) { this.OutputValues = value; return this; }
-    }
-
-    public static class SensorsAndGaugesServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Monitoring methods
-        */
-        @ApiMember(DataType="array", Description="Monitoring methods")
-        public ArrayList<LocationMonitoringMethod> MonitoringMethods = null;
-        
-        public ArrayList<LocationMonitoringMethod> getMonitoringMethods() { return MonitoringMethods; }
-        public SensorsAndGaugesServiceResponse setMonitoringMethods(ArrayList<LocationMonitoringMethod> value) { this.MonitoringMethods = value; return this; }
     }
 
     public static class LocationDescriptionListServiceResponse extends PublishServiceResponse
@@ -2252,140 +2032,16 @@ public class Publish
         public LocationDescriptionListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
     }
 
-    public static class FieldVisitDataServiceResponse extends PublishServiceResponse implements IFieldVisitData
+    public static class QualifierListServiceResponse extends PublishServiceResponse
     {
         /**
-        * Field visit identifier
+        * Qualifiers
         */
-        @ApiMember(Description="Field visit identifier")
-        public String Identifier = null;
-
-        /**
-        * Attachments
-        */
-        @ApiMember(DataType="array", Description="Attachments")
-        public ArrayList<Attachment> Attachments = null;
-
-        /**
-        * Discharge activities
-        */
-        @ApiMember(DataType="array", Description="Discharge activities")
-        public ArrayList<DischargeActivity> DischargeActivities = null;
-
-        /**
-        * Gage height at zero flow activity
-        */
-        @ApiMember(DataType="GageHeightAtZeroFlowActivity", Description="Gage height at zero flow activity")
-        public GageHeightAtZeroFlowActivity GageHeightAtZeroFlowActivity = null;
-
-        /**
-        * Control condition activity
-        */
-        @ApiMember(DataType="ControlConditionActivity", Description="Control condition activity")
-        public ControlConditionActivity ControlConditionActivity = null;
-
-        /**
-        * Inspection activity
-        */
-        @ApiMember(DataType="InspectionActivity", Description="Inspection activity")
-        public InspectionActivity InspectionActivity = null;
-
-        /**
-        * Cross-section survey activity
-        */
-        @ApiMember(DataType="array", Description="Cross-section survey activity")
-        public ArrayList<CrossSectionSurveyActivity> CrossSectionSurveyActivity = null;
-
-        /**
-        * Level survey activity
-        */
-        @ApiMember(DataType="LevelSurveyActivity", Description="Level survey activity")
-        public LevelSurveyActivity LevelSurveyActivity = null;
-
-        /**
-        * Approval
-        */
-        @ApiMember(DataType="FieldVisitApproval", Description="Approval")
-        public FieldVisitApproval Approval = null;
-
-        /**
-        * Summary results for a requested datum conversion
-        */
-        @ApiMember(DataType="DatumConversionResult", Description="Summary results for a requested datum conversion")
-        public DatumConversionResult DatumConversionResult = null;
-
-        /**
-        * Hydraulic Test Activities
-        */
-        @ApiMember(DataType="array", Description="Hydraulic Test Activities")
-        public ArrayList<HydraulicTestActivity> HydraulicTestActivities = null;
-
-        /**
-        * Well integrity activity
-        */
-        @ApiMember(DataType="WellIntegrityActivity", Description="Well integrity activity")
-        public WellIntegrityActivity WellIntegrityActivity = null;
+        @ApiMember(DataType="array", Description="Qualifiers")
+        public ArrayList<QualifierMetadata> Qualifiers = null;
         
-        public String getIdentifier() { return Identifier; }
-        public FieldVisitDataServiceResponse setIdentifier(String value) { this.Identifier = value; return this; }
-        public ArrayList<Attachment> getAttachments() { return Attachments; }
-        public FieldVisitDataServiceResponse setAttachments(ArrayList<Attachment> value) { this.Attachments = value; return this; }
-        public ArrayList<DischargeActivity> getDischargeActivities() { return DischargeActivities; }
-        public FieldVisitDataServiceResponse setDischargeActivities(ArrayList<DischargeActivity> value) { this.DischargeActivities = value; return this; }
-        public GageHeightAtZeroFlowActivity getGageHeightAtZeroFlowActivity() { return GageHeightAtZeroFlowActivity; }
-        public FieldVisitDataServiceResponse setGageHeightAtZeroFlowActivity(GageHeightAtZeroFlowActivity value) { this.GageHeightAtZeroFlowActivity = value; return this; }
-        public ControlConditionActivity getControlConditionActivity() { return ControlConditionActivity; }
-        public FieldVisitDataServiceResponse setControlConditionActivity(ControlConditionActivity value) { this.ControlConditionActivity = value; return this; }
-        public InspectionActivity getInspectionActivity() { return InspectionActivity; }
-        public FieldVisitDataServiceResponse setInspectionActivity(InspectionActivity value) { this.InspectionActivity = value; return this; }
-        public ArrayList<CrossSectionSurveyActivity> getCrossSectionSurveyActivity() { return CrossSectionSurveyActivity; }
-        public FieldVisitDataServiceResponse setCrossSectionSurveyActivity(ArrayList<CrossSectionSurveyActivity> value) { this.CrossSectionSurveyActivity = value; return this; }
-        public LevelSurveyActivity getLevelSurveyActivity() { return LevelSurveyActivity; }
-        public FieldVisitDataServiceResponse setLevelSurveyActivity(LevelSurveyActivity value) { this.LevelSurveyActivity = value; return this; }
-        public FieldVisitApproval getApproval() { return Approval; }
-        public FieldVisitDataServiceResponse setApproval(FieldVisitApproval value) { this.Approval = value; return this; }
-        public DatumConversionResult getDatumConversionResult() { return DatumConversionResult; }
-        public FieldVisitDataServiceResponse setDatumConversionResult(DatumConversionResult value) { this.DatumConversionResult = value; return this; }
-        public ArrayList<HydraulicTestActivity> getHydraulicTestActivities() { return HydraulicTestActivities; }
-        public FieldVisitDataServiceResponse setHydraulicTestActivities(ArrayList<HydraulicTestActivity> value) { this.HydraulicTestActivities = value; return this; }
-        public WellIntegrityActivity getWellIntegrityActivity() { return WellIntegrityActivity; }
-        public FieldVisitDataServiceResponse setWellIntegrityActivity(WellIntegrityActivity value) { this.WellIntegrityActivity = value; return this; }
-    }
-
-    public static class ActiveMetersAndCalibrationsServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Current meter details
-        */
-        @ApiMember(DataType="array", Description="Current meter details")
-        public ArrayList<ActiveMeterDetails> ActiveMeterDetails = null;
-        
-        public ArrayList<ActiveMeterDetails> getActiveMeterDetails() { return ActiveMeterDetails; }
-        public ActiveMetersAndCalibrationsServiceResponse setActiveMeterDetails(ArrayList<ActiveMeterDetails> value) { this.ActiveMeterDetails = value; return this; }
-    }
-
-    public static class FieldVisitDataByLocationServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Field visit descriptions and data
-        */
-        @ApiMember(DataType="array", Description="Field visit descriptions and data")
-        public ArrayList<FieldVisit> FieldVisitData = null;
-        
-        public ArrayList<FieldVisit> getFieldVisitData() { return FieldVisitData; }
-        public FieldVisitDataByLocationServiceResponse setFieldVisitData(ArrayList<FieldVisit> value) { this.FieldVisitData = value; return this; }
-    }
-
-    public static class FieldVisitReadingsByLocationServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Field visit readings
-        */
-        @ApiMember(DataType="array", Description="Field visit readings")
-        public ArrayList<FieldVisitReading> FieldVisitReadings = null;
-        
-        public ArrayList<FieldVisitReading> getFieldVisitReadings() { return FieldVisitReadings; }
-        public FieldVisitReadingsByLocationServiceResponse setFieldVisitReadings(ArrayList<FieldVisitReading> value) { this.FieldVisitReadings = value; return this; }
+        public ArrayList<QualifierMetadata> getQualifiers() { return Qualifiers; }
+        public QualifierListServiceResponse setQualifiers(ArrayList<QualifierMetadata> value) { this.Qualifiers = value; return this; }
     }
 
     public static class TimeSeriesDataServiceResponse extends PublishServiceResponse
@@ -2548,58 +2204,6 @@ public class Publish
         public TimeAlignedDataServiceResponse setPoints(ArrayList<TimeAlignedPoint> value) { this.Points = value; return this; }
     }
 
-    public static class QualifierListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Qualifiers
-        */
-        @ApiMember(DataType="array", Description="Qualifiers")
-        public ArrayList<QualifierMetadata> Qualifiers = null;
-        
-        public ArrayList<QualifierMetadata> getQualifiers() { return Qualifiers; }
-        public QualifierListServiceResponse setQualifiers(ArrayList<QualifierMetadata> value) { this.Qualifiers = value; return this; }
-    }
-
-    public static class FieldVisitDescriptionListServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Field visit descriptions
-        */
-        @ApiMember(DataType="array", Description="Field visit descriptions")
-        public ArrayList<FieldVisitDescription> FieldVisitDescriptions = null;
-
-        /**
-        * Field visits that have been deleted since the requested ChangesSinceToken
-        */
-        @ApiMember(DataType="array", Description="Field visits that have been deleted since the requested ChangesSinceToken")
-        public ArrayList<FieldVisitDescription> DeletedFieldVisitDescriptions = null;
-
-        /**
-        * Next token
-        */
-        @ApiMember(DataType="string", Description="Next token", Format="date-time")
-        public Instant NextToken = null;
-        
-        public ArrayList<FieldVisitDescription> getFieldVisitDescriptions() { return FieldVisitDescriptions; }
-        public FieldVisitDescriptionListServiceResponse setFieldVisitDescriptions(ArrayList<FieldVisitDescription> value) { this.FieldVisitDescriptions = value; return this; }
-        public ArrayList<FieldVisitDescription> getDeletedFieldVisitDescriptions() { return DeletedFieldVisitDescriptions; }
-        public FieldVisitDescriptionListServiceResponse setDeletedFieldVisitDescriptions(ArrayList<FieldVisitDescription> value) { this.DeletedFieldVisitDescriptions = value; return this; }
-        public Instant getNextToken() { return NextToken; }
-        public FieldVisitDescriptionListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
-    }
-
-    public static class TimeSeriesDescriptionListByUniqueIdServiceResponse extends PublishServiceResponse
-    {
-        /**
-        * Time series descriptions
-        */
-        @ApiMember(DataType="array", Description="Time series descriptions")
-        public ArrayList<TimeSeriesDescription> TimeSeriesDescriptions = null;
-        
-        public ArrayList<TimeSeriesDescription> getTimeSeriesDescriptions() { return TimeSeriesDescriptions; }
-        public TimeSeriesDescriptionListByUniqueIdServiceResponse setTimeSeriesDescriptions(ArrayList<TimeSeriesDescription> value) { this.TimeSeriesDescriptions = value; return this; }
-    }
-
     public static class MonitoringMethodListServiceResponse
     {
         /**
@@ -2636,25 +2240,412 @@ public class Publish
         public MonitoringMethodListServiceResponse setMonitoringMethods(ArrayList<MonitoringMethod> value) { this.MonitoringMethods = value; return this; }
     }
 
-    public static class ApprovalListServiceResponse extends PublishServiceResponse
+    public static class SensorsAndGaugesServiceResponse extends PublishServiceResponse
     {
+        /**
+        * Monitoring methods
+        */
+        @ApiMember(DataType="array", Description="Monitoring methods")
+        public ArrayList<LocationMonitoringMethod> MonitoringMethods = null;
+        
+        public ArrayList<LocationMonitoringMethod> getMonitoringMethods() { return MonitoringMethods; }
+        public SensorsAndGaugesServiceResponse setMonitoringMethods(ArrayList<LocationMonitoringMethod> value) { this.MonitoringMethods = value; return this; }
+    }
+
+    public static class ParameterListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Parameters
+        */
+        @ApiMember(DataType="array", Description="Parameters")
+        public ArrayList<ParameterMetadata> Parameters = null;
+        
+        public ArrayList<ParameterMetadata> getParameters() { return Parameters; }
+        public ParameterListServiceResponse setParameters(ArrayList<ParameterMetadata> value) { this.Parameters = value; return this; }
+    }
+
+    public static class RatingModelInputValuesServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Input values
+        */
+        @ApiMember(DataType="array", Description="Input values")
+        public ArrayList<Double> InputValues = null;
+        
+        public ArrayList<Double> getInputValues() { return InputValues; }
+        public RatingModelInputValuesServiceResponse setInputValues(ArrayList<Double> value) { this.InputValues = value; return this; }
+    }
+
+    public static class FieldVisitDataServiceResponse extends PublishServiceResponse implements IFieldVisitData
+    {
+        /**
+        * Field visit identifier
+        */
+        @ApiMember(Description="Field visit identifier")
+        public String Identifier = null;
+
+        /**
+        * Attachments
+        */
+        @ApiMember(DataType="array", Description="Attachments")
+        public ArrayList<Attachment> Attachments = null;
+
+        /**
+        * Discharge activities
+        */
+        @ApiMember(DataType="array", Description="Discharge activities")
+        public ArrayList<DischargeActivity> DischargeActivities = null;
+
+        /**
+        * Gage height at zero flow activity
+        */
+        @ApiMember(DataType="GageHeightAtZeroFlowActivity", Description="Gage height at zero flow activity")
+        public GageHeightAtZeroFlowActivity GageHeightAtZeroFlowActivity = null;
+
+        /**
+        * Control condition activity
+        */
+        @ApiMember(DataType="ControlConditionActivity", Description="Control condition activity")
+        public ControlConditionActivity ControlConditionActivity = null;
+
+        /**
+        * Inspection activity
+        */
+        @ApiMember(DataType="InspectionActivity", Description="Inspection activity")
+        public InspectionActivity InspectionActivity = null;
+
+        /**
+        * Cross-section survey activity
+        */
+        @ApiMember(DataType="array", Description="Cross-section survey activity")
+        public ArrayList<CrossSectionSurveyActivity> CrossSectionSurveyActivity = null;
+
+        /**
+        * Level survey activity
+        */
+        @ApiMember(DataType="LevelSurveyActivity", Description="Level survey activity")
+        public LevelSurveyActivity LevelSurveyActivity = null;
+
+        /**
+        * Approval
+        */
+        @ApiMember(DataType="FieldVisitApproval", Description="Approval")
+        public FieldVisitApproval Approval = null;
+
+        /**
+        * Summary results for a requested datum conversion
+        */
+        @ApiMember(DataType="DatumConversionResult", Description="Summary results for a requested datum conversion")
+        public DatumConversionResult DatumConversionResult = null;
+
+        /**
+        * Hydraulic Test Activities
+        */
+        @ApiMember(DataType="array", Description="Hydraulic Test Activities")
+        public ArrayList<HydraulicTestActivity> HydraulicTestActivities = null;
+
+        /**
+        * Well integrity activity
+        */
+        @ApiMember(DataType="WellIntegrityActivity", Description="Well integrity activity")
+        public WellIntegrityActivity WellIntegrityActivity = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public FieldVisitDataServiceResponse setIdentifier(String value) { this.Identifier = value; return this; }
+        public ArrayList<Attachment> getAttachments() { return Attachments; }
+        public FieldVisitDataServiceResponse setAttachments(ArrayList<Attachment> value) { this.Attachments = value; return this; }
+        public ArrayList<DischargeActivity> getDischargeActivities() { return DischargeActivities; }
+        public FieldVisitDataServiceResponse setDischargeActivities(ArrayList<DischargeActivity> value) { this.DischargeActivities = value; return this; }
+        public GageHeightAtZeroFlowActivity getGageHeightAtZeroFlowActivity() { return GageHeightAtZeroFlowActivity; }
+        public FieldVisitDataServiceResponse setGageHeightAtZeroFlowActivity(GageHeightAtZeroFlowActivity value) { this.GageHeightAtZeroFlowActivity = value; return this; }
+        public ControlConditionActivity getControlConditionActivity() { return ControlConditionActivity; }
+        public FieldVisitDataServiceResponse setControlConditionActivity(ControlConditionActivity value) { this.ControlConditionActivity = value; return this; }
+        public InspectionActivity getInspectionActivity() { return InspectionActivity; }
+        public FieldVisitDataServiceResponse setInspectionActivity(InspectionActivity value) { this.InspectionActivity = value; return this; }
+        public ArrayList<CrossSectionSurveyActivity> getCrossSectionSurveyActivity() { return CrossSectionSurveyActivity; }
+        public FieldVisitDataServiceResponse setCrossSectionSurveyActivity(ArrayList<CrossSectionSurveyActivity> value) { this.CrossSectionSurveyActivity = value; return this; }
+        public LevelSurveyActivity getLevelSurveyActivity() { return LevelSurveyActivity; }
+        public FieldVisitDataServiceResponse setLevelSurveyActivity(LevelSurveyActivity value) { this.LevelSurveyActivity = value; return this; }
+        public FieldVisitApproval getApproval() { return Approval; }
+        public FieldVisitDataServiceResponse setApproval(FieldVisitApproval value) { this.Approval = value; return this; }
+        public DatumConversionResult getDatumConversionResult() { return DatumConversionResult; }
+        public FieldVisitDataServiceResponse setDatumConversionResult(DatumConversionResult value) { this.DatumConversionResult = value; return this; }
+        public ArrayList<HydraulicTestActivity> getHydraulicTestActivities() { return HydraulicTestActivities; }
+        public FieldVisitDataServiceResponse setHydraulicTestActivities(ArrayList<HydraulicTestActivity> value) { this.HydraulicTestActivities = value; return this; }
+        public WellIntegrityActivity getWellIntegrityActivity() { return WellIntegrityActivity; }
+        public FieldVisitDataServiceResponse setWellIntegrityActivity(WellIntegrityActivity value) { this.WellIntegrityActivity = value; return this; }
+    }
+
+    public static class ActiveMetersAndCalibrationsServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Current meter details
+        */
+        @ApiMember(DataType="array", Description="Current meter details")
+        public ArrayList<ActiveMeterDetails> ActiveMeterDetails = null;
+        
+        public ArrayList<ActiveMeterDetails> getActiveMeterDetails() { return ActiveMeterDetails; }
+        public ActiveMetersAndCalibrationsServiceResponse setActiveMeterDetails(ArrayList<ActiveMeterDetails> value) { this.ActiveMeterDetails = value; return this; }
+    }
+
+    public static class FieldVisitDataByLocationServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Field visit descriptions and data
+        */
+        @ApiMember(DataType="array", Description="Field visit descriptions and data")
+        public ArrayList<FieldVisit> FieldVisitData = null;
+        
+        public ArrayList<FieldVisit> getFieldVisitData() { return FieldVisitData; }
+        public FieldVisitDataByLocationServiceResponse setFieldVisitData(ArrayList<FieldVisit> value) { this.FieldVisitData = value; return this; }
+    }
+
+    public static class FieldVisitReadingsByLocationServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Field visit readings
+        */
+        @ApiMember(DataType="array", Description="Field visit readings")
+        public ArrayList<FieldVisitReading> FieldVisitReadings = null;
+        
+        public ArrayList<FieldVisitReading> getFieldVisitReadings() { return FieldVisitReadings; }
+        public FieldVisitReadingsByLocationServiceResponse setFieldVisitReadings(ArrayList<FieldVisitReading> value) { this.FieldVisitReadings = value; return this; }
+    }
+
+    public static class TimeSeriesApprovalsTransactionListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Approvals transactions
+        */
+        @ApiMember(DataType="array", Description="Approvals transactions")
+        public List<ApprovalsTransaction> ApprovalsTransactions = null;
+        
+        public List<ApprovalsTransaction> getApprovalsTransactions() { return ApprovalsTransactions; }
+        public TimeSeriesApprovalsTransactionListServiceResponse setApprovalsTransactions(List<ApprovalsTransaction> value) { this.ApprovalsTransactions = value; return this; }
+    }
+
+    public static class MetadataChangeTransactionListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Metadata change transactions
+        */
+        @ApiMember(DataType="array", Description="Metadata change transactions")
+        public List<MetadataChangeTransaction> MetadataChangeTransactions = null;
+        
+        public List<MetadataChangeTransaction> getMetadataChangeTransactions() { return MetadataChangeTransactions; }
+        public MetadataChangeTransactionListServiceResponse setMetadataChangeTransactions(List<MetadataChangeTransaction> value) { this.MetadataChangeTransactions = value; return this; }
+    }
+
+    public static class RatingModelDescriptionListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Rating model descriptions
+        */
+        @ApiMember(DataType="array", Description="Rating model descriptions")
+        public List<RatingModelDescription> RatingModelDescriptions = null;
+
+        /**
+        * Next token
+        */
+        @ApiMember(DataType="string", Description="Next token", Format="date-time")
+        public Instant NextToken = null;
+        
+        public List<RatingModelDescription> getRatingModelDescriptions() { return RatingModelDescriptions; }
+        public RatingModelDescriptionListServiceResponse setRatingModelDescriptions(List<RatingModelDescription> value) { this.RatingModelDescriptions = value; return this; }
+        public Instant getNextToken() { return NextToken; }
+        public RatingModelDescriptionListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
+    }
+
+    public static class ProcessorListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Processors
+        */
+        @ApiMember(DataType="array", Description="Processors")
+        public ArrayList<Processor> Processors = null;
+        
+        public ArrayList<Processor> getProcessors() { return Processors; }
+        public ProcessorListServiceResponse setProcessors(ArrayList<Processor> value) { this.Processors = value; return this; }
+    }
+
+    public static class TrendLineAnalysisServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Trend line analysis
+        */
+        @ApiMember(DataType="TrendLineAnalysis", Description="Trend line analysis")
+        public TrendLineAnalysis TrendLineAnalysis = null;
+        
+        public TrendLineAnalysis getTrendLineAnalysis() { return TrendLineAnalysis; }
+        public TrendLineAnalysisServiceResponse setTrendLineAnalysis(TrendLineAnalysis value) { this.TrendLineAnalysis = value; return this; }
+    }
+
+    public static class TimeSeriesUniqueIdListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Token expired
+        */
+        @ApiMember(DataType="boolean", Description="Token expired")
+        public Boolean TokenExpired = null;
+
+        /**
+        * Next token
+        */
+        @ApiMember(DataType="string", Description="Next token", Format="date-time")
+        public Instant NextToken = null;
+
+        /**
+        * Time series unique ids
+        */
+        @ApiMember(DataType="array", Description="Time series unique ids")
+        public ArrayList<TimeSeriesUniqueIds> TimeSeriesUniqueIds = null;
+        
+        public Boolean isTokenExpired() { return TokenExpired; }
+        public TimeSeriesUniqueIdListServiceResponse setTokenExpired(Boolean value) { this.TokenExpired = value; return this; }
+        public Instant getNextToken() { return NextToken; }
+        public TimeSeriesUniqueIdListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
+        public ArrayList<TimeSeriesUniqueIds> getTimeSeriesUniqueIds() { return TimeSeriesUniqueIds; }
+        public TimeSeriesUniqueIdListServiceResponse setTimeSeriesUniqueIds(ArrayList<TimeSeriesUniqueIds> value) { this.TimeSeriesUniqueIds = value; return this; }
+    }
+
+    public static class RatingModelOutputValuesServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Output values
+        */
+        @ApiMember(DataType="array", Description="Output values")
+        public ArrayList<Double> OutputValues = null;
+        
+        public ArrayList<Double> getOutputValues() { return OutputValues; }
+        public RatingModelOutputValuesServiceResponse setOutputValues(ArrayList<Double> value) { this.OutputValues = value; return this; }
+    }
+
+    public static class RatingCurveListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Rating curves
+        */
+        @ApiMember(DataType="array", Description="Rating curves")
+        public List<RatingCurve> RatingCurves = null;
+
         /**
         * Approvals
         */
         @ApiMember(DataType="array", Description="Approvals")
-        public ArrayList<ApprovalMetadata> Approvals = null;
+        public List<Approval> Approvals = null;
         
-        public ArrayList<ApprovalMetadata> getApprovals() { return Approvals; }
-        public ApprovalListServiceResponse setApprovals(ArrayList<ApprovalMetadata> value) { this.Approvals = value; return this; }
+        public List<RatingCurve> getRatingCurves() { return RatingCurves; }
+        public RatingCurveListServiceResponse setRatingCurves(List<RatingCurve> value) { this.RatingCurves = value; return this; }
+        public List<Approval> getApprovals() { return Approvals; }
+        public RatingCurveListServiceResponse setApprovals(List<Approval> value) { this.Approvals = value; return this; }
     }
 
-    public static enum TagApplicability
+    public static class TagListServiceResponse extends PublishServiceResponse
     {
-        AppliesToLocations,
-        AppliesToLocationNotes,
-        AppliesToSensorsGauges,
-        AppliesToAttachments,
-        AppliesToReports;
+        /**
+        * Tags
+        */
+        @ApiMember(DataType="array", Description="Tags")
+        public ArrayList<TagDefinition> Tags = null;
+        
+        public ArrayList<TagDefinition> getTags() { return Tags; }
+        public TagListServiceResponse setTags(ArrayList<TagDefinition> value) { this.Tags = value; return this; }
+    }
+
+    public static class PublicKey
+    {
+        /**
+        * RSA key size in bits
+        */
+        @ApiMember(DataType="integer", Description="RSA key size in bits", Format="int32")
+        public Integer KeySize = null;
+
+        /**
+        * XML blob containing the RSA public key components
+        */
+        @ApiMember(Description="XML blob containing the RSA public key components")
+        public String Xml = null;
+        
+        public Integer getKeySize() { return KeySize; }
+        public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
+        public String getXml() { return Xml; }
+        public PublicKey setXml(String value) { this.Xml = value; return this; }
+    }
+
+    public static class EffectiveRatingCurveServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Expanded rating curve
+        */
+        @ApiMember(DataType="ExpandedRatingCurve", Description="Expanded rating curve")
+        public ExpandedRatingCurve ExpandedRatingCurve = null;
+        
+        public ExpandedRatingCurve getExpandedRatingCurve() { return ExpandedRatingCurve; }
+        public EffectiveRatingCurveServiceResponse setExpandedRatingCurve(ExpandedRatingCurve value) { this.ExpandedRatingCurve = value; return this; }
+    }
+
+    public static class GradeListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Grades
+        */
+        @ApiMember(DataType="array", Description="Grades")
+        public ArrayList<GradeMetadata> Grades = null;
+        
+        public ArrayList<GradeMetadata> getGrades() { return Grades; }
+        public GradeListServiceResponse setGrades(ArrayList<GradeMetadata> value) { this.Grades = value; return this; }
+    }
+
+    public static class ReportListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Reports
+        */
+        @ApiMember(DataType="array", Description="Reports")
+        public ArrayList<Report> Reports = null;
+        
+        public ArrayList<Report> getReports() { return Reports; }
+        public ReportListServiceResponse setReports(ArrayList<Report> value) { this.Reports = value; return this; }
+    }
+
+    public static class FieldVisitDescriptionListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Field visit descriptions
+        */
+        @ApiMember(DataType="array", Description="Field visit descriptions")
+        public ArrayList<FieldVisitDescription> FieldVisitDescriptions = null;
+
+        /**
+        * Field visits that have been deleted since the requested ChangesSinceToken
+        */
+        @ApiMember(DataType="array", Description="Field visits that have been deleted since the requested ChangesSinceToken")
+        public ArrayList<FieldVisitDescription> DeletedFieldVisitDescriptions = null;
+
+        /**
+        * Next token
+        */
+        @ApiMember(DataType="string", Description="Next token", Format="date-time")
+        public Instant NextToken = null;
+        
+        public ArrayList<FieldVisitDescription> getFieldVisitDescriptions() { return FieldVisitDescriptions; }
+        public FieldVisitDescriptionListServiceResponse setFieldVisitDescriptions(ArrayList<FieldVisitDescription> value) { this.FieldVisitDescriptions = value; return this; }
+        public ArrayList<FieldVisitDescription> getDeletedFieldVisitDescriptions() { return DeletedFieldVisitDescriptions; }
+        public FieldVisitDescriptionListServiceResponse setDeletedFieldVisitDescriptions(ArrayList<FieldVisitDescription> value) { this.DeletedFieldVisitDescriptions = value; return this; }
+        public Instant getNextToken() { return NextToken; }
+        public FieldVisitDescriptionListServiceResponse setNextToken(Instant value) { this.NextToken = value; return this; }
+    }
+
+    public static class TimeSeriesDescriptionListServiceResponse extends PublishServiceResponse
+    {
+        /**
+        * Time series descriptions
+        */
+        @ApiMember(DataType="array", Description="Time series descriptions")
+        public ArrayList<TimeSeriesDescription> TimeSeriesDescriptions = null;
+        
+        public ArrayList<TimeSeriesDescription> getTimeSeriesDescriptions() { return TimeSeriesDescriptions; }
+        public TimeSeriesDescriptionListServiceResponse setTimeSeriesDescriptions(ArrayList<TimeSeriesDescription> value) { this.TimeSeriesDescriptions = value; return this; }
     }
 
     public static class ExtendedAttributeFilter
@@ -2675,31 +2666,6 @@ public class Publish
         public ExtendedAttributeFilter setFilterName(String value) { this.FilterName = value; return this; }
         public String getFilterValue() { return FilterValue; }
         public ExtendedAttributeFilter setFilterValue(String value) { this.FilterValue = value; return this; }
-    }
-
-    public static enum TrendLineAnalysisType
-    {
-        Linear;
-    }
-
-    public static class TimeSeriesPoint
-    {
-        /**
-        * Timestamp
-        */
-        @ApiMember(DataType="StatisticalDateTimeOffset", Description="Timestamp")
-        public StatisticalDateTimeOffset Timestamp = null;
-
-        /**
-        * Value
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Value")
-        public DoubleWithDisplay Value = null;
-        
-        public StatisticalDateTimeOffset getTimestamp() { return Timestamp; }
-        public TimeSeriesPoint setTimestamp(StatisticalDateTimeOffset value) { this.Timestamp = value; return this; }
-        public DoubleWithDisplay getValue() { return Value; }
-        public TimeSeriesPoint setValue(DoubleWithDisplay value) { this.Value = value; return this; }
     }
 
     public static interface IFieldVisitDataRequest
@@ -2745,140 +2711,58 @@ public class Publish
         Other;
     }
 
-    public static class RatingCurve
+    public static enum TrendLineAnalysisType
     {
-        /**
-        * Id
-        */
-        @ApiMember(Description="Id")
-        public String Id = null;
-
-        /**
-        * Type
-        */
-        @ApiMember(DataType="string", Description="Type")
-        public RatingCurveType Type = null;
-
-        /**
-        * Equation
-        */
-        @ApiMember(Description="Equation")
-        public String Equation = null;
-
-        /**
-        * Remarks
-        */
-        @ApiMember(Description="Remarks")
-        public String Remarks = null;
-
-        /**
-        * Input parameter
-        */
-        @ApiMember(DataType="ParameterWithUnit", Description="Input parameter")
-        public ParameterWithUnit InputParameter = null;
-
-        /**
-        * Output parameter
-        */
-        @ApiMember(DataType="ParameterWithUnit", Description="Output parameter")
-        public ParameterWithUnit OutputParameter = null;
-
-        /**
-        * Periods of applicability
-        */
-        @ApiMember(DataType="array", Description="Periods of applicability")
-        public ArrayList<PeriodOfApplicability> PeriodsOfApplicability = null;
-
-        /**
-        * Shifts
-        */
-        @ApiMember(DataType="array", Description="Shifts")
-        public ArrayList<RatingShift> Shifts = null;
-
-        /**
-        * Base rating table
-        */
-        @ApiMember(DataType="array", Description="Base rating table")
-        public ArrayList<RatingPoint> BaseRatingTable = null;
-
-        /**
-        * Offsets
-        */
-        @ApiMember(DataType="array", Description="Offsets")
-        public ArrayList<OffsetPoint> Offsets = null;
-
-        /**
-        * Grade Ranges
-        */
-        @ApiMember(DataType="array", Description="Grade Ranges")
-        public ArrayList<RatingGrade> GradeRanges = null;
-        
-        public String getId() { return Id; }
-        public RatingCurve setId(String value) { this.Id = value; return this; }
-        public RatingCurveType getType() { return Type; }
-        public RatingCurve setType(RatingCurveType value) { this.Type = value; return this; }
-        public String getEquation() { return Equation; }
-        public RatingCurve setEquation(String value) { this.Equation = value; return this; }
-        public String getRemarks() { return Remarks; }
-        public RatingCurve setRemarks(String value) { this.Remarks = value; return this; }
-        public ParameterWithUnit getInputParameter() { return InputParameter; }
-        public RatingCurve setInputParameter(ParameterWithUnit value) { this.InputParameter = value; return this; }
-        public ParameterWithUnit getOutputParameter() { return OutputParameter; }
-        public RatingCurve setOutputParameter(ParameterWithUnit value) { this.OutputParameter = value; return this; }
-        public ArrayList<PeriodOfApplicability> getPeriodsOfApplicability() { return PeriodsOfApplicability; }
-        public RatingCurve setPeriodsOfApplicability(ArrayList<PeriodOfApplicability> value) { this.PeriodsOfApplicability = value; return this; }
-        public ArrayList<RatingShift> getShifts() { return Shifts; }
-        public RatingCurve setShifts(ArrayList<RatingShift> value) { this.Shifts = value; return this; }
-        public ArrayList<RatingPoint> getBaseRatingTable() { return BaseRatingTable; }
-        public RatingCurve setBaseRatingTable(ArrayList<RatingPoint> value) { this.BaseRatingTable = value; return this; }
-        public ArrayList<OffsetPoint> getOffsets() { return Offsets; }
-        public RatingCurve setOffsets(ArrayList<OffsetPoint> value) { this.Offsets = value; return this; }
-        public ArrayList<RatingGrade> getGradeRanges() { return GradeRanges; }
-        public RatingCurve setGradeRanges(ArrayList<RatingGrade> value) { this.GradeRanges = value; return this; }
+        Linear;
     }
 
-    public static class Approval extends TimeRange
+    public static class TimeSeriesPoint
     {
         /**
-        * Approval level
+        * Timestamp
         */
-        @ApiMember(DataType="integer", Description="Approval level", Format="int32")
-        public Integer ApprovalLevel = null;
+        @ApiMember(DataType="StatisticalDateTimeOffset", Description="Timestamp")
+        public StatisticalDateTimeOffset Timestamp = null;
 
         /**
-        * Instant applied utc
+        * Value
         */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Level description
-        */
-        @ApiMember(Description="Level description")
-        public String LevelDescription = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comment = null;
+        @ApiMember(DataType="DoubleWithDisplay", Description="Value")
+        public DoubleWithDisplay Value = null;
         
-        public Integer getApprovalLevel() { return ApprovalLevel; }
-        public Approval setApprovalLevel(Integer value) { this.ApprovalLevel = value; return this; }
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public Approval setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public Approval setUser(String value) { this.User = value; return this; }
-        public String getLevelDescription() { return LevelDescription; }
-        public Approval setLevelDescription(String value) { this.LevelDescription = value; return this; }
-        public String getComment() { return Comment; }
-        public Approval setComment(String value) { this.Comment = value; return this; }
+        public StatisticalDateTimeOffset getTimestamp() { return Timestamp; }
+        public TimeSeriesPoint setTimestamp(StatisticalDateTimeOffset value) { this.Timestamp = value; return this; }
+        public DoubleWithDisplay getValue() { return Value; }
+        public TimeSeriesPoint setValue(DoubleWithDisplay value) { this.Value = value; return this; }
+    }
+
+    public static enum TagApplicability
+    {
+        AppliesToLocations,
+        AppliesToLocationNotes,
+        AppliesToSensorsGauges,
+        AppliesToAttachments,
+        AppliesToReports;
+    }
+
+    public static class EffectiveShift
+    {
+        /**
+        * Timestamp
+        */
+        @ApiMember(DataType="string", Description="Timestamp", Format="date-time")
+        public Instant Timestamp = null;
+
+        /**
+        * Value
+        */
+        @ApiMember(DataType="number", Description="Value", Format="double")
+        public Double Value = null;
+        
+        public Instant getTimestamp() { return Timestamp; }
+        public EffectiveShift setTimestamp(Instant value) { this.Timestamp = value; return this; }
+        public Double getValue() { return Value; }
+        public EffectiveShift setValue(Double value) { this.Value = value; return this; }
     }
 
     public static class PublishServiceResponse
@@ -2907,6 +2791,381 @@ public class Publish
         public PublishServiceResponse setResponseTime(Instant value) { this.ResponseTime = value; return this; }
         public String getSummary() { return Summary; }
         public PublishServiceResponse setSummary(String value) { this.Summary = value; return this; }
+    }
+
+    public static class TimeSeriesDescription
+    {
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Unique id
+        */
+        @ApiMember(DataType="string", Description="Unique id", Format="guid")
+        public String UniqueId = null;
+
+        /**
+        * Location identifier
+        */
+        @ApiMember(Description="Location identifier")
+        public String LocationIdentifier = null;
+
+        /**
+        * Parameter
+        */
+        @ApiMember(Description="Parameter")
+        public String Parameter = null;
+
+        /**
+        * Parameter Id
+        */
+        @ApiMember(Description="Parameter Id")
+        public String ParameterId = null;
+
+        /**
+        * Unit
+        */
+        @ApiMember(Description="Unit")
+        public String Unit = null;
+
+        /**
+        * Utc offset
+        */
+        @ApiMember(DataType="number", Description="Utc offset", Format="double")
+        public Double UtcOffset = null;
+
+        /**
+        * Utc offset iso duration
+        */
+        @ApiMember(DataType="string", Description="Utc offset iso duration", Format="offset from UTC")
+        public String UtcOffsetIsoDuration = null;
+
+        /**
+        * Last modified
+        */
+        @ApiMember(DataType="string", Description="Last modified", Format="date-time")
+        public Instant LastModified = null;
+
+        /**
+        * Raw start time
+        */
+        @ApiMember(DataType="string", Description="Raw start time", Format="date-time")
+        public Instant RawStartTime = null;
+
+        /**
+        * Raw end time
+        */
+        @ApiMember(DataType="string", Description="Raw end time", Format="date-time")
+        public Instant RawEndTime = null;
+
+        /**
+        * Corrected start time
+        */
+        @ApiMember(DataType="string", Description="Corrected start time", Format="date-time")
+        public Instant CorrectedStartTime = null;
+
+        /**
+        * Corrected end time
+        */
+        @ApiMember(DataType="string", Description="Corrected end time", Format="date-time")
+        public Instant CorrectedEndTime = null;
+
+        /**
+        * Time series type
+        */
+        @ApiMember(Description="Time series type")
+        public String TimeSeriesType = null;
+
+        /**
+        * Label
+        */
+        @ApiMember(Description="Label")
+        public String Label = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comment = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Publish
+        */
+        @ApiMember(DataType="boolean", Description="Publish")
+        public Boolean Publish = null;
+
+        /**
+        * Computation identifier
+        */
+        @ApiMember(Description="Computation identifier")
+        public String ComputationIdentifier = null;
+
+        /**
+        * Computation period identifier
+        */
+        @ApiMember(Description="Computation period identifier")
+        public String ComputationPeriodIdentifier = null;
+
+        /**
+        * Sub location identifier
+        */
+        @ApiMember(Description="Sub location identifier")
+        public String SubLocationIdentifier = null;
+
+        /**
+        * Extended attributes
+        */
+        @ApiMember(DataType="array", Description="Extended attributes")
+        public List<ExtendedAttribute> ExtendedAttributes = null;
+
+        /**
+        * Thresholds
+        */
+        @ApiMember(DataType="array", Description="Thresholds")
+        public List<TimeSeriesThreshold> Thresholds = null;
+
+        /**
+        * Property Bag
+        */
+        @ApiMember(Description="Property Bag")
+        public String PropertyBag = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public TimeSeriesDescription setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getUniqueId() { return UniqueId; }
+        public TimeSeriesDescription setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public TimeSeriesDescription setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public String getParameter() { return Parameter; }
+        public TimeSeriesDescription setParameter(String value) { this.Parameter = value; return this; }
+        public String getParameterId() { return ParameterId; }
+        public TimeSeriesDescription setParameterId(String value) { this.ParameterId = value; return this; }
+        public String getUnit() { return Unit; }
+        public TimeSeriesDescription setUnit(String value) { this.Unit = value; return this; }
+        public Double getUtcOffset() { return UtcOffset; }
+        public TimeSeriesDescription setUtcOffset(Double value) { this.UtcOffset = value; return this; }
+        public String getUtcOffsetIsoDuration() { return UtcOffsetIsoDuration; }
+        public TimeSeriesDescription setUtcOffsetIsoDuration(String value) { this.UtcOffsetIsoDuration = value; return this; }
+        public Instant getLastModified() { return LastModified; }
+        public TimeSeriesDescription setLastModified(Instant value) { this.LastModified = value; return this; }
+        public Instant getRawStartTime() { return RawStartTime; }
+        public TimeSeriesDescription setRawStartTime(Instant value) { this.RawStartTime = value; return this; }
+        public Instant getRawEndTime() { return RawEndTime; }
+        public TimeSeriesDescription setRawEndTime(Instant value) { this.RawEndTime = value; return this; }
+        public Instant getCorrectedStartTime() { return CorrectedStartTime; }
+        public TimeSeriesDescription setCorrectedStartTime(Instant value) { this.CorrectedStartTime = value; return this; }
+        public Instant getCorrectedEndTime() { return CorrectedEndTime; }
+        public TimeSeriesDescription setCorrectedEndTime(Instant value) { this.CorrectedEndTime = value; return this; }
+        public String getTimeSeriesType() { return TimeSeriesType; }
+        public TimeSeriesDescription setTimeSeriesType(String value) { this.TimeSeriesType = value; return this; }
+        public String getLabel() { return Label; }
+        public TimeSeriesDescription setLabel(String value) { this.Label = value; return this; }
+        public String getComment() { return Comment; }
+        public TimeSeriesDescription setComment(String value) { this.Comment = value; return this; }
+        public String getDescription() { return Description; }
+        public TimeSeriesDescription setDescription(String value) { this.Description = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public TimeSeriesDescription setPublish(Boolean value) { this.Publish = value; return this; }
+        public String getComputationIdentifier() { return ComputationIdentifier; }
+        public TimeSeriesDescription setComputationIdentifier(String value) { this.ComputationIdentifier = value; return this; }
+        public String getComputationPeriodIdentifier() { return ComputationPeriodIdentifier; }
+        public TimeSeriesDescription setComputationPeriodIdentifier(String value) { this.ComputationPeriodIdentifier = value; return this; }
+        public String getSubLocationIdentifier() { return SubLocationIdentifier; }
+        public TimeSeriesDescription setSubLocationIdentifier(String value) { this.SubLocationIdentifier = value; return this; }
+        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
+        public TimeSeriesDescription setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
+        public List<TimeSeriesThreshold> getThresholds() { return Thresholds; }
+        public TimeSeriesDescription setThresholds(List<TimeSeriesThreshold> value) { this.Thresholds = value; return this; }
+        public String getPropertyBag() { return PropertyBag; }
+        public TimeSeriesDescription setPropertyBag(String value) { this.PropertyBag = value; return this; }
+    }
+
+    public static class ApprovalMetadata
+    {
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
+
+        /**
+        * Color
+        */
+        @ApiMember(Description="Color")
+        public String Color = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public ApprovalMetadata setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public ApprovalMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getColor() { return Color; }
+        public ApprovalMetadata setColor(String value) { this.Color = value; return this; }
+    }
+
+    public static class Correction
+    {
+        /**
+        * Type
+        */
+        @ApiMember(DataType="string", Description="Type")
+        public CorrectionType Type = null;
+
+        /**
+        * Start time
+        */
+        @ApiMember(DataType="string", Description="Start time", Format="date-time")
+        public Instant StartTime = null;
+
+        /**
+        * End time
+        */
+        @ApiMember(DataType="string", Description="End time", Format="date-time")
+        public Instant EndTime = null;
+
+        /**
+        * Applied time utc
+        */
+        @ApiMember(DataType="string", Description="Applied time utc", Format="date-time")
+        public Instant AppliedTimeUtc = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comment = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        public HashMap<String,Object> Parameters = null;
+        /**
+        * Processing order
+        */
+        @ApiMember(DataType="CorrectionProcessingOrder", Description="Processing order")
+        public CorrectionProcessingOrder ProcessingOrder = null;
+        
+        public CorrectionType getType() { return Type; }
+        public Correction setType(CorrectionType value) { this.Type = value; return this; }
+        public Instant getStartTime() { return StartTime; }
+        public Correction setStartTime(Instant value) { this.StartTime = value; return this; }
+        public Instant getEndTime() { return EndTime; }
+        public Correction setEndTime(Instant value) { this.EndTime = value; return this; }
+        public Instant getAppliedTimeUtc() { return AppliedTimeUtc; }
+        public Correction setAppliedTimeUtc(Instant value) { this.AppliedTimeUtc = value; return this; }
+        public String getComment() { return Comment; }
+        public Correction setComment(String value) { this.Comment = value; return this; }
+        public String getUser() { return User; }
+        public Correction setUser(String value) { this.User = value; return this; }
+        public HashMap<String,Object> getParameters() { return Parameters; }
+        public Correction setParameters(HashMap<String,Object> value) { this.Parameters = value; return this; }
+        public CorrectionProcessingOrder getProcessingOrder() { return ProcessingOrder; }
+        public Correction setProcessingOrder(CorrectionProcessingOrder value) { this.ProcessingOrder = value; return this; }
+    }
+
+    public static class UnitMetadata
+    {
+        /**
+        * UniqueId
+        */
+        @ApiMember(DataType="string", Description="UniqueId", Format="guid")
+        public String UniqueId = null;
+
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Group identifier
+        */
+        @ApiMember(Description="Group identifier")
+        public String GroupIdentifier = null;
+
+        /**
+        * Symbol
+        */
+        @ApiMember(Description="Symbol")
+        public String Symbol = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
+
+        /**
+        * Base multiplier
+        */
+        @ApiMember(Description="Base multiplier")
+        public String BaseMultiplier = null;
+
+        /**
+        * Base offset
+        */
+        @ApiMember(Description="Base offset")
+        public String BaseOffset = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public UnitMetadata setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getIdentifier() { return Identifier; }
+        public UnitMetadata setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getGroupIdentifier() { return GroupIdentifier; }
+        public UnitMetadata setGroupIdentifier(String value) { this.GroupIdentifier = value; return this; }
+        public String getSymbol() { return Symbol; }
+        public UnitMetadata setSymbol(String value) { this.Symbol = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public UnitMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getBaseMultiplier() { return BaseMultiplier; }
+        public UnitMetadata setBaseMultiplier(String value) { this.BaseMultiplier = value; return this; }
+        public String getBaseOffset() { return BaseOffset; }
+        public UnitMetadata setBaseOffset(String value) { this.BaseOffset = value; return this; }
+    }
+
+    public static class StagePoint
+    {
+        /**
+        * Input value
+        */
+        @ApiMember(DataType="number", Description="Input value", Format="double")
+        public Double InputValue = null;
+
+        /**
+        * Correction
+        */
+        @ApiMember(DataType="number", Description="Correction", Format="double")
+        public Double Correction = null;
+
+        /**
+        * Corrected value
+        */
+        @ApiMember(DataType="number", Description="Corrected value", Format="double")
+        public Double CorrectedValue = null;
+        
+        public Double getInputValue() { return InputValue; }
+        public StagePoint setInputValue(Double value) { this.InputValue = value; return this; }
+        public Double getCorrection() { return Correction; }
+        public StagePoint setCorrection(Double value) { this.Correction = value; return this; }
+        public Double getCorrectedValue() { return CorrectedValue; }
+        public StagePoint setCorrectedValue(Double value) { this.CorrectedValue = value; return this; }
     }
 
     public static class TagMetadata
@@ -3313,1306 +3572,6 @@ public class Publish
         public ReferencePoint setReferencePointPeriods(ArrayList<ReferencePointPeriod> value) { this.ReferencePointPeriods = value; return this; }
     }
 
-    public static class GradeMetadata
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Color
-        */
-        @ApiMember(Description="Color")
-        public String Color = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public GradeMetadata setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public GradeMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getDescription() { return Description; }
-        public GradeMetadata setDescription(String value) { this.Description = value; return this; }
-        public String getColor() { return Color; }
-        public GradeMetadata setColor(String value) { this.Color = value; return this; }
-    }
-
-    public static class Report
-    {
-        /**
-        * ReportUniqueId
-        */
-        @ApiMember(DataType="string", Description="ReportUniqueId", Format="guid")
-        public String ReportUniqueId = null;
-
-        /**
-        * Title
-        */
-        @ApiMember(Description="Title")
-        public String Title = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Created time (UTC)
-        */
-        @ApiMember(DataType="string", Description="Created time (UTC)", Format="date-time")
-        public Instant CreatedTime = null;
-
-        /**
-        * Time range of source data displayed in report (UTC)
-        */
-        @ApiMember(DataType="TimeRange", Description="Time range of source data displayed in report (UTC)")
-        public TimeRange SourceTimeRange = null;
-
-        /**
-        * Is transient
-        */
-        @ApiMember(DataType="boolean", Description="Is transient")
-        public Boolean IsTransient = null;
-
-        /**
-        * Source time-series unique IDs
-        */
-        @ApiMember(DataType="array", Description="Source time-series unique IDs")
-        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
-
-        /**
-        * Location unique ID
-        */
-        @ApiMember(DataType="string", Description="Location unique ID", Format="guid")
-        public String LocationUniqueId = null;
-
-        /**
-        * Tags
-        */
-        @ApiMember(DataType="array", Description="Tags")
-        public ArrayList<TagMetadata> Tags = null;
-
-        /**
-        * Report creator's user unique ID
-        */
-        @ApiMember(DataType="string", Description="Report creator's user unique ID", Format="guid")
-        public String UserUniqueId = null;
-
-        /**
-        * Report creator's user name
-        */
-        @ApiMember(Description="Report creator's user name")
-        public String UserName = null;
-
-        /**
-        * Attachment URL
-        */
-        @ApiMember(Description="Attachment URL")
-        public String Url = null;
-        
-        public String getReportUniqueId() { return ReportUniqueId; }
-        public Report setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
-        public String getTitle() { return Title; }
-        public Report setTitle(String value) { this.Title = value; return this; }
-        public String getDescription() { return Description; }
-        public Report setDescription(String value) { this.Description = value; return this; }
-        public String getComments() { return Comments; }
-        public Report setComments(String value) { this.Comments = value; return this; }
-        public Instant getCreatedTime() { return CreatedTime; }
-        public Report setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
-        public TimeRange getSourceTimeRange() { return SourceTimeRange; }
-        public Report setSourceTimeRange(TimeRange value) { this.SourceTimeRange = value; return this; }
-        public Boolean getIsTransient() { return IsTransient; }
-        public Report setIsTransient(Boolean value) { this.IsTransient = value; return this; }
-        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
-        public Report setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public Report setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public ArrayList<TagMetadata> getTags() { return Tags; }
-        public Report setTags(ArrayList<TagMetadata> value) { this.Tags = value; return this; }
-        public String getUserUniqueId() { return UserUniqueId; }
-        public Report setUserUniqueId(String value) { this.UserUniqueId = value; return this; }
-        public String getUserName() { return UserName; }
-        public Report setUserName(String value) { this.UserName = value; return this; }
-        public String getUrl() { return Url; }
-        public Report setUrl(String value) { this.Url = value; return this; }
-    }
-
-    public static class StagePoint
-    {
-        /**
-        * Input value
-        */
-        @ApiMember(DataType="number", Description="Input value", Format="double")
-        public Double InputValue = null;
-
-        /**
-        * Correction
-        */
-        @ApiMember(DataType="number", Description="Correction", Format="double")
-        public Double Correction = null;
-
-        /**
-        * Corrected value
-        */
-        @ApiMember(DataType="number", Description="Corrected value", Format="double")
-        public Double CorrectedValue = null;
-        
-        public Double getInputValue() { return InputValue; }
-        public StagePoint setInputValue(Double value) { this.InputValue = value; return this; }
-        public Double getCorrection() { return Correction; }
-        public StagePoint setCorrection(Double value) { this.Correction = value; return this; }
-        public Double getCorrectedValue() { return CorrectedValue; }
-        public StagePoint setCorrectedValue(Double value) { this.CorrectedValue = value; return this; }
-    }
-
-    public static class Correction
-    {
-        /**
-        * Type
-        */
-        @ApiMember(DataType="string", Description="Type")
-        public CorrectionType Type = null;
-
-        /**
-        * Start time
-        */
-        @ApiMember(DataType="string", Description="Start time", Format="date-time")
-        public Instant StartTime = null;
-
-        /**
-        * End time
-        */
-        @ApiMember(DataType="string", Description="End time", Format="date-time")
-        public Instant EndTime = null;
-
-        /**
-        * Applied time utc
-        */
-        @ApiMember(DataType="string", Description="Applied time utc", Format="date-time")
-        public Instant AppliedTimeUtc = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comment = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        public HashMap<String,Object> Parameters = null;
-        /**
-        * Processing order
-        */
-        @ApiMember(DataType="CorrectionProcessingOrder", Description="Processing order")
-        public CorrectionProcessingOrder ProcessingOrder = null;
-        
-        public CorrectionType getType() { return Type; }
-        public Correction setType(CorrectionType value) { this.Type = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public Correction setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public Correction setEndTime(Instant value) { this.EndTime = value; return this; }
-        public Instant getAppliedTimeUtc() { return AppliedTimeUtc; }
-        public Correction setAppliedTimeUtc(Instant value) { this.AppliedTimeUtc = value; return this; }
-        public String getComment() { return Comment; }
-        public Correction setComment(String value) { this.Comment = value; return this; }
-        public String getUser() { return User; }
-        public Correction setUser(String value) { this.User = value; return this; }
-        public HashMap<String,Object> getParameters() { return Parameters; }
-        public Correction setParameters(HashMap<String,Object> value) { this.Parameters = value; return this; }
-        public CorrectionProcessingOrder getProcessingOrder() { return ProcessingOrder; }
-        public Correction setProcessingOrder(CorrectionProcessingOrder value) { this.ProcessingOrder = value; return this; }
-    }
-
-    public static class UnitMetadata
-    {
-        /**
-        * UniqueId
-        */
-        @ApiMember(DataType="string", Description="UniqueId", Format="guid")
-        public String UniqueId = null;
-
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Group identifier
-        */
-        @ApiMember(Description="Group identifier")
-        public String GroupIdentifier = null;
-
-        /**
-        * Symbol
-        */
-        @ApiMember(Description="Symbol")
-        public String Symbol = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Base multiplier
-        */
-        @ApiMember(Description="Base multiplier")
-        public String BaseMultiplier = null;
-
-        /**
-        * Base offset
-        */
-        @ApiMember(Description="Base offset")
-        public String BaseOffset = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public UnitMetadata setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getIdentifier() { return Identifier; }
-        public UnitMetadata setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getGroupIdentifier() { return GroupIdentifier; }
-        public UnitMetadata setGroupIdentifier(String value) { this.GroupIdentifier = value; return this; }
-        public String getSymbol() { return Symbol; }
-        public UnitMetadata setSymbol(String value) { this.Symbol = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public UnitMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getBaseMultiplier() { return BaseMultiplier; }
-        public UnitMetadata setBaseMultiplier(String value) { this.BaseMultiplier = value; return this; }
-        public String getBaseOffset() { return BaseOffset; }
-        public UnitMetadata setBaseOffset(String value) { this.BaseOffset = value; return this; }
-    }
-
-    public static class TagDefinition
-    {
-        /**
-        * Key of the tag
-        */
-        @ApiMember(Description="Key of the tag")
-        public String Key = null;
-
-        /**
-        * UniqueId
-        */
-        @ApiMember(DataType="string", Description="UniqueId", Format="guid")
-        public String UniqueId = null;
-
-        /**
-        * Value type
-        */
-        @ApiMember(DataType="TagValueType", Description="Value type")
-        public TagValueType ValueType = null;
-
-        /**
-        * Set of pick-list values if ValueType is PickList
-        */
-        @ApiMember(DataType="array", Description="Set of pick-list values if ValueType is PickList")
-        public ArrayList<String> PickListValues = null;
-
-        /**
-        * True if tag is applicable to Attachments
-        */
-        @ApiMember(DataType="boolean", Description="True if tag is applicable to Attachments")
-        public Boolean AppliesToAttachments = null;
-
-        /**
-        * True if tag is applicable to Locations
-        */
-        @ApiMember(DataType="boolean", Description="True if tag is applicable to Locations")
-        public Boolean AppliesToLocations = null;
-
-        /**
-        * True if tag is applicable to Location Notes
-        */
-        @ApiMember(DataType="boolean", Description="True if tag is applicable to Location Notes")
-        public Boolean AppliesToLocationNotes = null;
-
-        /**
-        * True if tag is applicable to Reports
-        */
-        @ApiMember(DataType="boolean", Description="True if tag is applicable to Reports")
-        public Boolean AppliesToReports = null;
-
-        /**
-        * True if tag is applicable to Sensors and Gauges
-        */
-        @ApiMember(DataType="boolean", Description="True if tag is applicable to Sensors and Gauges")
-        public Boolean AppliesToSensorsGauges = null;
-        
-        public String getKey() { return Key; }
-        public TagDefinition setKey(String value) { this.Key = value; return this; }
-        public String getUniqueId() { return UniqueId; }
-        public TagDefinition setUniqueId(String value) { this.UniqueId = value; return this; }
-        public TagValueType getValueType() { return ValueType; }
-        public TagDefinition setValueType(TagValueType value) { this.ValueType = value; return this; }
-        public ArrayList<String> getPickListValues() { return PickListValues; }
-        public TagDefinition setPickListValues(ArrayList<String> value) { this.PickListValues = value; return this; }
-        public Boolean isAppliesToAttachments() { return AppliesToAttachments; }
-        public TagDefinition setAppliesToAttachments(Boolean value) { this.AppliesToAttachments = value; return this; }
-        public Boolean isAppliesToLocations() { return AppliesToLocations; }
-        public TagDefinition setAppliesToLocations(Boolean value) { this.AppliesToLocations = value; return this; }
-        public Boolean isAppliesToLocationNotes() { return AppliesToLocationNotes; }
-        public TagDefinition setAppliesToLocationNotes(Boolean value) { this.AppliesToLocationNotes = value; return this; }
-        public Boolean isAppliesToReports() { return AppliesToReports; }
-        public TagDefinition setAppliesToReports(Boolean value) { this.AppliesToReports = value; return this; }
-        public Boolean isAppliesToSensorsGauges() { return AppliesToSensorsGauges; }
-        public TagDefinition setAppliesToSensorsGauges(Boolean value) { this.AppliesToSensorsGauges = value; return this; }
-    }
-
-    public static class EffectiveShift
-    {
-        /**
-        * Timestamp
-        */
-        @ApiMember(DataType="string", Description="Timestamp", Format="date-time")
-        public Instant Timestamp = null;
-
-        /**
-        * Value
-        */
-        @ApiMember(DataType="number", Description="Value", Format="double")
-        public Double Value = null;
-        
-        public Instant getTimestamp() { return Timestamp; }
-        public EffectiveShift setTimestamp(Instant value) { this.Timestamp = value; return this; }
-        public Double getValue() { return Value; }
-        public EffectiveShift setValue(Double value) { this.Value = value; return this; }
-    }
-
-    public static class RatingModelDescription
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Label
-        */
-        @ApiMember(Description="Label")
-        public String Label = null;
-
-        /**
-        * Location identifier
-        */
-        @ApiMember(Description="Location identifier")
-        public String LocationIdentifier = null;
-
-        /**
-        * Input parameter
-        */
-        @ApiMember(Description="Input parameter")
-        public String InputParameter = null;
-
-        /**
-        * Input unit
-        */
-        @ApiMember(Description="Input unit")
-        public String InputUnit = null;
-
-        /**
-        * Output parameter
-        */
-        @ApiMember(Description="Output parameter")
-        public String OutputParameter = null;
-
-        /**
-        * Output unit
-        */
-        @ApiMember(Description="Output unit")
-        public String OutputUnit = null;
-
-        /**
-        * Template name
-        */
-        @ApiMember(Description="Template name")
-        public String TemplateName = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comment = null;
-
-        /**
-        * Last modified
-        */
-        @ApiMember(DataType="string", Description="Last modified", Format="date-time")
-        public Instant LastModified = null;
-
-        /**
-        * Publish
-        */
-        @ApiMember(DataType="boolean", Description="Publish")
-        public Boolean Publish = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public RatingModelDescription setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getLabel() { return Label; }
-        public RatingModelDescription setLabel(String value) { this.Label = value; return this; }
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public RatingModelDescription setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public String getInputParameter() { return InputParameter; }
-        public RatingModelDescription setInputParameter(String value) { this.InputParameter = value; return this; }
-        public String getInputUnit() { return InputUnit; }
-        public RatingModelDescription setInputUnit(String value) { this.InputUnit = value; return this; }
-        public String getOutputParameter() { return OutputParameter; }
-        public RatingModelDescription setOutputParameter(String value) { this.OutputParameter = value; return this; }
-        public String getOutputUnit() { return OutputUnit; }
-        public RatingModelDescription setOutputUnit(String value) { this.OutputUnit = value; return this; }
-        public String getTemplateName() { return TemplateName; }
-        public RatingModelDescription setTemplateName(String value) { this.TemplateName = value; return this; }
-        public String getDescription() { return Description; }
-        public RatingModelDescription setDescription(String value) { this.Description = value; return this; }
-        public String getComment() { return Comment; }
-        public RatingModelDescription setComment(String value) { this.Comment = value; return this; }
-        public Instant getLastModified() { return LastModified; }
-        public RatingModelDescription setLastModified(Instant value) { this.LastModified = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public RatingModelDescription setPublish(Boolean value) { this.Publish = value; return this; }
-    }
-
-    public static class Processor
-    {
-        /**
-        * Processor type
-        */
-        @ApiMember(Description="Processor type")
-        public String ProcessorType = null;
-
-        /**
-        * Input time series unique ids
-        */
-        @ApiMember(DataType="array", Description="Input time series unique ids")
-        public ArrayList<String> InputTimeSeriesUniqueIds = null;
-
-        /**
-        * Output time series unique id
-        */
-        @ApiMember(DataType="string", Description="Output time series unique id", Format="guid")
-        public String OutputTimeSeriesUniqueId = null;
-
-        /**
-        * Processor period
-        */
-        @ApiMember(DataType="TimeRange", Description="Processor period")
-        public TimeRange ProcessorPeriod = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Input rating model identifier
-        */
-        @ApiMember(Description="Input rating model identifier")
-        public String InputRatingModelIdentifier = null;
-
-        public HashMap<String,String> Settings = null;
-        
-        public String getProcessorType() { return ProcessorType; }
-        public Processor setProcessorType(String value) { this.ProcessorType = value; return this; }
-        public ArrayList<String> getInputTimeSeriesUniqueIds() { return InputTimeSeriesUniqueIds; }
-        public Processor setInputTimeSeriesUniqueIds(ArrayList<String> value) { this.InputTimeSeriesUniqueIds = value; return this; }
-        public String getOutputTimeSeriesUniqueId() { return OutputTimeSeriesUniqueId; }
-        public Processor setOutputTimeSeriesUniqueId(String value) { this.OutputTimeSeriesUniqueId = value; return this; }
-        public TimeRange getProcessorPeriod() { return ProcessorPeriod; }
-        public Processor setProcessorPeriod(TimeRange value) { this.ProcessorPeriod = value; return this; }
-        public String getDescription() { return Description; }
-        public Processor setDescription(String value) { this.Description = value; return this; }
-        public String getInputRatingModelIdentifier() { return InputRatingModelIdentifier; }
-        public Processor setInputRatingModelIdentifier(String value) { this.InputRatingModelIdentifier = value; return this; }
-        public HashMap<String,String> getSettings() { return Settings; }
-        public Processor setSettings(HashMap<String,String> value) { this.Settings = value; return this; }
-    }
-
-    public static class TimeSeriesUniqueIds
-    {
-        /**
-        * Unique id
-        */
-        @ApiMember(DataType="string", Description="Unique id", Format="guid")
-        public String UniqueId = null;
-
-        /**
-        * First point changed
-        */
-        @ApiMember(DataType="string", Description="First point changed", Format="date-time")
-        public Instant FirstPointChanged = null;
-
-        /**
-        * Has attribute change
-        */
-        @ApiMember(DataType="boolean", Description="Has attribute change")
-        public Boolean HasAttributeChange = null;
-
-        /**
-        * Time-series has been deleted
-        */
-        @ApiMember(DataType="boolean", Description="Time-series has been deleted")
-        public Boolean IsDeleted = null;
-
-        /**
-        * Last time attributes on the time-series matched the given filters; null when time-series current attributes matched the given filters
-        */
-        @ApiMember(DataType="string", Description="Last time attributes on the time-series matched the given filters; null when time-series current attributes matched the given filters", Format="date-time")
-        public Instant LastMatchedTime = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public TimeSeriesUniqueIds setUniqueId(String value) { this.UniqueId = value; return this; }
-        public Instant getFirstPointChanged() { return FirstPointChanged; }
-        public TimeSeriesUniqueIds setFirstPointChanged(Instant value) { this.FirstPointChanged = value; return this; }
-        public Boolean isHasAttributeChange() { return HasAttributeChange; }
-        public TimeSeriesUniqueIds setHasAttributeChange(Boolean value) { this.HasAttributeChange = value; return this; }
-        public Boolean getIsDeleted() { return IsDeleted; }
-        public TimeSeriesUniqueIds setIsDeleted(Boolean value) { this.IsDeleted = value; return this; }
-        public Instant getLastMatchedTime() { return LastMatchedTime; }
-        public TimeSeriesUniqueIds setLastMatchedTime(Instant value) { this.LastMatchedTime = value; return this; }
-    }
-
-    public static class ApprovalsTransaction extends Approval
-    {
-        
-    }
-
-    public static class TimeSeriesDescription
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Unique id
-        */
-        @ApiMember(DataType="string", Description="Unique id", Format="guid")
-        public String UniqueId = null;
-
-        /**
-        * Location identifier
-        */
-        @ApiMember(Description="Location identifier")
-        public String LocationIdentifier = null;
-
-        /**
-        * Parameter
-        */
-        @ApiMember(Description="Parameter")
-        public String Parameter = null;
-
-        /**
-        * Parameter Id
-        */
-        @ApiMember(Description="Parameter Id")
-        public String ParameterId = null;
-
-        /**
-        * Unit
-        */
-        @ApiMember(Description="Unit")
-        public String Unit = null;
-
-        /**
-        * Utc offset
-        */
-        @ApiMember(DataType="number", Description="Utc offset", Format="double")
-        public Double UtcOffset = null;
-
-        /**
-        * Utc offset iso duration
-        */
-        @ApiMember(DataType="string", Description="Utc offset iso duration", Format="offset from UTC")
-        public String UtcOffsetIsoDuration = null;
-
-        /**
-        * Last modified
-        */
-        @ApiMember(DataType="string", Description="Last modified", Format="date-time")
-        public Instant LastModified = null;
-
-        /**
-        * Raw start time
-        */
-        @ApiMember(DataType="string", Description="Raw start time", Format="date-time")
-        public Instant RawStartTime = null;
-
-        /**
-        * Raw end time
-        */
-        @ApiMember(DataType="string", Description="Raw end time", Format="date-time")
-        public Instant RawEndTime = null;
-
-        /**
-        * Corrected start time
-        */
-        @ApiMember(DataType="string", Description="Corrected start time", Format="date-time")
-        public Instant CorrectedStartTime = null;
-
-        /**
-        * Corrected end time
-        */
-        @ApiMember(DataType="string", Description="Corrected end time", Format="date-time")
-        public Instant CorrectedEndTime = null;
-
-        /**
-        * Time series type
-        */
-        @ApiMember(Description="Time series type")
-        public String TimeSeriesType = null;
-
-        /**
-        * Label
-        */
-        @ApiMember(Description="Label")
-        public String Label = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comment = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Publish
-        */
-        @ApiMember(DataType="boolean", Description="Publish")
-        public Boolean Publish = null;
-
-        /**
-        * Computation identifier
-        */
-        @ApiMember(Description="Computation identifier")
-        public String ComputationIdentifier = null;
-
-        /**
-        * Computation period identifier
-        */
-        @ApiMember(Description="Computation period identifier")
-        public String ComputationPeriodIdentifier = null;
-
-        /**
-        * Sub location identifier
-        */
-        @ApiMember(Description="Sub location identifier")
-        public String SubLocationIdentifier = null;
-
-        /**
-        * Extended attributes
-        */
-        @ApiMember(DataType="array", Description="Extended attributes")
-        public List<ExtendedAttribute> ExtendedAttributes = null;
-
-        /**
-        * Thresholds
-        */
-        @ApiMember(DataType="array", Description="Thresholds")
-        public List<TimeSeriesThreshold> Thresholds = null;
-
-        /**
-        * Property Bag
-        */
-        @ApiMember(Description="Property Bag")
-        public String PropertyBag = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public TimeSeriesDescription setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getUniqueId() { return UniqueId; }
-        public TimeSeriesDescription setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public TimeSeriesDescription setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public String getParameter() { return Parameter; }
-        public TimeSeriesDescription setParameter(String value) { this.Parameter = value; return this; }
-        public String getParameterId() { return ParameterId; }
-        public TimeSeriesDescription setParameterId(String value) { this.ParameterId = value; return this; }
-        public String getUnit() { return Unit; }
-        public TimeSeriesDescription setUnit(String value) { this.Unit = value; return this; }
-        public Double getUtcOffset() { return UtcOffset; }
-        public TimeSeriesDescription setUtcOffset(Double value) { this.UtcOffset = value; return this; }
-        public String getUtcOffsetIsoDuration() { return UtcOffsetIsoDuration; }
-        public TimeSeriesDescription setUtcOffsetIsoDuration(String value) { this.UtcOffsetIsoDuration = value; return this; }
-        public Instant getLastModified() { return LastModified; }
-        public TimeSeriesDescription setLastModified(Instant value) { this.LastModified = value; return this; }
-        public Instant getRawStartTime() { return RawStartTime; }
-        public TimeSeriesDescription setRawStartTime(Instant value) { this.RawStartTime = value; return this; }
-        public Instant getRawEndTime() { return RawEndTime; }
-        public TimeSeriesDescription setRawEndTime(Instant value) { this.RawEndTime = value; return this; }
-        public Instant getCorrectedStartTime() { return CorrectedStartTime; }
-        public TimeSeriesDescription setCorrectedStartTime(Instant value) { this.CorrectedStartTime = value; return this; }
-        public Instant getCorrectedEndTime() { return CorrectedEndTime; }
-        public TimeSeriesDescription setCorrectedEndTime(Instant value) { this.CorrectedEndTime = value; return this; }
-        public String getTimeSeriesType() { return TimeSeriesType; }
-        public TimeSeriesDescription setTimeSeriesType(String value) { this.TimeSeriesType = value; return this; }
-        public String getLabel() { return Label; }
-        public TimeSeriesDescription setLabel(String value) { this.Label = value; return this; }
-        public String getComment() { return Comment; }
-        public TimeSeriesDescription setComment(String value) { this.Comment = value; return this; }
-        public String getDescription() { return Description; }
-        public TimeSeriesDescription setDescription(String value) { this.Description = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public TimeSeriesDescription setPublish(Boolean value) { this.Publish = value; return this; }
-        public String getComputationIdentifier() { return ComputationIdentifier; }
-        public TimeSeriesDescription setComputationIdentifier(String value) { this.ComputationIdentifier = value; return this; }
-        public String getComputationPeriodIdentifier() { return ComputationPeriodIdentifier; }
-        public TimeSeriesDescription setComputationPeriodIdentifier(String value) { this.ComputationPeriodIdentifier = value; return this; }
-        public String getSubLocationIdentifier() { return SubLocationIdentifier; }
-        public TimeSeriesDescription setSubLocationIdentifier(String value) { this.SubLocationIdentifier = value; return this; }
-        public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
-        public TimeSeriesDescription setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
-        public List<TimeSeriesThreshold> getThresholds() { return Thresholds; }
-        public TimeSeriesDescription setThresholds(List<TimeSeriesThreshold> value) { this.Thresholds = value; return this; }
-        public String getPropertyBag() { return PropertyBag; }
-        public TimeSeriesDescription setPropertyBag(String value) { this.PropertyBag = value; return this; }
-    }
-
-    public static class ParameterMetadata
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Unit group identifier
-        */
-        @ApiMember(Description="Unit group identifier")
-        public String UnitGroupIdentifier = null;
-
-        /**
-        * Unit identifier
-        */
-        @ApiMember(Description="Unit identifier")
-        public String UnitIdentifier = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Interpolation type
-        */
-        @ApiMember(Description="Interpolation type")
-        public String InterpolationType = null;
-
-        /**
-        * Rounding spec
-        */
-        @ApiMember(Description="Rounding spec")
-        public String RoundingSpec = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public ParameterMetadata setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getUnitGroupIdentifier() { return UnitGroupIdentifier; }
-        public ParameterMetadata setUnitGroupIdentifier(String value) { this.UnitGroupIdentifier = value; return this; }
-        public String getUnitIdentifier() { return UnitIdentifier; }
-        public ParameterMetadata setUnitIdentifier(String value) { this.UnitIdentifier = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public ParameterMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getInterpolationType() { return InterpolationType; }
-        public ParameterMetadata setInterpolationType(String value) { this.InterpolationType = value; return this; }
-        public String getRoundingSpec() { return RoundingSpec; }
-        public ParameterMetadata setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
-    }
-
-    public static class MetadataChangeTransaction
-    {
-        /**
-        * Applied time
-        */
-        @ApiMember(DataType="string", Description="Applied time", Format="date-time")
-        public Instant AppliedTime = null;
-
-        /**
-        * Applied by user
-        */
-        @ApiMember(Description="Applied by user")
-        public String AppliedByUser = null;
-
-        /**
-        * Content type
-        */
-        @ApiMember(DataType="string", Description="Content type")
-        public MetadataChangeContentType ContentType = null;
-
-        /**
-        * Gap tolerance operations
-        */
-        @ApiMember(DataType="array", Description="Gap tolerance operations")
-        public List<GapToleranceOperation> GapToleranceOperations = null;
-
-        /**
-        * Grade operations
-        */
-        @ApiMember(DataType="array", Description="Grade operations")
-        public List<GradeOperation> GradeOperations = null;
-
-        /**
-        * Interpolation type operations
-        */
-        @ApiMember(DataType="array", Description="Interpolation type operations")
-        public List<InterpolationTypeOperation> InterpolationTypeOperations = null;
-
-        /**
-        * Method operations
-        */
-        @ApiMember(DataType="array", Description="Method operations")
-        public List<MethodOperation> MethodOperations = null;
-
-        /**
-        * Note operations
-        */
-        @ApiMember(DataType="array", Description="Note operations")
-        public List<NoteOperation> NoteOperations = null;
-
-        /**
-        * Qualifier operations
-        */
-        @ApiMember(DataType="array", Description="Qualifier operations")
-        public List<QualifierOperation> QualifierOperations = null;
-
-        /**
-        * Correction operations
-        */
-        @ApiMember(DataType="array", Description="Correction operations")
-        public List<CorrectionOperation> CorrectionOperations = null;
-        
-        public Instant getAppliedTime() { return AppliedTime; }
-        public MetadataChangeTransaction setAppliedTime(Instant value) { this.AppliedTime = value; return this; }
-        public String getAppliedByUser() { return AppliedByUser; }
-        public MetadataChangeTransaction setAppliedByUser(String value) { this.AppliedByUser = value; return this; }
-        public MetadataChangeContentType getContentType() { return ContentType; }
-        public MetadataChangeTransaction setContentType(MetadataChangeContentType value) { this.ContentType = value; return this; }
-        public List<GapToleranceOperation> getGapToleranceOperations() { return GapToleranceOperations; }
-        public MetadataChangeTransaction setGapToleranceOperations(List<GapToleranceOperation> value) { this.GapToleranceOperations = value; return this; }
-        public List<GradeOperation> getGradeOperations() { return GradeOperations; }
-        public MetadataChangeTransaction setGradeOperations(List<GradeOperation> value) { this.GradeOperations = value; return this; }
-        public List<InterpolationTypeOperation> getInterpolationTypeOperations() { return InterpolationTypeOperations; }
-        public MetadataChangeTransaction setInterpolationTypeOperations(List<InterpolationTypeOperation> value) { this.InterpolationTypeOperations = value; return this; }
-        public List<MethodOperation> getMethodOperations() { return MethodOperations; }
-        public MetadataChangeTransaction setMethodOperations(List<MethodOperation> value) { this.MethodOperations = value; return this; }
-        public List<NoteOperation> getNoteOperations() { return NoteOperations; }
-        public MetadataChangeTransaction setNoteOperations(List<NoteOperation> value) { this.NoteOperations = value; return this; }
-        public List<QualifierOperation> getQualifierOperations() { return QualifierOperations; }
-        public MetadataChangeTransaction setQualifierOperations(List<QualifierOperation> value) { this.QualifierOperations = value; return this; }
-        public List<CorrectionOperation> getCorrectionOperations() { return CorrectionOperations; }
-        public MetadataChangeTransaction setCorrectionOperations(List<CorrectionOperation> value) { this.CorrectionOperations = value; return this; }
-    }
-
-    public static class ExpandedRatingCurve
-    {
-        /**
-        * Id
-        */
-        @ApiMember(Description="Id")
-        public String Id = null;
-
-        /**
-        * Type
-        */
-        @ApiMember(DataType="string", Description="Type")
-        public RatingCurveType Type = null;
-
-        /**
-        * Remarks
-        */
-        @ApiMember(Description="Remarks")
-        public String Remarks = null;
-
-        /**
-        * Input parameter
-        */
-        @ApiMember(DataType="ParameterWithUnit", Description="Input parameter")
-        public ParameterWithUnit InputParameter = null;
-
-        /**
-        * Output parameter
-        */
-        @ApiMember(DataType="ParameterWithUnit", Description="Output parameter")
-        public ParameterWithUnit OutputParameter = null;
-
-        /**
-        * Periods of applicability
-        */
-        @ApiMember(DataType="array", Description="Periods of applicability")
-        public ArrayList<PeriodOfApplicability> PeriodsOfApplicability = null;
-
-        /**
-        * Shifts
-        */
-        @ApiMember(DataType="array", Description="Shifts")
-        public ArrayList<RatingShift> Shifts = null;
-
-        /**
-        * Offsets
-        */
-        @ApiMember(DataType="array", Description="Offsets")
-        public ArrayList<OffsetPoint> Offsets = null;
-
-        /**
-        * Is blended
-        */
-        @ApiMember(DataType="boolean", Description="Is blended")
-        public Boolean IsBlended = null;
-
-        /**
-        * Base rating table
-        */
-        @ApiMember(DataType="array", Description="Base rating table")
-        public ArrayList<RatingPoint> BaseRatingTable = null;
-
-        /**
-        * Adjusted rating table
-        */
-        @ApiMember(DataType="array", Description="Adjusted rating table")
-        public ArrayList<RatingPoint> AdjustedRatingTable = null;
-        
-        public String getId() { return Id; }
-        public ExpandedRatingCurve setId(String value) { this.Id = value; return this; }
-        public RatingCurveType getType() { return Type; }
-        public ExpandedRatingCurve setType(RatingCurveType value) { this.Type = value; return this; }
-        public String getRemarks() { return Remarks; }
-        public ExpandedRatingCurve setRemarks(String value) { this.Remarks = value; return this; }
-        public ParameterWithUnit getInputParameter() { return InputParameter; }
-        public ExpandedRatingCurve setInputParameter(ParameterWithUnit value) { this.InputParameter = value; return this; }
-        public ParameterWithUnit getOutputParameter() { return OutputParameter; }
-        public ExpandedRatingCurve setOutputParameter(ParameterWithUnit value) { this.OutputParameter = value; return this; }
-        public ArrayList<PeriodOfApplicability> getPeriodsOfApplicability() { return PeriodsOfApplicability; }
-        public ExpandedRatingCurve setPeriodsOfApplicability(ArrayList<PeriodOfApplicability> value) { this.PeriodsOfApplicability = value; return this; }
-        public ArrayList<RatingShift> getShifts() { return Shifts; }
-        public ExpandedRatingCurve setShifts(ArrayList<RatingShift> value) { this.Shifts = value; return this; }
-        public ArrayList<OffsetPoint> getOffsets() { return Offsets; }
-        public ExpandedRatingCurve setOffsets(ArrayList<OffsetPoint> value) { this.Offsets = value; return this; }
-        public Boolean getIsBlended() { return IsBlended; }
-        public ExpandedRatingCurve setIsBlended(Boolean value) { this.IsBlended = value; return this; }
-        public ArrayList<RatingPoint> getBaseRatingTable() { return BaseRatingTable; }
-        public ExpandedRatingCurve setBaseRatingTable(ArrayList<RatingPoint> value) { this.BaseRatingTable = value; return this; }
-        public ArrayList<RatingPoint> getAdjustedRatingTable() { return AdjustedRatingTable; }
-        public ExpandedRatingCurve setAdjustedRatingTable(ArrayList<RatingPoint> value) { this.AdjustedRatingTable = value; return this; }
-    }
-
-    public static class TrendLineAnalysis
-    {
-        /**
-        * Type of regression analysis
-        */
-        @ApiMember(DataType="string", Description="Type of regression analysis")
-        public TrendLineAnalysisType Type = null;
-
-        /**
-        * Start point of period
-        */
-        @ApiMember(DataType="TimeSeriesPoint", Description="Start point of period")
-        public TimeSeriesPoint StartPoint = null;
-
-        /**
-        * End point of period
-        */
-        @ApiMember(DataType="TimeSeriesPoint", Description="End point of period")
-        public TimeSeriesPoint EndPoint = null;
-
-        /**
-        * Actual absolute change, as the difference between the first and last measurement values
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Actual absolute change, as the difference between the first and last measurement values")
-        public DoubleWithDisplay ActualAbsoluteChange = null;
-
-        /**
-        * Modeled absolute change, as the difference between the first and last trend line values
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Modeled absolute change, as the difference between the first and last trend line values")
-        public DoubleWithDisplay ModeledAbsoluteChange = null;
-
-        /**
-        * Actual percentage change, as the actual absolute change relative to the first measurement value
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Actual percentage change, as the actual absolute change relative to the first measurement value")
-        public DoubleWithDisplay ActualPercentageChange = null;
-
-        /**
-        * Modeled percentage change, as the modeled absolute change relative to the first trend line value
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Modeled percentage change, as the modeled absolute change relative to the first trend line value")
-        public DoubleWithDisplay ModeledPercentageChange = null;
-
-        /**
-        * Minimum value
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Minimum value")
-        public DoubleWithDisplay MinValue = null;
-
-        /**
-        * Maximum value
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Maximum value")
-        public DoubleWithDisplay MaxValue = null;
-
-        /**
-        * Lower Quartile (Q1) of residuals
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Lower Quartile (Q1) of residuals")
-        public DoubleWithDisplay LowerQuartileOfResiduals = null;
-
-        /**
-        * Median (Q2) of residuals
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Median (Q2) of residuals")
-        public DoubleWithDisplay MedianOfResiduals = null;
-
-        /**
-        * Upper Quartile (Q3) of residuals
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Upper Quartile (Q3) of residuals")
-        public DoubleWithDisplay UpperQuartileOfResiduals = null;
-
-        /**
-        * Trend line slope measured in data units per year
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Trend line slope measured in data units per year")
-        public DoubleWithDisplay Slope = null;
-
-        /**
-        * Trend line intercept, as the value of the trend line at the time of QueryFrom
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Trend line intercept, as the value of the trend line at the time of QueryFrom")
-        public DoubleWithDisplay Intercept = null;
-
-        /**
-        * Standard error in trend line slope
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Standard error in trend line slope")
-        public DoubleWithDisplay SlopeStandardError = null;
-
-        /**
-        * Standard deviation of results
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Standard deviation of results")
-        public DoubleWithDisplay StandardDeviation = null;
-
-        /**
-        * Trend line correlation coefficient
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Trend line correlation coefficient")
-        public DoubleWithDisplay CorrelationCoefficient = null;
-        
-        public TrendLineAnalysisType getType() { return Type; }
-        public TrendLineAnalysis setType(TrendLineAnalysisType value) { this.Type = value; return this; }
-        public TimeSeriesPoint getStartPoint() { return StartPoint; }
-        public TrendLineAnalysis setStartPoint(TimeSeriesPoint value) { this.StartPoint = value; return this; }
-        public TimeSeriesPoint getEndPoint() { return EndPoint; }
-        public TrendLineAnalysis setEndPoint(TimeSeriesPoint value) { this.EndPoint = value; return this; }
-        public DoubleWithDisplay getActualAbsoluteChange() { return ActualAbsoluteChange; }
-        public TrendLineAnalysis setActualAbsoluteChange(DoubleWithDisplay value) { this.ActualAbsoluteChange = value; return this; }
-        public DoubleWithDisplay getModeledAbsoluteChange() { return ModeledAbsoluteChange; }
-        public TrendLineAnalysis setModeledAbsoluteChange(DoubleWithDisplay value) { this.ModeledAbsoluteChange = value; return this; }
-        public DoubleWithDisplay getActualPercentageChange() { return ActualPercentageChange; }
-        public TrendLineAnalysis setActualPercentageChange(DoubleWithDisplay value) { this.ActualPercentageChange = value; return this; }
-        public DoubleWithDisplay getModeledPercentageChange() { return ModeledPercentageChange; }
-        public TrendLineAnalysis setModeledPercentageChange(DoubleWithDisplay value) { this.ModeledPercentageChange = value; return this; }
-        public DoubleWithDisplay getMinValue() { return MinValue; }
-        public TrendLineAnalysis setMinValue(DoubleWithDisplay value) { this.MinValue = value; return this; }
-        public DoubleWithDisplay getMaxValue() { return MaxValue; }
-        public TrendLineAnalysis setMaxValue(DoubleWithDisplay value) { this.MaxValue = value; return this; }
-        public DoubleWithDisplay getLowerQuartileOfResiduals() { return LowerQuartileOfResiduals; }
-        public TrendLineAnalysis setLowerQuartileOfResiduals(DoubleWithDisplay value) { this.LowerQuartileOfResiduals = value; return this; }
-        public DoubleWithDisplay getMedianOfResiduals() { return MedianOfResiduals; }
-        public TrendLineAnalysis setMedianOfResiduals(DoubleWithDisplay value) { this.MedianOfResiduals = value; return this; }
-        public DoubleWithDisplay getUpperQuartileOfResiduals() { return UpperQuartileOfResiduals; }
-        public TrendLineAnalysis setUpperQuartileOfResiduals(DoubleWithDisplay value) { this.UpperQuartileOfResiduals = value; return this; }
-        public DoubleWithDisplay getSlope() { return Slope; }
-        public TrendLineAnalysis setSlope(DoubleWithDisplay value) { this.Slope = value; return this; }
-        public DoubleWithDisplay getIntercept() { return Intercept; }
-        public TrendLineAnalysis setIntercept(DoubleWithDisplay value) { this.Intercept = value; return this; }
-        public DoubleWithDisplay getSlopeStandardError() { return SlopeStandardError; }
-        public TrendLineAnalysis setSlopeStandardError(DoubleWithDisplay value) { this.SlopeStandardError = value; return this; }
-        public DoubleWithDisplay getStandardDeviation() { return StandardDeviation; }
-        public TrendLineAnalysis setStandardDeviation(DoubleWithDisplay value) { this.StandardDeviation = value; return this; }
-        public DoubleWithDisplay getCorrelationCoefficient() { return CorrelationCoefficient; }
-        public TrendLineAnalysis setCorrelationCoefficient(DoubleWithDisplay value) { this.CorrelationCoefficient = value; return this; }
-    }
-
-    public static class LocationMonitoringMethod
-    {
-        /**
-        * UniqueId
-        */
-        @ApiMember(DataType="string", Description="UniqueId", Format="guid")
-        public String UniqueId = null;
-
-        /**
-        * Location Identifier
-        */
-        @ApiMember(Description="Location Identifier")
-        public String LocationIdentifier = null;
-
-        /**
-        * Name
-        */
-        @ApiMember(Description="Name")
-        public String Name = null;
-
-        /**
-        * Method Code
-        */
-        @ApiMember(Description="Method Code")
-        public String MethodCode = null;
-
-        /**
-        * Method Display Name
-        */
-        @ApiMember(Description="Method Display Name")
-        public String Method = null;
-
-        /**
-        * Parameter Name
-        */
-        @ApiMember(Description="Parameter Name")
-        public String Parameter = null;
-
-        /**
-        * Parameter Id
-        */
-        @ApiMember(Description="Parameter Id")
-        public String ParameterId = null;
-
-        /**
-        * Parameter Unique Id
-        */
-        @ApiMember(DataType="string", Description="Parameter Unique Id", Format="guid")
-        public String ParameterUniqueId = null;
-
-        /**
-        * Unit Id
-        */
-        @ApiMember(Description="Unit Id")
-        public String UnitId = null;
-
-        /**
-        * Unit Name
-        */
-        @ApiMember(Description="Unit Name")
-        public String UnitName = null;
-
-        /**
-        * Sub location identifier
-        */
-        @ApiMember(Description="Sub location identifier")
-        public String SubLocationIdentifier = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comment = null;
-
-        /**
-        * Manufacturer
-        */
-        @ApiMember(Description="Manufacturer")
-        public String Manufacturer = null;
-
-        /**
-        * Model
-        */
-        @ApiMember(Description="Model")
-        public String Model = null;
-
-        /**
-        * Serial Number
-        */
-        @ApiMember(Description="Serial Number")
-        public String SerialNumber = null;
-
-        /**
-        * Last modified time (UTC)
-        */
-        @ApiMember(DataType="string", Description="Last modified time (UTC)", Format="date-time")
-        public Instant LastModifiedUtc = null;
-
-        /**
-        * Tags
-        */
-        @ApiMember(DataType="array", Description="Tags")
-        public ArrayList<TagMetadata> Tags = null;
-        
-        public String getUniqueId() { return UniqueId; }
-        public LocationMonitoringMethod setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getLocationIdentifier() { return LocationIdentifier; }
-        public LocationMonitoringMethod setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
-        public String getName() { return Name; }
-        public LocationMonitoringMethod setName(String value) { this.Name = value; return this; }
-        public String getMethodCode() { return MethodCode; }
-        public LocationMonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
-        public String getMethod() { return Method; }
-        public LocationMonitoringMethod setMethod(String value) { this.Method = value; return this; }
-        public String getParameter() { return Parameter; }
-        public LocationMonitoringMethod setParameter(String value) { this.Parameter = value; return this; }
-        public String getParameterId() { return ParameterId; }
-        public LocationMonitoringMethod setParameterId(String value) { this.ParameterId = value; return this; }
-        public String getParameterUniqueId() { return ParameterUniqueId; }
-        public LocationMonitoringMethod setParameterUniqueId(String value) { this.ParameterUniqueId = value; return this; }
-        public String getUnitId() { return UnitId; }
-        public LocationMonitoringMethod setUnitId(String value) { this.UnitId = value; return this; }
-        public String getUnitName() { return UnitName; }
-        public LocationMonitoringMethod setUnitName(String value) { this.UnitName = value; return this; }
-        public String getSubLocationIdentifier() { return SubLocationIdentifier; }
-        public LocationMonitoringMethod setSubLocationIdentifier(String value) { this.SubLocationIdentifier = value; return this; }
-        public String getComment() { return Comment; }
-        public LocationMonitoringMethod setComment(String value) { this.Comment = value; return this; }
-        public String getManufacturer() { return Manufacturer; }
-        public LocationMonitoringMethod setManufacturer(String value) { this.Manufacturer = value; return this; }
-        public String getModel() { return Model; }
-        public LocationMonitoringMethod setModel(String value) { this.Model = value; return this; }
-        public String getSerialNumber() { return SerialNumber; }
-        public LocationMonitoringMethod setSerialNumber(String value) { this.SerialNumber = value; return this; }
-        public Instant getLastModifiedUtc() { return LastModifiedUtc; }
-        public LocationMonitoringMethod setLastModifiedUtc(Instant value) { this.LastModifiedUtc = value; return this; }
-        public ArrayList<TagMetadata> getTags() { return Tags; }
-        public LocationMonitoringMethod setTags(ArrayList<TagMetadata> value) { this.Tags = value; return this; }
-    }
-
     public static class LocationDescription
     {
         /**
@@ -4697,896 +3656,76 @@ public class Publish
         public LocationDescription setUtcOffset(Double value) { this.UtcOffset = value; return this; }
     }
 
-    public static class DischargeActivity
+    public static class QualifierMetadata
     {
         /**
-        * Discharge summary
+        * Identifier
         */
-        @ApiMember(DataType="DischargeSummary", Description="Discharge summary")
-        public DischargeSummary DischargeSummary = null;
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
 
         /**
-        * Volumetric discharge activities
+        * Code
         */
-        @ApiMember(DataType="array", Description="Volumetric discharge activities")
-        public ArrayList<VolumetricDischargeActivity> VolumetricDischargeActivities = null;
+        @ApiMember(Description="Code")
+        public String Code = null;
 
         /**
-        * Engineered structure discharge activities
+        * Display name
         */
-        @ApiMember(DataType="array", Description="Engineered structure discharge activities")
-        public ArrayList<EngineeredStructureDischargeActivity> EngineeredStructureDischargeActivities = null;
-
-        /**
-        * Point velocity discharge activities
-        */
-        @ApiMember(DataType="array", Description="Point velocity discharge activities")
-        public ArrayList<PointVelocityDischargeActivity> PointVelocityDischargeActivities = null;
-
-        /**
-        * Other method discharge activities
-        */
-        @ApiMember(DataType="array", Description="Other method discharge activities")
-        public ArrayList<OtherMethodDischargeActivity> OtherMethodDischargeActivities = null;
-
-        /**
-        * Adcp discharge activities
-        */
-        @ApiMember(DataType="array", Description="Adcp discharge activities")
-        public ArrayList<AdcpDischargeActivity> AdcpDischargeActivities = null;
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
         
-        public DischargeSummary getDischargeSummary() { return DischargeSummary; }
-        public DischargeActivity setDischargeSummary(DischargeSummary value) { this.DischargeSummary = value; return this; }
-        public ArrayList<VolumetricDischargeActivity> getVolumetricDischargeActivities() { return VolumetricDischargeActivities; }
-        public DischargeActivity setVolumetricDischargeActivities(ArrayList<VolumetricDischargeActivity> value) { this.VolumetricDischargeActivities = value; return this; }
-        public ArrayList<EngineeredStructureDischargeActivity> getEngineeredStructureDischargeActivities() { return EngineeredStructureDischargeActivities; }
-        public DischargeActivity setEngineeredStructureDischargeActivities(ArrayList<EngineeredStructureDischargeActivity> value) { this.EngineeredStructureDischargeActivities = value; return this; }
-        public ArrayList<PointVelocityDischargeActivity> getPointVelocityDischargeActivities() { return PointVelocityDischargeActivities; }
-        public DischargeActivity setPointVelocityDischargeActivities(ArrayList<PointVelocityDischargeActivity> value) { this.PointVelocityDischargeActivities = value; return this; }
-        public ArrayList<OtherMethodDischargeActivity> getOtherMethodDischargeActivities() { return OtherMethodDischargeActivities; }
-        public DischargeActivity setOtherMethodDischargeActivities(ArrayList<OtherMethodDischargeActivity> value) { this.OtherMethodDischargeActivities = value; return this; }
-        public ArrayList<AdcpDischargeActivity> getAdcpDischargeActivities() { return AdcpDischargeActivities; }
-        public DischargeActivity setAdcpDischargeActivities(ArrayList<AdcpDischargeActivity> value) { this.AdcpDischargeActivities = value; return this; }
+        public String getIdentifier() { return Identifier; }
+        public QualifierMetadata setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getCode() { return Code; }
+        public QualifierMetadata setCode(String value) { this.Code = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public QualifierMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
     }
 
-    public static class GageHeightAtZeroFlowActivity
-    {
-        /**
-        * Observed date
-        */
-        @ApiMember(DataType="string", Description="Observed date", Format="date-time")
-        public Instant ObservedDate = null;
-
-        /**
-        * Applicable since
-        */
-        @ApiMember(DataType="string", Description="Applicable since", Format="date-time")
-        public Instant ApplicableSince = null;
-
-        /**
-        * Zero flow height
-        */
-        @ApiMember(DataType="DoubleWithDisplay", Description="Zero flow height")
-        public DoubleWithDisplay ZeroFlowHeight = null;
-
-        /**
-        * Is observed
-        */
-        @ApiMember(DataType="boolean", Description="Is observed")
-        public Boolean IsObserved = null;
-
-        /**
-        * Calculated details
-        */
-        @ApiMember(DataType="GageHeightAtZeroFlowCalculatedDetails", Description="Calculated details")
-        public GageHeightAtZeroFlowCalculatedDetails CalculatedDetails = null;
-
-        /**
-        * Unit
-        */
-        @ApiMember(Description="Unit")
-        public String Unit = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Party
-        */
-        @ApiMember(Description="Party")
-        public String Party = null;
-
-        /**
-        * Is valid
-        */
-        @ApiMember(DataType="boolean", Description="Is valid")
-        public Boolean IsValid = null;
-        
-        public Instant getObservedDate() { return ObservedDate; }
-        public GageHeightAtZeroFlowActivity setObservedDate(Instant value) { this.ObservedDate = value; return this; }
-        public Instant getApplicableSince() { return ApplicableSince; }
-        public GageHeightAtZeroFlowActivity setApplicableSince(Instant value) { this.ApplicableSince = value; return this; }
-        public DoubleWithDisplay getZeroFlowHeight() { return ZeroFlowHeight; }
-        public GageHeightAtZeroFlowActivity setZeroFlowHeight(DoubleWithDisplay value) { this.ZeroFlowHeight = value; return this; }
-        public Boolean getIsObserved() { return IsObserved; }
-        public GageHeightAtZeroFlowActivity setIsObserved(Boolean value) { this.IsObserved = value; return this; }
-        public GageHeightAtZeroFlowCalculatedDetails getCalculatedDetails() { return CalculatedDetails; }
-        public GageHeightAtZeroFlowActivity setCalculatedDetails(GageHeightAtZeroFlowCalculatedDetails value) { this.CalculatedDetails = value; return this; }
-        public String getUnit() { return Unit; }
-        public GageHeightAtZeroFlowActivity setUnit(String value) { this.Unit = value; return this; }
-        public String getComments() { return Comments; }
-        public GageHeightAtZeroFlowActivity setComments(String value) { this.Comments = value; return this; }
-        public String getParty() { return Party; }
-        public GageHeightAtZeroFlowActivity setParty(String value) { this.Party = value; return this; }
-        public Boolean getIsValid() { return IsValid; }
-        public GageHeightAtZeroFlowActivity setIsValid(Boolean value) { this.IsValid = value; return this; }
-    }
-
-    public static class ControlConditionActivity
-    {
-        /**
-        * Control code
-        */
-        @ApiMember(Description="Control code")
-        public String ControlCode = null;
-
-        /**
-        * Flow over control
-        */
-        @ApiMember(Description="Flow over control")
-        public String FlowOverControl = null;
-
-        /**
-        * Control cleaned
-        */
-        @ApiMember(DataType="string", Description="Control cleaned")
-        public ControlCleanedType ControlCleaned = null;
-
-        /**
-        * Control condition
-        */
-        @ApiMember(Description="Control condition")
-        public String ControlCondition = null;
-
-        /**
-        * Instant cleaned
-        */
-        @ApiMember(DataType="string", Description="Instant cleaned", Format="date-time")
-        public Instant DateCleaned = null;
-
-        /**
-        * Distance to gage
-        */
-        @ApiMember(DataType="QuantityWithDisplay", Description="Distance to gage")
-        public QuantityWithDisplay DistanceToGage = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Party
-        */
-        @ApiMember(Description="Party")
-        public String Party = null;
-
-        /**
-        * Is valid
-        */
-        @ApiMember(DataType="boolean", Description="Is valid")
-        public Boolean IsValid = null;
-        
-        public String getControlCode() { return ControlCode; }
-        public ControlConditionActivity setControlCode(String value) { this.ControlCode = value; return this; }
-        public String getFlowOverControl() { return FlowOverControl; }
-        public ControlConditionActivity setFlowOverControl(String value) { this.FlowOverControl = value; return this; }
-        public ControlCleanedType getControlCleaned() { return ControlCleaned; }
-        public ControlConditionActivity setControlCleaned(ControlCleanedType value) { this.ControlCleaned = value; return this; }
-        public String getControlCondition() { return ControlCondition; }
-        public ControlConditionActivity setControlCondition(String value) { this.ControlCondition = value; return this; }
-        public Instant getDateCleaned() { return DateCleaned; }
-        public ControlConditionActivity setDateCleaned(Instant value) { this.DateCleaned = value; return this; }
-        public QuantityWithDisplay getDistanceToGage() { return DistanceToGage; }
-        public ControlConditionActivity setDistanceToGage(QuantityWithDisplay value) { this.DistanceToGage = value; return this; }
-        public String getComments() { return Comments; }
-        public ControlConditionActivity setComments(String value) { this.Comments = value; return this; }
-        public String getParty() { return Party; }
-        public ControlConditionActivity setParty(String value) { this.Party = value; return this; }
-        public Boolean getIsValid() { return IsValid; }
-        public ControlConditionActivity setIsValid(Boolean value) { this.IsValid = value; return this; }
-    }
-
-    public static class InspectionActivity
-    {
-        /**
-        * Party
-        */
-        @ApiMember(Description="Party")
-        public String Party = null;
-
-        /**
-        * Readings
-        */
-        @ApiMember(DataType="array", Description="Readings")
-        public ArrayList<Reading> Readings = null;
-
-        /**
-        * Number of readings which could not be converted to the target datum
-        */
-        @ApiMember(DataType="integer", Description="Number of readings which could not be converted to the target datum", Format="int32")
-        public Integer NumberOfReadingsNotDatumConverted = null;
-
-        /**
-        * Calibration checks
-        */
-        @ApiMember(DataType="array", Description="Calibration checks")
-        public ArrayList<CalibrationCheck> CalibrationChecks = null;
-
-        /**
-        * Inspections
-        */
-        @ApiMember(DataType="array", Description="Inspections")
-        public ArrayList<Inspection> Inspections = null;
-
-        /**
-        * Is valid
-        */
-        @ApiMember(DataType="boolean", Description="Is valid")
-        public Boolean IsValid = null;
-        
-        public String getParty() { return Party; }
-        public InspectionActivity setParty(String value) { this.Party = value; return this; }
-        public ArrayList<Reading> getReadings() { return Readings; }
-        public InspectionActivity setReadings(ArrayList<Reading> value) { this.Readings = value; return this; }
-        public Integer getNumberOfReadingsNotDatumConverted() { return NumberOfReadingsNotDatumConverted; }
-        public InspectionActivity setNumberOfReadingsNotDatumConverted(Integer value) { this.NumberOfReadingsNotDatumConverted = value; return this; }
-        public ArrayList<CalibrationCheck> getCalibrationChecks() { return CalibrationChecks; }
-        public InspectionActivity setCalibrationChecks(ArrayList<CalibrationCheck> value) { this.CalibrationChecks = value; return this; }
-        public ArrayList<Inspection> getInspections() { return Inspections; }
-        public InspectionActivity setInspections(ArrayList<Inspection> value) { this.Inspections = value; return this; }
-        public Boolean getIsValid() { return IsValid; }
-        public InspectionActivity setIsValid(Boolean value) { this.IsValid = value; return this; }
-    }
-
-    public static class CrossSectionSurveyActivity
-    {
-        /**
-        * Start time
-        */
-        @ApiMember(DataType="string", Description="Start time", Format="date-time")
-        public Instant StartTime = null;
-
-        /**
-        * End time
-        */
-        @ApiMember(DataType="string", Description="End time", Format="date-time")
-        public Instant EndTime = null;
-
-        /**
-        * Party
-        */
-        @ApiMember(Description="Party")
-        public String Party = null;
-
-        /**
-        * Channel
-        */
-        @ApiMember(Description="Channel")
-        public String Channel = null;
-
-        /**
-        * Relative location
-        */
-        @ApiMember(Description="Relative location")
-        public String RelativeLocation = null;
-
-        /**
-        * Starting point
-        */
-        @ApiMember(DataType="string", Description="Starting point")
-        public StartPointType StartingPoint = null;
-
-        /**
-        * Stage
-        */
-        @ApiMember(DataType="QuantityWithDisplay", Description="Stage")
-        public QuantityWithDisplay Stage = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Cross-section points
-        */
-        @ApiMember(DataType="array", Description="Cross-section points")
-        public ArrayList<CrossSectionPoint> CrossSectionPoints = null;
-        
-        public Instant getStartTime() { return StartTime; }
-        public CrossSectionSurveyActivity setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public CrossSectionSurveyActivity setEndTime(Instant value) { this.EndTime = value; return this; }
-        public String getParty() { return Party; }
-        public CrossSectionSurveyActivity setParty(String value) { this.Party = value; return this; }
-        public String getChannel() { return Channel; }
-        public CrossSectionSurveyActivity setChannel(String value) { this.Channel = value; return this; }
-        public String getRelativeLocation() { return RelativeLocation; }
-        public CrossSectionSurveyActivity setRelativeLocation(String value) { this.RelativeLocation = value; return this; }
-        public StartPointType getStartingPoint() { return StartingPoint; }
-        public CrossSectionSurveyActivity setStartingPoint(StartPointType value) { this.StartingPoint = value; return this; }
-        public QuantityWithDisplay getStage() { return Stage; }
-        public CrossSectionSurveyActivity setStage(QuantityWithDisplay value) { this.Stage = value; return this; }
-        public String getComments() { return Comments; }
-        public CrossSectionSurveyActivity setComments(String value) { this.Comments = value; return this; }
-        public ArrayList<CrossSectionPoint> getCrossSectionPoints() { return CrossSectionPoints; }
-        public CrossSectionSurveyActivity setCrossSectionPoints(ArrayList<CrossSectionPoint> value) { this.CrossSectionPoints = value; return this; }
-    }
-
-    public static class LevelSurveyActivity
-    {
-        /**
-        * Party
-        */
-        @ApiMember(Description="Party")
-        public String Party = null;
-
-        /**
-        * Origin reference point unique ID
-        */
-        @ApiMember(DataType="string", Description="Origin reference point unique ID", Format="guid")
-        public String OriginReferencePointUniqueId = null;
-
-        /**
-        * Measurement method
-        */
-        @ApiMember(Description="Measurement method")
-        public String Method = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Level survey measurements
-        */
-        @ApiMember(DataType="array", Description="Level survey measurements")
-        public ArrayList<LevelSurveyMeasurement> LevelMeasurements = null;
-        
-        public String getParty() { return Party; }
-        public LevelSurveyActivity setParty(String value) { this.Party = value; return this; }
-        public String getOriginReferencePointUniqueId() { return OriginReferencePointUniqueId; }
-        public LevelSurveyActivity setOriginReferencePointUniqueId(String value) { this.OriginReferencePointUniqueId = value; return this; }
-        public String getMethod() { return Method; }
-        public LevelSurveyActivity setMethod(String value) { this.Method = value; return this; }
-        public String getComments() { return Comments; }
-        public LevelSurveyActivity setComments(String value) { this.Comments = value; return this; }
-        public ArrayList<LevelSurveyMeasurement> getLevelMeasurements() { return LevelMeasurements; }
-        public LevelSurveyActivity setLevelMeasurements(ArrayList<LevelSurveyMeasurement> value) { this.LevelMeasurements = value; return this; }
-    }
-
-    public static class FieldVisitApproval
+    public static class Approval extends TimeRange
     {
         /**
         * Approval level
         */
-        @ApiMember(DataType="integer", Description="Approval level", Format="int64")
-        public Long ApprovalLevel = null;
+        @ApiMember(DataType="integer", Description="Approval level", Format="int32")
+        public Integer ApprovalLevel = null;
+
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
 
         /**
         * Level description
         */
         @ApiMember(Description="Level description")
         public String LevelDescription = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comment = null;
         
-        public Long getApprovalLevel() { return ApprovalLevel; }
-        public FieldVisitApproval setApprovalLevel(Long value) { this.ApprovalLevel = value; return this; }
+        public Integer getApprovalLevel() { return ApprovalLevel; }
+        public Approval setApprovalLevel(Integer value) { this.ApprovalLevel = value; return this; }
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public Approval setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public Approval setUser(String value) { this.User = value; return this; }
         public String getLevelDescription() { return LevelDescription; }
-        public FieldVisitApproval setLevelDescription(String value) { this.LevelDescription = value; return this; }
-    }
-
-    public static class DatumConversionResult
-    {
-        /**
-        * True if values are converted to the target reference datum
-        */
-        @ApiMember(DataType="boolean", Description="True if values are converted to the target reference datum")
-        public Boolean ValuesConverted = null;
-
-        /**
-        * The reason, if any, that values could not be converted to the target reference datum
-        */
-        @ApiMember(Description="The reason, if any, that values could not be converted to the target reference datum")
-        public String FailureReason = null;
-
-        /**
-        * Target reference datum
-        */
-        @ApiMember(Description="Target reference datum")
-        public String TargetDatum = null;
-        
-        public Boolean isValuesConverted() { return ValuesConverted; }
-        public DatumConversionResult setValuesConverted(Boolean value) { this.ValuesConverted = value; return this; }
-        public String getFailureReason() { return FailureReason; }
-        public DatumConversionResult setFailureReason(String value) { this.FailureReason = value; return this; }
-        public String getTargetDatum() { return TargetDatum; }
-        public DatumConversionResult setTargetDatum(String value) { this.TargetDatum = value; return this; }
-    }
-
-    public static class HydraulicTestActivity
-    {
-        /**
-        * The name of the test
-        */
-        @ApiMember(Description="The name of the test", Name="TestName")
-        public String TestName = null;
-
-        /**
-        * The context or purpose of the test
-        */
-        @ApiMember(Description="The context or purpose of the test", Name="TestContext")
-        public String TestContext = null;
-
-        /**
-        * The method used for the test
-        */
-        @ApiMember(Description="The method used for the test", Name="TestMethod")
-        public String TestMethod = null;
-
-        /**
-        * The code identifying the aquifer
-        */
-        @ApiMember(Description="The code identifying the aquifer", Name="AquiferCode")
-        public String AquiferCode = null;
-
-        /**
-        * The type of aquifer
-        */
-        @ApiMember(Description="The type of aquifer", Name="AquiferType")
-        public String AquiferType = null;
-
-        /**
-        * The start time of the test
-        */
-        @ApiMember(DataType="string", Description="The start time of the test", Format="date-time", Name="StartTime")
-        public Instant StartTime = null;
-
-        /**
-        * The end time of the test
-        */
-        @ApiMember(DataType="string", Description="The end time of the test", Format="date-time", Name="EndTime")
-        public Instant EndTime = null;
-
-        /**
-        * Indicates whether the test should be published
-        */
-        @ApiMember(DataType="boolean", Description="Indicates whether the test should be published", Name="Publish")
-        public Boolean Publish = null;
-
-        /**
-        * List of related time series unique ids
-        */
-        @ApiMember(DataType="array", Description="List of related time series unique ids", Name="RelatedTimeSeriesUniqueIds")
-        public ArrayList<String> RelatedTimeSeriesUniqueIds = null;
-
-        /**
-        * List of related field visit identifiers
-        */
-        @ApiMember(DataType="array", Description="List of related field visit identifiers", Name="RelatedFieldVisitIdentifiers")
-        public ArrayList<String> RelatedFieldVisitIdentifiers = null;
-
-        /**
-        * List of hydraulic test results
-        */
-        @ApiMember(DataType="array", Description="List of hydraulic test results", Name="Results")
-        public ArrayList<HydraulicTestResult> Results = null;
-
-        /**
-        * Additional comments or notes
-        */
-        @ApiMember(Description="Additional comments or notes", Name="Comments")
-        public String Comments = null;
-        
-        public String getTestName() { return TestName; }
-        public HydraulicTestActivity setTestName(String value) { this.TestName = value; return this; }
-        public String getTestContext() { return TestContext; }
-        public HydraulicTestActivity setTestContext(String value) { this.TestContext = value; return this; }
-        public String getTestMethod() { return TestMethod; }
-        public HydraulicTestActivity setTestMethod(String value) { this.TestMethod = value; return this; }
-        public String getAquiferCode() { return AquiferCode; }
-        public HydraulicTestActivity setAquiferCode(String value) { this.AquiferCode = value; return this; }
-        public String getAquiferType() { return AquiferType; }
-        public HydraulicTestActivity setAquiferType(String value) { this.AquiferType = value; return this; }
-        public Instant getStartTime() { return StartTime; }
-        public HydraulicTestActivity setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public HydraulicTestActivity setEndTime(Instant value) { this.EndTime = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public HydraulicTestActivity setPublish(Boolean value) { this.Publish = value; return this; }
-        public ArrayList<String> getRelatedTimeSeriesUniqueIds() { return RelatedTimeSeriesUniqueIds; }
-        public HydraulicTestActivity setRelatedTimeSeriesUniqueIds(ArrayList<String> value) { this.RelatedTimeSeriesUniqueIds = value; return this; }
-        public ArrayList<String> getRelatedFieldVisitIdentifiers() { return RelatedFieldVisitIdentifiers; }
-        public HydraulicTestActivity setRelatedFieldVisitIdentifiers(ArrayList<String> value) { this.RelatedFieldVisitIdentifiers = value; return this; }
-        public ArrayList<HydraulicTestResult> getResults() { return Results; }
-        public HydraulicTestActivity setResults(ArrayList<HydraulicTestResult> value) { this.Results = value; return this; }
-        public String getComments() { return Comments; }
-        public HydraulicTestActivity setComments(String value) { this.Comments = value; return this; }
-    }
-
-    public static class WellIntegrityActivity
-    {
-        /**
-        * List of aquifer connections associated with the well
-        */
-        @ApiMember(DataType="array", Description="List of aquifer connections associated with the well", Name="WellAquiferConnections")
-        public ArrayList<WellAquiferConnection> WellAquiferConnections = null;
-
-        /**
-        * List of inspections performed on the well
-        */
-        @ApiMember(DataType="array", Description="List of inspections performed on the well", Name="WellInspections")
-        public ArrayList<WellInspection> WellInspections = null;
-
-        /**
-        * List of redevelopment activities for the well
-        */
-        @ApiMember(DataType="array", Description="List of redevelopment activities for the well", Name="WellRedevelopments")
-        public ArrayList<WellRedevelopment> WellRedevelopments = null;
-
-        /**
-        * List of repair activities performed on the well
-        */
-        @ApiMember(DataType="array", Description="List of repair activities performed on the well", Name="WellRepairs")
-        public ArrayList<WellRepair> WellRepairs = null;
-        
-        public ArrayList<WellAquiferConnection> getWellAquiferConnections() { return WellAquiferConnections; }
-        public WellIntegrityActivity setWellAquiferConnections(ArrayList<WellAquiferConnection> value) { this.WellAquiferConnections = value; return this; }
-        public ArrayList<WellInspection> getWellInspections() { return WellInspections; }
-        public WellIntegrityActivity setWellInspections(ArrayList<WellInspection> value) { this.WellInspections = value; return this; }
-        public ArrayList<WellRedevelopment> getWellRedevelopments() { return WellRedevelopments; }
-        public WellIntegrityActivity setWellRedevelopments(ArrayList<WellRedevelopment> value) { this.WellRedevelopments = value; return this; }
-        public ArrayList<WellRepair> getWellRepairs() { return WellRepairs; }
-        public WellIntegrityActivity setWellRepairs(ArrayList<WellRepair> value) { this.WellRepairs = value; return this; }
-    }
-
-    public static interface IFieldVisitData
-    {
-        public String Identifier = null;
-        public ArrayList<Attachment> Attachments = null;
-        public ArrayList<DischargeActivity> DischargeActivities = null;
-        public GageHeightAtZeroFlowActivity GageHeightAtZeroFlowActivity = null;
-        public ControlConditionActivity ControlConditionActivity = null;
-        public InspectionActivity InspectionActivity = null;
-        public ArrayList<CrossSectionSurveyActivity> CrossSectionSurveyActivity = null;
-        public LevelSurveyActivity LevelSurveyActivity = null;
-        public FieldVisitApproval Approval = null;
-        public DatumConversionResult DatumConversionResult = null;
-        public ArrayList<HydraulicTestActivity> HydraulicTestActivities = null;
-        public WellIntegrityActivity WellIntegrityActivity = null;
-    }
-
-    public static class ActiveMeterDetails extends CurrentMeter
-    {
-        /**
-        * Meter type
-        */
-        @ApiMember(DataType="string", Description="Meter type")
-        public MeterType MeterType = null;
-
-        /**
-        * Configuration
-        */
-        @ApiMember(Description="Configuration")
-        public String Configuration = null;
-
-        /**
-        * Firmware version
-        */
-        @ApiMember(Description="Firmware version")
-        public String FirmwareVersion = null;
-
-        /**
-        * Software version
-        */
-        @ApiMember(Description="Software version")
-        public String SoftwareVersion = null;
-
-        /**
-        * Meter calibrations
-        */
-        @ApiMember(DataType="array", Description="Meter calibrations")
-        public ArrayList<ActiveMeterCalibration> MeterCalibrations = null;
-        
-        public MeterType getMeterType() { return MeterType; }
-        public ActiveMeterDetails setMeterType(MeterType value) { this.MeterType = value; return this; }
-        public String getConfiguration() { return Configuration; }
-        public ActiveMeterDetails setConfiguration(String value) { this.Configuration = value; return this; }
-        public String getFirmwareVersion() { return FirmwareVersion; }
-        public ActiveMeterDetails setFirmwareVersion(String value) { this.FirmwareVersion = value; return this; }
-        public String getSoftwareVersion() { return SoftwareVersion; }
-        public ActiveMeterDetails setSoftwareVersion(String value) { this.SoftwareVersion = value; return this; }
-        public ArrayList<ActiveMeterCalibration> getMeterCalibrations() { return MeterCalibrations; }
-        public ActiveMeterDetails setMeterCalibrations(ArrayList<ActiveMeterCalibration> value) { this.MeterCalibrations = value; return this; }
-    }
-
-    public static class FieldVisit extends FieldVisitDescription implements IFieldVisitData
-    {
-        /**
-        * Attachments
-        */
-        @ApiMember(DataType="array", Description="Attachments")
-        public ArrayList<Attachment> Attachments = null;
-
-        /**
-        * Discharge activities
-        */
-        @ApiMember(DataType="array", Description="Discharge activities")
-        public ArrayList<DischargeActivity> DischargeActivities = null;
-
-        /**
-        * Gage height at zero flow activity
-        */
-        @ApiMember(DataType="GageHeightAtZeroFlowActivity", Description="Gage height at zero flow activity")
-        public GageHeightAtZeroFlowActivity GageHeightAtZeroFlowActivity = null;
-
-        /**
-        * Control condition activity
-        */
-        @ApiMember(DataType="ControlConditionActivity", Description="Control condition activity")
-        public ControlConditionActivity ControlConditionActivity = null;
-
-        /**
-        * Inspection activity
-        */
-        @ApiMember(DataType="InspectionActivity", Description="Inspection activity")
-        public InspectionActivity InspectionActivity = null;
-
-        /**
-        * Cross-section survey activity
-        */
-        @ApiMember(DataType="array", Description="Cross-section survey activity")
-        public ArrayList<CrossSectionSurveyActivity> CrossSectionSurveyActivity = null;
-
-        /**
-        * Level survey activity
-        */
-        @ApiMember(DataType="LevelSurveyActivity", Description="Level survey activity")
-        public LevelSurveyActivity LevelSurveyActivity = null;
-
-        /**
-        * Approval
-        */
-        @ApiMember(DataType="FieldVisitApproval", Description="Approval")
-        public FieldVisitApproval Approval = null;
-
-        /**
-        * Summary results for a requested datum conversion
-        */
-        @ApiMember(DataType="DatumConversionResult", Description="Summary results for a requested datum conversion")
-        public DatumConversionResult DatumConversionResult = null;
-
-        /**
-        * Hydraulic Test Activities
-        */
-        @ApiMember(DataType="array", Description="Hydraulic Test Activities")
-        public ArrayList<HydraulicTestActivity> HydraulicTestActivities = null;
-
-        /**
-        * Well integrity activity
-        */
-        @ApiMember(DataType="WellIntegrityActivity", Description="Well integrity activity")
-        public WellIntegrityActivity WellIntegrityActivity = null;
-        
-        public ArrayList<Attachment> getAttachments() { return Attachments; }
-        public FieldVisit setAttachments(ArrayList<Attachment> value) { this.Attachments = value; return this; }
-        public ArrayList<DischargeActivity> getDischargeActivities() { return DischargeActivities; }
-        public FieldVisit setDischargeActivities(ArrayList<DischargeActivity> value) { this.DischargeActivities = value; return this; }
-        public GageHeightAtZeroFlowActivity getGageHeightAtZeroFlowActivity() { return GageHeightAtZeroFlowActivity; }
-        public FieldVisit setGageHeightAtZeroFlowActivity(GageHeightAtZeroFlowActivity value) { this.GageHeightAtZeroFlowActivity = value; return this; }
-        public ControlConditionActivity getControlConditionActivity() { return ControlConditionActivity; }
-        public FieldVisit setControlConditionActivity(ControlConditionActivity value) { this.ControlConditionActivity = value; return this; }
-        public InspectionActivity getInspectionActivity() { return InspectionActivity; }
-        public FieldVisit setInspectionActivity(InspectionActivity value) { this.InspectionActivity = value; return this; }
-        public ArrayList<CrossSectionSurveyActivity> getCrossSectionSurveyActivity() { return CrossSectionSurveyActivity; }
-        public FieldVisit setCrossSectionSurveyActivity(ArrayList<CrossSectionSurveyActivity> value) { this.CrossSectionSurveyActivity = value; return this; }
-        public LevelSurveyActivity getLevelSurveyActivity() { return LevelSurveyActivity; }
-        public FieldVisit setLevelSurveyActivity(LevelSurveyActivity value) { this.LevelSurveyActivity = value; return this; }
-        public FieldVisitApproval getApproval() { return Approval; }
-        public FieldVisit setApproval(FieldVisitApproval value) { this.Approval = value; return this; }
-        public DatumConversionResult getDatumConversionResult() { return DatumConversionResult; }
-        public FieldVisit setDatumConversionResult(DatumConversionResult value) { this.DatumConversionResult = value; return this; }
-        public ArrayList<HydraulicTestActivity> getHydraulicTestActivities() { return HydraulicTestActivities; }
-        public FieldVisit setHydraulicTestActivities(ArrayList<HydraulicTestActivity> value) { this.HydraulicTestActivities = value; return this; }
-        public WellIntegrityActivity getWellIntegrityActivity() { return WellIntegrityActivity; }
-        public FieldVisit setWellIntegrityActivity(WellIntegrityActivity value) { this.WellIntegrityActivity = value; return this; }
-    }
-
-    public static class FieldVisitReading
-    {
-        /**
-        * Approval
-        */
-        @ApiMember(DataType="FieldVisitApproval", Description="Approval")
-        public FieldVisitApproval Approval = null;
-
-        /**
-        * Control condition
-        */
-        @ApiMember(Description="Control condition")
-        public String ControlCondition = null;
-
-        /**
-        * Field visit identifier
-        */
-        @ApiMember(Description="Field visit identifier")
-        public String FieldVisitIdentifier = null;
-
-        /**
-        * Value
-        */
-        @ApiMember(DataType="QuantityWithDisplay", Description="Value")
-        public QuantityWithDisplay Value = null;
-
-        /**
-        * Value
-        */
-        @ApiMember(DataType="QuantityWithDisplay", Description="Value")
-        public QuantityWithDisplay AdjustmentAmount = null;
-
-        /**
-        * Uncertainty
-        */
-        @ApiMember(DataType="Uncertainty", Description="Uncertainty")
-        public Uncertainty Uncertainty = null;
-
-        /**
-        * Datum converted values where applicable.
-        */
-        @ApiMember(DataType="array", Description="Datum converted values where applicable.")
-        public ArrayList<DatumConvertedQuantityWithDisplay> DatumConvertedValues = null;
-
-        /**
-        * Parameter Name
-        */
-        @ApiMember(Description="Parameter Name")
-        public String Parameter = null;
-
-        /**
-        * Parameter Id
-        */
-        @ApiMember(Description="Parameter Id")
-        public String ParameterId = null;
-
-        /**
-        * Monitoring method
-        */
-        @ApiMember(Description="Monitoring method")
-        public String MonitoringMethod = null;
-
-        /**
-        * Sub location identifier
-        */
-        @ApiMember(Description="Sub location identifier")
-        public String SubLocationIdentifier = null;
-
-        /**
-        * Manufacturer
-        */
-        @ApiMember(Description="Manufacturer")
-        public String Manufacturer = null;
-
-        /**
-        * Model
-        */
-        @ApiMember(Description="Model")
-        public String Model = null;
-
-        /**
-        * Serial number
-        */
-        @ApiMember(Description="Serial number")
-        public String SerialNumber = null;
-
-        /**
-        * Time
-        */
-        @ApiMember(DataType="string", Description="Time", Format="date-time")
-        public Instant Time = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Publish
-        */
-        @ApiMember(DataType="boolean", Description="Publish")
-        public Boolean Publish = null;
-
-        /**
-        * Grade code
-        */
-        @ApiMember(DataType="integer", Description="Grade code", Format="int32")
-        public Integer GradeCode = null;
-
-        /**
-        * Qualifiers
-        */
-        @ApiMember(DataType="array", Description="Qualifiers")
-        public ArrayList<String> Qualifiers = null;
-
-        /**
-        * Field visit reading type
-        */
-        @ApiMember(DataType="string", Description="Field visit reading type")
-        public FieldVisitReadingType ReadingType = null;
-
-        /**
-        * Reference point unique ID
-        */
-        @ApiMember(DataType="string", Description="Reference point unique ID", Format="guid")
-        public String ReferencePointUniqueId = null;
-
-        /**
-        * Indicates if this reading is measured against the local assumed datum of the reading's location
-        */
-        @ApiMember(DataType="boolean", Description="Indicates if this reading is measured against the local assumed datum of the reading's location")
-        public Boolean UseLocationDatumAsReference = null;
-        
-        public FieldVisitApproval getApproval() { return Approval; }
-        public FieldVisitReading setApproval(FieldVisitApproval value) { this.Approval = value; return this; }
-        public String getControlCondition() { return ControlCondition; }
-        public FieldVisitReading setControlCondition(String value) { this.ControlCondition = value; return this; }
-        public String getFieldVisitIdentifier() { return FieldVisitIdentifier; }
-        public FieldVisitReading setFieldVisitIdentifier(String value) { this.FieldVisitIdentifier = value; return this; }
-        public QuantityWithDisplay getValue() { return Value; }
-        public FieldVisitReading setValue(QuantityWithDisplay value) { this.Value = value; return this; }
-        public QuantityWithDisplay getAdjustmentAmount() { return AdjustmentAmount; }
-        public FieldVisitReading setAdjustmentAmount(QuantityWithDisplay value) { this.AdjustmentAmount = value; return this; }
-        public Uncertainty getUncertainty() { return Uncertainty; }
-        public FieldVisitReading setUncertainty(Uncertainty value) { this.Uncertainty = value; return this; }
-        public ArrayList<DatumConvertedQuantityWithDisplay> getDatumConvertedValues() { return DatumConvertedValues; }
-        public FieldVisitReading setDatumConvertedValues(ArrayList<DatumConvertedQuantityWithDisplay> value) { this.DatumConvertedValues = value; return this; }
-        public String getParameter() { return Parameter; }
-        public FieldVisitReading setParameter(String value) { this.Parameter = value; return this; }
-        public String getParameterId() { return ParameterId; }
-        public FieldVisitReading setParameterId(String value) { this.ParameterId = value; return this; }
-        public String getMonitoringMethod() { return MonitoringMethod; }
-        public FieldVisitReading setMonitoringMethod(String value) { this.MonitoringMethod = value; return this; }
-        public String getSubLocationIdentifier() { return SubLocationIdentifier; }
-        public FieldVisitReading setSubLocationIdentifier(String value) { this.SubLocationIdentifier = value; return this; }
-        public String getManufacturer() { return Manufacturer; }
-        public FieldVisitReading setManufacturer(String value) { this.Manufacturer = value; return this; }
-        public String getModel() { return Model; }
-        public FieldVisitReading setModel(String value) { this.Model = value; return this; }
-        public String getSerialNumber() { return SerialNumber; }
-        public FieldVisitReading setSerialNumber(String value) { this.SerialNumber = value; return this; }
-        public Instant getTime() { return Time; }
-        public FieldVisitReading setTime(Instant value) { this.Time = value; return this; }
-        public String getComments() { return Comments; }
-        public FieldVisitReading setComments(String value) { this.Comments = value; return this; }
-        public Boolean isPublish() { return Publish; }
-        public FieldVisitReading setPublish(Boolean value) { this.Publish = value; return this; }
-        public Integer getGradeCode() { return GradeCode; }
-        public FieldVisitReading setGradeCode(Integer value) { this.GradeCode = value; return this; }
-        public ArrayList<String> getQualifiers() { return Qualifiers; }
-        public FieldVisitReading setQualifiers(ArrayList<String> value) { this.Qualifiers = value; return this; }
-        public FieldVisitReadingType getReadingType() { return ReadingType; }
-        public FieldVisitReading setReadingType(FieldVisitReadingType value) { this.ReadingType = value; return this; }
-        public String getReferencePointUniqueId() { return ReferencePointUniqueId; }
-        public FieldVisitReading setReferencePointUniqueId(String value) { this.ReferencePointUniqueId = value; return this; }
-        public Boolean isUseLocationDatumAsReference() { return UseLocationDatumAsReference; }
-        public FieldVisitReading setUseLocationDatumAsReference(Boolean value) { this.UseLocationDatumAsReference = value; return this; }
+        public Approval setLevelDescription(String value) { this.LevelDescription = value; return this; }
+        public String getComment() { return Comment; }
+        public Approval setComment(String value) { this.Comment = value; return this; }
     }
 
     public static class Qualifier extends TimeRange
@@ -6429,7 +4568,191 @@ public class Publish
         public TimeAlignedPoint setApprovalName10(String value) { this.ApprovalName10 = value; return this; }
     }
 
-    public static class QualifierMetadata
+    public static class MonitoringMethod
+    {
+        /**
+        * Method code
+        */
+        @ApiMember(Description="Method code")
+        public String MethodCode = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Parameter
+        */
+        @ApiMember(Description="Parameter")
+        public String Parameter = null;
+
+        /**
+        * Rounding spec
+        */
+        @ApiMember(Description="Rounding spec")
+        public String RoundingSpec = null;
+        
+        public String getMethodCode() { return MethodCode; }
+        public MonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public MonitoringMethod setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getDescription() { return Description; }
+        public MonitoringMethod setDescription(String value) { this.Description = value; return this; }
+        public String getParameter() { return Parameter; }
+        public MonitoringMethod setParameter(String value) { this.Parameter = value; return this; }
+        public String getRoundingSpec() { return RoundingSpec; }
+        public MonitoringMethod setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
+    }
+
+    public static class LocationMonitoringMethod
+    {
+        /**
+        * UniqueId
+        */
+        @ApiMember(DataType="string", Description="UniqueId", Format="guid")
+        public String UniqueId = null;
+
+        /**
+        * Location Identifier
+        */
+        @ApiMember(Description="Location Identifier")
+        public String LocationIdentifier = null;
+
+        /**
+        * Name
+        */
+        @ApiMember(Description="Name")
+        public String Name = null;
+
+        /**
+        * Method Code
+        */
+        @ApiMember(Description="Method Code")
+        public String MethodCode = null;
+
+        /**
+        * Method Display Name
+        */
+        @ApiMember(Description="Method Display Name")
+        public String Method = null;
+
+        /**
+        * Parameter Name
+        */
+        @ApiMember(Description="Parameter Name")
+        public String Parameter = null;
+
+        /**
+        * Parameter Id
+        */
+        @ApiMember(Description="Parameter Id")
+        public String ParameterId = null;
+
+        /**
+        * Parameter Unique Id
+        */
+        @ApiMember(DataType="string", Description="Parameter Unique Id", Format="guid")
+        public String ParameterUniqueId = null;
+
+        /**
+        * Unit Id
+        */
+        @ApiMember(Description="Unit Id")
+        public String UnitId = null;
+
+        /**
+        * Unit Name
+        */
+        @ApiMember(Description="Unit Name")
+        public String UnitName = null;
+
+        /**
+        * Sub location identifier
+        */
+        @ApiMember(Description="Sub location identifier")
+        public String SubLocationIdentifier = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comment = null;
+
+        /**
+        * Manufacturer
+        */
+        @ApiMember(Description="Manufacturer")
+        public String Manufacturer = null;
+
+        /**
+        * Model
+        */
+        @ApiMember(Description="Model")
+        public String Model = null;
+
+        /**
+        * Serial Number
+        */
+        @ApiMember(Description="Serial Number")
+        public String SerialNumber = null;
+
+        /**
+        * Last modified time (UTC)
+        */
+        @ApiMember(DataType="string", Description="Last modified time (UTC)", Format="date-time")
+        public Instant LastModifiedUtc = null;
+
+        /**
+        * Tags
+        */
+        @ApiMember(DataType="array", Description="Tags")
+        public ArrayList<TagMetadata> Tags = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public LocationMonitoringMethod setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public LocationMonitoringMethod setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public String getName() { return Name; }
+        public LocationMonitoringMethod setName(String value) { this.Name = value; return this; }
+        public String getMethodCode() { return MethodCode; }
+        public LocationMonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
+        public String getMethod() { return Method; }
+        public LocationMonitoringMethod setMethod(String value) { this.Method = value; return this; }
+        public String getParameter() { return Parameter; }
+        public LocationMonitoringMethod setParameter(String value) { this.Parameter = value; return this; }
+        public String getParameterId() { return ParameterId; }
+        public LocationMonitoringMethod setParameterId(String value) { this.ParameterId = value; return this; }
+        public String getParameterUniqueId() { return ParameterUniqueId; }
+        public LocationMonitoringMethod setParameterUniqueId(String value) { this.ParameterUniqueId = value; return this; }
+        public String getUnitId() { return UnitId; }
+        public LocationMonitoringMethod setUnitId(String value) { this.UnitId = value; return this; }
+        public String getUnitName() { return UnitName; }
+        public LocationMonitoringMethod setUnitName(String value) { this.UnitName = value; return this; }
+        public String getSubLocationIdentifier() { return SubLocationIdentifier; }
+        public LocationMonitoringMethod setSubLocationIdentifier(String value) { this.SubLocationIdentifier = value; return this; }
+        public String getComment() { return Comment; }
+        public LocationMonitoringMethod setComment(String value) { this.Comment = value; return this; }
+        public String getManufacturer() { return Manufacturer; }
+        public LocationMonitoringMethod setManufacturer(String value) { this.Manufacturer = value; return this; }
+        public String getModel() { return Model; }
+        public LocationMonitoringMethod setModel(String value) { this.Model = value; return this; }
+        public String getSerialNumber() { return SerialNumber; }
+        public LocationMonitoringMethod setSerialNumber(String value) { this.SerialNumber = value; return this; }
+        public Instant getLastModifiedUtc() { return LastModifiedUtc; }
+        public LocationMonitoringMethod setLastModifiedUtc(Instant value) { this.LastModifiedUtc = value; return this; }
+        public ArrayList<TagMetadata> getTags() { return Tags; }
+        public LocationMonitoringMethod setTags(ArrayList<TagMetadata> value) { this.Tags = value; return this; }
+    }
+
+    public static class ParameterMetadata
     {
         /**
         * Identifier
@@ -6438,23 +4761,1764 @@ public class Publish
         public String Identifier = null;
 
         /**
-        * Code
+        * Unit group identifier
         */
-        @ApiMember(Description="Code")
-        public String Code = null;
+        @ApiMember(Description="Unit group identifier")
+        public String UnitGroupIdentifier = null;
+
+        /**
+        * Unit identifier
+        */
+        @ApiMember(Description="Unit identifier")
+        public String UnitIdentifier = null;
 
         /**
         * Display name
         */
         @ApiMember(Description="Display name")
         public String DisplayName = null;
+
+        /**
+        * Interpolation type
+        */
+        @ApiMember(Description="Interpolation type")
+        public String InterpolationType = null;
+
+        /**
+        * Rounding spec
+        */
+        @ApiMember(Description="Rounding spec")
+        public String RoundingSpec = null;
         
         public String getIdentifier() { return Identifier; }
-        public QualifierMetadata setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getCode() { return Code; }
-        public QualifierMetadata setCode(String value) { this.Code = value; return this; }
+        public ParameterMetadata setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getUnitGroupIdentifier() { return UnitGroupIdentifier; }
+        public ParameterMetadata setUnitGroupIdentifier(String value) { this.UnitGroupIdentifier = value; return this; }
+        public String getUnitIdentifier() { return UnitIdentifier; }
+        public ParameterMetadata setUnitIdentifier(String value) { this.UnitIdentifier = value; return this; }
         public String getDisplayName() { return DisplayName; }
-        public QualifierMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
+        public ParameterMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getInterpolationType() { return InterpolationType; }
+        public ParameterMetadata setInterpolationType(String value) { this.InterpolationType = value; return this; }
+        public String getRoundingSpec() { return RoundingSpec; }
+        public ParameterMetadata setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
+    }
+
+    public static class DischargeActivity
+    {
+        /**
+        * Discharge summary
+        */
+        @ApiMember(DataType="DischargeSummary", Description="Discharge summary")
+        public DischargeSummary DischargeSummary = null;
+
+        /**
+        * Volumetric discharge activities
+        */
+        @ApiMember(DataType="array", Description="Volumetric discharge activities")
+        public ArrayList<VolumetricDischargeActivity> VolumetricDischargeActivities = null;
+
+        /**
+        * Engineered structure discharge activities
+        */
+        @ApiMember(DataType="array", Description="Engineered structure discharge activities")
+        public ArrayList<EngineeredStructureDischargeActivity> EngineeredStructureDischargeActivities = null;
+
+        /**
+        * Point velocity discharge activities
+        */
+        @ApiMember(DataType="array", Description="Point velocity discharge activities")
+        public ArrayList<PointVelocityDischargeActivity> PointVelocityDischargeActivities = null;
+
+        /**
+        * Other method discharge activities
+        */
+        @ApiMember(DataType="array", Description="Other method discharge activities")
+        public ArrayList<OtherMethodDischargeActivity> OtherMethodDischargeActivities = null;
+
+        /**
+        * Adcp discharge activities
+        */
+        @ApiMember(DataType="array", Description="Adcp discharge activities")
+        public ArrayList<AdcpDischargeActivity> AdcpDischargeActivities = null;
+        
+        public DischargeSummary getDischargeSummary() { return DischargeSummary; }
+        public DischargeActivity setDischargeSummary(DischargeSummary value) { this.DischargeSummary = value; return this; }
+        public ArrayList<VolumetricDischargeActivity> getVolumetricDischargeActivities() { return VolumetricDischargeActivities; }
+        public DischargeActivity setVolumetricDischargeActivities(ArrayList<VolumetricDischargeActivity> value) { this.VolumetricDischargeActivities = value; return this; }
+        public ArrayList<EngineeredStructureDischargeActivity> getEngineeredStructureDischargeActivities() { return EngineeredStructureDischargeActivities; }
+        public DischargeActivity setEngineeredStructureDischargeActivities(ArrayList<EngineeredStructureDischargeActivity> value) { this.EngineeredStructureDischargeActivities = value; return this; }
+        public ArrayList<PointVelocityDischargeActivity> getPointVelocityDischargeActivities() { return PointVelocityDischargeActivities; }
+        public DischargeActivity setPointVelocityDischargeActivities(ArrayList<PointVelocityDischargeActivity> value) { this.PointVelocityDischargeActivities = value; return this; }
+        public ArrayList<OtherMethodDischargeActivity> getOtherMethodDischargeActivities() { return OtherMethodDischargeActivities; }
+        public DischargeActivity setOtherMethodDischargeActivities(ArrayList<OtherMethodDischargeActivity> value) { this.OtherMethodDischargeActivities = value; return this; }
+        public ArrayList<AdcpDischargeActivity> getAdcpDischargeActivities() { return AdcpDischargeActivities; }
+        public DischargeActivity setAdcpDischargeActivities(ArrayList<AdcpDischargeActivity> value) { this.AdcpDischargeActivities = value; return this; }
+    }
+
+    public static class GageHeightAtZeroFlowActivity
+    {
+        /**
+        * Observed date
+        */
+        @ApiMember(DataType="string", Description="Observed date", Format="date-time")
+        public Instant ObservedDate = null;
+
+        /**
+        * Applicable since
+        */
+        @ApiMember(DataType="string", Description="Applicable since", Format="date-time")
+        public Instant ApplicableSince = null;
+
+        /**
+        * Zero flow height
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Zero flow height")
+        public DoubleWithDisplay ZeroFlowHeight = null;
+
+        /**
+        * Is observed
+        */
+        @ApiMember(DataType="boolean", Description="Is observed")
+        public Boolean IsObserved = null;
+
+        /**
+        * Calculated details
+        */
+        @ApiMember(DataType="GageHeightAtZeroFlowCalculatedDetails", Description="Calculated details")
+        public GageHeightAtZeroFlowCalculatedDetails CalculatedDetails = null;
+
+        /**
+        * Unit
+        */
+        @ApiMember(Description="Unit")
+        public String Unit = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+
+        /**
+        * Party
+        */
+        @ApiMember(Description="Party")
+        public String Party = null;
+
+        /**
+        * Is valid
+        */
+        @ApiMember(DataType="boolean", Description="Is valid")
+        public Boolean IsValid = null;
+        
+        public Instant getObservedDate() { return ObservedDate; }
+        public GageHeightAtZeroFlowActivity setObservedDate(Instant value) { this.ObservedDate = value; return this; }
+        public Instant getApplicableSince() { return ApplicableSince; }
+        public GageHeightAtZeroFlowActivity setApplicableSince(Instant value) { this.ApplicableSince = value; return this; }
+        public DoubleWithDisplay getZeroFlowHeight() { return ZeroFlowHeight; }
+        public GageHeightAtZeroFlowActivity setZeroFlowHeight(DoubleWithDisplay value) { this.ZeroFlowHeight = value; return this; }
+        public Boolean getIsObserved() { return IsObserved; }
+        public GageHeightAtZeroFlowActivity setIsObserved(Boolean value) { this.IsObserved = value; return this; }
+        public GageHeightAtZeroFlowCalculatedDetails getCalculatedDetails() { return CalculatedDetails; }
+        public GageHeightAtZeroFlowActivity setCalculatedDetails(GageHeightAtZeroFlowCalculatedDetails value) { this.CalculatedDetails = value; return this; }
+        public String getUnit() { return Unit; }
+        public GageHeightAtZeroFlowActivity setUnit(String value) { this.Unit = value; return this; }
+        public String getComments() { return Comments; }
+        public GageHeightAtZeroFlowActivity setComments(String value) { this.Comments = value; return this; }
+        public String getParty() { return Party; }
+        public GageHeightAtZeroFlowActivity setParty(String value) { this.Party = value; return this; }
+        public Boolean getIsValid() { return IsValid; }
+        public GageHeightAtZeroFlowActivity setIsValid(Boolean value) { this.IsValid = value; return this; }
+    }
+
+    public static class ControlConditionActivity
+    {
+        /**
+        * Control code
+        */
+        @ApiMember(Description="Control code")
+        public String ControlCode = null;
+
+        /**
+        * Flow over control
+        */
+        @ApiMember(Description="Flow over control")
+        public String FlowOverControl = null;
+
+        /**
+        * Control cleaned
+        */
+        @ApiMember(DataType="string", Description="Control cleaned")
+        public ControlCleanedType ControlCleaned = null;
+
+        /**
+        * Control condition
+        */
+        @ApiMember(Description="Control condition")
+        public String ControlCondition = null;
+
+        /**
+        * Instant cleaned
+        */
+        @ApiMember(DataType="string", Description="Instant cleaned", Format="date-time")
+        public Instant DateCleaned = null;
+
+        /**
+        * Distance to gage
+        */
+        @ApiMember(DataType="QuantityWithDisplay", Description="Distance to gage")
+        public QuantityWithDisplay DistanceToGage = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+
+        /**
+        * Party
+        */
+        @ApiMember(Description="Party")
+        public String Party = null;
+
+        /**
+        * Is valid
+        */
+        @ApiMember(DataType="boolean", Description="Is valid")
+        public Boolean IsValid = null;
+        
+        public String getControlCode() { return ControlCode; }
+        public ControlConditionActivity setControlCode(String value) { this.ControlCode = value; return this; }
+        public String getFlowOverControl() { return FlowOverControl; }
+        public ControlConditionActivity setFlowOverControl(String value) { this.FlowOverControl = value; return this; }
+        public ControlCleanedType getControlCleaned() { return ControlCleaned; }
+        public ControlConditionActivity setControlCleaned(ControlCleanedType value) { this.ControlCleaned = value; return this; }
+        public String getControlCondition() { return ControlCondition; }
+        public ControlConditionActivity setControlCondition(String value) { this.ControlCondition = value; return this; }
+        public Instant getDateCleaned() { return DateCleaned; }
+        public ControlConditionActivity setDateCleaned(Instant value) { this.DateCleaned = value; return this; }
+        public QuantityWithDisplay getDistanceToGage() { return DistanceToGage; }
+        public ControlConditionActivity setDistanceToGage(QuantityWithDisplay value) { this.DistanceToGage = value; return this; }
+        public String getComments() { return Comments; }
+        public ControlConditionActivity setComments(String value) { this.Comments = value; return this; }
+        public String getParty() { return Party; }
+        public ControlConditionActivity setParty(String value) { this.Party = value; return this; }
+        public Boolean getIsValid() { return IsValid; }
+        public ControlConditionActivity setIsValid(Boolean value) { this.IsValid = value; return this; }
+    }
+
+    public static class InspectionActivity
+    {
+        /**
+        * Party
+        */
+        @ApiMember(Description="Party")
+        public String Party = null;
+
+        /**
+        * Readings
+        */
+        @ApiMember(DataType="array", Description="Readings")
+        public ArrayList<Reading> Readings = null;
+
+        /**
+        * Number of readings which could not be converted to the target datum
+        */
+        @ApiMember(DataType="integer", Description="Number of readings which could not be converted to the target datum", Format="int32")
+        public Integer NumberOfReadingsNotDatumConverted = null;
+
+        /**
+        * Calibration checks
+        */
+        @ApiMember(DataType="array", Description="Calibration checks")
+        public ArrayList<CalibrationCheck> CalibrationChecks = null;
+
+        /**
+        * Inspections
+        */
+        @ApiMember(DataType="array", Description="Inspections")
+        public ArrayList<Inspection> Inspections = null;
+
+        /**
+        * Is valid
+        */
+        @ApiMember(DataType="boolean", Description="Is valid")
+        public Boolean IsValid = null;
+        
+        public String getParty() { return Party; }
+        public InspectionActivity setParty(String value) { this.Party = value; return this; }
+        public ArrayList<Reading> getReadings() { return Readings; }
+        public InspectionActivity setReadings(ArrayList<Reading> value) { this.Readings = value; return this; }
+        public Integer getNumberOfReadingsNotDatumConverted() { return NumberOfReadingsNotDatumConverted; }
+        public InspectionActivity setNumberOfReadingsNotDatumConverted(Integer value) { this.NumberOfReadingsNotDatumConverted = value; return this; }
+        public ArrayList<CalibrationCheck> getCalibrationChecks() { return CalibrationChecks; }
+        public InspectionActivity setCalibrationChecks(ArrayList<CalibrationCheck> value) { this.CalibrationChecks = value; return this; }
+        public ArrayList<Inspection> getInspections() { return Inspections; }
+        public InspectionActivity setInspections(ArrayList<Inspection> value) { this.Inspections = value; return this; }
+        public Boolean getIsValid() { return IsValid; }
+        public InspectionActivity setIsValid(Boolean value) { this.IsValid = value; return this; }
+    }
+
+    public static class CrossSectionSurveyActivity
+    {
+        /**
+        * Start time
+        */
+        @ApiMember(DataType="string", Description="Start time", Format="date-time")
+        public Instant StartTime = null;
+
+        /**
+        * End time
+        */
+        @ApiMember(DataType="string", Description="End time", Format="date-time")
+        public Instant EndTime = null;
+
+        /**
+        * Party
+        */
+        @ApiMember(Description="Party")
+        public String Party = null;
+
+        /**
+        * Channel
+        */
+        @ApiMember(Description="Channel")
+        public String Channel = null;
+
+        /**
+        * Relative location
+        */
+        @ApiMember(Description="Relative location")
+        public String RelativeLocation = null;
+
+        /**
+        * Starting point
+        */
+        @ApiMember(DataType="string", Description="Starting point")
+        public StartPointType StartingPoint = null;
+
+        /**
+        * Stage
+        */
+        @ApiMember(DataType="QuantityWithDisplay", Description="Stage")
+        public QuantityWithDisplay Stage = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+
+        /**
+        * Cross-section points
+        */
+        @ApiMember(DataType="array", Description="Cross-section points")
+        public ArrayList<CrossSectionPoint> CrossSectionPoints = null;
+        
+        public Instant getStartTime() { return StartTime; }
+        public CrossSectionSurveyActivity setStartTime(Instant value) { this.StartTime = value; return this; }
+        public Instant getEndTime() { return EndTime; }
+        public CrossSectionSurveyActivity setEndTime(Instant value) { this.EndTime = value; return this; }
+        public String getParty() { return Party; }
+        public CrossSectionSurveyActivity setParty(String value) { this.Party = value; return this; }
+        public String getChannel() { return Channel; }
+        public CrossSectionSurveyActivity setChannel(String value) { this.Channel = value; return this; }
+        public String getRelativeLocation() { return RelativeLocation; }
+        public CrossSectionSurveyActivity setRelativeLocation(String value) { this.RelativeLocation = value; return this; }
+        public StartPointType getStartingPoint() { return StartingPoint; }
+        public CrossSectionSurveyActivity setStartingPoint(StartPointType value) { this.StartingPoint = value; return this; }
+        public QuantityWithDisplay getStage() { return Stage; }
+        public CrossSectionSurveyActivity setStage(QuantityWithDisplay value) { this.Stage = value; return this; }
+        public String getComments() { return Comments; }
+        public CrossSectionSurveyActivity setComments(String value) { this.Comments = value; return this; }
+        public ArrayList<CrossSectionPoint> getCrossSectionPoints() { return CrossSectionPoints; }
+        public CrossSectionSurveyActivity setCrossSectionPoints(ArrayList<CrossSectionPoint> value) { this.CrossSectionPoints = value; return this; }
+    }
+
+    public static class LevelSurveyActivity
+    {
+        /**
+        * Party
+        */
+        @ApiMember(Description="Party")
+        public String Party = null;
+
+        /**
+        * Origin reference point unique ID
+        */
+        @ApiMember(DataType="string", Description="Origin reference point unique ID", Format="guid")
+        public String OriginReferencePointUniqueId = null;
+
+        /**
+        * Measurement method
+        */
+        @ApiMember(Description="Measurement method")
+        public String Method = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+
+        /**
+        * Level survey measurements
+        */
+        @ApiMember(DataType="array", Description="Level survey measurements")
+        public ArrayList<LevelSurveyMeasurement> LevelMeasurements = null;
+        
+        public String getParty() { return Party; }
+        public LevelSurveyActivity setParty(String value) { this.Party = value; return this; }
+        public String getOriginReferencePointUniqueId() { return OriginReferencePointUniqueId; }
+        public LevelSurveyActivity setOriginReferencePointUniqueId(String value) { this.OriginReferencePointUniqueId = value; return this; }
+        public String getMethod() { return Method; }
+        public LevelSurveyActivity setMethod(String value) { this.Method = value; return this; }
+        public String getComments() { return Comments; }
+        public LevelSurveyActivity setComments(String value) { this.Comments = value; return this; }
+        public ArrayList<LevelSurveyMeasurement> getLevelMeasurements() { return LevelMeasurements; }
+        public LevelSurveyActivity setLevelMeasurements(ArrayList<LevelSurveyMeasurement> value) { this.LevelMeasurements = value; return this; }
+    }
+
+    public static class FieldVisitApproval
+    {
+        /**
+        * Approval level
+        */
+        @ApiMember(DataType="integer", Description="Approval level", Format="int64")
+        public Long ApprovalLevel = null;
+
+        /**
+        * Level description
+        */
+        @ApiMember(Description="Level description")
+        public String LevelDescription = null;
+        
+        public Long getApprovalLevel() { return ApprovalLevel; }
+        public FieldVisitApproval setApprovalLevel(Long value) { this.ApprovalLevel = value; return this; }
+        public String getLevelDescription() { return LevelDescription; }
+        public FieldVisitApproval setLevelDescription(String value) { this.LevelDescription = value; return this; }
+    }
+
+    public static class DatumConversionResult
+    {
+        /**
+        * True if values are converted to the target reference datum
+        */
+        @ApiMember(DataType="boolean", Description="True if values are converted to the target reference datum")
+        public Boolean ValuesConverted = null;
+
+        /**
+        * The reason, if any, that values could not be converted to the target reference datum
+        */
+        @ApiMember(Description="The reason, if any, that values could not be converted to the target reference datum")
+        public String FailureReason = null;
+
+        /**
+        * Target reference datum
+        */
+        @ApiMember(Description="Target reference datum")
+        public String TargetDatum = null;
+        
+        public Boolean isValuesConverted() { return ValuesConverted; }
+        public DatumConversionResult setValuesConverted(Boolean value) { this.ValuesConverted = value; return this; }
+        public String getFailureReason() { return FailureReason; }
+        public DatumConversionResult setFailureReason(String value) { this.FailureReason = value; return this; }
+        public String getTargetDatum() { return TargetDatum; }
+        public DatumConversionResult setTargetDatum(String value) { this.TargetDatum = value; return this; }
+    }
+
+    public static class HydraulicTestActivity
+    {
+        /**
+        * The name of the test
+        */
+        @ApiMember(Description="The name of the test", Name="TestName")
+        public String TestName = null;
+
+        /**
+        * The context or purpose of the test
+        */
+        @ApiMember(Description="The context or purpose of the test", Name="TestContext")
+        public String TestContext = null;
+
+        /**
+        * The method used for the test
+        */
+        @ApiMember(Description="The method used for the test", Name="TestMethod")
+        public String TestMethod = null;
+
+        /**
+        * The type of aquifer
+        */
+        @ApiMember(Description="The type of aquifer", Name="AquiferType")
+        public String AquiferType = null;
+
+        /**
+        * The start time of the test
+        */
+        @ApiMember(DataType="string", Description="The start time of the test", Format="date-time", Name="StartTime")
+        public Instant StartTime = null;
+
+        /**
+        * The end time of the test
+        */
+        @ApiMember(DataType="string", Description="The end time of the test", Format="date-time", Name="EndTime")
+        public Instant EndTime = null;
+
+        /**
+        * Indicates whether the test should be published
+        */
+        @ApiMember(DataType="boolean", Description="Indicates whether the test should be published", Name="Publish")
+        public Boolean Publish = null;
+
+        /**
+        * List of related time series unique ids
+        */
+        @ApiMember(DataType="array", Description="List of related time series unique ids", Name="RelatedTimeSeriesUniqueIds")
+        public ArrayList<String> RelatedTimeSeriesUniqueIds = null;
+
+        /**
+        * List of related field visit identifiers
+        */
+        @ApiMember(DataType="array", Description="List of related field visit identifiers", Name="RelatedFieldVisitIdentifiers")
+        public ArrayList<String> RelatedFieldVisitIdentifiers = null;
+
+        /**
+        * List of hydraulic test results
+        */
+        @ApiMember(DataType="array", Description="List of hydraulic test results", Name="Results")
+        public ArrayList<HydraulicTestResult> Results = null;
+
+        /**
+        * Additional comments or notes
+        */
+        @ApiMember(Description="Additional comments or notes", Name="Comments")
+        public String Comments = null;
+        
+        public String getTestName() { return TestName; }
+        public HydraulicTestActivity setTestName(String value) { this.TestName = value; return this; }
+        public String getTestContext() { return TestContext; }
+        public HydraulicTestActivity setTestContext(String value) { this.TestContext = value; return this; }
+        public String getTestMethod() { return TestMethod; }
+        public HydraulicTestActivity setTestMethod(String value) { this.TestMethod = value; return this; }
+        public String getAquiferType() { return AquiferType; }
+        public HydraulicTestActivity setAquiferType(String value) { this.AquiferType = value; return this; }
+        public Instant getStartTime() { return StartTime; }
+        public HydraulicTestActivity setStartTime(Instant value) { this.StartTime = value; return this; }
+        public Instant getEndTime() { return EndTime; }
+        public HydraulicTestActivity setEndTime(Instant value) { this.EndTime = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public HydraulicTestActivity setPublish(Boolean value) { this.Publish = value; return this; }
+        public ArrayList<String> getRelatedTimeSeriesUniqueIds() { return RelatedTimeSeriesUniqueIds; }
+        public HydraulicTestActivity setRelatedTimeSeriesUniqueIds(ArrayList<String> value) { this.RelatedTimeSeriesUniqueIds = value; return this; }
+        public ArrayList<String> getRelatedFieldVisitIdentifiers() { return RelatedFieldVisitIdentifiers; }
+        public HydraulicTestActivity setRelatedFieldVisitIdentifiers(ArrayList<String> value) { this.RelatedFieldVisitIdentifiers = value; return this; }
+        public ArrayList<HydraulicTestResult> getResults() { return Results; }
+        public HydraulicTestActivity setResults(ArrayList<HydraulicTestResult> value) { this.Results = value; return this; }
+        public String getComments() { return Comments; }
+        public HydraulicTestActivity setComments(String value) { this.Comments = value; return this; }
+    }
+
+    public static class WellIntegrityActivity
+    {
+        /**
+        * List of aquifer connections associated with the well
+        */
+        @ApiMember(DataType="array", Description="List of aquifer connections associated with the well", Name="WellAquiferConnections")
+        public ArrayList<WellAquiferConnection> WellAquiferConnections = null;
+
+        /**
+        * List of inspections performed on the well
+        */
+        @ApiMember(DataType="array", Description="List of inspections performed on the well", Name="WellInspections")
+        public ArrayList<WellInspection> WellInspections = null;
+
+        /**
+        * List of redevelopment activities for the well
+        */
+        @ApiMember(DataType="array", Description="List of redevelopment activities for the well", Name="WellRedevelopments")
+        public ArrayList<WellRedevelopment> WellRedevelopments = null;
+
+        /**
+        * List of repair activities performed on the well
+        */
+        @ApiMember(DataType="array", Description="List of repair activities performed on the well", Name="WellRepairs")
+        public ArrayList<WellRepair> WellRepairs = null;
+        
+        public ArrayList<WellAquiferConnection> getWellAquiferConnections() { return WellAquiferConnections; }
+        public WellIntegrityActivity setWellAquiferConnections(ArrayList<WellAquiferConnection> value) { this.WellAquiferConnections = value; return this; }
+        public ArrayList<WellInspection> getWellInspections() { return WellInspections; }
+        public WellIntegrityActivity setWellInspections(ArrayList<WellInspection> value) { this.WellInspections = value; return this; }
+        public ArrayList<WellRedevelopment> getWellRedevelopments() { return WellRedevelopments; }
+        public WellIntegrityActivity setWellRedevelopments(ArrayList<WellRedevelopment> value) { this.WellRedevelopments = value; return this; }
+        public ArrayList<WellRepair> getWellRepairs() { return WellRepairs; }
+        public WellIntegrityActivity setWellRepairs(ArrayList<WellRepair> value) { this.WellRepairs = value; return this; }
+    }
+
+    public static interface IFieldVisitData
+    {
+        public String Identifier = null;
+        public ArrayList<Attachment> Attachments = null;
+        public ArrayList<DischargeActivity> DischargeActivities = null;
+        public GageHeightAtZeroFlowActivity GageHeightAtZeroFlowActivity = null;
+        public ControlConditionActivity ControlConditionActivity = null;
+        public InspectionActivity InspectionActivity = null;
+        public ArrayList<CrossSectionSurveyActivity> CrossSectionSurveyActivity = null;
+        public LevelSurveyActivity LevelSurveyActivity = null;
+        public FieldVisitApproval Approval = null;
+        public DatumConversionResult DatumConversionResult = null;
+        public ArrayList<HydraulicTestActivity> HydraulicTestActivities = null;
+        public WellIntegrityActivity WellIntegrityActivity = null;
+    }
+
+    public static class ActiveMeterDetails extends CurrentMeter
+    {
+        /**
+        * Meter type
+        */
+        @ApiMember(DataType="string", Description="Meter type")
+        public MeterType MeterType = null;
+
+        /**
+        * Configuration
+        */
+        @ApiMember(Description="Configuration")
+        public String Configuration = null;
+
+        /**
+        * Firmware version
+        */
+        @ApiMember(Description="Firmware version")
+        public String FirmwareVersion = null;
+
+        /**
+        * Software version
+        */
+        @ApiMember(Description="Software version")
+        public String SoftwareVersion = null;
+
+        /**
+        * Meter calibrations
+        */
+        @ApiMember(DataType="array", Description="Meter calibrations")
+        public ArrayList<ActiveMeterCalibration> MeterCalibrations = null;
+        
+        public MeterType getMeterType() { return MeterType; }
+        public ActiveMeterDetails setMeterType(MeterType value) { this.MeterType = value; return this; }
+        public String getConfiguration() { return Configuration; }
+        public ActiveMeterDetails setConfiguration(String value) { this.Configuration = value; return this; }
+        public String getFirmwareVersion() { return FirmwareVersion; }
+        public ActiveMeterDetails setFirmwareVersion(String value) { this.FirmwareVersion = value; return this; }
+        public String getSoftwareVersion() { return SoftwareVersion; }
+        public ActiveMeterDetails setSoftwareVersion(String value) { this.SoftwareVersion = value; return this; }
+        public ArrayList<ActiveMeterCalibration> getMeterCalibrations() { return MeterCalibrations; }
+        public ActiveMeterDetails setMeterCalibrations(ArrayList<ActiveMeterCalibration> value) { this.MeterCalibrations = value; return this; }
+    }
+
+    public static class FieldVisit extends FieldVisitDescription implements IFieldVisitData
+    {
+        /**
+        * Attachments
+        */
+        @ApiMember(DataType="array", Description="Attachments")
+        public ArrayList<Attachment> Attachments = null;
+
+        /**
+        * Discharge activities
+        */
+        @ApiMember(DataType="array", Description="Discharge activities")
+        public ArrayList<DischargeActivity> DischargeActivities = null;
+
+        /**
+        * Gage height at zero flow activity
+        */
+        @ApiMember(DataType="GageHeightAtZeroFlowActivity", Description="Gage height at zero flow activity")
+        public GageHeightAtZeroFlowActivity GageHeightAtZeroFlowActivity = null;
+
+        /**
+        * Control condition activity
+        */
+        @ApiMember(DataType="ControlConditionActivity", Description="Control condition activity")
+        public ControlConditionActivity ControlConditionActivity = null;
+
+        /**
+        * Inspection activity
+        */
+        @ApiMember(DataType="InspectionActivity", Description="Inspection activity")
+        public InspectionActivity InspectionActivity = null;
+
+        /**
+        * Cross-section survey activity
+        */
+        @ApiMember(DataType="array", Description="Cross-section survey activity")
+        public ArrayList<CrossSectionSurveyActivity> CrossSectionSurveyActivity = null;
+
+        /**
+        * Level survey activity
+        */
+        @ApiMember(DataType="LevelSurveyActivity", Description="Level survey activity")
+        public LevelSurveyActivity LevelSurveyActivity = null;
+
+        /**
+        * Approval
+        */
+        @ApiMember(DataType="FieldVisitApproval", Description="Approval")
+        public FieldVisitApproval Approval = null;
+
+        /**
+        * Summary results for a requested datum conversion
+        */
+        @ApiMember(DataType="DatumConversionResult", Description="Summary results for a requested datum conversion")
+        public DatumConversionResult DatumConversionResult = null;
+
+        /**
+        * Hydraulic Test Activities
+        */
+        @ApiMember(DataType="array", Description="Hydraulic Test Activities")
+        public ArrayList<HydraulicTestActivity> HydraulicTestActivities = null;
+
+        /**
+        * Well integrity activity
+        */
+        @ApiMember(DataType="WellIntegrityActivity", Description="Well integrity activity")
+        public WellIntegrityActivity WellIntegrityActivity = null;
+        
+        public ArrayList<Attachment> getAttachments() { return Attachments; }
+        public FieldVisit setAttachments(ArrayList<Attachment> value) { this.Attachments = value; return this; }
+        public ArrayList<DischargeActivity> getDischargeActivities() { return DischargeActivities; }
+        public FieldVisit setDischargeActivities(ArrayList<DischargeActivity> value) { this.DischargeActivities = value; return this; }
+        public GageHeightAtZeroFlowActivity getGageHeightAtZeroFlowActivity() { return GageHeightAtZeroFlowActivity; }
+        public FieldVisit setGageHeightAtZeroFlowActivity(GageHeightAtZeroFlowActivity value) { this.GageHeightAtZeroFlowActivity = value; return this; }
+        public ControlConditionActivity getControlConditionActivity() { return ControlConditionActivity; }
+        public FieldVisit setControlConditionActivity(ControlConditionActivity value) { this.ControlConditionActivity = value; return this; }
+        public InspectionActivity getInspectionActivity() { return InspectionActivity; }
+        public FieldVisit setInspectionActivity(InspectionActivity value) { this.InspectionActivity = value; return this; }
+        public ArrayList<CrossSectionSurveyActivity> getCrossSectionSurveyActivity() { return CrossSectionSurveyActivity; }
+        public FieldVisit setCrossSectionSurveyActivity(ArrayList<CrossSectionSurveyActivity> value) { this.CrossSectionSurveyActivity = value; return this; }
+        public LevelSurveyActivity getLevelSurveyActivity() { return LevelSurveyActivity; }
+        public FieldVisit setLevelSurveyActivity(LevelSurveyActivity value) { this.LevelSurveyActivity = value; return this; }
+        public FieldVisitApproval getApproval() { return Approval; }
+        public FieldVisit setApproval(FieldVisitApproval value) { this.Approval = value; return this; }
+        public DatumConversionResult getDatumConversionResult() { return DatumConversionResult; }
+        public FieldVisit setDatumConversionResult(DatumConversionResult value) { this.DatumConversionResult = value; return this; }
+        public ArrayList<HydraulicTestActivity> getHydraulicTestActivities() { return HydraulicTestActivities; }
+        public FieldVisit setHydraulicTestActivities(ArrayList<HydraulicTestActivity> value) { this.HydraulicTestActivities = value; return this; }
+        public WellIntegrityActivity getWellIntegrityActivity() { return WellIntegrityActivity; }
+        public FieldVisit setWellIntegrityActivity(WellIntegrityActivity value) { this.WellIntegrityActivity = value; return this; }
+    }
+
+    public static class FieldVisitReading
+    {
+        /**
+        * Approval
+        */
+        @ApiMember(DataType="FieldVisitApproval", Description="Approval")
+        public FieldVisitApproval Approval = null;
+
+        /**
+        * Control condition
+        */
+        @ApiMember(Description="Control condition")
+        public String ControlCondition = null;
+
+        /**
+        * Field visit identifier
+        */
+        @ApiMember(Description="Field visit identifier")
+        public String FieldVisitIdentifier = null;
+
+        /**
+        * Value
+        */
+        @ApiMember(DataType="QuantityWithDisplay", Description="Value")
+        public QuantityWithDisplay Value = null;
+
+        /**
+        * Value
+        */
+        @ApiMember(DataType="QuantityWithDisplay", Description="Value")
+        public QuantityWithDisplay AdjustmentAmount = null;
+
+        /**
+        * Uncertainty
+        */
+        @ApiMember(DataType="Uncertainty", Description="Uncertainty")
+        public Uncertainty Uncertainty = null;
+
+        /**
+        * Datum converted values where applicable.
+        */
+        @ApiMember(DataType="array", Description="Datum converted values where applicable.")
+        public ArrayList<DatumConvertedQuantityWithDisplay> DatumConvertedValues = null;
+
+        /**
+        * Parameter Name
+        */
+        @ApiMember(Description="Parameter Name")
+        public String Parameter = null;
+
+        /**
+        * Parameter Id
+        */
+        @ApiMember(Description="Parameter Id")
+        public String ParameterId = null;
+
+        /**
+        * Monitoring method
+        */
+        @ApiMember(Description="Monitoring method")
+        public String MonitoringMethod = null;
+
+        /**
+        * Sub location identifier
+        */
+        @ApiMember(Description="Sub location identifier")
+        public String SubLocationIdentifier = null;
+
+        /**
+        * Manufacturer
+        */
+        @ApiMember(Description="Manufacturer")
+        public String Manufacturer = null;
+
+        /**
+        * Model
+        */
+        @ApiMember(Description="Model")
+        public String Model = null;
+
+        /**
+        * Serial number
+        */
+        @ApiMember(Description="Serial number")
+        public String SerialNumber = null;
+
+        /**
+        * Time
+        */
+        @ApiMember(DataType="string", Description="Time", Format="date-time")
+        public Instant Time = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+
+        /**
+        * Publish
+        */
+        @ApiMember(DataType="boolean", Description="Publish")
+        public Boolean Publish = null;
+
+        /**
+        * Grade code
+        */
+        @ApiMember(DataType="integer", Description="Grade code", Format="int32")
+        public Integer GradeCode = null;
+
+        /**
+        * Qualifiers
+        */
+        @ApiMember(DataType="array", Description="Qualifiers")
+        public ArrayList<String> Qualifiers = null;
+
+        /**
+        * Field visit reading type
+        */
+        @ApiMember(DataType="string", Description="Field visit reading type")
+        public FieldVisitReadingType ReadingType = null;
+
+        /**
+        * Reference point unique ID
+        */
+        @ApiMember(DataType="string", Description="Reference point unique ID", Format="guid")
+        public String ReferencePointUniqueId = null;
+
+        /**
+        * Indicates if this reading is measured against the local assumed datum of the reading's location
+        */
+        @ApiMember(DataType="boolean", Description="Indicates if this reading is measured against the local assumed datum of the reading's location")
+        public Boolean UseLocationDatumAsReference = null;
+        
+        public FieldVisitApproval getApproval() { return Approval; }
+        public FieldVisitReading setApproval(FieldVisitApproval value) { this.Approval = value; return this; }
+        public String getControlCondition() { return ControlCondition; }
+        public FieldVisitReading setControlCondition(String value) { this.ControlCondition = value; return this; }
+        public String getFieldVisitIdentifier() { return FieldVisitIdentifier; }
+        public FieldVisitReading setFieldVisitIdentifier(String value) { this.FieldVisitIdentifier = value; return this; }
+        public QuantityWithDisplay getValue() { return Value; }
+        public FieldVisitReading setValue(QuantityWithDisplay value) { this.Value = value; return this; }
+        public QuantityWithDisplay getAdjustmentAmount() { return AdjustmentAmount; }
+        public FieldVisitReading setAdjustmentAmount(QuantityWithDisplay value) { this.AdjustmentAmount = value; return this; }
+        public Uncertainty getUncertainty() { return Uncertainty; }
+        public FieldVisitReading setUncertainty(Uncertainty value) { this.Uncertainty = value; return this; }
+        public ArrayList<DatumConvertedQuantityWithDisplay> getDatumConvertedValues() { return DatumConvertedValues; }
+        public FieldVisitReading setDatumConvertedValues(ArrayList<DatumConvertedQuantityWithDisplay> value) { this.DatumConvertedValues = value; return this; }
+        public String getParameter() { return Parameter; }
+        public FieldVisitReading setParameter(String value) { this.Parameter = value; return this; }
+        public String getParameterId() { return ParameterId; }
+        public FieldVisitReading setParameterId(String value) { this.ParameterId = value; return this; }
+        public String getMonitoringMethod() { return MonitoringMethod; }
+        public FieldVisitReading setMonitoringMethod(String value) { this.MonitoringMethod = value; return this; }
+        public String getSubLocationIdentifier() { return SubLocationIdentifier; }
+        public FieldVisitReading setSubLocationIdentifier(String value) { this.SubLocationIdentifier = value; return this; }
+        public String getManufacturer() { return Manufacturer; }
+        public FieldVisitReading setManufacturer(String value) { this.Manufacturer = value; return this; }
+        public String getModel() { return Model; }
+        public FieldVisitReading setModel(String value) { this.Model = value; return this; }
+        public String getSerialNumber() { return SerialNumber; }
+        public FieldVisitReading setSerialNumber(String value) { this.SerialNumber = value; return this; }
+        public Instant getTime() { return Time; }
+        public FieldVisitReading setTime(Instant value) { this.Time = value; return this; }
+        public String getComments() { return Comments; }
+        public FieldVisitReading setComments(String value) { this.Comments = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public FieldVisitReading setPublish(Boolean value) { this.Publish = value; return this; }
+        public Integer getGradeCode() { return GradeCode; }
+        public FieldVisitReading setGradeCode(Integer value) { this.GradeCode = value; return this; }
+        public ArrayList<String> getQualifiers() { return Qualifiers; }
+        public FieldVisitReading setQualifiers(ArrayList<String> value) { this.Qualifiers = value; return this; }
+        public FieldVisitReadingType getReadingType() { return ReadingType; }
+        public FieldVisitReading setReadingType(FieldVisitReadingType value) { this.ReadingType = value; return this; }
+        public String getReferencePointUniqueId() { return ReferencePointUniqueId; }
+        public FieldVisitReading setReferencePointUniqueId(String value) { this.ReferencePointUniqueId = value; return this; }
+        public Boolean isUseLocationDatumAsReference() { return UseLocationDatumAsReference; }
+        public FieldVisitReading setUseLocationDatumAsReference(Boolean value) { this.UseLocationDatumAsReference = value; return this; }
+    }
+
+    public static class ApprovalsTransaction extends Approval
+    {
+        
+    }
+
+    public static class MetadataChangeTransaction
+    {
+        /**
+        * Applied time
+        */
+        @ApiMember(DataType="string", Description="Applied time", Format="date-time")
+        public Instant AppliedTime = null;
+
+        /**
+        * Applied by user
+        */
+        @ApiMember(Description="Applied by user")
+        public String AppliedByUser = null;
+
+        /**
+        * Content type
+        */
+        @ApiMember(DataType="string", Description="Content type")
+        public MetadataChangeContentType ContentType = null;
+
+        /**
+        * Gap tolerance operations
+        */
+        @ApiMember(DataType="array", Description="Gap tolerance operations")
+        public List<GapToleranceOperation> GapToleranceOperations = null;
+
+        /**
+        * Grade operations
+        */
+        @ApiMember(DataType="array", Description="Grade operations")
+        public List<GradeOperation> GradeOperations = null;
+
+        /**
+        * Interpolation type operations
+        */
+        @ApiMember(DataType="array", Description="Interpolation type operations")
+        public List<InterpolationTypeOperation> InterpolationTypeOperations = null;
+
+        /**
+        * Method operations
+        */
+        @ApiMember(DataType="array", Description="Method operations")
+        public List<MethodOperation> MethodOperations = null;
+
+        /**
+        * Note operations
+        */
+        @ApiMember(DataType="array", Description="Note operations")
+        public List<NoteOperation> NoteOperations = null;
+
+        /**
+        * Qualifier operations
+        */
+        @ApiMember(DataType="array", Description="Qualifier operations")
+        public List<QualifierOperation> QualifierOperations = null;
+
+        /**
+        * Correction operations
+        */
+        @ApiMember(DataType="array", Description="Correction operations")
+        public List<CorrectionOperation> CorrectionOperations = null;
+        
+        public Instant getAppliedTime() { return AppliedTime; }
+        public MetadataChangeTransaction setAppliedTime(Instant value) { this.AppliedTime = value; return this; }
+        public String getAppliedByUser() { return AppliedByUser; }
+        public MetadataChangeTransaction setAppliedByUser(String value) { this.AppliedByUser = value; return this; }
+        public MetadataChangeContentType getContentType() { return ContentType; }
+        public MetadataChangeTransaction setContentType(MetadataChangeContentType value) { this.ContentType = value; return this; }
+        public List<GapToleranceOperation> getGapToleranceOperations() { return GapToleranceOperations; }
+        public MetadataChangeTransaction setGapToleranceOperations(List<GapToleranceOperation> value) { this.GapToleranceOperations = value; return this; }
+        public List<GradeOperation> getGradeOperations() { return GradeOperations; }
+        public MetadataChangeTransaction setGradeOperations(List<GradeOperation> value) { this.GradeOperations = value; return this; }
+        public List<InterpolationTypeOperation> getInterpolationTypeOperations() { return InterpolationTypeOperations; }
+        public MetadataChangeTransaction setInterpolationTypeOperations(List<InterpolationTypeOperation> value) { this.InterpolationTypeOperations = value; return this; }
+        public List<MethodOperation> getMethodOperations() { return MethodOperations; }
+        public MetadataChangeTransaction setMethodOperations(List<MethodOperation> value) { this.MethodOperations = value; return this; }
+        public List<NoteOperation> getNoteOperations() { return NoteOperations; }
+        public MetadataChangeTransaction setNoteOperations(List<NoteOperation> value) { this.NoteOperations = value; return this; }
+        public List<QualifierOperation> getQualifierOperations() { return QualifierOperations; }
+        public MetadataChangeTransaction setQualifierOperations(List<QualifierOperation> value) { this.QualifierOperations = value; return this; }
+        public List<CorrectionOperation> getCorrectionOperations() { return CorrectionOperations; }
+        public MetadataChangeTransaction setCorrectionOperations(List<CorrectionOperation> value) { this.CorrectionOperations = value; return this; }
+    }
+
+    public static class RatingModelDescription
+    {
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Label
+        */
+        @ApiMember(Description="Label")
+        public String Label = null;
+
+        /**
+        * Location identifier
+        */
+        @ApiMember(Description="Location identifier")
+        public String LocationIdentifier = null;
+
+        /**
+        * Input parameter
+        */
+        @ApiMember(Description="Input parameter")
+        public String InputParameter = null;
+
+        /**
+        * Input unit
+        */
+        @ApiMember(Description="Input unit")
+        public String InputUnit = null;
+
+        /**
+        * Output parameter
+        */
+        @ApiMember(Description="Output parameter")
+        public String OutputParameter = null;
+
+        /**
+        * Output unit
+        */
+        @ApiMember(Description="Output unit")
+        public String OutputUnit = null;
+
+        /**
+        * Template name
+        */
+        @ApiMember(Description="Template name")
+        public String TemplateName = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comment = null;
+
+        /**
+        * Last modified
+        */
+        @ApiMember(DataType="string", Description="Last modified", Format="date-time")
+        public Instant LastModified = null;
+
+        /**
+        * Publish
+        */
+        @ApiMember(DataType="boolean", Description="Publish")
+        public Boolean Publish = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public RatingModelDescription setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getLabel() { return Label; }
+        public RatingModelDescription setLabel(String value) { this.Label = value; return this; }
+        public String getLocationIdentifier() { return LocationIdentifier; }
+        public RatingModelDescription setLocationIdentifier(String value) { this.LocationIdentifier = value; return this; }
+        public String getInputParameter() { return InputParameter; }
+        public RatingModelDescription setInputParameter(String value) { this.InputParameter = value; return this; }
+        public String getInputUnit() { return InputUnit; }
+        public RatingModelDescription setInputUnit(String value) { this.InputUnit = value; return this; }
+        public String getOutputParameter() { return OutputParameter; }
+        public RatingModelDescription setOutputParameter(String value) { this.OutputParameter = value; return this; }
+        public String getOutputUnit() { return OutputUnit; }
+        public RatingModelDescription setOutputUnit(String value) { this.OutputUnit = value; return this; }
+        public String getTemplateName() { return TemplateName; }
+        public RatingModelDescription setTemplateName(String value) { this.TemplateName = value; return this; }
+        public String getDescription() { return Description; }
+        public RatingModelDescription setDescription(String value) { this.Description = value; return this; }
+        public String getComment() { return Comment; }
+        public RatingModelDescription setComment(String value) { this.Comment = value; return this; }
+        public Instant getLastModified() { return LastModified; }
+        public RatingModelDescription setLastModified(Instant value) { this.LastModified = value; return this; }
+        public Boolean isPublish() { return Publish; }
+        public RatingModelDescription setPublish(Boolean value) { this.Publish = value; return this; }
+    }
+
+    public static class Processor
+    {
+        /**
+        * Processor type
+        */
+        @ApiMember(Description="Processor type")
+        public String ProcessorType = null;
+
+        /**
+        * Input time series unique ids
+        */
+        @ApiMember(DataType="array", Description="Input time series unique ids")
+        public ArrayList<String> InputTimeSeriesUniqueIds = null;
+
+        /**
+        * Output time series unique id
+        */
+        @ApiMember(DataType="string", Description="Output time series unique id", Format="guid")
+        public String OutputTimeSeriesUniqueId = null;
+
+        /**
+        * Processor period
+        */
+        @ApiMember(DataType="TimeRange", Description="Processor period")
+        public TimeRange ProcessorPeriod = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Input rating model identifier
+        */
+        @ApiMember(Description="Input rating model identifier")
+        public String InputRatingModelIdentifier = null;
+
+        public HashMap<String,String> Settings = null;
+        
+        public String getProcessorType() { return ProcessorType; }
+        public Processor setProcessorType(String value) { this.ProcessorType = value; return this; }
+        public ArrayList<String> getInputTimeSeriesUniqueIds() { return InputTimeSeriesUniqueIds; }
+        public Processor setInputTimeSeriesUniqueIds(ArrayList<String> value) { this.InputTimeSeriesUniqueIds = value; return this; }
+        public String getOutputTimeSeriesUniqueId() { return OutputTimeSeriesUniqueId; }
+        public Processor setOutputTimeSeriesUniqueId(String value) { this.OutputTimeSeriesUniqueId = value; return this; }
+        public TimeRange getProcessorPeriod() { return ProcessorPeriod; }
+        public Processor setProcessorPeriod(TimeRange value) { this.ProcessorPeriod = value; return this; }
+        public String getDescription() { return Description; }
+        public Processor setDescription(String value) { this.Description = value; return this; }
+        public String getInputRatingModelIdentifier() { return InputRatingModelIdentifier; }
+        public Processor setInputRatingModelIdentifier(String value) { this.InputRatingModelIdentifier = value; return this; }
+        public HashMap<String,String> getSettings() { return Settings; }
+        public Processor setSettings(HashMap<String,String> value) { this.Settings = value; return this; }
+    }
+
+    public static class TrendLineAnalysis
+    {
+        /**
+        * Type of regression analysis
+        */
+        @ApiMember(DataType="string", Description="Type of regression analysis")
+        public TrendLineAnalysisType Type = null;
+
+        /**
+        * Start point of period
+        */
+        @ApiMember(DataType="TimeSeriesPoint", Description="Start point of period")
+        public TimeSeriesPoint StartPoint = null;
+
+        /**
+        * End point of period
+        */
+        @ApiMember(DataType="TimeSeriesPoint", Description="End point of period")
+        public TimeSeriesPoint EndPoint = null;
+
+        /**
+        * Actual absolute change, as the difference between the first and last measurement values
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Actual absolute change, as the difference between the first and last measurement values")
+        public DoubleWithDisplay ActualAbsoluteChange = null;
+
+        /**
+        * Modeled absolute change, as the difference between the first and last trend line values
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Modeled absolute change, as the difference between the first and last trend line values")
+        public DoubleWithDisplay ModeledAbsoluteChange = null;
+
+        /**
+        * Actual percentage change, as the actual absolute change relative to the first measurement value
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Actual percentage change, as the actual absolute change relative to the first measurement value")
+        public DoubleWithDisplay ActualPercentageChange = null;
+
+        /**
+        * Modeled percentage change, as the modeled absolute change relative to the first trend line value
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Modeled percentage change, as the modeled absolute change relative to the first trend line value")
+        public DoubleWithDisplay ModeledPercentageChange = null;
+
+        /**
+        * Minimum value
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Minimum value")
+        public DoubleWithDisplay MinValue = null;
+
+        /**
+        * Maximum value
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Maximum value")
+        public DoubleWithDisplay MaxValue = null;
+
+        /**
+        * Lower Quartile (Q1) of residuals
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Lower Quartile (Q1) of residuals")
+        public DoubleWithDisplay LowerQuartileOfResiduals = null;
+
+        /**
+        * Median (Q2) of residuals
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Median (Q2) of residuals")
+        public DoubleWithDisplay MedianOfResiduals = null;
+
+        /**
+        * Upper Quartile (Q3) of residuals
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Upper Quartile (Q3) of residuals")
+        public DoubleWithDisplay UpperQuartileOfResiduals = null;
+
+        /**
+        * Trend line slope measured in data units per year
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Trend line slope measured in data units per year")
+        public DoubleWithDisplay Slope = null;
+
+        /**
+        * Trend line intercept, as the value of the trend line at the time of QueryFrom
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Trend line intercept, as the value of the trend line at the time of QueryFrom")
+        public DoubleWithDisplay Intercept = null;
+
+        /**
+        * Standard error in trend line slope
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Standard error in trend line slope")
+        public DoubleWithDisplay SlopeStandardError = null;
+
+        /**
+        * Standard deviation of results
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Standard deviation of results")
+        public DoubleWithDisplay StandardDeviation = null;
+
+        /**
+        * Trend line correlation coefficient
+        */
+        @ApiMember(DataType="DoubleWithDisplay", Description="Trend line correlation coefficient")
+        public DoubleWithDisplay CorrelationCoefficient = null;
+        
+        public TrendLineAnalysisType getType() { return Type; }
+        public TrendLineAnalysis setType(TrendLineAnalysisType value) { this.Type = value; return this; }
+        public TimeSeriesPoint getStartPoint() { return StartPoint; }
+        public TrendLineAnalysis setStartPoint(TimeSeriesPoint value) { this.StartPoint = value; return this; }
+        public TimeSeriesPoint getEndPoint() { return EndPoint; }
+        public TrendLineAnalysis setEndPoint(TimeSeriesPoint value) { this.EndPoint = value; return this; }
+        public DoubleWithDisplay getActualAbsoluteChange() { return ActualAbsoluteChange; }
+        public TrendLineAnalysis setActualAbsoluteChange(DoubleWithDisplay value) { this.ActualAbsoluteChange = value; return this; }
+        public DoubleWithDisplay getModeledAbsoluteChange() { return ModeledAbsoluteChange; }
+        public TrendLineAnalysis setModeledAbsoluteChange(DoubleWithDisplay value) { this.ModeledAbsoluteChange = value; return this; }
+        public DoubleWithDisplay getActualPercentageChange() { return ActualPercentageChange; }
+        public TrendLineAnalysis setActualPercentageChange(DoubleWithDisplay value) { this.ActualPercentageChange = value; return this; }
+        public DoubleWithDisplay getModeledPercentageChange() { return ModeledPercentageChange; }
+        public TrendLineAnalysis setModeledPercentageChange(DoubleWithDisplay value) { this.ModeledPercentageChange = value; return this; }
+        public DoubleWithDisplay getMinValue() { return MinValue; }
+        public TrendLineAnalysis setMinValue(DoubleWithDisplay value) { this.MinValue = value; return this; }
+        public DoubleWithDisplay getMaxValue() { return MaxValue; }
+        public TrendLineAnalysis setMaxValue(DoubleWithDisplay value) { this.MaxValue = value; return this; }
+        public DoubleWithDisplay getLowerQuartileOfResiduals() { return LowerQuartileOfResiduals; }
+        public TrendLineAnalysis setLowerQuartileOfResiduals(DoubleWithDisplay value) { this.LowerQuartileOfResiduals = value; return this; }
+        public DoubleWithDisplay getMedianOfResiduals() { return MedianOfResiduals; }
+        public TrendLineAnalysis setMedianOfResiduals(DoubleWithDisplay value) { this.MedianOfResiduals = value; return this; }
+        public DoubleWithDisplay getUpperQuartileOfResiduals() { return UpperQuartileOfResiduals; }
+        public TrendLineAnalysis setUpperQuartileOfResiduals(DoubleWithDisplay value) { this.UpperQuartileOfResiduals = value; return this; }
+        public DoubleWithDisplay getSlope() { return Slope; }
+        public TrendLineAnalysis setSlope(DoubleWithDisplay value) { this.Slope = value; return this; }
+        public DoubleWithDisplay getIntercept() { return Intercept; }
+        public TrendLineAnalysis setIntercept(DoubleWithDisplay value) { this.Intercept = value; return this; }
+        public DoubleWithDisplay getSlopeStandardError() { return SlopeStandardError; }
+        public TrendLineAnalysis setSlopeStandardError(DoubleWithDisplay value) { this.SlopeStandardError = value; return this; }
+        public DoubleWithDisplay getStandardDeviation() { return StandardDeviation; }
+        public TrendLineAnalysis setStandardDeviation(DoubleWithDisplay value) { this.StandardDeviation = value; return this; }
+        public DoubleWithDisplay getCorrelationCoefficient() { return CorrelationCoefficient; }
+        public TrendLineAnalysis setCorrelationCoefficient(DoubleWithDisplay value) { this.CorrelationCoefficient = value; return this; }
+    }
+
+    public static class TimeSeriesUniqueIds
+    {
+        /**
+        * Unique id
+        */
+        @ApiMember(DataType="string", Description="Unique id", Format="guid")
+        public String UniqueId = null;
+
+        /**
+        * First point changed
+        */
+        @ApiMember(DataType="string", Description="First point changed", Format="date-time")
+        public Instant FirstPointChanged = null;
+
+        /**
+        * Has attribute change
+        */
+        @ApiMember(DataType="boolean", Description="Has attribute change")
+        public Boolean HasAttributeChange = null;
+
+        /**
+        * Time-series has been deleted
+        */
+        @ApiMember(DataType="boolean", Description="Time-series has been deleted")
+        public Boolean IsDeleted = null;
+
+        /**
+        * Last time attributes on the time-series matched the given filters; null when time-series current attributes matched the given filters
+        */
+        @ApiMember(DataType="string", Description="Last time attributes on the time-series matched the given filters; null when time-series current attributes matched the given filters", Format="date-time")
+        public Instant LastMatchedTime = null;
+        
+        public String getUniqueId() { return UniqueId; }
+        public TimeSeriesUniqueIds setUniqueId(String value) { this.UniqueId = value; return this; }
+        public Instant getFirstPointChanged() { return FirstPointChanged; }
+        public TimeSeriesUniqueIds setFirstPointChanged(Instant value) { this.FirstPointChanged = value; return this; }
+        public Boolean isHasAttributeChange() { return HasAttributeChange; }
+        public TimeSeriesUniqueIds setHasAttributeChange(Boolean value) { this.HasAttributeChange = value; return this; }
+        public Boolean getIsDeleted() { return IsDeleted; }
+        public TimeSeriesUniqueIds setIsDeleted(Boolean value) { this.IsDeleted = value; return this; }
+        public Instant getLastMatchedTime() { return LastMatchedTime; }
+        public TimeSeriesUniqueIds setLastMatchedTime(Instant value) { this.LastMatchedTime = value; return this; }
+    }
+
+    public static class RatingCurve
+    {
+        /**
+        * Id
+        */
+        @ApiMember(Description="Id")
+        public String Id = null;
+
+        /**
+        * Type
+        */
+        @ApiMember(DataType="string", Description="Type")
+        public RatingCurveType Type = null;
+
+        /**
+        * Equation
+        */
+        @ApiMember(Description="Equation")
+        public String Equation = null;
+
+        /**
+        * Remarks
+        */
+        @ApiMember(Description="Remarks")
+        public String Remarks = null;
+
+        /**
+        * Input parameter
+        */
+        @ApiMember(DataType="ParameterWithUnit", Description="Input parameter")
+        public ParameterWithUnit InputParameter = null;
+
+        /**
+        * Output parameter
+        */
+        @ApiMember(DataType="ParameterWithUnit", Description="Output parameter")
+        public ParameterWithUnit OutputParameter = null;
+
+        /**
+        * Periods of applicability
+        */
+        @ApiMember(DataType="array", Description="Periods of applicability")
+        public ArrayList<PeriodOfApplicability> PeriodsOfApplicability = null;
+
+        /**
+        * Shifts
+        */
+        @ApiMember(DataType="array", Description="Shifts")
+        public ArrayList<RatingShift> Shifts = null;
+
+        /**
+        * Base rating table
+        */
+        @ApiMember(DataType="array", Description="Base rating table")
+        public ArrayList<RatingPoint> BaseRatingTable = null;
+
+        /**
+        * Offsets
+        */
+        @ApiMember(DataType="array", Description="Offsets")
+        public ArrayList<OffsetPoint> Offsets = null;
+
+        /**
+        * Grade Ranges
+        */
+        @ApiMember(DataType="array", Description="Grade Ranges")
+        public ArrayList<RatingGrade> GradeRanges = null;
+        
+        public String getId() { return Id; }
+        public RatingCurve setId(String value) { this.Id = value; return this; }
+        public RatingCurveType getType() { return Type; }
+        public RatingCurve setType(RatingCurveType value) { this.Type = value; return this; }
+        public String getEquation() { return Equation; }
+        public RatingCurve setEquation(String value) { this.Equation = value; return this; }
+        public String getRemarks() { return Remarks; }
+        public RatingCurve setRemarks(String value) { this.Remarks = value; return this; }
+        public ParameterWithUnit getInputParameter() { return InputParameter; }
+        public RatingCurve setInputParameter(ParameterWithUnit value) { this.InputParameter = value; return this; }
+        public ParameterWithUnit getOutputParameter() { return OutputParameter; }
+        public RatingCurve setOutputParameter(ParameterWithUnit value) { this.OutputParameter = value; return this; }
+        public ArrayList<PeriodOfApplicability> getPeriodsOfApplicability() { return PeriodsOfApplicability; }
+        public RatingCurve setPeriodsOfApplicability(ArrayList<PeriodOfApplicability> value) { this.PeriodsOfApplicability = value; return this; }
+        public ArrayList<RatingShift> getShifts() { return Shifts; }
+        public RatingCurve setShifts(ArrayList<RatingShift> value) { this.Shifts = value; return this; }
+        public ArrayList<RatingPoint> getBaseRatingTable() { return BaseRatingTable; }
+        public RatingCurve setBaseRatingTable(ArrayList<RatingPoint> value) { this.BaseRatingTable = value; return this; }
+        public ArrayList<OffsetPoint> getOffsets() { return Offsets; }
+        public RatingCurve setOffsets(ArrayList<OffsetPoint> value) { this.Offsets = value; return this; }
+        public ArrayList<RatingGrade> getGradeRanges() { return GradeRanges; }
+        public RatingCurve setGradeRanges(ArrayList<RatingGrade> value) { this.GradeRanges = value; return this; }
+    }
+
+    public static class TagDefinition
+    {
+        /**
+        * Key of the tag
+        */
+        @ApiMember(Description="Key of the tag")
+        public String Key = null;
+
+        /**
+        * UniqueId
+        */
+        @ApiMember(DataType="string", Description="UniqueId", Format="guid")
+        public String UniqueId = null;
+
+        /**
+        * Value type
+        */
+        @ApiMember(DataType="TagValueType", Description="Value type")
+        public TagValueType ValueType = null;
+
+        /**
+        * Set of pick-list values if ValueType is PickList
+        */
+        @ApiMember(DataType="array", Description="Set of pick-list values if ValueType is PickList")
+        public ArrayList<String> PickListValues = null;
+
+        /**
+        * True if tag is applicable to Attachments
+        */
+        @ApiMember(DataType="boolean", Description="True if tag is applicable to Attachments")
+        public Boolean AppliesToAttachments = null;
+
+        /**
+        * True if tag is applicable to Locations
+        */
+        @ApiMember(DataType="boolean", Description="True if tag is applicable to Locations")
+        public Boolean AppliesToLocations = null;
+
+        /**
+        * True if tag is applicable to Location Notes
+        */
+        @ApiMember(DataType="boolean", Description="True if tag is applicable to Location Notes")
+        public Boolean AppliesToLocationNotes = null;
+
+        /**
+        * True if tag is applicable to Reports
+        */
+        @ApiMember(DataType="boolean", Description="True if tag is applicable to Reports")
+        public Boolean AppliesToReports = null;
+
+        /**
+        * True if tag is applicable to Sensors and Gauges
+        */
+        @ApiMember(DataType="boolean", Description="True if tag is applicable to Sensors and Gauges")
+        public Boolean AppliesToSensorsGauges = null;
+        
+        public String getKey() { return Key; }
+        public TagDefinition setKey(String value) { this.Key = value; return this; }
+        public String getUniqueId() { return UniqueId; }
+        public TagDefinition setUniqueId(String value) { this.UniqueId = value; return this; }
+        public TagValueType getValueType() { return ValueType; }
+        public TagDefinition setValueType(TagValueType value) { this.ValueType = value; return this; }
+        public ArrayList<String> getPickListValues() { return PickListValues; }
+        public TagDefinition setPickListValues(ArrayList<String> value) { this.PickListValues = value; return this; }
+        public Boolean isAppliesToAttachments() { return AppliesToAttachments; }
+        public TagDefinition setAppliesToAttachments(Boolean value) { this.AppliesToAttachments = value; return this; }
+        public Boolean isAppliesToLocations() { return AppliesToLocations; }
+        public TagDefinition setAppliesToLocations(Boolean value) { this.AppliesToLocations = value; return this; }
+        public Boolean isAppliesToLocationNotes() { return AppliesToLocationNotes; }
+        public TagDefinition setAppliesToLocationNotes(Boolean value) { this.AppliesToLocationNotes = value; return this; }
+        public Boolean isAppliesToReports() { return AppliesToReports; }
+        public TagDefinition setAppliesToReports(Boolean value) { this.AppliesToReports = value; return this; }
+        public Boolean isAppliesToSensorsGauges() { return AppliesToSensorsGauges; }
+        public TagDefinition setAppliesToSensorsGauges(Boolean value) { this.AppliesToSensorsGauges = value; return this; }
+    }
+
+    public static class ExpandedRatingCurve
+    {
+        /**
+        * Id
+        */
+        @ApiMember(Description="Id")
+        public String Id = null;
+
+        /**
+        * Type
+        */
+        @ApiMember(DataType="string", Description="Type")
+        public RatingCurveType Type = null;
+
+        /**
+        * Remarks
+        */
+        @ApiMember(Description="Remarks")
+        public String Remarks = null;
+
+        /**
+        * Input parameter
+        */
+        @ApiMember(DataType="ParameterWithUnit", Description="Input parameter")
+        public ParameterWithUnit InputParameter = null;
+
+        /**
+        * Output parameter
+        */
+        @ApiMember(DataType="ParameterWithUnit", Description="Output parameter")
+        public ParameterWithUnit OutputParameter = null;
+
+        /**
+        * Periods of applicability
+        */
+        @ApiMember(DataType="array", Description="Periods of applicability")
+        public ArrayList<PeriodOfApplicability> PeriodsOfApplicability = null;
+
+        /**
+        * Shifts
+        */
+        @ApiMember(DataType="array", Description="Shifts")
+        public ArrayList<RatingShift> Shifts = null;
+
+        /**
+        * Offsets
+        */
+        @ApiMember(DataType="array", Description="Offsets")
+        public ArrayList<OffsetPoint> Offsets = null;
+
+        /**
+        * Is blended
+        */
+        @ApiMember(DataType="boolean", Description="Is blended")
+        public Boolean IsBlended = null;
+
+        /**
+        * Base rating table
+        */
+        @ApiMember(DataType="array", Description="Base rating table")
+        public ArrayList<RatingPoint> BaseRatingTable = null;
+
+        /**
+        * Adjusted rating table
+        */
+        @ApiMember(DataType="array", Description="Adjusted rating table")
+        public ArrayList<RatingPoint> AdjustedRatingTable = null;
+        
+        public String getId() { return Id; }
+        public ExpandedRatingCurve setId(String value) { this.Id = value; return this; }
+        public RatingCurveType getType() { return Type; }
+        public ExpandedRatingCurve setType(RatingCurveType value) { this.Type = value; return this; }
+        public String getRemarks() { return Remarks; }
+        public ExpandedRatingCurve setRemarks(String value) { this.Remarks = value; return this; }
+        public ParameterWithUnit getInputParameter() { return InputParameter; }
+        public ExpandedRatingCurve setInputParameter(ParameterWithUnit value) { this.InputParameter = value; return this; }
+        public ParameterWithUnit getOutputParameter() { return OutputParameter; }
+        public ExpandedRatingCurve setOutputParameter(ParameterWithUnit value) { this.OutputParameter = value; return this; }
+        public ArrayList<PeriodOfApplicability> getPeriodsOfApplicability() { return PeriodsOfApplicability; }
+        public ExpandedRatingCurve setPeriodsOfApplicability(ArrayList<PeriodOfApplicability> value) { this.PeriodsOfApplicability = value; return this; }
+        public ArrayList<RatingShift> getShifts() { return Shifts; }
+        public ExpandedRatingCurve setShifts(ArrayList<RatingShift> value) { this.Shifts = value; return this; }
+        public ArrayList<OffsetPoint> getOffsets() { return Offsets; }
+        public ExpandedRatingCurve setOffsets(ArrayList<OffsetPoint> value) { this.Offsets = value; return this; }
+        public Boolean getIsBlended() { return IsBlended; }
+        public ExpandedRatingCurve setIsBlended(Boolean value) { this.IsBlended = value; return this; }
+        public ArrayList<RatingPoint> getBaseRatingTable() { return BaseRatingTable; }
+        public ExpandedRatingCurve setBaseRatingTable(ArrayList<RatingPoint> value) { this.BaseRatingTable = value; return this; }
+        public ArrayList<RatingPoint> getAdjustedRatingTable() { return AdjustedRatingTable; }
+        public ExpandedRatingCurve setAdjustedRatingTable(ArrayList<RatingPoint> value) { this.AdjustedRatingTable = value; return this; }
+    }
+
+    public static class GradeMetadata
+    {
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Display name
+        */
+        @ApiMember(Description="Display name")
+        public String DisplayName = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Color
+        */
+        @ApiMember(Description="Color")
+        public String Color = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public GradeMetadata setIdentifier(String value) { this.Identifier = value; return this; }
+        public String getDisplayName() { return DisplayName; }
+        public GradeMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
+        public String getDescription() { return Description; }
+        public GradeMetadata setDescription(String value) { this.Description = value; return this; }
+        public String getColor() { return Color; }
+        public GradeMetadata setColor(String value) { this.Color = value; return this; }
+    }
+
+    public static class Report
+    {
+        /**
+        * ReportUniqueId
+        */
+        @ApiMember(DataType="string", Description="ReportUniqueId", Format="guid")
+        public String ReportUniqueId = null;
+
+        /**
+        * Title
+        */
+        @ApiMember(Description="Title")
+        public String Title = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+
+        /**
+        * Created time (UTC)
+        */
+        @ApiMember(DataType="string", Description="Created time (UTC)", Format="date-time")
+        public Instant CreatedTime = null;
+
+        /**
+        * Time range of source data displayed in report (UTC)
+        */
+        @ApiMember(DataType="TimeRange", Description="Time range of source data displayed in report (UTC)")
+        public TimeRange SourceTimeRange = null;
+
+        /**
+        * Is transient
+        */
+        @ApiMember(DataType="boolean", Description="Is transient")
+        public Boolean IsTransient = null;
+
+        /**
+        * Source time-series unique IDs
+        */
+        @ApiMember(DataType="array", Description="Source time-series unique IDs")
+        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
+
+        /**
+        * Location unique ID
+        */
+        @ApiMember(DataType="string", Description="Location unique ID", Format="guid")
+        public String LocationUniqueId = null;
+
+        /**
+        * Tags
+        */
+        @ApiMember(DataType="array", Description="Tags")
+        public ArrayList<TagMetadata> Tags = null;
+
+        /**
+        * Report creator's user unique ID
+        */
+        @ApiMember(DataType="string", Description="Report creator's user unique ID", Format="guid")
+        public String UserUniqueId = null;
+
+        /**
+        * Report creator's user name
+        */
+        @ApiMember(Description="Report creator's user name")
+        public String UserName = null;
+
+        /**
+        * Attachment URL
+        */
+        @ApiMember(Description="Attachment URL")
+        public String Url = null;
+        
+        public String getReportUniqueId() { return ReportUniqueId; }
+        public Report setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
+        public String getTitle() { return Title; }
+        public Report setTitle(String value) { this.Title = value; return this; }
+        public String getDescription() { return Description; }
+        public Report setDescription(String value) { this.Description = value; return this; }
+        public String getComments() { return Comments; }
+        public Report setComments(String value) { this.Comments = value; return this; }
+        public Instant getCreatedTime() { return CreatedTime; }
+        public Report setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
+        public TimeRange getSourceTimeRange() { return SourceTimeRange; }
+        public Report setSourceTimeRange(TimeRange value) { this.SourceTimeRange = value; return this; }
+        public Boolean getIsTransient() { return IsTransient; }
+        public Report setIsTransient(Boolean value) { this.IsTransient = value; return this; }
+        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
+        public Report setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public Report setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public ArrayList<TagMetadata> getTags() { return Tags; }
+        public Report setTags(ArrayList<TagMetadata> value) { this.Tags = value; return this; }
+        public String getUserUniqueId() { return UserUniqueId; }
+        public Report setUserUniqueId(String value) { this.UserUniqueId = value; return this; }
+        public String getUserName() { return UserName; }
+        public Report setUserName(String value) { this.UserName = value; return this; }
+        public String getUrl() { return Url; }
+        public Report setUrl(String value) { this.Url = value; return this; }
     }
 
     public static class FieldVisitDescription
@@ -6549,78 +6613,6 @@ public class Publish
         public FieldVisitDescription setLastMatchedTime(Instant value) { this.LastMatchedTime = value; return this; }
     }
 
-    public static class MonitoringMethod
-    {
-        /**
-        * Method code
-        */
-        @ApiMember(Description="Method code")
-        public String MethodCode = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Parameter
-        */
-        @ApiMember(Description="Parameter")
-        public String Parameter = null;
-
-        /**
-        * Rounding spec
-        */
-        @ApiMember(Description="Rounding spec")
-        public String RoundingSpec = null;
-        
-        public String getMethodCode() { return MethodCode; }
-        public MonitoringMethod setMethodCode(String value) { this.MethodCode = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public MonitoringMethod setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getDescription() { return Description; }
-        public MonitoringMethod setDescription(String value) { this.Description = value; return this; }
-        public String getParameter() { return Parameter; }
-        public MonitoringMethod setParameter(String value) { this.Parameter = value; return this; }
-        public String getRoundingSpec() { return RoundingSpec; }
-        public MonitoringMethod setRoundingSpec(String value) { this.RoundingSpec = value; return this; }
-    }
-
-    public static class ApprovalMetadata
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Display name
-        */
-        @ApiMember(Description="Display name")
-        public String DisplayName = null;
-
-        /**
-        * Color
-        */
-        @ApiMember(Description="Color")
-        public String Color = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public ApprovalMetadata setIdentifier(String value) { this.Identifier = value; return this; }
-        public String getDisplayName() { return DisplayName; }
-        public ApprovalMetadata setDisplayName(String value) { this.DisplayName = value; return this; }
-        public String getColor() { return Color; }
-        public ApprovalMetadata setColor(String value) { this.Color = value; return this; }
-    }
-
     public static class StatisticalDateTimeOffset
     {
         /**
@@ -6661,142 +6653,105 @@ public class Publish
         public DoubleWithDisplay setDisplay(String value) { this.Display = value; return this; }
     }
 
-    public static enum RatingCurveType
+    public static class TimeSeriesThreshold
     {
-        LinearTable,
-        LogarithmicTable,
-        StandardEquation,
-        DescriptiveEquation,
-        IsoStandardEquation,
-        LinearRegressionModel;
+        /**
+        * Name
+        */
+        @ApiMember(Description="Name")
+        public String Name = null;
+
+        /**
+        * Description
+        */
+        @ApiMember(Description="Description")
+        public String Description = null;
+
+        /**
+        * Reference code
+        */
+        @ApiMember(Description="Reference code")
+        public String ReferenceCode = null;
+
+        /**
+        * Severity
+        */
+        @ApiMember(DataType="integer", Description="Severity", Format="int32")
+        public Integer Severity = null;
+
+        /**
+        * Type
+        */
+        @ApiMember(DataType="string", Description="Type")
+        public ThresholdType Type = null;
+
+        /**
+        * Processing order
+        */
+        @ApiMember(DataType="string", Description="Processing order")
+        public CorrectionProcessingOrder ProcessingOrder = null;
+
+        /**
+        * Display color
+        */
+        @ApiMember(Description="Display color")
+        public String DisplayColor = null;
+
+        /**
+        * Periods
+        */
+        @ApiMember(DataType="array", Description="Periods")
+        public ArrayList<TimeSeriesThresholdPeriod> Periods = null;
+        
+        public String getName() { return Name; }
+        public TimeSeriesThreshold setName(String value) { this.Name = value; return this; }
+        public String getDescription() { return Description; }
+        public TimeSeriesThreshold setDescription(String value) { this.Description = value; return this; }
+        public String getReferenceCode() { return ReferenceCode; }
+        public TimeSeriesThreshold setReferenceCode(String value) { this.ReferenceCode = value; return this; }
+        public Integer getSeverity() { return Severity; }
+        public TimeSeriesThreshold setSeverity(Integer value) { this.Severity = value; return this; }
+        public ThresholdType getType() { return Type; }
+        public TimeSeriesThreshold setType(ThresholdType value) { this.Type = value; return this; }
+        public CorrectionProcessingOrder getProcessingOrder() { return ProcessingOrder; }
+        public TimeSeriesThreshold setProcessingOrder(CorrectionProcessingOrder value) { this.ProcessingOrder = value; return this; }
+        public String getDisplayColor() { return DisplayColor; }
+        public TimeSeriesThreshold setDisplayColor(String value) { this.DisplayColor = value; return this; }
+        public ArrayList<TimeSeriesThresholdPeriod> getPeriods() { return Periods; }
+        public TimeSeriesThreshold setPeriods(ArrayList<TimeSeriesThresholdPeriod> value) { this.Periods = value; return this; }
     }
 
-    public static class ParameterWithUnit
+    public static enum CorrectionType
     {
-        /**
-        * Parameter name
-        */
-        @ApiMember(Description="Parameter name")
-        public String ParameterName = null;
-
-        /**
-        * Parameter unit
-        */
-        @ApiMember(Description="Parameter unit")
-        public String ParameterUnit = null;
-        
-        public String getParameterName() { return ParameterName; }
-        public ParameterWithUnit setParameterName(String value) { this.ParameterName = value; return this; }
-        public String getParameterUnit() { return ParameterUnit; }
-        public ParameterWithUnit setParameterUnit(String value) { this.ParameterUnit = value; return this; }
+        Offset,
+        UsgsMultiPoint,
+        RevertToRaw,
+        DeleteRegion,
+        CopyPaste,
+        FillGaps,
+        PersistenceGapFill,
+        Drift,
+        Percent,
+        ReplaceWithGap,
+        ClockDrift,
+        Resample,
+        Recession,
+        AdjustableTrim,
+        ThresholdTrim,
+        ThresholdSuppression,
+        FlagTrim,
+        SingleGap,
+        Amplification,
+        SinglePoint,
+        Deviation;
     }
 
-    public static class PeriodOfApplicability
+    public static enum CorrectionProcessingOrder
     {
-        /**
-        * Start time
-        */
-        @ApiMember(DataType="string", Description="Start time", Format="date-time")
-        public Instant StartTime = null;
-
-        /**
-        * End time
-        */
-        @ApiMember(DataType="string", Description="End time", Format="date-time")
-        public Instant EndTime = null;
-
-        /**
-        * Remarks
-        */
-        @ApiMember(Description="Remarks")
-        public String Remarks = null;
-        
-        public Instant getStartTime() { return StartTime; }
-        public PeriodOfApplicability setStartTime(Instant value) { this.StartTime = value; return this; }
-        public Instant getEndTime() { return EndTime; }
-        public PeriodOfApplicability setEndTime(Instant value) { this.EndTime = value; return this; }
-        public String getRemarks() { return Remarks; }
-        public PeriodOfApplicability setRemarks(String value) { this.Remarks = value; return this; }
-    }
-
-    public static class RatingShift
-    {
-        /**
-        * Period of applicability
-        */
-        @ApiMember(DataType="PeriodOfApplicability", Description="Period of applicability")
-        public PeriodOfApplicability PeriodOfApplicability = null;
-
-        /**
-        * Shift points
-        */
-        @ApiMember(DataType="array", Description="Shift points")
-        public ArrayList<RatingShiftPoint> ShiftPoints = null;
-        
-        public PeriodOfApplicability getPeriodOfApplicability() { return PeriodOfApplicability; }
-        public RatingShift setPeriodOfApplicability(PeriodOfApplicability value) { this.PeriodOfApplicability = value; return this; }
-        public ArrayList<RatingShiftPoint> getShiftPoints() { return ShiftPoints; }
-        public RatingShift setShiftPoints(ArrayList<RatingShiftPoint> value) { this.ShiftPoints = value; return this; }
-    }
-
-    public static class RatingPoint
-    {
-        /**
-        * Input value
-        */
-        @ApiMember(DataType="number", Description="Input value", Format="double")
-        public Double InputValue = null;
-
-        /**
-        * Output value
-        */
-        @ApiMember(DataType="number", Description="Output value", Format="double")
-        public Double OutputValue = null;
-        
-        public Double getInputValue() { return InputValue; }
-        public RatingPoint setInputValue(Double value) { this.InputValue = value; return this; }
-        public Double getOutputValue() { return OutputValue; }
-        public RatingPoint setOutputValue(Double value) { this.OutputValue = value; return this; }
-    }
-
-    public static class OffsetPoint
-    {
-        /**
-        * Input value
-        */
-        @ApiMember(DataType="number", Description="Input value", Format="double")
-        public Double InputValue = null;
-
-        /**
-        * Offset
-        */
-        @ApiMember(DataType="number", Description="Offset", Format="double")
-        public Double Offset = null;
-        
-        public Double getInputValue() { return InputValue; }
-        public OffsetPoint setInputValue(Double value) { this.InputValue = value; return this; }
-        public Double getOffset() { return Offset; }
-        public OffsetPoint setOffset(Double value) { this.Offset = value; return this; }
-    }
-
-    public static class RatingGrade
-    {
-        /**
-        * Output upper bound
-        */
-        @ApiMember(DataType="number", Description="Output upper bound", Format="double")
-        public Double OutputUpperBound = null;
-
-        /**
-        * Grade code
-        */
-        @ApiMember(DataType="integer", Description="Grade code", Format="int32")
-        public Integer GradeCode = null;
-        
-        public Double getOutputUpperBound() { return OutputUpperBound; }
-        public RatingGrade setOutputUpperBound(Double value) { this.OutputUpperBound = value; return this; }
-        public Integer getGradeCode() { return GradeCode; }
-        public RatingGrade setGradeCode(Integer value) { this.GradeCode = value; return this; }
+        PreProcessing,
+        Normal,
+        PostProcessing,
+        Suppression;
     }
 
     public static enum AttachmentType
@@ -7058,426 +7013,6 @@ public class Publish
         public ReferencePointPeriod setAppliedTime(Instant value) { this.AppliedTime = value; return this; }
         public String getAppliedByUser() { return AppliedByUser; }
         public ReferencePointPeriod setAppliedByUser(String value) { this.AppliedByUser = value; return this; }
-    }
-
-    public static enum CorrectionType
-    {
-        Offset,
-        UsgsMultiPoint,
-        RevertToRaw,
-        DeleteRegion,
-        CopyPaste,
-        FillGaps,
-        PersistenceGapFill,
-        Drift,
-        Percent,
-        ReplaceWithGap,
-        ClockDrift,
-        Resample,
-        Recession,
-        AdjustableTrim,
-        ThresholdTrim,
-        ThresholdSuppression,
-        FlagTrim,
-        SingleGap,
-        Amplification,
-        SinglePoint,
-        Deviation;
-    }
-
-    public static enum CorrectionProcessingOrder
-    {
-        PreProcessing,
-        Normal,
-        PostProcessing,
-        Suppression;
-    }
-
-    public static enum TagValueType
-    {
-        Unknown,
-        None,
-        PickList,
-        String,
-        Number,
-        Boolean;
-    }
-
-    public static class TimeSeriesThreshold
-    {
-        /**
-        * Name
-        */
-        @ApiMember(Description="Name")
-        public String Name = null;
-
-        /**
-        * Description
-        */
-        @ApiMember(Description="Description")
-        public String Description = null;
-
-        /**
-        * Reference code
-        */
-        @ApiMember(Description="Reference code")
-        public String ReferenceCode = null;
-
-        /**
-        * Severity
-        */
-        @ApiMember(DataType="integer", Description="Severity", Format="int32")
-        public Integer Severity = null;
-
-        /**
-        * Type
-        */
-        @ApiMember(DataType="string", Description="Type")
-        public ThresholdType Type = null;
-
-        /**
-        * Processing order
-        */
-        @ApiMember(DataType="string", Description="Processing order")
-        public CorrectionProcessingOrder ProcessingOrder = null;
-
-        /**
-        * Display color
-        */
-        @ApiMember(Description="Display color")
-        public String DisplayColor = null;
-
-        /**
-        * Periods
-        */
-        @ApiMember(DataType="array", Description="Periods")
-        public ArrayList<TimeSeriesThresholdPeriod> Periods = null;
-        
-        public String getName() { return Name; }
-        public TimeSeriesThreshold setName(String value) { this.Name = value; return this; }
-        public String getDescription() { return Description; }
-        public TimeSeriesThreshold setDescription(String value) { this.Description = value; return this; }
-        public String getReferenceCode() { return ReferenceCode; }
-        public TimeSeriesThreshold setReferenceCode(String value) { this.ReferenceCode = value; return this; }
-        public Integer getSeverity() { return Severity; }
-        public TimeSeriesThreshold setSeverity(Integer value) { this.Severity = value; return this; }
-        public ThresholdType getType() { return Type; }
-        public TimeSeriesThreshold setType(ThresholdType value) { this.Type = value; return this; }
-        public CorrectionProcessingOrder getProcessingOrder() { return ProcessingOrder; }
-        public TimeSeriesThreshold setProcessingOrder(CorrectionProcessingOrder value) { this.ProcessingOrder = value; return this; }
-        public String getDisplayColor() { return DisplayColor; }
-        public TimeSeriesThreshold setDisplayColor(String value) { this.DisplayColor = value; return this; }
-        public ArrayList<TimeSeriesThresholdPeriod> getPeriods() { return Periods; }
-        public TimeSeriesThreshold setPeriods(ArrayList<TimeSeriesThresholdPeriod> value) { this.Periods = value; return this; }
-    }
-
-    public static enum MetadataChangeContentType
-    {
-        Default,
-        Corrected;
-    }
-
-    public static class GapToleranceOperation extends GapTolerance implements IStackPositionMetadataOperation
-    {
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Stack position
-        */
-        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
-        public Integer StackPosition = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-        
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public GapToleranceOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public GapToleranceOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public GapToleranceOperation setUser(String value) { this.User = value; return this; }
-        public Integer getStackPosition() { return StackPosition; }
-        public GapToleranceOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
-        public String getComments() { return Comments; }
-        public GapToleranceOperation setComments(String value) { this.Comments = value; return this; }
-    }
-
-    public static class GradeOperation extends Grade implements IStackPositionMetadataOperation
-    {
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-
-        /**
-        * Stack position
-        */
-        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
-        public Integer StackPosition = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-        
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public GradeOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public GradeOperation setUser(String value) { this.User = value; return this; }
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public GradeOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-        public Integer getStackPosition() { return StackPosition; }
-        public GradeOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
-        public String getComments() { return Comments; }
-        public GradeOperation setComments(String value) { this.Comments = value; return this; }
-    }
-
-    public static class InterpolationTypeOperation extends InterpolationType implements IStackPositionMetadataOperation
-    {
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-
-        /**
-        * Stack position
-        */
-        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
-        public Integer StackPosition = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-        
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public InterpolationTypeOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public InterpolationTypeOperation setUser(String value) { this.User = value; return this; }
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public InterpolationTypeOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-        public Integer getStackPosition() { return StackPosition; }
-        public InterpolationTypeOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
-        public String getComments() { return Comments; }
-        public InterpolationTypeOperation setComments(String value) { this.Comments = value; return this; }
-    }
-
-    public static class MethodOperation extends Method implements IStackPositionMetadataOperation
-    {
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-
-        /**
-        * Stack position
-        */
-        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
-        public Integer StackPosition = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-        
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public MethodOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public MethodOperation setUser(String value) { this.User = value; return this; }
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public MethodOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-        public Integer getStackPosition() { return StackPosition; }
-        public MethodOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
-        public String getComments() { return Comments; }
-        public MethodOperation setComments(String value) { this.Comments = value; return this; }
-    }
-
-    public static class NoteOperation extends Note implements IMetadataChangeOperation
-    {
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-        
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public NoteOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public NoteOperation setUser(String value) { this.User = value; return this; }
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public NoteOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-    }
-
-    public static class QualifierOperation extends TimeRange implements IMetadataChangeOperation
-    {
-        /**
-        * Identifier
-        */
-        @ApiMember(Description="Identifier")
-        public String Identifier = null;
-
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-        
-        public String getIdentifier() { return Identifier; }
-        public QualifierOperation setIdentifier(String value) { this.Identifier = value; return this; }
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public QualifierOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public QualifierOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public QualifierOperation setUser(String value) { this.User = value; return this; }
-    }
-
-    public static class CorrectionOperation extends TimeRange implements IStackPositionMetadataOperation
-    {
-        /**
-        * Type
-        */
-        @ApiMember(DataType="string", Description="Type")
-        public CorrectionType Type = null;
-
-        public HashMap<String,Object> Parameters = null;
-        /**
-        * Processing order
-        */
-        @ApiMember(DataType="CorrectionProcessingOrder", Description="Processing order")
-        public CorrectionProcessingOrder ProcessingOrder = null;
-
-        /**
-        * Instant applied utc
-        */
-        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
-        public Instant DateAppliedUtc = null;
-
-        /**
-        * User
-        */
-        @ApiMember(Description="User")
-        public String User = null;
-
-        /**
-        * Operation type
-        */
-        @ApiMember(DataType="string", Description="Operation type")
-        public MetadataChangeOperationType OperationType = null;
-
-        /**
-        * Stack position
-        */
-        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
-        public Integer StackPosition = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-        
-        public CorrectionType getType() { return Type; }
-        public CorrectionOperation setType(CorrectionType value) { this.Type = value; return this; }
-        public HashMap<String,Object> getParameters() { return Parameters; }
-        public CorrectionOperation setParameters(HashMap<String,Object> value) { this.Parameters = value; return this; }
-        public CorrectionProcessingOrder getProcessingOrder() { return ProcessingOrder; }
-        public CorrectionOperation setProcessingOrder(CorrectionProcessingOrder value) { this.ProcessingOrder = value; return this; }
-        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
-        public CorrectionOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
-        public String getUser() { return User; }
-        public CorrectionOperation setUser(String value) { this.User = value; return this; }
-        public MetadataChangeOperationType getOperationType() { return OperationType; }
-        public CorrectionOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
-        public Integer getStackPosition() { return StackPosition; }
-        public CorrectionOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
-        public String getComments() { return Comments; }
-        public CorrectionOperation setComments(String value) { this.Comments = value; return this; }
     }
 
     public static class DischargeSummary
@@ -9231,7 +8766,394 @@ public class Publish
         MeanIndexVelocity;
     }
 
-    public static class RatingShiftPoint
+    public static enum MetadataChangeContentType
+    {
+        Default,
+        Corrected;
+    }
+
+    public static class GapToleranceOperation extends GapTolerance implements IStackPositionMetadataOperation
+    {
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        /**
+        * Stack position
+        */
+        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
+        public Integer StackPosition = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+        
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public GapToleranceOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public GapToleranceOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public GapToleranceOperation setUser(String value) { this.User = value; return this; }
+        public Integer getStackPosition() { return StackPosition; }
+        public GapToleranceOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
+        public String getComments() { return Comments; }
+        public GapToleranceOperation setComments(String value) { this.Comments = value; return this; }
+    }
+
+    public static class GradeOperation extends Grade implements IStackPositionMetadataOperation
+    {
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+
+        /**
+        * Stack position
+        */
+        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
+        public Integer StackPosition = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+        
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public GradeOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public GradeOperation setUser(String value) { this.User = value; return this; }
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public GradeOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+        public Integer getStackPosition() { return StackPosition; }
+        public GradeOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
+        public String getComments() { return Comments; }
+        public GradeOperation setComments(String value) { this.Comments = value; return this; }
+    }
+
+    public static class InterpolationTypeOperation extends InterpolationType implements IStackPositionMetadataOperation
+    {
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+
+        /**
+        * Stack position
+        */
+        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
+        public Integer StackPosition = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+        
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public InterpolationTypeOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public InterpolationTypeOperation setUser(String value) { this.User = value; return this; }
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public InterpolationTypeOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+        public Integer getStackPosition() { return StackPosition; }
+        public InterpolationTypeOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
+        public String getComments() { return Comments; }
+        public InterpolationTypeOperation setComments(String value) { this.Comments = value; return this; }
+    }
+
+    public static class MethodOperation extends Method implements IStackPositionMetadataOperation
+    {
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+
+        /**
+        * Stack position
+        */
+        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
+        public Integer StackPosition = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+        
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public MethodOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public MethodOperation setUser(String value) { this.User = value; return this; }
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public MethodOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+        public Integer getStackPosition() { return StackPosition; }
+        public MethodOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
+        public String getComments() { return Comments; }
+        public MethodOperation setComments(String value) { this.Comments = value; return this; }
+    }
+
+    public static class NoteOperation extends Note implements IMetadataChangeOperation
+    {
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+        
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public NoteOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public NoteOperation setUser(String value) { this.User = value; return this; }
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public NoteOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+    }
+
+    public static class QualifierOperation extends TimeRange implements IMetadataChangeOperation
+    {
+        /**
+        * Identifier
+        */
+        @ApiMember(Description="Identifier")
+        public String Identifier = null;
+
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+        
+        public String getIdentifier() { return Identifier; }
+        public QualifierOperation setIdentifier(String value) { this.Identifier = value; return this; }
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public QualifierOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public QualifierOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public QualifierOperation setUser(String value) { this.User = value; return this; }
+    }
+
+    public static class CorrectionOperation extends TimeRange implements IStackPositionMetadataOperation
+    {
+        /**
+        * Type
+        */
+        @ApiMember(DataType="string", Description="Type")
+        public CorrectionType Type = null;
+
+        public HashMap<String,Object> Parameters = null;
+        /**
+        * Processing order
+        */
+        @ApiMember(DataType="CorrectionProcessingOrder", Description="Processing order")
+        public CorrectionProcessingOrder ProcessingOrder = null;
+
+        /**
+        * Instant applied utc
+        */
+        @ApiMember(DataType="string", Description="Instant applied utc", Format="date-time")
+        public Instant DateAppliedUtc = null;
+
+        /**
+        * User
+        */
+        @ApiMember(Description="User")
+        public String User = null;
+
+        /**
+        * Operation type
+        */
+        @ApiMember(DataType="string", Description="Operation type")
+        public MetadataChangeOperationType OperationType = null;
+
+        /**
+        * Stack position
+        */
+        @ApiMember(DataType="integer", Description="Stack position", Format="int32")
+        public Integer StackPosition = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
+        public String Comments = null;
+        
+        public CorrectionType getType() { return Type; }
+        public CorrectionOperation setType(CorrectionType value) { this.Type = value; return this; }
+        public HashMap<String,Object> getParameters() { return Parameters; }
+        public CorrectionOperation setParameters(HashMap<String,Object> value) { this.Parameters = value; return this; }
+        public CorrectionProcessingOrder getProcessingOrder() { return ProcessingOrder; }
+        public CorrectionOperation setProcessingOrder(CorrectionProcessingOrder value) { this.ProcessingOrder = value; return this; }
+        public Instant getDateAppliedUtc() { return DateAppliedUtc; }
+        public CorrectionOperation setDateAppliedUtc(Instant value) { this.DateAppliedUtc = value; return this; }
+        public String getUser() { return User; }
+        public CorrectionOperation setUser(String value) { this.User = value; return this; }
+        public MetadataChangeOperationType getOperationType() { return OperationType; }
+        public CorrectionOperation setOperationType(MetadataChangeOperationType value) { this.OperationType = value; return this; }
+        public Integer getStackPosition() { return StackPosition; }
+        public CorrectionOperation setStackPosition(Integer value) { this.StackPosition = value; return this; }
+        public String getComments() { return Comments; }
+        public CorrectionOperation setComments(String value) { this.Comments = value; return this; }
+    }
+
+    public static enum RatingCurveType
+    {
+        LinearTable,
+        LogarithmicTable,
+        StandardEquation,
+        DescriptiveEquation,
+        IsoStandardEquation,
+        LinearRegressionModel;
+    }
+
+    public static class ParameterWithUnit
+    {
+        /**
+        * Parameter name
+        */
+        @ApiMember(Description="Parameter name")
+        public String ParameterName = null;
+
+        /**
+        * Parameter unit
+        */
+        @ApiMember(Description="Parameter unit")
+        public String ParameterUnit = null;
+        
+        public String getParameterName() { return ParameterName; }
+        public ParameterWithUnit setParameterName(String value) { this.ParameterName = value; return this; }
+        public String getParameterUnit() { return ParameterUnit; }
+        public ParameterWithUnit setParameterUnit(String value) { this.ParameterUnit = value; return this; }
+    }
+
+    public static class PeriodOfApplicability
+    {
+        /**
+        * Start time
+        */
+        @ApiMember(DataType="string", Description="Start time", Format="date-time")
+        public Instant StartTime = null;
+
+        /**
+        * End time
+        */
+        @ApiMember(DataType="string", Description="End time", Format="date-time")
+        public Instant EndTime = null;
+
+        /**
+        * Remarks
+        */
+        @ApiMember(Description="Remarks")
+        public String Remarks = null;
+        
+        public Instant getStartTime() { return StartTime; }
+        public PeriodOfApplicability setStartTime(Instant value) { this.StartTime = value; return this; }
+        public Instant getEndTime() { return EndTime; }
+        public PeriodOfApplicability setEndTime(Instant value) { this.EndTime = value; return this; }
+        public String getRemarks() { return Remarks; }
+        public PeriodOfApplicability setRemarks(String value) { this.Remarks = value; return this; }
+    }
+
+    public static class RatingShift
+    {
+        /**
+        * Period of applicability
+        */
+        @ApiMember(DataType="PeriodOfApplicability", Description="Period of applicability")
+        public PeriodOfApplicability PeriodOfApplicability = null;
+
+        /**
+        * Shift points
+        */
+        @ApiMember(DataType="array", Description="Shift points")
+        public ArrayList<RatingShiftPoint> ShiftPoints = null;
+        
+        public PeriodOfApplicability getPeriodOfApplicability() { return PeriodOfApplicability; }
+        public RatingShift setPeriodOfApplicability(PeriodOfApplicability value) { this.PeriodOfApplicability = value; return this; }
+        public ArrayList<RatingShiftPoint> getShiftPoints() { return ShiftPoints; }
+        public RatingShift setShiftPoints(ArrayList<RatingShiftPoint> value) { this.ShiftPoints = value; return this; }
+    }
+
+    public static class RatingPoint
     {
         /**
         * Input value
@@ -9240,66 +9162,65 @@ public class Publish
         public Double InputValue = null;
 
         /**
-        * Shift
+        * Output value
         */
-        @ApiMember(DataType="number", Description="Shift", Format="double")
-        public Double Shift = null;
+        @ApiMember(DataType="number", Description="Output value", Format="double")
+        public Double OutputValue = null;
         
         public Double getInputValue() { return InputValue; }
-        public RatingShiftPoint setInputValue(Double value) { this.InputValue = value; return this; }
-        public Double getShift() { return Shift; }
-        public RatingShiftPoint setShift(Double value) { this.Shift = value; return this; }
+        public RatingPoint setInputValue(Double value) { this.InputValue = value; return this; }
+        public Double getOutputValue() { return OutputValue; }
+        public RatingPoint setOutputValue(Double value) { this.OutputValue = value; return this; }
     }
 
-    public static class ReferenceStandardOffset
+    public static class OffsetPoint
     {
         /**
-        * Standard
+        * Input value
         */
-        @ApiMember(Description="Standard")
-        public String Standard = null;
+        @ApiMember(DataType="number", Description="Input value", Format="double")
+        public Double InputValue = null;
 
         /**
-        * Offset to reference standard
+        * Offset
         */
-        @ApiMember(DataType="number", Description="Offset to reference standard", Format="double")
-        public Double OffsetToReferenceStandard = null;
-
-        /**
-        * Comments
-        */
-        @ApiMember(Description="Comments")
-        public String Comments = null;
-
-        /**
-        * Method
-        */
-        @ApiMember(Description="Method")
-        public String Method = null;
-
-        /**
-        * Uncertainty
-        */
-        @ApiMember(DataType="number", Description="Uncertainty", Format="double")
-        public Double Uncertainty = null;
+        @ApiMember(DataType="number", Description="Offset", Format="double")
+        public Double Offset = null;
         
-        public String getStandard() { return Standard; }
-        public ReferenceStandardOffset setStandard(String value) { this.Standard = value; return this; }
-        public Double getOffsetToReferenceStandard() { return OffsetToReferenceStandard; }
-        public ReferenceStandardOffset setOffsetToReferenceStandard(Double value) { this.OffsetToReferenceStandard = value; return this; }
-        public String getComments() { return Comments; }
-        public ReferenceStandardOffset setComments(String value) { this.Comments = value; return this; }
-        public String getMethod() { return Method; }
-        public ReferenceStandardOffset setMethod(String value) { this.Method = value; return this; }
-        public Double getUncertainty() { return Uncertainty; }
-        public ReferenceStandardOffset setUncertainty(Double value) { this.Uncertainty = value; return this; }
+        public Double getInputValue() { return InputValue; }
+        public OffsetPoint setInputValue(Double value) { this.InputValue = value; return this; }
+        public Double getOffset() { return Offset; }
+        public OffsetPoint setOffset(Double value) { this.Offset = value; return this; }
     }
 
-    public static enum MeasurementDirection
+    public static class RatingGrade
+    {
+        /**
+        * Output upper bound
+        */
+        @ApiMember(DataType="number", Description="Output upper bound", Format="double")
+        public Double OutputUpperBound = null;
+
+        /**
+        * Grade code
+        */
+        @ApiMember(DataType="integer", Description="Grade code", Format="int32")
+        public Integer GradeCode = null;
+        
+        public Double getOutputUpperBound() { return OutputUpperBound; }
+        public RatingGrade setOutputUpperBound(Double value) { this.OutputUpperBound = value; return this; }
+        public Integer getGradeCode() { return GradeCode; }
+        public RatingGrade setGradeCode(Integer value) { this.GradeCode = value; return this; }
+    }
+
+    public static enum TagValueType
     {
         Unknown,
-        FromTopToBottom,
-        FromBottomToTop;
+        None,
+        PickList,
+        String,
+        Number,
+        Boolean;
     }
 
     public static enum ThresholdType
@@ -9370,23 +9291,55 @@ public class Publish
         public TimeSeriesThresholdPeriod setSuppressData(Boolean value) { this.SuppressData = value; return this; }
     }
 
-    public static enum MetadataChangeOperationType
+    public static class ReferenceStandardOffset
     {
-        Creation,
-        Deletion;
-    }
+        /**
+        * Standard
+        */
+        @ApiMember(Description="Standard")
+        public String Standard = null;
 
-    public static interface IStackPositionMetadataOperation extends IMetadataChangeOperation
-    {
-        public Integer StackPosition = null;
+        /**
+        * Offset to reference standard
+        */
+        @ApiMember(DataType="number", Description="Offset to reference standard", Format="double")
+        public Double OffsetToReferenceStandard = null;
+
+        /**
+        * Comments
+        */
+        @ApiMember(Description="Comments")
         public String Comments = null;
+
+        /**
+        * Method
+        */
+        @ApiMember(Description="Method")
+        public String Method = null;
+
+        /**
+        * Uncertainty
+        */
+        @ApiMember(DataType="number", Description="Uncertainty", Format="double")
+        public Double Uncertainty = null;
+        
+        public String getStandard() { return Standard; }
+        public ReferenceStandardOffset setStandard(String value) { this.Standard = value; return this; }
+        public Double getOffsetToReferenceStandard() { return OffsetToReferenceStandard; }
+        public ReferenceStandardOffset setOffsetToReferenceStandard(Double value) { this.OffsetToReferenceStandard = value; return this; }
+        public String getComments() { return Comments; }
+        public ReferenceStandardOffset setComments(String value) { this.Comments = value; return this; }
+        public String getMethod() { return Method; }
+        public ReferenceStandardOffset setMethod(String value) { this.Method = value; return this; }
+        public Double getUncertainty() { return Uncertainty; }
+        public ReferenceStandardOffset setUncertainty(Double value) { this.Uncertainty = value; return this; }
     }
 
-    public static interface IMetadataChangeOperation
+    public static enum MeasurementDirection
     {
-        public Instant DateAppliedUtc = null;
-        public String User = null;
-        public MetadataChangeOperationType OperationType = null;
+        Unknown,
+        FromTopToBottom,
+        FromBottomToTop;
     }
 
     public static enum BaseFlowType
@@ -10037,6 +9990,45 @@ public class Publish
         Poor;
     }
 
+    public static enum MetadataChangeOperationType
+    {
+        Creation,
+        Deletion;
+    }
+
+    public static interface IStackPositionMetadataOperation extends IMetadataChangeOperation
+    {
+        public Integer StackPosition = null;
+        public String Comments = null;
+    }
+
+    public static interface IMetadataChangeOperation
+    {
+        public Instant DateAppliedUtc = null;
+        public String User = null;
+        public MetadataChangeOperationType OperationType = null;
+    }
+
+    public static class RatingShiftPoint
+    {
+        /**
+        * Input value
+        */
+        @ApiMember(DataType="number", Description="Input value", Format="double")
+        public Double InputValue = null;
+
+        /**
+        * Shift
+        */
+        @ApiMember(DataType="number", Description="Shift", Format="double")
+        public Double Shift = null;
+        
+        public Double getInputValue() { return InputValue; }
+        public RatingShiftPoint setInputValue(Double value) { this.InputValue = value; return this; }
+        public Double getShift() { return Shift; }
+        public RatingShiftPoint setShift(Double value) { this.Shift = value; return this; }
+    }
+
     public static enum AdjustmentType
     {
         Unknown,
@@ -10455,6 +10447,6 @@ public class Publish
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("25.3.106.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("25.4.10.0");
     }
 }
