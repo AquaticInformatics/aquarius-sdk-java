@@ -25,7 +25,7 @@ ServerName=$1
 OutputPath=$2
 
 command -v dotnet >/dev/null 2>&1 || exit_abort "This script requires the .NET 8 runtime. Grab it from here: https://www.microsoft.com/net/download"
-[-f "$GeneratorProjectPath"] || exit_abort "Can't find aquarius-sdk-net repo cloned to the same directory as aquarius-sdk-java"
+[ -f "$GeneratorProjectPath"] || exit_abort "Can't find aquarius-sdk-net repo cloned to the same directory as aquarius-sdk-java"
 [ -f "$Generator" ]    || dotnet build "$GeneratorProjectPath" -c Release || exit_abort "Can't find or build SamplesServiceModelGenerator.dll"
 [ ! -z "$ServerName" ] || ServerName=https://demo.aqsamples.com
 [ ! -z "$OutputPath" ] || OutputPath=./ServiceModel.java
