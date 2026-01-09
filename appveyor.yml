@@ -16,10 +16,6 @@ skip_tags: true
 environment:
   JAVA_HOME: C:\Program Files\Java\jdk1.8.0
   M2: $(USERPROFILE)\.m2
-  SAMPLES_CLIENT:
-    secure: v7JAY2jKRI/baV1QkgJcyl8y13vm3e9l0/wtyGjE0p0=
-  SAMPLES_TOKEN:
-    secure: SSSmzL0pYmvelJF1FI1XM2tamFPemoH5i943o0lPUkd/TAxZCyaQYvgfS8FKZAj+
 
 install:
   # Log versions for debugging
