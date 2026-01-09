@@ -15,6 +15,9 @@ public class SamplesClientTest {
 
     @Before
     public void forEachTest() {
+        if (System.getenv("SAMPLES_CLIENT") == null || System.getenv("SAMPLES_TOKEN") == null) {
+            throw new IllegalStateException("Connection Error: SAMPLES_CLIENT and SAMPLES_TOKEN environment variables have not been set.");
+        }
         try {
             client = SamplesClient.createConnectedClient(System.getenv("SAMPLES_CLIENT"), System.getenv("SAMPLES_TOKEN"));
             System.out.printf("Connected to %s (%s)\n", client.Api.getEndpointUrl(), client.ServerVersion.toString());
