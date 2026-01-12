@@ -36,6 +36,12 @@ environment:
   access_token:
     secure: DeTORL7H+5KS+KHQDt52OCT0LsvkYIIPZdA0VfvWpQo7za9ZwLoHMmz76jkYOxpO
 
+  SAMPLES_CLIENT:
+    secure: gxzfCov2x367sdV+JO67q+6yHf0bjw0Rw99Fky+KdM0=
+
+  SAMPLES_TOKEN:
+    secure: L6PifAZNofYz4sqywztE/+s+pSTqmnUxqKbWYuIg+2MS7krLbynyZQhx+1lBKeSI
+
   # Salts for the four files
   secret_gpg_salt:
     secure: S8ppX5Dq0VrUn+HOUhTA+5/DNmCkusoIJvcV4oP5ISu7IZL7zsaNyayMOi8IMzs8nLx3pbkXzYQKjex1zCitAw==
