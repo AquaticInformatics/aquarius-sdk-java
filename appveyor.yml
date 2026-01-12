@@ -28,7 +28,7 @@ install:
   - gpg --version
 
 build_script:
-  - mvn -B clean install
+  - mvn -B clean install  -P ignore-tests-with-credentials
 
 # Maven runs the tests as part of the build, so we don't need to run them again
 test: off
