@@ -37,10 +37,6 @@ environment:
 
   secret:
     secure: WYu06hjvbgjSQERvZN+jZNj8RBPsxpaaAmvWUHtNzSA=
-  SAMPLES_CLIENT:
-    secure: gxzfCov2x367sdV+JO67q+6yHf0bjw0Rw99Fky+KdM0=
-  SAMPLES_TOKEN:
-    secure: L6PifAZNofYz4sqywztE/+s+pSTqmnUxqKbWYuIg+2MS7krLbynyZQhx+1lBKeSI
 
 install:
   # Log versions for debugging
