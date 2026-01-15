@@ -193,7 +193,21 @@
         </plugins>
       </build>
     </profile>
-    
+
+    <profile>
+      <id>ignore-tests-with-credentials</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludedGroups>com.aquaticinformatics.aquarius.sdk.samples.TestRequiresCredentials</excludedGroups>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>    
     <!-- Build and Release to Maven Central -->
     <!-- Publish Site to GitHub -->
     <profile>
