@@ -14,7 +14,7 @@ init:
 skip_tags: true
 
 environment:
-  JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+  JAVA_HOME: C:\Program Files\Java\jdk17
   M2: $(USERPROFILE)\.m2
 
 install:
