@@ -4,6 +4,9 @@ This page highlights some changes in the SDK.
 
 Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
 
+### 2x.x.x
+- Updated the service models for the AQUARIUS Time-Series 202x.x release.
+
 ### 25.4.0
 - Updated the service models for the AQUARIUS Time-Series 2025.4 release.
 
