@@ -11,7 +11,6 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 import javax.crypto.Cipher;
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -25,6 +24,7 @@ import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -142,8 +142,8 @@ public class AquariusClient implements AutoCloseable {
             String modulusText = xpath.evaluate("/RSAKeyValue/Modulus", document);
             String exponentText = xpath.evaluate("/RSAKeyValue/Exponent", document);
 
-            byte[] modulusByes = DatatypeConverter.parseBase64Binary(modulusText);
-            byte[] exponentBytes = DatatypeConverter.parseBase64Binary(exponentText);
+            byte[] modulusByes = Base64.getDecoder().decode(modulusText);
+            byte[] exponentBytes = Base64.getDecoder().decode(exponentText);
 
             BigInteger modulus = new BigInteger(1, modulusByes);
             BigInteger exponent = new BigInteger(1, exponentBytes);
@@ -159,7 +159,7 @@ public class AquariusClient implements AutoCloseable {
 
             // And finally, you can transform the blob into a base-64 string to assign the to
             // the EncryptedPassword property of the login DTO:
-            return DatatypeConverter.printBase64Binary(encryptedPasswordBlob);
+            return Base64.getEncoder().encodeToString(encryptedPasswordBlob);
         }
         catch(Exception e) {
             return plaintextPassword;
