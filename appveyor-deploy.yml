@@ -15,7 +15,7 @@ branches:
   - develop
 
 environment:
-  JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+  JAVA_HOME: C:\Program Files\Java\jdk17
   M2: $(USERPROFILE)\.m2
   SETTINGS_ENC: $(APPVEYOR_BUILD_FOLDER)\build\Maven\settings.xml.enc
   SETTINGS_SEC_ENC: $(APPVEYOR_BUILD_FOLDER)\build\Maven\settings-security.xml.enc
