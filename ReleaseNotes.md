@@ -2,7 +2,10 @@
 
 This page highlights some changes in the SDK.
 
-Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v17.2.26...v17.2.28) to see the full source code difference.
+Not all changes will be listed, but you can always [compare by version tags](https://github.com/AquaticInformatics/aquarius-sdk-java/compare/v25.4.1...v26.1.0) to see the full source code difference.
+
+### 26.1.0
+- Updated the service models for the AQUARIUS Time-Series 2026.1 release.
 
 ### 25.4.1
 - Breaking Change: As a needed step to patch a vulnerable library ( Apache Tika ) the sdk now requires Java 17+ runtime. 
