@@ -1,22 +1,20 @@
-// Date: 2025-10-10T14:17:48.1948555-07:00
-// Base URL: https://demo.aqsamples.com/api/swagger.json
-// Source: AQUARIUS Samples API (2025.09.7723)
+// Date: 2026-09-11T17:14:52.2207350-07:00
+// Base URL: https://test.aqstest.com/api/swagger.json
+// Source: AQUARIUS Samples API (2026.8.8294)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
-import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
+import java.time.*;
+import java.util.*;
 import com.google.gson.reflect.TypeToken;
 import net.servicestack.client.*;
-
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.util.List;
+import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2025.09.7723");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2026.8.8294");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -29,13 +27,15 @@ public class ServiceModel
     @Route(Path="/v1/accessgroups", Verbs="POST")
     public static class PostAccessGroup implements IReturn<AccessGroup>
     {
+        public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public String Id = null;
         public String Name = null;
         public String Description = null;
         public Boolean CanEditAllData = null;
-        public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
+        public PostAccessGroup setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public String getId() { return Id; }
         public PostAccessGroup setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
@@ -44,8 +44,6 @@ public class ServiceModel
         public PostAccessGroup setDescription(String value) { this.Description = value; return this; }
         public Boolean getCanEditAllData() { return CanEditAllData; }
         public PostAccessGroup setCanEditAllData(Boolean value) { this.CanEditAllData = value; return this; }
-        public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
-        public PostAccessGroup setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostAccessGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = AccessGroup.class;
@@ -67,22 +65,22 @@ public class ServiceModel
     public static class PutAccessGroup implements IReturn<AccessGroup>
     {
         public String Id = null;
+        public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public String Name = null;
         public String Description = null;
         public Boolean CanEditAllData = null;
-        public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutAccessGroup setId(String value) { this.Id = value; return this; }
+        public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
+        public PutAccessGroup setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public String getName() { return Name; }
         public PutAccessGroup setName(String value) { this.Name = value; return this; }
         public String getDescription() { return Description; }
         public PutAccessGroup setDescription(String value) { this.Description = value; return this; }
         public Boolean getCanEditAllData() { return CanEditAllData; }
         public PutAccessGroup setCanEditAllData(Boolean value) { this.CanEditAllData = value; return this; }
-        public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
-        public PutAccessGroup setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutAccessGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = AccessGroup.class;
@@ -117,6 +115,7 @@ public class ServiceModel
         public List<String> CollectionMethodIds = null;
         public String Cursor = null;
         public String CustomId = null;
+        public List<String> ExternalTrackingNameSearch = null;
         public String FieldVisitId = null;
         public Instant FromStartTime = null;
         public List<String> Ids = null;
@@ -137,6 +136,8 @@ public class ServiceModel
         public GetActivities setCursor(String value) { this.Cursor = value; return this; }
         public String getCustomId() { return CustomId; }
         public GetActivities setCustomId(String value) { this.CustomId = value; return this; }
+        public List<String> getExternalTrackingNameSearch() { return ExternalTrackingNameSearch; }
+        public GetActivities setExternalTrackingNameSearch(List<String> value) { this.ExternalTrackingNameSearch = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetActivities setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
         public Instant getFromStartTime() { return FromStartTime; }
@@ -175,6 +176,8 @@ public class ServiceModel
         public Medium Medium = null;
         public PlannedActivity PlannedActivity = null;
         public FieldVisit FieldVisit = null;
+        public String ExternalTrackingId = null;
+        public String ExternalTrackingName = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Boolean Refreshed = null;
         public Quantity Depth = null;
@@ -208,6 +211,10 @@ public class ServiceModel
         public PostActivity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
         public PostActivity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public String getExternalTrackingId() { return ExternalTrackingId; }
+        public PostActivity setExternalTrackingId(String value) { this.ExternalTrackingId = value; return this; }
+        public String getExternalTrackingName() { return ExternalTrackingName; }
+        public PostActivity setExternalTrackingName(String value) { this.ExternalTrackingName = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PostActivity setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Boolean getRefreshed() { return Refreshed; }
@@ -232,6 +239,7 @@ public class ServiceModel
         public List<String> CollectionMethodIds = null;
         public String Cursor = null;
         public String CustomId = null;
+        public List<String> ExternalTrackingNameSearch = null;
         public String FieldVisitId = null;
         public Instant FromStartTime = null;
         public List<String> Ids = null;
@@ -252,6 +260,8 @@ public class ServiceModel
         public DeleteActivities setCursor(String value) { this.Cursor = value; return this; }
         public String getCustomId() { return CustomId; }
         public DeleteActivities setCustomId(String value) { this.CustomId = value; return this; }
+        public List<String> getExternalTrackingNameSearch() { return ExternalTrackingNameSearch; }
+        public DeleteActivities setExternalTrackingNameSearch(List<String> value) { this.ExternalTrackingNameSearch = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public DeleteActivities setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
         public Instant getFromStartTime() { return FromStartTime; }
@@ -303,6 +313,8 @@ public class ServiceModel
         public Medium Medium = null;
         public PlannedActivity PlannedActivity = null;
         public FieldVisit FieldVisit = null;
+        public String ExternalTrackingId = null;
+        public String ExternalTrackingName = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public IndexConfiguration IndexConfiguration = null;
         public List<MetricResult> MetricResults = null;
@@ -342,6 +354,10 @@ public class ServiceModel
         public PutActivity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
         public PutActivity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public String getExternalTrackingId() { return ExternalTrackingId; }
+        public PutActivity setExternalTrackingId(String value) { this.ExternalTrackingId = value; return this; }
+        public String getExternalTrackingName() { return ExternalTrackingName; }
+        public PutActivity setExternalTrackingName(String value) { this.ExternalTrackingName = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PutActivity setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public IndexConfiguration getIndexConfiguration() { return IndexConfiguration; }
@@ -394,6 +410,20 @@ public class ServiceModel
         public String getId() { return Id; }
         public PostActivityReplicate setId(String value) { this.Id = value; return this; }
         private static Object responseType = Activity.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/activities/by-external-tracking-id/{trackingId}", Verbs="GET")
+    public static class GetActivityByExternalTrackingId implements IReturn<ActivityWithDetails>
+    {
+        public String TrackingId = null;
+        public Boolean Detail = null;
+
+        public String getTrackingId() { return TrackingId; }
+        public GetActivityByExternalTrackingId setTrackingId(String value) { this.TrackingId = value; return this; }
+        public Boolean getDetail() { return Detail; }
+        public GetActivityByExternalTrackingId setDetail(Boolean value) { this.Detail = value; return this; }
+        private static Object responseType = ActivityWithDetails.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -810,6 +840,15 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public GetAttachmentContents setId(String value) { this.Id = value; return this; }
+    }
+
+    @Route(Path="/v1/attachments/{id}/stream", Verbs="GET")
+    public static class GetAttachmentStream implements IReturnVoid
+    {
+        public String Id = null;
+
+        public String getId() { return Id; }
+        public GetAttachmentStream setId(String value) { this.Id = value; return this; }
     }
 
     @Route(Path="/v1/attachments/upload", Verbs="POST")
@@ -1284,6 +1323,8 @@ public class ServiceModel
         public Instant EndStartTime = null;
         @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
         @DataMember(Name = "fieldTripIds")
         public List<String> FieldTripIds = null;
         @DataMember(Name = "ids")
@@ -1317,6 +1358,8 @@ public class ServiceModel
         public GetFieldVisits setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
         public Instant getEndModificationTime() { return EndModificationTime; }
         public GetFieldVisits setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetFieldVisits setFieldTripId(String value) { this.FieldTripId = value; return this; }
         public List<String> getFieldTripIds() { return FieldTripIds; }
         public GetFieldVisits setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public List<String> getIds() { return Ids; }
@@ -1359,9 +1402,9 @@ public class ServiceModel
         public ProjectSimple Project = null;
         public PlanningStatusType PlanningStatus = null;
         public SamplingLocation SamplingLocation = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public List<PlannedFieldResult> PlannedFieldResults = null;
         public List<PlannedActivity> PlannedActivities = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public Schedule Schedule = null;
@@ -1386,12 +1429,12 @@ public class ServiceModel
         public PostFieldVisit setPlanningStatus(PlanningStatusType value) { this.PlanningStatus = value; return this; }
         public SamplingLocation getSamplingLocation() { return SamplingLocation; }
         public PostFieldVisit setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PostFieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<PlannedFieldResult> getPlannedFieldResults() { return PlannedFieldResults; }
         public PostFieldVisit setPlannedFieldResults(List<PlannedFieldResult> value) { this.PlannedFieldResults = value; return this; }
         public List<PlannedActivity> getPlannedActivities() { return PlannedActivities; }
         public PostFieldVisit setPlannedActivities(List<PlannedActivity> value) { this.PlannedActivities = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PostFieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PostFieldVisit setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
@@ -1416,6 +1459,8 @@ public class ServiceModel
         public Instant EndStartTime = null;
         @DataMember(Name = "endModificationTime")
         public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
         @DataMember(Name = "fieldTripIds")
         public List<String> FieldTripIds = null;
         @DataMember(Name = "ids")
@@ -1449,6 +1494,8 @@ public class ServiceModel
         public DeleteFieldVisits setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
         public Instant getEndModificationTime() { return EndModificationTime; }
         public DeleteFieldVisits setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public DeleteFieldVisits setFieldTripId(String value) { this.FieldTripId = value; return this; }
         public List<String> getFieldTripIds() { return FieldTripIds; }
         public DeleteFieldVisits setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public List<String> getIds() { return Ids; }
@@ -1514,9 +1561,9 @@ public class ServiceModel
         public ProjectSimple Project = null;
         public PlanningStatusType PlanningStatus = null;
         public SamplingLocation SamplingLocation = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public List<PlannedFieldResult> PlannedFieldResults = null;
         public List<PlannedActivity> PlannedActivities = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public Schedule Schedule = null;
@@ -1541,12 +1588,12 @@ public class ServiceModel
         public PutFieldVisit setPlanningStatus(PlanningStatusType value) { this.PlanningStatus = value; return this; }
         public SamplingLocation getSamplingLocation() { return SamplingLocation; }
         public PutFieldVisit setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PutFieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<PlannedFieldResult> getPlannedFieldResults() { return PlannedFieldResults; }
         public PutFieldVisit setPlannedFieldResults(List<PlannedFieldResult> value) { this.PlannedFieldResults = value; return this; }
         public List<PlannedActivity> getPlannedActivities() { return PlannedActivities; }
         public PutFieldVisit setPlannedActivities(List<PlannedActivity> value) { this.PlannedActivities = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutFieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public PutFieldVisit setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
@@ -1667,6 +1714,164 @@ public class ServiceModel
         public Object getResponseType() {{ return responseType; }}
     }
 
+    @DataContract
+    @Route(Path="/v1/fieldvisits/fieldtrip", Verbs="PUT")
+    public static class PutBulkEditFieldTrip implements IReturnVoid
+    {
+        @DataMember(Name = "targetObjectId")
+        public String TargetObjectId = null;
+        @DataMember(Name = "cursor")
+        public String Cursor = null;
+        @DataMember(Name = "end-startTime")
+        public Instant EndStartTime = null;
+        @DataMember(Name = "endModificationTime")
+        public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
+        @DataMember(Name = "ids")
+        public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
+        public String ImportHistoryEventId = null;
+        @DataMember(Name = "limit")
+        public Integer Limit = null;
+        @DataMember(Name = "planningStatuses")
+        public List<String> PlanningStatuses = null;
+        @DataMember(Name = "projectIds")
+        public List<String> ProjectIds = null;
+        @DataMember(Name = "samplingLocationIds")
+        public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "samplingPlanIds")
+        public List<String> SamplingPlanIds = null;
+        @DataMember(Name = "scheduleIds")
+        public List<String> ScheduleIds = null;
+        @DataMember(Name = "search")
+        public List<String> Search = null;
+        @DataMember(Name = "sort")
+        public String Sort = null;
+        @DataMember(Name = "start-startTime")
+        public Instant StartStartTime = null;
+        @DataMember(Name = "startModificationTime")
+        public Instant StartModificationTime = null;
+
+        public String getTargetObjectId() { return TargetObjectId; }
+        public PutBulkEditFieldTrip setTargetObjectId(String value) { this.TargetObjectId = value; return this; }
+        public String getCursor() { return Cursor; }
+        public PutBulkEditFieldTrip setCursor(String value) { this.Cursor = value; return this; }
+        public Instant getEndStartTime() { return EndStartTime; }
+        public PutBulkEditFieldTrip setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
+        public Instant getEndModificationTime() { return EndModificationTime; }
+        public PutBulkEditFieldTrip setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public PutBulkEditFieldTrip setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public PutBulkEditFieldTrip setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
+        public List<String> getIds() { return Ids; }
+        public PutBulkEditFieldTrip setIds(List<String> value) { this.Ids = value; return this; }
+        public String getImportHistoryEventId() { return ImportHistoryEventId; }
+        public PutBulkEditFieldTrip setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public PutBulkEditFieldTrip setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getPlanningStatuses() { return PlanningStatuses; }
+        public PutBulkEditFieldTrip setPlanningStatuses(List<String> value) { this.PlanningStatuses = value; return this; }
+        public List<String> getProjectIds() { return ProjectIds; }
+        public PutBulkEditFieldTrip setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
+        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
+        public PutBulkEditFieldTrip setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
+        public List<String> getSamplingPlanIds() { return SamplingPlanIds; }
+        public PutBulkEditFieldTrip setSamplingPlanIds(List<String> value) { this.SamplingPlanIds = value; return this; }
+        public List<String> getScheduleIds() { return ScheduleIds; }
+        public PutBulkEditFieldTrip setScheduleIds(List<String> value) { this.ScheduleIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public PutBulkEditFieldTrip setSearch(List<String> value) { this.Search = value; return this; }
+        public String getSort() { return Sort; }
+        public PutBulkEditFieldTrip setSort(String value) { this.Sort = value; return this; }
+        public Instant getStartStartTime() { return StartStartTime; }
+        public PutBulkEditFieldTrip setStartStartTime(Instant value) { this.StartStartTime = value; return this; }
+        public Instant getStartModificationTime() { return StartModificationTime; }
+        public PutBulkEditFieldTrip setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
+    }
+
+    @DataContract
+    @Route(Path="/v1/fieldvisits/project", Verbs="PUT")
+    public static class PutBulkEditProject implements IReturnVoid
+    {
+        @DataMember(Name = "targetObjectId")
+        public String TargetObjectId = null;
+        @DataMember(Name = "cursor")
+        public String Cursor = null;
+        @DataMember(Name = "end-startTime")
+        public Instant EndStartTime = null;
+        @DataMember(Name = "endModificationTime")
+        public Instant EndModificationTime = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
+        @DataMember(Name = "ids")
+        public List<String> Ids = null;
+        @DataMember(Name = "importHistoryEventId")
+        public String ImportHistoryEventId = null;
+        @DataMember(Name = "limit")
+        public Integer Limit = null;
+        @DataMember(Name = "planningStatuses")
+        public List<String> PlanningStatuses = null;
+        @DataMember(Name = "projectIds")
+        public List<String> ProjectIds = null;
+        @DataMember(Name = "samplingLocationIds")
+        public List<String> SamplingLocationIds = null;
+        @DataMember(Name = "samplingPlanIds")
+        public List<String> SamplingPlanIds = null;
+        @DataMember(Name = "scheduleIds")
+        public List<String> ScheduleIds = null;
+        @DataMember(Name = "search")
+        public List<String> Search = null;
+        @DataMember(Name = "sort")
+        public String Sort = null;
+        @DataMember(Name = "start-startTime")
+        public Instant StartStartTime = null;
+        @DataMember(Name = "startModificationTime")
+        public Instant StartModificationTime = null;
+
+        public String getTargetObjectId() { return TargetObjectId; }
+        public PutBulkEditProject setTargetObjectId(String value) { this.TargetObjectId = value; return this; }
+        public String getCursor() { return Cursor; }
+        public PutBulkEditProject setCursor(String value) { this.Cursor = value; return this; }
+        public Instant getEndStartTime() { return EndStartTime; }
+        public PutBulkEditProject setEndStartTime(Instant value) { this.EndStartTime = value; return this; }
+        public Instant getEndModificationTime() { return EndModificationTime; }
+        public PutBulkEditProject setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public PutBulkEditProject setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public PutBulkEditProject setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
+        public List<String> getIds() { return Ids; }
+        public PutBulkEditProject setIds(List<String> value) { this.Ids = value; return this; }
+        public String getImportHistoryEventId() { return ImportHistoryEventId; }
+        public PutBulkEditProject setImportHistoryEventId(String value) { this.ImportHistoryEventId = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public PutBulkEditProject setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getPlanningStatuses() { return PlanningStatuses; }
+        public PutBulkEditProject setPlanningStatuses(List<String> value) { this.PlanningStatuses = value; return this; }
+        public List<String> getProjectIds() { return ProjectIds; }
+        public PutBulkEditProject setProjectIds(List<String> value) { this.ProjectIds = value; return this; }
+        public List<String> getSamplingLocationIds() { return SamplingLocationIds; }
+        public PutBulkEditProject setSamplingLocationIds(List<String> value) { this.SamplingLocationIds = value; return this; }
+        public List<String> getSamplingPlanIds() { return SamplingPlanIds; }
+        public PutBulkEditProject setSamplingPlanIds(List<String> value) { this.SamplingPlanIds = value; return this; }
+        public List<String> getScheduleIds() { return ScheduleIds; }
+        public PutBulkEditProject setScheduleIds(List<String> value) { this.ScheduleIds = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public PutBulkEditProject setSearch(List<String> value) { this.Search = value; return this; }
+        public String getSort() { return Sort; }
+        public PutBulkEditProject setSort(String value) { this.Sort = value; return this; }
+        public Instant getStartStartTime() { return StartStartTime; }
+        public PutBulkEditProject setStartStartTime(Instant value) { this.StartStartTime = value; return this; }
+        public Instant getStartModificationTime() { return StartModificationTime; }
+        public PutBulkEditProject setStartModificationTime(Instant value) { this.StartModificationTime = value; return this; }
+    }
+
     @Route(Path="/v1/filters", Verbs="GET")
     public static class GetFilters implements IReturn<SearchResultFilter>
     {
@@ -1677,15 +1882,19 @@ public class ServiceModel
     @Route(Path="/v1/filters", Verbs="POST")
     public static class PostFilter implements IReturn<Filter>
     {
+        public List<ObservedProperty> ObservedProperties = null;
+        public List<SamplingLocation> SamplingLocations = null;
         public String Id = null;
         public String CustomId = null;
         public OffsetDateTime StartTime = null;
         public OffsetDateTime EndTime = null;
-        public List<ObservedProperty> ObservedProperties = null;
-        public List<SamplingLocation> SamplingLocations = null;
         public String Description = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public PostFilter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
+        public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
+        public PostFilter setSamplingLocations(List<SamplingLocation> value) { this.SamplingLocations = value; return this; }
         public String getId() { return Id; }
         public PostFilter setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -1694,10 +1903,6 @@ public class ServiceModel
         public PostFilter setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
         public OffsetDateTime getEndTime() { return EndTime; }
         public PostFilter setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PostFilter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
-        public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
-        public PostFilter setSamplingLocations(List<SamplingLocation> value) { this.SamplingLocations = value; return this; }
         public String getDescription() { return Description; }
         public PostFilter setDescription(String value) { this.Description = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -1721,26 +1926,26 @@ public class ServiceModel
     public static class PutFilter implements IReturn<Filter>
     {
         public String Id = null;
+        public List<ObservedProperty> ObservedProperties = null;
+        public List<SamplingLocation> SamplingLocations = null;
         public String CustomId = null;
         public OffsetDateTime StartTime = null;
         public OffsetDateTime EndTime = null;
-        public List<ObservedProperty> ObservedProperties = null;
-        public List<SamplingLocation> SamplingLocations = null;
         public String Description = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutFilter setId(String value) { this.Id = value; return this; }
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public PutFilter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
+        public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
+        public PutFilter setSamplingLocations(List<SamplingLocation> value) { this.SamplingLocations = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutFilter setCustomId(String value) { this.CustomId = value; return this; }
         public OffsetDateTime getStartTime() { return StartTime; }
         public PutFilter setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
         public OffsetDateTime getEndTime() { return EndTime; }
         public PutFilter setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public PutFilter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
-        public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
-        public PutFilter setSamplingLocations(List<SamplingLocation> value) { this.SamplingLocations = value; return this; }
         public String getDescription() { return Description; }
         public PutFilter setDescription(String value) { this.Description = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -2035,16 +2240,20 @@ public class ServiceModel
     @Route(Path="/v1/labreports", Verbs="POST")
     public static class PostLabReport implements IReturn<LabReport>
     {
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public String Id = null;
         public String CustomId = null;
         public OffsetDateTime DateReceived = null;
         public String CaseNarrative = null;
         public String QcSummary = null;
         public Laboratory Laboratory = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PostLabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PostLabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public String getId() { return Id; }
         public PostLabReport setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -2057,10 +2266,6 @@ public class ServiceModel
         public PostLabReport setQcSummary(String value) { this.QcSummary = value; return this; }
         public Laboratory getLaboratory() { return Laboratory; }
         public PostLabReport setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PostLabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PostLabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PostLabReport setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = LabReport.class;
@@ -2082,17 +2287,21 @@ public class ServiceModel
     public static class PutLabReport implements IReturn<LabReport>
     {
         public String Id = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public String CustomId = null;
         public OffsetDateTime DateReceived = null;
         public String CaseNarrative = null;
         public String QcSummary = null;
         public Laboratory Laboratory = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public AuditAttributes AuditAttributes = null;
 
         public String getId() { return Id; }
         public PutLabReport setId(String value) { this.Id = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PutLabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PutLabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutLabReport setCustomId(String value) { this.CustomId = value; return this; }
         public OffsetDateTime getDateReceived() { return DateReceived; }
@@ -2103,10 +2312,6 @@ public class ServiceModel
         public PutLabReport setQcSummary(String value) { this.QcSummary = value; return this; }
         public Laboratory getLaboratory() { return Laboratory; }
         public PutLabReport setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutLabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutLabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public PutLabReport setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
         private static Object responseType = LabReport.class;
@@ -2268,6 +2473,7 @@ public class ServiceModel
     @Route(Path="/v1/observedproperties", Verbs="POST")
     public static class PostObservedProperty implements IReturn<ObservedProperty>
     {
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public String Id = null;
         public String CustomId = null;
         public String Name = null;
@@ -2276,12 +2482,13 @@ public class ServiceModel
         public AnalysisType AnalysisType = null;
         public UnitGroup UnitGroup = null;
         public Unit DefaultUnit = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public String CasNumber = null;
         public Quantity LowerLimit = null;
         public Quantity UpperLimit = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PostObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getId() { return Id; }
         public PostObservedProperty setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -2298,8 +2505,6 @@ public class ServiceModel
         public PostObservedProperty setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
         public Unit getDefaultUnit() { return DefaultUnit; }
         public PostObservedProperty setDefaultUnit(Unit value) { this.DefaultUnit = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PostObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getCasNumber() { return CasNumber; }
         public PostObservedProperty setCasNumber(String value) { this.CasNumber = value; return this; }
         public Quantity getLowerLimit() { return LowerLimit; }
@@ -2327,6 +2532,7 @@ public class ServiceModel
     public static class PutObservedProperty implements IReturn<ObservedProperty>
     {
         public String Id = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public String CustomId = null;
         public String Name = null;
         public String Description = null;
@@ -2334,7 +2540,6 @@ public class ServiceModel
         public AnalysisType AnalysisType = null;
         public UnitGroup UnitGroup = null;
         public Unit DefaultUnit = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public String CasNumber = null;
         public Quantity LowerLimit = null;
         public Quantity UpperLimit = null;
@@ -2342,6 +2547,8 @@ public class ServiceModel
 
         public String getId() { return Id; }
         public PutObservedProperty setId(String value) { this.Id = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PutObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getCustomId() { return CustomId; }
         public PutObservedProperty setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
@@ -2356,8 +2563,6 @@ public class ServiceModel
         public PutObservedProperty setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
         public Unit getDefaultUnit() { return DefaultUnit; }
         public PutObservedProperty setDefaultUnit(Unit value) { this.DefaultUnit = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getCasNumber() { return CasNumber; }
         public PutObservedProperty setCasNumber(String value) { this.CasNumber = value; return this; }
         public Quantity getLowerLimit() { return LowerLimit; }
@@ -2549,6 +2754,20 @@ public class ServiceModel
         public String getId() { return Id; }
         public GetProjectHistory setId(String value) { this.Id = value; return this; }
         private static Object responseType = SearchResultAuditHistory.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/queues/backgroundprocessor", Verbs="GET")
+    public static class GetBackgroundProcessorQueueCount implements IReturn<QueueCountDto>
+    {
+        private static Object responseType = QueueCountDto.class;
+        public Object getResponseType() {{ return responseType; }}
+    }
+
+    @Route(Path="/v1/queues/importprocessor", Verbs="GET")
+    public static class GetLabReportProcessorQueueCount implements IReturn<QueueCountDto>
+    {
+        private static Object responseType = QueueCountDto.class;
         public Object getResponseType() {{ return responseType; }}
     }
 
@@ -2758,6 +2977,8 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public String Name = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public LocationType Type = null;
         public String Latitude = null;
         public String Longitude = null;
@@ -2769,8 +2990,6 @@ public class ServiceModel
         public Address Address = null;
         public Quantity Elevation = null;
         public TimeZone TimeZone = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public AuditAttributes AuditAttributes = null;
@@ -2781,6 +3000,10 @@ public class ServiceModel
         public PostSamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
         public PostSamplingLocation setName(String value) { this.Name = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PostSamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PostSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public LocationType getType() { return Type; }
         public PostSamplingLocation setType(LocationType value) { this.Type = value; return this; }
         public String getLatitude() { return Latitude; }
@@ -2803,10 +3026,6 @@ public class ServiceModel
         public PostSamplingLocation setElevation(Quantity value) { this.Elevation = value; return this; }
         public TimeZone getTimeZone() { return TimeZone; }
         public PostSamplingLocation setTimeZone(TimeZone value) { this.TimeZone = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PostSamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PostSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
         public PostSamplingLocation setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
@@ -2834,6 +3053,8 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public String Name = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public LocationType Type = null;
         public String Latitude = null;
         public String Longitude = null;
@@ -2845,8 +3066,6 @@ public class ServiceModel
         public Address Address = null;
         public Quantity Elevation = null;
         public TimeZone TimeZone = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public List<StandardSimple> Standards = null;
@@ -2858,6 +3077,10 @@ public class ServiceModel
         public PutSamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
         public PutSamplingLocation setName(String value) { this.Name = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public PutSamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public PutSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public LocationType getType() { return Type; }
         public PutSamplingLocation setType(LocationType value) { this.Type = value; return this; }
         public String getLatitude() { return Latitude; }
@@ -2880,10 +3103,6 @@ public class ServiceModel
         public PutSamplingLocation setElevation(Quantity value) { this.Elevation = value; return this; }
         public TimeZone getTimeZone() { return TimeZone; }
         public PutSamplingLocation setTimeZone(TimeZone value) { this.TimeZone = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public PutSamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public PutSamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
         public PutSamplingLocation setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
@@ -3172,8 +3391,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -3279,8 +3504,14 @@ public class ServiceModel
         public GetExportObservations setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public GetExportObservations setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetExportObservations setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public GetExportObservations setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetExportObservations setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public GetExportObservations setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public GetExportObservations setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -4596,10 +4827,16 @@ public class ServiceModel
     public static class GetUnits implements IReturn<SearchResultUnit>
     {
         public String CustomId = null;
+        public Integer Limit = null;
+        public List<String> Search = null;
         public String Unitgroup = null;
 
         public String getCustomId() { return CustomId; }
         public GetUnits setCustomId(String value) { this.CustomId = value; return this; }
+        public Integer getLimit() { return Limit; }
+        public GetUnits setLimit(Integer value) { this.Limit = value; return this; }
+        public List<String> getSearch() { return Search; }
+        public GetUnits setSearch(List<String> value) { this.Search = value; return this; }
         public String getUnitgroup() { return Unitgroup; }
         public GetUnits setUnitgroup(String value) { this.Unitgroup = value; return this; }
         private static Object responseType = SearchResultUnit.class;
@@ -4786,6 +5023,7 @@ public class ServiceModel
         public String FileType = null;
         public String TimeZoneOffset = null;
         public Boolean LinkFieldVisitsForNewObservations = null;
+        public String ImportTemplateId = null;
 
         public String getFileType() { return FileType; }
         public PostObservationImportV2 setFileType(String value) { this.FileType = value; return this; }
@@ -4793,6 +5031,8 @@ public class ServiceModel
         public PostObservationImportV2 setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
         public Boolean getLinkFieldVisitsForNewObservations() { return LinkFieldVisitsForNewObservations; }
         public PostObservationImportV2 setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
+        public String getImportTemplateId() { return ImportTemplateId; }
+        public PostObservationImportV2 setImportTemplateId(String value) { this.ImportTemplateId = value; return this; }
     }
 
     @Route(Path="/v2/observationimports/{id}/result", Verbs="GET")
@@ -4823,6 +5063,7 @@ public class ServiceModel
         public String FileType = null;
         public String TimeZoneOffset = null;
         public Boolean LinkFieldVisitsForNewObservations = null;
+        public String ImportTemplateId = null;
 
         public String getFileType() { return FileType; }
         public PostObservationsDryRunV2 setFileType(String value) { this.FileType = value; return this; }
@@ -4830,6 +5071,8 @@ public class ServiceModel
         public PostObservationsDryRunV2 setTimeZoneOffset(String value) { this.TimeZoneOffset = value; return this; }
         public Boolean getLinkFieldVisitsForNewObservations() { return LinkFieldVisitsForNewObservations; }
         public PostObservationsDryRunV2 setLinkFieldVisitsForNewObservations(Boolean value) { this.LinkFieldVisitsForNewObservations = value; return this; }
+        public String getImportTemplateId() { return ImportTemplateId; }
+        public PostObservationsDryRunV2 setImportTemplateId(String value) { this.ImportTemplateId = value; return this; }
     }
 
     @DataContract
@@ -4876,8 +5119,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -4981,8 +5230,14 @@ public class ServiceModel
         public GetObservationsV2 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public GetObservationsV2 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetObservationsV2 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public GetObservationsV2 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetObservationsV2 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public GetObservationsV2 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public GetObservationsV2 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -5203,8 +5458,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -5308,8 +5569,14 @@ public class ServiceModel
         public DeleteObservationsV2 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public DeleteObservationsV2 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public DeleteObservationsV2 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public DeleteObservationsV2 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public DeleteObservationsV2 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public DeleteObservationsV2 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public DeleteObservationsV2 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -5559,8 +5826,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -5664,8 +5937,14 @@ public class ServiceModel
         public GetChartDataV2 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public GetChartDataV2 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetChartDataV2 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public GetChartDataV2 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetChartDataV2 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public GetChartDataV2 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public GetChartDataV2 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -5776,8 +6055,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -5881,8 +6166,14 @@ public class ServiceModel
         public GetGroupedObservationsV2 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public GetGroupedObservationsV2 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetGroupedObservationsV2 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public GetGroupedObservationsV2 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetGroupedObservationsV2 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public GetGroupedObservationsV2 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public GetGroupedObservationsV2 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -5995,8 +6286,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -6102,8 +6399,14 @@ public class ServiceModel
         public PutBulkEditResultGradesV2 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public PutBulkEditResultGradesV2 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public PutBulkEditResultGradesV2 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public PutBulkEditResultGradesV2 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public PutBulkEditResultGradesV2 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public PutBulkEditResultGradesV2 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public PutBulkEditResultGradesV2 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -6214,8 +6517,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -6321,8 +6630,14 @@ public class ServiceModel
         public GetObservationExportIIV2 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public GetObservationExportIIV2 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetObservationExportIIV2 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public GetObservationExportIIV2 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetObservationExportIIV2 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public GetObservationExportIIV2 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public GetObservationExportIIV2 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -6518,8 +6833,14 @@ public class ServiceModel
         public Instant EndModificationTime = null;
         @DataMember(Name = "fieldResultType")
         public FieldResultType FieldResultType = null;
+        @DataMember(Name = "fieldTripId")
+        public String FieldTripId = null;
+        @DataMember(Name = "fieldTripIds")
+        public List<String> FieldTripIds = null;
         @DataMember(Name = "fieldVisitId")
         public String FieldVisitId = null;
+        @DataMember(Name = "fieldVisitIds")
+        public List<String> FieldVisitIds = null;
         @DataMember(Name = "filterId")
         public String FilterId = null;
         @DataMember(Name = "flags")
@@ -6625,8 +6946,14 @@ public class ServiceModel
         public GetObservationExportIIIV3 setEndModificationTime(Instant value) { this.EndModificationTime = value; return this; }
         public FieldResultType getFieldResultType() { return FieldResultType; }
         public GetObservationExportIIIV3 setFieldResultType(FieldResultType value) { this.FieldResultType = value; return this; }
+        public String getFieldTripId() { return FieldTripId; }
+        public GetObservationExportIIIV3 setFieldTripId(String value) { this.FieldTripId = value; return this; }
+        public List<String> getFieldTripIds() { return FieldTripIds; }
+        public GetObservationExportIIIV3 setFieldTripIds(List<String> value) { this.FieldTripIds = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetObservationExportIIIV3 setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
+        public List<String> getFieldVisitIds() { return FieldVisitIds; }
+        public GetObservationExportIIIV3 setFieldVisitIds(List<String> value) { this.FieldVisitIds = value; return this; }
         public String getFilterId() { return FilterId; }
         public GetObservationExportIIIV3 setFilterId(String value) { this.FilterId = value; return this; }
         public List<String> getFlags() { return Flags; }
@@ -6693,13 +7020,15 @@ public class ServiceModel
 
     public static class AccessGroup
     {
+        public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public String Id = null;
         public String Name = null;
         public String Description = null;
         public Boolean CanEditAllData = null;
-        public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
+        public AccessGroup setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public String getId() { return Id; }
         public AccessGroup setId(String value) { this.Id = value; return this; }
         public String getName() { return Name; }
@@ -6708,8 +7037,6 @@ public class ServiceModel
         public AccessGroup setDescription(String value) { this.Description = value; return this; }
         public Boolean getCanEditAllData() { return CanEditAllData; }
         public AccessGroup setCanEditAllData(Boolean value) { this.CanEditAllData = value; return this; }
-        public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
-        public AccessGroup setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public AccessGroup setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -6729,6 +7056,8 @@ public class ServiceModel
         public Medium Medium = null;
         public PlannedActivity PlannedActivity = null;
         public FieldVisit FieldVisit = null;
+        public String ExternalTrackingId = null;
+        public String ExternalTrackingName = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public Boolean Refreshed = null;
         public Quantity Depth = null;
@@ -6762,6 +7091,10 @@ public class ServiceModel
         public Activity setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
         public Activity setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public String getExternalTrackingId() { return ExternalTrackingId; }
+        public Activity setExternalTrackingId(String value) { this.ExternalTrackingId = value; return this; }
+        public String getExternalTrackingName() { return ExternalTrackingName; }
+        public Activity setExternalTrackingName(String value) { this.ExternalTrackingName = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public Activity setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public Boolean getRefreshed() { return Refreshed; }
@@ -6823,6 +7156,8 @@ public class ServiceModel
         public Medium Medium = null;
         public PlannedActivity PlannedActivity = null;
         public FieldVisit FieldVisit = null;
+        public String ExternalTrackingId = null;
+        public String ExternalTrackingName = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public IndexConfiguration IndexConfiguration = null;
         public List<MetricResult> MetricResults = null;
@@ -6860,6 +7195,10 @@ public class ServiceModel
         public ActivityWithDetails setPlannedActivity(PlannedActivity value) { this.PlannedActivity = value; return this; }
         public FieldVisit getFieldVisit() { return FieldVisit; }
         public ActivityWithDetails setFieldVisit(FieldVisit value) { this.FieldVisit = value; return this; }
+        public String getExternalTrackingId() { return ExternalTrackingId; }
+        public ActivityWithDetails setExternalTrackingId(String value) { this.ExternalTrackingId = value; return this; }
+        public String getExternalTrackingName() { return ExternalTrackingName; }
+        public ActivityWithDetails setExternalTrackingName(String value) { this.ExternalTrackingName = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public ActivityWithDetails setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public IndexConfiguration getIndexConfiguration() { return IndexConfiguration; }
@@ -7231,6 +7570,14 @@ public class ServiceModel
         public AuditHistory setAuditChanges(List<AuditChange> value) { this.AuditChanges = value; return this; }
     }
 
+    public static class BulkEditChange
+    {
+        public String TargetObjectId = null;
+
+        public String getTargetObjectId() { return TargetObjectId; }
+        public BulkEditChange setTargetObjectId(String value) { this.TargetObjectId = value; return this; }
+    }
+
     public static class CategoricalResult
     {
         public NullMeasureQualifier NullMeasureQualifier = null;
@@ -7541,9 +7888,9 @@ public class ServiceModel
         public ProjectSimple Project = null;
         public PlanningStatusType PlanningStatus = null;
         public SamplingLocation SamplingLocation = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public List<PlannedFieldResult> PlannedFieldResults = null;
         public List<PlannedActivity> PlannedActivities = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public Schedule Schedule = null;
@@ -7568,12 +7915,12 @@ public class ServiceModel
         public FieldVisit setPlanningStatus(PlanningStatusType value) { this.PlanningStatus = value; return this; }
         public SamplingLocation getSamplingLocation() { return SamplingLocation; }
         public FieldVisit setSamplingLocation(SamplingLocation value) { this.SamplingLocation = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public FieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<PlannedFieldResult> getPlannedFieldResults() { return PlannedFieldResults; }
         public FieldVisit setPlannedFieldResults(List<PlannedFieldResult> value) { this.PlannedFieldResults = value; return this; }
         public List<PlannedActivity> getPlannedActivities() { return PlannedActivities; }
         public FieldVisit setPlannedActivities(List<PlannedActivity> value) { this.PlannedActivities = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public FieldVisit setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
         public FieldVisit setExtendedAttributes(List<ExtendedAttribute> value) { this.ExtendedAttributes = value; return this; }
         public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
@@ -7654,15 +8001,19 @@ public class ServiceModel
 
     public static class Filter
     {
+        public List<ObservedProperty> ObservedProperties = null;
+        public List<SamplingLocation> SamplingLocations = null;
         public String Id = null;
         public String CustomId = null;
         public OffsetDateTime StartTime = null;
         public OffsetDateTime EndTime = null;
-        public List<ObservedProperty> ObservedProperties = null;
-        public List<SamplingLocation> SamplingLocations = null;
         public String Description = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
+        public Filter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
+        public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
+        public Filter setSamplingLocations(List<SamplingLocation> value) { this.SamplingLocations = value; return this; }
         public String getId() { return Id; }
         public Filter setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -7671,10 +8022,6 @@ public class ServiceModel
         public Filter setStartTime(OffsetDateTime value) { this.StartTime = value; return this; }
         public OffsetDateTime getEndTime() { return EndTime; }
         public Filter setEndTime(OffsetDateTime value) { this.EndTime = value; return this; }
-        public List<ObservedProperty> getObservedProperties() { return ObservedProperties; }
-        public Filter setObservedProperties(List<ObservedProperty> value) { this.ObservedProperties = value; return this; }
-        public List<SamplingLocation> getSamplingLocations() { return SamplingLocations; }
-        public Filter setSamplingLocations(List<SamplingLocation> value) { this.SamplingLocations = value; return this; }
         public String getDescription() { return Description; }
         public Filter setDescription(String value) { this.Description = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
@@ -7688,11 +8035,14 @@ public class ServiceModel
     public static class ImportChangeItem
     {
         public String PropertyName = null;
+        public String DisplayPropertyName = null;
         public Object Left = null;
         public Object Right = null;
 
         public String getPropertyName() { return PropertyName; }
         public ImportChangeItem setPropertyName(String value) { this.PropertyName = value; return this; }
+        public String getDisplayPropertyName() { return DisplayPropertyName; }
+        public ImportChangeItem setDisplayPropertyName(String value) { this.DisplayPropertyName = value; return this; }
         public Object getLeft() { return Left; }
         public ImportChangeItem setLeft(Object value) { this.Left = value; return this; }
         public Object getRight() { return Right; }
@@ -8163,6 +8513,8 @@ public class ServiceModel
 
     public static class IndexConfiguration
     {
+        public List<IndexRange> IndexRanges = null;
+        public List<MetricConfiguration> MetricConfigurations = null;
         public String Id = null;
         public String CustomId = null;
         public String IssuingOrganization = null;
@@ -8170,10 +8522,12 @@ public class ServiceModel
         public Boolean UseScoreRanges = null;
         public ObservedProperty ObservedProperty = null;
         public Unit Unit = null;
-        public List<IndexRange> IndexRanges = null;
-        public List<MetricConfiguration> MetricConfigurations = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<IndexRange> getIndexRanges() { return IndexRanges; }
+        public IndexConfiguration setIndexRanges(List<IndexRange> value) { this.IndexRanges = value; return this; }
+        public List<MetricConfiguration> getMetricConfigurations() { return MetricConfigurations; }
+        public IndexConfiguration setMetricConfigurations(List<MetricConfiguration> value) { this.MetricConfigurations = value; return this; }
         public String getId() { return Id; }
         public IndexConfiguration setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -8188,10 +8542,6 @@ public class ServiceModel
         public IndexConfiguration setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
         public Unit getUnit() { return Unit; }
         public IndexConfiguration setUnit(Unit value) { this.Unit = value; return this; }
-        public List<IndexRange> getIndexRanges() { return IndexRanges; }
-        public IndexConfiguration setIndexRanges(List<IndexRange> value) { this.IndexRanges = value; return this; }
-        public List<MetricConfiguration> getMetricConfigurations() { return MetricConfigurations; }
-        public IndexConfiguration setMetricConfigurations(List<MetricConfiguration> value) { this.MetricConfigurations = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public IndexConfiguration setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8351,16 +8701,20 @@ public class ServiceModel
 
     public static class LabReport
     {
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public String Id = null;
         public String CustomId = null;
         public OffsetDateTime DateReceived = null;
         public String CaseNarrative = null;
         public String QcSummary = null;
         public Laboratory Laboratory = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public LabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public LabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public String getId() { return Id; }
         public LabReport setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -8373,10 +8727,6 @@ public class ServiceModel
         public LabReport setQcSummary(String value) { this.QcSummary = value; return this; }
         public Laboratory getLaboratory() { return Laboratory; }
         public LabReport setLaboratory(Laboratory value) { this.Laboratory = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public LabReport setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public LabReport setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public LabReport setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8508,6 +8858,8 @@ public class ServiceModel
 
     public static class MetricConfiguration
     {
+        public List<MetricRange> MetricRanges = null;
+        public List<Taxon> Taxons = null;
         public String Id = null;
         public String CustomId = null;
         public String Description = null;
@@ -8516,10 +8868,12 @@ public class ServiceModel
         public Boolean UseScoreRanges = null;
         public ObservedProperty ObservedProperty = null;
         public Unit Unit = null;
-        public List<MetricRange> MetricRanges = null;
-        public List<Taxon> Taxons = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<MetricRange> getMetricRanges() { return MetricRanges; }
+        public MetricConfiguration setMetricRanges(List<MetricRange> value) { this.MetricRanges = value; return this; }
+        public List<Taxon> getTaxons() { return Taxons; }
+        public MetricConfiguration setTaxons(List<Taxon> value) { this.Taxons = value; return this; }
         public String getId() { return Id; }
         public MetricConfiguration setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -8536,10 +8890,6 @@ public class ServiceModel
         public MetricConfiguration setObservedProperty(ObservedProperty value) { this.ObservedProperty = value; return this; }
         public Unit getUnit() { return Unit; }
         public MetricConfiguration setUnit(Unit value) { this.Unit = value; return this; }
-        public List<MetricRange> getMetricRanges() { return MetricRanges; }
-        public MetricConfiguration setMetricRanges(List<MetricRange> value) { this.MetricRanges = value; return this; }
-        public List<Taxon> getTaxons() { return Taxons; }
-        public MetricConfiguration setTaxons(List<Taxon> value) { this.Taxons = value; return this; }
         public AuditAttributes getAuditAttributes() { return AuditAttributes; }
         public MetricConfiguration setAuditAttributes(AuditAttributes value) { this.AuditAttributes = value; return this; }
     }
@@ -8947,6 +9297,7 @@ public class ServiceModel
 
     public static class ObservedProperty
     {
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public String Id = null;
         public String CustomId = null;
         public String Name = null;
@@ -8955,12 +9306,13 @@ public class ServiceModel
         public AnalysisType AnalysisType = null;
         public UnitGroup UnitGroup = null;
         public Unit DefaultUnit = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
         public String CasNumber = null;
         public Quantity LowerLimit = null;
         public Quantity UpperLimit = null;
         public AuditAttributes AuditAttributes = null;
 
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public ObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getId() { return Id; }
         public ObservedProperty setId(String value) { this.Id = value; return this; }
         public String getCustomId() { return CustomId; }
@@ -8977,8 +9329,6 @@ public class ServiceModel
         public ObservedProperty setUnitGroup(UnitGroup value) { this.UnitGroup = value; return this; }
         public Unit getDefaultUnit() { return DefaultUnit; }
         public ObservedProperty setDefaultUnit(Unit value) { this.DefaultUnit = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public ObservedProperty setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
         public String getCasNumber() { return CasNumber; }
         public ObservedProperty setCasNumber(String value) { this.CasNumber = value; return this; }
         public Quantity getLowerLimit() { return LowerLimit; }
@@ -9145,6 +9495,14 @@ public class ServiceModel
         public Quantity setUnit(Unit value) { this.Unit = value; return this; }
     }
 
+    public static class QueueCountDto
+    {
+        public Integer QueueCount = null;
+
+        public Integer getQueueCount() { return QueueCount; }
+        public QueueCountDto setQueueCount(Integer value) { this.QueueCount = value; return this; }
+    }
+
     public static class ResultDetectionCondition
     {
         public String Id = null;
@@ -9246,6 +9604,8 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public String Name = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public LocationType Type = null;
         public String Latitude = null;
         public String Longitude = null;
@@ -9257,8 +9617,6 @@ public class ServiceModel
         public Address Address = null;
         public Quantity Elevation = null;
         public TimeZone TimeZone = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public List<StandardSimple> Standards = null;
@@ -9270,6 +9628,10 @@ public class ServiceModel
         public SamplingLocation setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
         public SamplingLocation setName(String value) { this.Name = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public SamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public SamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public LocationType getType() { return Type; }
         public SamplingLocation setType(LocationType value) { this.Type = value; return this; }
         public String getLatitude() { return Latitude; }
@@ -9292,10 +9654,6 @@ public class ServiceModel
         public SamplingLocation setElevation(Quantity value) { this.Elevation = value; return this; }
         public TimeZone getTimeZone() { return TimeZone; }
         public SamplingLocation setTimeZone(TimeZone value) { this.TimeZone = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public SamplingLocation setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public SamplingLocation setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
         public SamplingLocation setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
@@ -9403,6 +9761,8 @@ public class ServiceModel
         public String Id = null;
         public String CustomId = null;
         public String Name = null;
+        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
+        public List<DomainObjectAttachment> Attachments = null;
         public LocationType Type = null;
         public String Latitude = null;
         public String Longitude = null;
@@ -9414,8 +9774,6 @@ public class ServiceModel
         public Address Address = null;
         public Quantity Elevation = null;
         public TimeZone TimeZone = null;
-        public List<ImportHistoryEventSimple> ImportHistoryEventSimples = null;
-        public List<DomainObjectAttachment> Attachments = null;
         public List<SamplingLocationGroup> SamplingLocationGroups = null;
         public List<ExtendedAttribute> ExtendedAttributes = null;
         public AuditAttributes AuditAttributes = null;
@@ -9426,6 +9784,10 @@ public class ServiceModel
         public SamplingLocationWithoutStandards setCustomId(String value) { this.CustomId = value; return this; }
         public String getName() { return Name; }
         public SamplingLocationWithoutStandards setName(String value) { this.Name = value; return this; }
+        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
+        public SamplingLocationWithoutStandards setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
+        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
+        public SamplingLocationWithoutStandards setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public LocationType getType() { return Type; }
         public SamplingLocationWithoutStandards setType(LocationType value) { this.Type = value; return this; }
         public String getLatitude() { return Latitude; }
@@ -9448,10 +9810,6 @@ public class ServiceModel
         public SamplingLocationWithoutStandards setElevation(Quantity value) { this.Elevation = value; return this; }
         public TimeZone getTimeZone() { return TimeZone; }
         public SamplingLocationWithoutStandards setTimeZone(TimeZone value) { this.TimeZone = value; return this; }
-        public List<ImportHistoryEventSimple> getImportHistoryEventSimples() { return ImportHistoryEventSimples; }
-        public SamplingLocationWithoutStandards setImportHistoryEventSimples(List<ImportHistoryEventSimple> value) { this.ImportHistoryEventSimples = value; return this; }
-        public List<DomainObjectAttachment> getAttachments() { return Attachments; }
-        public SamplingLocationWithoutStandards setAttachments(List<DomainObjectAttachment> value) { this.Attachments = value; return this; }
         public List<SamplingLocationGroup> getSamplingLocationGroups() { return SamplingLocationGroups; }
         public SamplingLocationWithoutStandards setSamplingLocationGroups(List<SamplingLocationGroup> value) { this.SamplingLocationGroups = value; return this; }
         public List<ExtendedAttribute> getExtendedAttributes() { return ExtendedAttributes; }
