@@ -1,6 +1,6 @@
-// Date: 2026-09-14T14:24:32.2879227-07:00
-// Base URL: https://aqts-connector-integration-test-first-sync.aqstest.com/api/swagger.json
-// Source: AQUARIUS Samples API (2026.9.8300)
+// Date: 2026-10-16T12:17:18.2065138-07:00
+// Base URL: https://demo.aqsamples.com/api/swagger.json
+// Source: AQUARIUS Samples API (2026.9.8353)
 
 package com.aquaticinformatics.aquarius.sdk.samples;
 
@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2026.9.8300");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2026.9.8305");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
@@ -115,7 +115,7 @@ public class ServiceModel
         public List<String> CollectionMethodIds = null;
         public String Cursor = null;
         public String CustomId = null;
-        public List<String> ExternalTrackingNameSearch = null;
+        public String ExternalTrackingNameSearch = null;
         public String FieldVisitId = null;
         public Instant FromStartTime = null;
         public List<String> Ids = null;
@@ -136,8 +136,8 @@ public class ServiceModel
         public GetActivities setCursor(String value) { this.Cursor = value; return this; }
         public String getCustomId() { return CustomId; }
         public GetActivities setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getExternalTrackingNameSearch() { return ExternalTrackingNameSearch; }
-        public GetActivities setExternalTrackingNameSearch(List<String> value) { this.ExternalTrackingNameSearch = value; return this; }
+        public String getExternalTrackingNameSearch() { return ExternalTrackingNameSearch; }
+        public GetActivities setExternalTrackingNameSearch(String value) { this.ExternalTrackingNameSearch = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public GetActivities setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
         public Instant getFromStartTime() { return FromStartTime; }
@@ -239,7 +239,7 @@ public class ServiceModel
         public List<String> CollectionMethodIds = null;
         public String Cursor = null;
         public String CustomId = null;
-        public List<String> ExternalTrackingNameSearch = null;
+        public String ExternalTrackingNameSearch = null;
         public String FieldVisitId = null;
         public Instant FromStartTime = null;
         public List<String> Ids = null;
@@ -260,8 +260,8 @@ public class ServiceModel
         public DeleteActivities setCursor(String value) { this.Cursor = value; return this; }
         public String getCustomId() { return CustomId; }
         public DeleteActivities setCustomId(String value) { this.CustomId = value; return this; }
-        public List<String> getExternalTrackingNameSearch() { return ExternalTrackingNameSearch; }
-        public DeleteActivities setExternalTrackingNameSearch(List<String> value) { this.ExternalTrackingNameSearch = value; return this; }
+        public String getExternalTrackingNameSearch() { return ExternalTrackingNameSearch; }
+        public DeleteActivities setExternalTrackingNameSearch(String value) { this.ExternalTrackingNameSearch = value; return this; }
         public String getFieldVisitId() { return FieldVisitId; }
         public DeleteActivities setFieldVisitId(String value) { this.FieldVisitId = value; return this; }
         public Instant getFromStartTime() { return FromStartTime; }
