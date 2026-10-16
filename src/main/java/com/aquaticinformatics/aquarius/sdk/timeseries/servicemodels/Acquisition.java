@@ -1,5 +1,5 @@
 /* Options:
-Instant: 2026-10-08 04:39:36
+Instant: 2026-10-16 21:28:22
 Version: 10.04
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://develop-1.dev.aquariusdev.net/AQUARIUS/Acquisition/v2
@@ -27,57 +27,6 @@ import com.aquaticinformatics.aquarius.sdk.AquariusServerVersion;
 
 public class Acquisition
 {
-
-    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
-    public static class PostVisitFileToLocation extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
-    {
-        /**
-        * Unique ID of the location of visits in the file
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", Format="guid", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostVisitFileToLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/visits/{VisitIdentifier}/upload/plugins", Verbs="POST")
-    public static class PostVisitFileToVisit extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
-    {
-        /**
-        * Identifier of the existing visit to add the file's content to
-        */
-        @ApiMember(Description="Identifier of the existing visit to add the file's content to", IsRequired=true, ParameterType="path")
-        public String VisitIdentifier = null;
-        
-        public String getVisitIdentifier() { return VisitIdentifier; }
-        public PostVisitFileToVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/visits/upload/plugins", Verbs="POST")
-    public static class PostVisitFile extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
-    {
-        
-        private static Object responseType = PostVisitFileResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/visits/{VisitIdentifier}", Verbs="DELETE")
-    public static class DeleteVisit implements IReturnVoid
-    {
-        /**
-        * Identifier of the existing visit to delete
-        */
-        @ApiMember(Description="Identifier of the existing visit to delete", IsRequired=true, ParameterType="path")
-        public String VisitIdentifier = null;
-        
-        public String getVisitIdentifier() { return VisitIdentifier; }
-        public DeleteVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
-    }
 
     @Route(Path="/session/keepalive", Verbs="GET")
     public static class GetKeepAlive implements IReturnVoid
@@ -127,147 +76,6 @@ public class Acquisition
     {
         
         private static Object responseType = PublicKey.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
-    public static class PostReportAttachment implements IReturn<PostReportResponse>, IFileUploadRequest
-    {
-        /**
-        * Title of the report
-        */
-        @ApiMember(Description="Title of the report", IsRequired=true)
-        public String Title = null;
-
-        /**
-        * Description of the report
-        */
-        @ApiMember(Description="Description of the report")
-        public String Description = null;
-
-        /**
-        * Comments about the report
-        */
-        @ApiMember(Description="Comments about the report")
-        public String Comments = null;
-
-        /**
-        * Unique ID of the location to add the report to
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", Format="guid", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-
-        /**
-        * Unique IDs of source time-series displayed in report
-        */
-        @ApiMember(DataType="array", Description="Unique IDs of source time-series displayed in report")
-        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
-
-        /**
-        * Time range of source data displayed in report
-        */
-        @ApiMember(DataType="string", Description="Time range of source data displayed in report", Format="interval")
-        public Interval SourceTimeRange = null;
-
-        /**
-        * Time report was created
-        */
-        @ApiMember(DataType="string", Description="Time report was created", Format="date-time")
-        public Instant CreatedTime = null;
-
-        /**
-        * Tags to be assigned to the report with optional values; an empty list means the report will have no tags assigned to it.
-        */
-        @ApiMember(DataType="array", Description="Tags to be assigned to the report with optional values; an empty list means the report will have no tags assigned to it.")
-        public ArrayList<ApplyTagRequest> Tags = null;
-
-        /**
-        * File
-        */
-        @Ignore()
-        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
-        public IHttpFile File = null;
-        
-        public String getTitle() { return Title; }
-        public PostReportAttachment setTitle(String value) { this.Title = value; return this; }
-        public String getDescription() { return Description; }
-        public PostReportAttachment setDescription(String value) { this.Description = value; return this; }
-        public String getComments() { return Comments; }
-        public PostReportAttachment setComments(String value) { this.Comments = value; return this; }
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostReportAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
-        public PostReportAttachment setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
-        public Interval getSourceTimeRange() { return SourceTimeRange; }
-        public PostReportAttachment setSourceTimeRange(Interval value) { this.SourceTimeRange = value; return this; }
-        public Instant getCreatedTime() { return CreatedTime; }
-        public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
-        public ArrayList<ApplyTagRequest> getTags() { return Tags; }
-        public PostReportAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
-        public IHttpFile getFile() { return File; }
-        public PostReportAttachment setFile(IHttpFile value) { this.File = value; return this; }
-        private static Object responseType = PostReportResponse.class;
-        public Object getResponseType() { return responseType; }
-    }
-
-    @Route(Path="/attachments/reports/{ReportUniqueId}", Verbs="DELETE")
-    public static class DeleteReportAttachment implements IReturnVoid
-    {
-        /**
-        * Unique ID of report
-        */
-        @ApiMember(DataType="string", Description="Unique ID of report", Format="guid", IsRequired=true, ParameterType="path")
-        public String ReportUniqueId = null;
-        
-        public String getReportUniqueId() { return ReportUniqueId; }
-        public DeleteReportAttachment setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
-    }
-
-    @Route(Path="/locations/{LocationUniqueId}/attachments", Verbs="POST")
-    public static class PostLocationAttachment implements IReturn<PostLocationAttachmentResponse>, IFileUploadRequest
-    {
-        /**
-        * Unique ID of the location to add the attachment to
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location to add the attachment to", Format="guid", IsRequired=true, ParameterType="path")
-        public String LocationUniqueId = null;
-
-        /**
-        * Deprecated - use tags instead. If not specified, defaults to None
-        */
-        @ApiMember(DataType="string", Description="Deprecated - use tags instead. If not specified, defaults to None")
-        public AttachmentCategory AttachmentCategory = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comments = null;
-
-        /**
-        * File
-        */
-        @Ignore()
-        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
-        public IHttpFile File = null;
-
-        /**
-        * Tags to be assigned to the attachment with optional values; an empty list means the attachment will have no tags assigned to it.
-        */
-        @ApiMember(DataType="array", Description="Tags to be assigned to the attachment with optional values; an empty list means the attachment will have no tags assigned to it.")
-        public ArrayList<ApplyTagRequest> Tags = null;
-        
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostLocationAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public AttachmentCategory getAttachmentCategory() { return AttachmentCategory; }
-        public PostLocationAttachment setAttachmentCategory(AttachmentCategory value) { this.AttachmentCategory = value; return this; }
-        public String getComments() { return Comments; }
-        public PostLocationAttachment setComments(String value) { this.Comments = value; return this; }
-        public IHttpFile getFile() { return File; }
-        public PostLocationAttachment setFile(IHttpFile value) { this.File = value; return this; }
-        public ArrayList<ApplyTagRequest> getTags() { return Tags; }
-        public PostLocationAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
-        private static Object responseType = PostLocationAttachmentResponse.class;
         public Object getResponseType() { return responseType; }
     }
 
@@ -454,32 +262,196 @@ public class Acquisition
         public Object getResponseType() { return responseType; }
     }
 
-    public static class PostVisitFileResponse
+    @Route(Path="/locations/{LocationUniqueId}/attachments/reports", Verbs="POST")
+    public static class PostReportAttachment implements IReturn<PostReportResponse>, IFileUploadRequest
     {
         /**
-        * Relative URIs of created or modified visits
+        * Title of the report
         */
-        @ApiMember(DataType="array", Description="Relative URIs of created or modified visits")
-        public ArrayList<String> VisitUris = null;
+        @ApiMember(Description="Title of the report", IsRequired=true)
+        public String Title = null;
 
         /**
-        * Identifiers of created or modified visits
+        * Description of the report
         */
-        @ApiMember(DataType="array", Description="Identifiers of created or modified visits")
-        public ArrayList<String> VisitIdentifiers = null;
+        @ApiMember(Description="Description of the report")
+        public String Description = null;
 
         /**
-        * Registered field data plug-in that processed the file
+        * Comments about the report
         */
-        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
-        public FieldDataPlugin HandledByPlugin = null;
+        @ApiMember(Description="Comments about the report")
+        public String Comments = null;
+
+        /**
+        * Unique ID of the location to add the report to
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location to add the report to", Format="guid", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        /**
+        * Unique IDs of source time-series displayed in report
+        */
+        @ApiMember(DataType="array", Description="Unique IDs of source time-series displayed in report")
+        public ArrayList<String> SourceTimeSeriesUniqueIds = null;
+
+        /**
+        * Time range of source data displayed in report
+        */
+        @ApiMember(DataType="string", Description="Time range of source data displayed in report", Format="interval")
+        public Interval SourceTimeRange = null;
+
+        /**
+        * Time report was created
+        */
+        @ApiMember(DataType="string", Description="Time report was created", Format="date-time")
+        public Instant CreatedTime = null;
+
+        /**
+        * Tags to be assigned to the report with optional values; an empty list means the report will have no tags assigned to it.
+        */
+        @ApiMember(DataType="array", Description="Tags to be assigned to the report with optional values; an empty list means the report will have no tags assigned to it.")
+        public ArrayList<ApplyTagRequest> Tags = null;
+
+        /**
+        * File
+        */
+        @Ignore()
+        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
+        public IHttpFile File = null;
         
-        public ArrayList<String> getVisitUris() { return VisitUris; }
-        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
-        public ArrayList<String> getVisitIdentifiers() { return VisitIdentifiers; }
-        public PostVisitFileResponse setVisitIdentifiers(ArrayList<String> value) { this.VisitIdentifiers = value; return this; }
-        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
-        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
+        public String getTitle() { return Title; }
+        public PostReportAttachment setTitle(String value) { this.Title = value; return this; }
+        public String getDescription() { return Description; }
+        public PostReportAttachment setDescription(String value) { this.Description = value; return this; }
+        public String getComments() { return Comments; }
+        public PostReportAttachment setComments(String value) { this.Comments = value; return this; }
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostReportAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public ArrayList<String> getSourceTimeSeriesUniqueIds() { return SourceTimeSeriesUniqueIds; }
+        public PostReportAttachment setSourceTimeSeriesUniqueIds(ArrayList<String> value) { this.SourceTimeSeriesUniqueIds = value; return this; }
+        public Interval getSourceTimeRange() { return SourceTimeRange; }
+        public PostReportAttachment setSourceTimeRange(Interval value) { this.SourceTimeRange = value; return this; }
+        public Instant getCreatedTime() { return CreatedTime; }
+        public PostReportAttachment setCreatedTime(Instant value) { this.CreatedTime = value; return this; }
+        public ArrayList<ApplyTagRequest> getTags() { return Tags; }
+        public PostReportAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
+        public IHttpFile getFile() { return File; }
+        public PostReportAttachment setFile(IHttpFile value) { this.File = value; return this; }
+        private static Object responseType = PostReportResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/attachments/reports/{ReportUniqueId}", Verbs="DELETE")
+    public static class DeleteReportAttachment implements IReturnVoid
+    {
+        /**
+        * Unique ID of report
+        */
+        @ApiMember(DataType="string", Description="Unique ID of report", Format="guid", IsRequired=true, ParameterType="path")
+        public String ReportUniqueId = null;
+        
+        public String getReportUniqueId() { return ReportUniqueId; }
+        public DeleteReportAttachment setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/attachments", Verbs="POST")
+    public static class PostLocationAttachment implements IReturn<PostLocationAttachmentResponse>, IFileUploadRequest
+    {
+        /**
+        * Unique ID of the location to add the attachment to
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location to add the attachment to", Format="guid", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+
+        /**
+        * Deprecated - use tags instead. If not specified, defaults to None
+        */
+        @ApiMember(DataType="string", Description="Deprecated - use tags instead. If not specified, defaults to None")
+        public AttachmentCategory AttachmentCategory = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comments = null;
+
+        /**
+        * File
+        */
+        @Ignore()
+        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
+        public IHttpFile File = null;
+
+        /**
+        * Tags to be assigned to the attachment with optional values; an empty list means the attachment will have no tags assigned to it.
+        */
+        @ApiMember(DataType="array", Description="Tags to be assigned to the attachment with optional values; an empty list means the attachment will have no tags assigned to it.")
+        public ArrayList<ApplyTagRequest> Tags = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostLocationAttachment setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public AttachmentCategory getAttachmentCategory() { return AttachmentCategory; }
+        public PostLocationAttachment setAttachmentCategory(AttachmentCategory value) { this.AttachmentCategory = value; return this; }
+        public String getComments() { return Comments; }
+        public PostLocationAttachment setComments(String value) { this.Comments = value; return this; }
+        public IHttpFile getFile() { return File; }
+        public PostLocationAttachment setFile(IHttpFile value) { this.File = value; return this; }
+        public ArrayList<ApplyTagRequest> getTags() { return Tags; }
+        public PostLocationAttachment setTags(ArrayList<ApplyTagRequest> value) { this.Tags = value; return this; }
+        private static Object responseType = PostLocationAttachmentResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/locations/{LocationUniqueId}/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFileToLocation extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Unique ID of the location of visits in the file
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location of visits in the file", Format="guid", IsRequired=true, ParameterType="path")
+        public String LocationUniqueId = null;
+        
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostVisitFileToLocation setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/{VisitIdentifier}/upload/plugins", Verbs="POST")
+    public static class PostVisitFileToVisit extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        /**
+        * Identifier of the existing visit to add the file's content to
+        */
+        @ApiMember(Description="Identifier of the existing visit to add the file's content to", IsRequired=true, ParameterType="path")
+        public String VisitIdentifier = null;
+        
+        public String getVisitIdentifier() { return VisitIdentifier; }
+        public PostVisitFileToVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/upload/plugins", Verbs="POST")
+    public static class PostVisitFile extends PostVisitFileBase implements IReturn<PostVisitFileResponse>
+    {
+        
+        private static Object responseType = PostVisitFileResponse.class;
+        public Object getResponseType() { return responseType; }
+    }
+
+    @Route(Path="/visits/{VisitIdentifier}", Verbs="DELETE")
+    public static class DeleteVisit implements IReturnVoid
+    {
+        /**
+        * Identifier of the existing visit to delete
+        */
+        @ApiMember(Description="Identifier of the existing visit to delete", IsRequired=true, ParameterType="path")
+        public String VisitIdentifier = null;
+        
+        public String getVisitIdentifier() { return VisitIdentifier; }
+        public DeleteVisit setVisitIdentifier(String value) { this.VisitIdentifier = value; return this; }
     }
 
     public static class PublicKey
@@ -500,81 +472,6 @@ public class Acquisition
         public PublicKey setKeySize(Integer value) { this.KeySize = value; return this; }
         public String getXml() { return Xml; }
         public PublicKey setXml(String value) { this.Xml = value; return this; }
-    }
-
-    public static class PostReportResponse
-    {
-        /**
-        * Unique ID of the created report
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the created report", Format="guid")
-        public String ReportUniqueId = null;
-        
-        public String getReportUniqueId() { return ReportUniqueId; }
-        public PostReportResponse setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
-    }
-
-    public static class PostLocationAttachmentResponse
-    {
-        /**
-        * Attachment URL
-        */
-        @ApiMember(Description="Attachment URL")
-        public String Url = null;
-
-        /**
-        * Unique ID of the location
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the location", Format="guid")
-        public String LocationUniqueId = null;
-
-        /**
-        * File name
-        */
-        @ApiMember(Description="File name")
-        public String FileName = null;
-
-        /**
-        * Unique ID of the attachment
-        */
-        @ApiMember(DataType="string", Description="Unique ID of the attachment", Format="guid")
-        public String UniqueId = null;
-
-        /**
-        * Attachment category
-        */
-        @ApiMember(DataType="string", Description="Attachment category")
-        public AttachmentCategory AttachmentCategory = null;
-
-        /**
-        * Comment
-        */
-        @ApiMember(Description="Comment")
-        public String Comments = null;
-
-        public AttachmentType AttachmentType = null;
-        /**
-        * Tags applied to this attachment
-        */
-        @ApiMember(DataType="array", Description="Tags applied to this attachment")
-        public ArrayList<AppliedTag> Tags = null;
-        
-        public String getUrl() { return Url; }
-        public PostLocationAttachmentResponse setUrl(String value) { this.Url = value; return this; }
-        public String getLocationUniqueId() { return LocationUniqueId; }
-        public PostLocationAttachmentResponse setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
-        public String getFileName() { return FileName; }
-        public PostLocationAttachmentResponse setFileName(String value) { this.FileName = value; return this; }
-        public String getUniqueId() { return UniqueId; }
-        public PostLocationAttachmentResponse setUniqueId(String value) { this.UniqueId = value; return this; }
-        public AttachmentCategory getAttachmentCategory() { return AttachmentCategory; }
-        public PostLocationAttachmentResponse setAttachmentCategory(AttachmentCategory value) { this.AttachmentCategory = value; return this; }
-        public String getComments() { return Comments; }
-        public PostLocationAttachmentResponse setComments(String value) { this.Comments = value; return this; }
-        public AttachmentType getAttachmentType() { return AttachmentType; }
-        public PostLocationAttachmentResponse setAttachmentType(AttachmentType value) { this.AttachmentType = value; return this; }
-        public ArrayList<AppliedTag> getTags() { return Tags; }
-        public PostLocationAttachmentResponse setTags(ArrayList<AppliedTag> value) { this.Tags = value; return this; }
     }
 
     public static class TimeSeriesAppendStatus
@@ -652,60 +549,107 @@ public class Acquisition
         public DeleteTimeSeriesNotesResponse setNotesDeleted(Integer value) { this.NotesDeleted = value; return this; }
     }
 
-    public static class PostVisitFileBase implements IFileUploadRequest
+    public static class PostReportResponse
     {
         /**
-        * File
+        * Unique ID of the created report
         */
-        @Ignore()
-        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
-        public IHttpFile File = null;
+        @ApiMember(DataType="string", Description="Unique ID of the created report", Format="guid")
+        public String ReportUniqueId = null;
         
-        public IHttpFile getFile() { return File; }
-        public PostVisitFileBase setFile(IHttpFile value) { this.File = value; return this; }
+        public String getReportUniqueId() { return ReportUniqueId; }
+        public PostReportResponse setReportUniqueId(String value) { this.ReportUniqueId = value; return this; }
     }
 
-    public static interface IHttpFile
-    {
-    }
-
-    public static interface IFileUploadRequest
-    {
-        public IHttpFile File = null;
-    }
-
-    public static class ApplyTagRequest
+    public static class PostLocationAttachmentResponse
     {
         /**
-        * UniqueId of the tag
+        * Attachment URL
         */
-        @ApiMember(DataType="string", Description="UniqueId of the tag", Format="guid", IsRequired=true)
+        @ApiMember(Description="Attachment URL")
+        public String Url = null;
+
+        /**
+        * Unique ID of the location
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the location", Format="guid")
+        public String LocationUniqueId = null;
+
+        /**
+        * File name
+        */
+        @ApiMember(Description="File name")
+        public String FileName = null;
+
+        /**
+        * Unique ID of the attachment
+        */
+        @ApiMember(DataType="string", Description="Unique ID of the attachment", Format="guid")
         public String UniqueId = null;
 
         /**
-        * Optional value of the tag
+        * Attachment category
         */
-        @ApiMember(Description="Optional value of the tag")
-        public String Value = null;
+        @ApiMember(DataType="string", Description="Attachment category")
+        public AttachmentCategory AttachmentCategory = null;
+
+        /**
+        * Comment
+        */
+        @ApiMember(Description="Comment")
+        public String Comments = null;
+
+        public AttachmentType AttachmentType = null;
+        /**
+        * Tags applied to this attachment
+        */
+        @ApiMember(DataType="array", Description="Tags applied to this attachment")
+        public ArrayList<AppliedTag> Tags = null;
         
+        public String getUrl() { return Url; }
+        public PostLocationAttachmentResponse setUrl(String value) { this.Url = value; return this; }
+        public String getLocationUniqueId() { return LocationUniqueId; }
+        public PostLocationAttachmentResponse setLocationUniqueId(String value) { this.LocationUniqueId = value; return this; }
+        public String getFileName() { return FileName; }
+        public PostLocationAttachmentResponse setFileName(String value) { this.FileName = value; return this; }
         public String getUniqueId() { return UniqueId; }
-        public ApplyTagRequest setUniqueId(String value) { this.UniqueId = value; return this; }
-        public String getValue() { return Value; }
-        public ApplyTagRequest setValue(String value) { this.Value = value; return this; }
+        public PostLocationAttachmentResponse setUniqueId(String value) { this.UniqueId = value; return this; }
+        public AttachmentCategory getAttachmentCategory() { return AttachmentCategory; }
+        public PostLocationAttachmentResponse setAttachmentCategory(AttachmentCategory value) { this.AttachmentCategory = value; return this; }
+        public String getComments() { return Comments; }
+        public PostLocationAttachmentResponse setComments(String value) { this.Comments = value; return this; }
+        public AttachmentType getAttachmentType() { return AttachmentType; }
+        public PostLocationAttachmentResponse setAttachmentType(AttachmentType value) { this.AttachmentType = value; return this; }
+        public ArrayList<AppliedTag> getTags() { return Tags; }
+        public PostLocationAttachmentResponse setTags(ArrayList<AppliedTag> value) { this.Tags = value; return this; }
     }
 
-    public static enum AttachmentCategory
+    public static class PostVisitFileResponse
     {
-        None,
-        LocationPhoto,
-        Notes,
-        Site,
-        Channel,
-        Measurement,
-        CrossSection,
-        Inspection,
-        InventoryControl,
-        LevelSurvey;
+        /**
+        * Relative URIs of created or modified visits
+        */
+        @ApiMember(DataType="array", Description="Relative URIs of created or modified visits")
+        public ArrayList<String> VisitUris = null;
+
+        /**
+        * Identifiers of created or modified visits
+        */
+        @ApiMember(DataType="array", Description="Identifiers of created or modified visits")
+        public ArrayList<String> VisitIdentifiers = null;
+
+        /**
+        * Registered field data plug-in that processed the file
+        */
+        @ApiMember(DataType="FieldDataPlugin", Description="Registered field data plug-in that processed the file")
+        public FieldDataPlugin HandledByPlugin = null;
+        
+        public ArrayList<String> getVisitUris() { return VisitUris; }
+        public PostVisitFileResponse setVisitUris(ArrayList<String> value) { this.VisitUris = value; return this; }
+        public ArrayList<String> getVisitIdentifiers() { return VisitIdentifiers; }
+        public PostVisitFileResponse setVisitIdentifiers(ArrayList<String> value) { this.VisitIdentifiers = value; return this; }
+        public FieldDataPlugin getHandledByPlugin() { return HandledByPlugin; }
+        public PostVisitFileResponse setHandledByPlugin(FieldDataPlugin value) { this.HandledByPlugin = value; return this; }
     }
 
     public static class TimeSeriesPoint
@@ -772,24 +716,67 @@ public class Acquisition
         public TimeSeriesNote setNoteText(String value) { this.NoteText = value; return this; }
     }
 
-    public static class FieldDataPlugin
+    public static class ApplyTagRequest
     {
         /**
-        * Name
+        * UniqueId of the tag
         */
-        @ApiMember(Description="Name")
-        public String Name = null;
+        @ApiMember(DataType="string", Description="UniqueId of the tag", Format="guid", IsRequired=true)
+        public String UniqueId = null;
 
         /**
-        * Unique id
+        * Optional value of the tag
         */
-        @ApiMember(DataType="string", Description="Unique id", Format="guid")
-        public String UniqueId = null;
+        @ApiMember(Description="Optional value of the tag")
+        public String Value = null;
         
-        public String getName() { return Name; }
-        public FieldDataPlugin setName(String value) { this.Name = value; return this; }
         public String getUniqueId() { return UniqueId; }
-        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
+        public ApplyTagRequest setUniqueId(String value) { this.UniqueId = value; return this; }
+        public String getValue() { return Value; }
+        public ApplyTagRequest setValue(String value) { this.Value = value; return this; }
+    }
+
+    public static interface IHttpFile
+    {
+    }
+
+    public static interface IFileUploadRequest
+    {
+        public IHttpFile File = null;
+    }
+
+    public static enum AttachmentCategory
+    {
+        None,
+        LocationPhoto,
+        Notes,
+        Site,
+        Channel,
+        Measurement,
+        CrossSection,
+        Inspection,
+        InventoryControl,
+        LevelSurvey;
+    }
+
+    public static class PostVisitFileBase implements IFileUploadRequest
+    {
+        /**
+        * File
+        */
+        @Ignore()
+        @ApiMember(DataType="file", Description="File", IsRequired=true, ParameterType="form")
+        public IHttpFile File = null;
+        
+        public IHttpFile getFile() { return File; }
+        public PostVisitFileBase setFile(IHttpFile value) { this.File = value; return this; }
+    }
+
+    public static enum AppendStatusCode
+    {
+        Pending,
+        Completed,
+        Failed;
     }
 
     public static enum AttachmentType
@@ -844,11 +831,24 @@ public class Acquisition
         public AppliedTag setValue(String value) { this.Value = value; return this; }
     }
 
-    public static enum AppendStatusCode
+    public static class FieldDataPlugin
     {
-        Pending,
-        Completed,
-        Failed;
+        /**
+        * Name
+        */
+        @ApiMember(Description="Name")
+        public String Name = null;
+
+        /**
+        * Unique id
+        */
+        @ApiMember(DataType="string", Description="Unique id", Format="guid")
+        public String UniqueId = null;
+        
+        public String getName() { return Name; }
+        public FieldDataPlugin setName(String value) { this.Name = value; return this; }
+        public String getUniqueId() { return UniqueId; }
+        public FieldDataPlugin setUniqueId(String value) { this.UniqueId = value; return this; }
     }
 
     public static enum PointType
@@ -860,6 +860,6 @@ public class Acquisition
 
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("26.3.69.0");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("26.3.75.0");
     }
 }
