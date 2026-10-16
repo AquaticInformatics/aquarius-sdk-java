@@ -14,7 +14,7 @@ public class ServiceModel
 {
     public static class Current
     {
-        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2026.9.8305");
+        public static final AquariusServerVersion Version = AquariusServerVersion.Create("2026.9.8353");
     }
 
     @Route(Path="/v1/accessgroups", Verbs="GET")
